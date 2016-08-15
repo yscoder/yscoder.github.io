@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit">
+<title>Yusen's Blog | 404</title>
+<style>
+    html, body {
+        height: 100%;
+        min-height: 100%;
+        background: #161B20;
+        overflow: hidden;
+    }
+    #block {
+        width: 1px;
+        height: 1px;
+        font-size: 10px;
+    }
+
+    #block:after {
+        content: '';
+        position: absolute;
+        top: 36%;
+        left: 50%;
+        width: 1em;
+        height: 1em;
+        -webkit-transform: translateX(-14em);
+        transform: translateX(-14em);
+    }
+    @media screen and (max-width: 320px) {
+        #block:after {
+            -webkit-transform: translateX(-11.5em) scale(.8);
+            transform: translateX(-11.5em) scale(.8);
+        }
+    }
+    .home {
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        margin-left: -14px;
+        text-decoration: none;
+    }
+    .icon-home {
+        position: relative;
+        display: block;
+        width: 30px;
+        height: 30px;
+        background: #484C4D
+    }
+    .icon-home:before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        top: -40px;
+        left: -9px;
+        border: 24px solid transparent;
+        border-bottom-color: #484C4D;
+    }
+    .icon-home:after {
+        content: '';
+        position: absolute;
+        height: 0;
+        width: 0;
+        top: 16px;
+        left: 7px;
+        width: 16px;
+        height: 14px;
+        background: #161B20;
+    }
+</style>
+</head>
+<body>
+    <div id="block"></div>
+    <a href="/" class="home" title="返回主页">
+        <span class="icon-home"></span>
+    </a>
+<script>
+(function () {
+    function color () {
+        return '#' + ('00000' + (( Math.random() * 16777215 + 0.5) >> 0).toString(16)).slice(-6);
+    }
+
+    function shadow (x, y) {
+        return x + 'em ' + y + 'em ' + color();
+    }
+
+    function addStyle (id, e, p, v) {
+        var style = document.getElementById(id);
+
+        if(!style) {
+            style = document.createElement('style');
+            style.id = id;
+        }
+
+        style.innerHTML = e + '{' + p + ':' + v + ';}';
+        document.getElementsByTagName('head')[0].appendChild(style);
+    }
+
+    function four (h, l, b, r) {
+        var ret = [];
+
+        for (var i = 0, s = l - 0.5; i <= h + b; i++, s = l - 0.5 * (i + 1)) {
+
+            if(i === h) {
+
+                for(var j = s + 0.5; j <= l + r; j++) {
+                    ret.push(shadow(j, h));
+                }
+
+            } else {
+                ret.push(shadow(l, i));
+
+                if(i < h) {
+                    ret.push(shadow(s, i + 0.5));
+                }
+
+            }
+        };
+
+        return ret.join(',');
+    }
+
+    function zero (l, h, w) {
+        var ret = [], i = 0;
+
+        for(var n = 0; n < w; n++) {
+            ret.push(shadow(l + n, 0));
+            ret.push(shadow(l + n, h));
+        }
+
+        ret.push(shadow(l - 0.5, i + 0.5));
+        ret.push(shadow(l + w - 1 + 0.5, i + 0.5));
+        i = h - 1;
+        ret.push(shadow(l - 0.5, i + 0.5));
+        ret.push(shadow(l + w - 1 + 0.5, i + 0.5));
+
+        for(n = 1; n < h; n ++) {
+            ret.push(shadow(l - 1, n));
+            ret.push(shadow(l + w, n));
+        }
+
+        return ret.join(',');
+    }
+
+    setInterval(function () {
+        addStyle('style', '#block:after', 'box-shadow', four(10, 5, 2, 1) + ',' + zero(12, 12, 5) + ',' + four(10, 26, 2, 1));
+    }, 200);
+
+}());
+</script>
+</body>
+</html>

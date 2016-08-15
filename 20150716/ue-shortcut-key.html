@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>用户体验--WEB站点快捷键实现方案 | Yusen&#39;s Blog | 折腾不在乎成功与否。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  <meta name="google-site-verification" content="rlxpN--EBnMOLJnY1efTuwShQId3YX7A6RWkQEr0y9c">
+  
+  <meta name="keywords" content="WEB,用户体验,快捷键">
+  <meta name="description" content="用户体验--WEB站点快捷键实现方案">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用户体验--WEB站点快捷键实现方案">
+<meta property="og:url" content="http://imys.net/20150716/ue-shortcut-key.html">
+<meta property="og:site_name" content="Yusen's Blog">
+<meta property="og:description" content="用户体验--WEB站点快捷键实现方案">
+<meta property="og:updated_time" content="2016-08-15T13:28:56.417Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="用户体验--WEB站点快捷键实现方案">
+<meta name="twitter:description" content="用户体验--WEB站点快捷键实现方案">
+  
+    <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
+  
+  <meta name="summary" content="&lt;p&gt;今天一大早就被头儿派了任务，让我整理一份可用快捷键操作的可行性方案。&lt;br&gt;不敢懈怠，遂出此文。&lt;/p&gt;">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">王昱森</h5>
+        <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/"  >
+            <i class="icon icon-lg icon-home"></i>
+            Home
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            Archives
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/tags"  >
+            <i class="icon icon-lg icon-tags"></i>
+            Tags
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/yscoder" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            Github
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://www.weibo.com/ysweb" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            Weibo
+          </a>
+        </li>
+    
+  </ul>
+
+  <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Yusen&#39;s Blog &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">用户体验--WEB站点快捷键实现方案</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">用户体验--WEB站点快捷键实现方案</h1>
+    <h5 class="subtitle">
+          
+            <time datetime="2015-07-16T07:06:58.000Z" itemprop="datePublished" class="page-time">
+  Jul 16, 2015
+</time>
+
+ 
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-ue-shortcut-key"
+  class="article article-type-post" itemprop="blogPost">
+
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#分析"><span class="post-toc-number">1.</span> <span class="post-toc-text">分析</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#计划"><span class="post-toc-number">2.</span> <span class="post-toc-text">计划</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#可用键"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">可用键</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#可入手项"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">可入手项</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实现"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">实现</span></a></li></ol></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <p>今天一大早就被头儿派了任务，让我整理一份可用快捷键操作的可行性方案。<br>不敢懈怠，遂出此文。</p>
+<a id="more"></a>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>对于WEB站点的多数操作也就是鼠标点点罢了，多数普通用户都是不愿意记那么多东西的，所以首先要考虑用户可接受性。</p>
+<p>可以从以下几个方向考虑快捷键：</p>
+<ol>
+<li>通用、易用、习惯，常用功能使用，可快速接受，习惯性按键</li>
+<li>方便、快捷，有效提升操作效率</li>
+<li>专用，针对特殊功能、特殊人群和特殊需求</li>
+</ol>
+<h2 id="计划"><a href="#计划" class="headerlink" title="计划"></a>计划</h2><h3 id="可用键"><a href="#可用键" class="headerlink" title="可用键"></a>可用键</h3><p>从语义化来讲，专门的键做专业的事。增加用户便利的前提下不能滥用一些系统和浏览器规划好的按键，如常用的复制和粘贴。<br>此类按键很多，这就导致可被我们利用的键很少。<br>最好的当然是设置1个键，不过在多数人习惯了office、QQ等软件后也习惯了一些快捷键操作。<br>所以可以从这些习惯中推导出一些可用键，2-3个组合键也未尝不可，还可以考虑双击。</p>
+<p>单键：<code>Esc</code>,<code>Enter</code>,<code>Tab</code>,<code>Delete</code>,<code>Home</code>,方向键等。<br>组合键：<code>Ctrl+*</code>,<code>Ctrl+alt+*</code>。</p>
+<h3 id="可入手项"><a href="#可入手项" class="headerlink" title="可入手项"></a>可入手项</h3><ol>
+<li>全局或局部的<code>Tab</code>焦点切换，特别是表单；</li>
+<li>任何搜索和提交的地方都应该绑定<code>Enter</code>键；</li>
+<li>表单文本框点两下<code>backspace</code>全部删除；</li>
+<li><code>Esc</code>取消输入焦点或取消操作；</li>
+<li><code>Home</code>跳转个人中心或企业中心；</li>
+<li><code>Del</code>删除选中的项；</li>
+<li>主导航或重要栏目的访问键；</li>
+<li>用户的自定义快捷键；</li>
+<li>标签页切换；</li>
+<li>一键注销登陆用户；</li>
+<li>站内搜索;</li>
+<li>一键返回顶部；</li>
+<li>容我三思……</li>
+</ol>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>在上述项都需要实施的前提下，整个实现必然是需要贯穿整站的。<br>会有全局的按键绑定，也会有针对性的某个功能或页面的实现。</p>
+<p><strong>最后我的想法如下：</strong></p>
+<ol>
+<li>添加全局Hook模块，捕获按键并执行对应的操作。</li>
+<li>全局性的绑定可以写到全局js文件中，特殊情况特殊对待。</li>
+</ol>
+
+            </div>
+
+            <blockquote class="post-copyright">
+                <p>
+                本文地址：
+                <a href="http://imys.net/20150716/ue-shortcut-key.html" target="_blank" rel="external">http://imys.net/20150716/ue-shortcut-key.html</a>
+                </p>
+                <footer><cite><a href="http://imys.net">@Yusen's Blog</a></cite></footer>
+            </blockquote>
+
+            <div class="post-footer flex-row flex-middle">
+                <div class="flex-col">
+                    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WEB/">#WEB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/快捷键/">#快捷键</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/用户体验/">#用户体验</a></li></ul>
+
+
+                </div>
+
+                
+                <div class="post-share-wrap">
+                    <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+                    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+                        <i class="icon icon-share-alt"></i>
+                    </a>
+                    
+                </div>
+
+            </div>
+
+
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/20150722/canvas-annulus-process.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Canvas初试--环形进度条的实现</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/20150715/jqplugin-jtip.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">造个轮子-基于jquery的文字提示插件jtip</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="ue-shortcut-key" data-title="用户体验--WEB站点快捷键实现方案" data-url="http://imys.net/20150716/ue-shortcut-key.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "用户体验--WEB站点快捷键实现方案",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://imys.net/20150716/ue-shortcut-key.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+<script src="http://s95.cnzz.com/z_stat.php?id=1255152447&web_id=1255152447"></script>
+
+
+
+
+
+</body>
+</html>

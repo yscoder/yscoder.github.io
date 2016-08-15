@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>优雅的模拟表单元素radio、checkbox | Yusen&#39;s Blog | 折腾不在乎成功与否。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  <meta name="google-site-verification" content="rlxpN--EBnMOLJnY1efTuwShQId3YX7A6RWkQEr0y9c">
+  
+  <meta name="keywords" content="css,iconfont,radio,checkbox">
+  <meta name="description" content="纯css模拟表单元素radio、checkbox，iconfont">
+<meta property="og:type" content="article">
+<meta property="og:title" content="优雅的模拟表单元素radio、checkbox">
+<meta property="og:url" content="http://imys.net/20151113/simulation-of-native-radio-checkbox.html">
+<meta property="og:site_name" content="Yusen's Blog">
+<meta property="og:description" content="纯css模拟表单元素radio、checkbox，iconfont">
+<meta property="og:updated_time" content="2016-08-15T13:28:56.417Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="优雅的模拟表单元素radio、checkbox">
+<meta name="twitter:description" content="纯css模拟表单元素radio、checkbox，iconfont">
+  
+    <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
+  
+  <meta name="summary" content="&lt;p&gt;公司内部管理系统准备改版，最近几天把前端架子搭起来了。在规划底层元素时参考了&lt;code&gt;Bootstrap&lt;/code&gt;和&lt;code&gt;Amaze UI&lt;/code&gt;，一些组件的实现确实很优雅。&lt;br&gt;比如&lt;code&gt;Amaze UI&lt;/code&gt; 的单/复选框。&lt;/p&gt;">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">王昱森</h5>
+        <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/"  >
+            <i class="icon icon-lg icon-home"></i>
+            Home
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            Archives
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/tags"  >
+            <i class="icon icon-lg icon-tags"></i>
+            Tags
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/yscoder" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            Github
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://www.weibo.com/ysweb" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            Weibo
+          </a>
+        </li>
+    
+  </ul>
+
+  <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Yusen&#39;s Blog &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">优雅的模拟表单元素radio、checkbox</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">优雅的模拟表单元素radio、checkbox</h1>
+    <h5 class="subtitle">
+          
+            <time datetime="2015-11-13T00:51:49.000Z" itemprop="datePublished" class="page-time">
+  Nov 13, 2015
+</time>
+
+ 
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-simulation-of-native-radio-checkbox"
+  class="article article-type-post" itemprop="blogPost">
+
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实例"><span class="post-toc-number">1.</span> <span class="post-toc-text">实例</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#兼容性"><span class="post-toc-number">2.</span> <span class="post-toc-text">兼容性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#IE7、8的兼容"><span class="post-toc-number">3.</span> <span class="post-toc-text">IE7、8的兼容</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <p>公司内部管理系统准备改版，最近几天把前端架子搭起来了。在规划底层元素时参考了<code>Bootstrap</code>和<code>Amaze UI</code>，一些组件的实现确实很优雅。<br>比如<code>Amaze UI</code> 的单/复选框。</p>
+<a id="more"></a>
+<p>之前我在模拟单/复选框时，都是很暴力的用 js 解决。</p>
+<ol>
+<li>绑定点击事件；</li>
+<li>更改 checked 属性值；</li>
+<li>切换 class 变更样式。</li>
+</ol>
+<p>而打开控制台观察<code>Amaze UI</code>的单/复选框，发现<code>Elements</code>状态是无更改的。<br>更改<code>checked</code>属性值，并不会影响到标签字面量属性。但是想要切换选中和未选中的样式，如果不是通过切换<code>class</code>来实现，那便是直接修改<code>DOM</code>了，而这两种操作在控制台中的都能看到一个状态变化的响应。</p>
+<p>那么<code>Amaze</code>究竟是怎么实现的呢？</p>
+<p>我选中一个元素的图标，在<code>Styles</code>中观察样式变化。直到发现了伪类选择器<code>:checked</code>和相邻选择器<code>+</code>，才恍然大悟。</p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"sex1"</span> <span class="attr">class</span>=<span class="string">"form-check"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">id</span>=<span class="string">"sex1"</span> <span class="attr">checked</span> <span class="attr">name</span>=<span class="string">"sex"</span> <span class="attr">value</span>=<span class="string">"1"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"check-icons"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"icon icon-check"</span>&gt;</span>&amp;#xe632;<span class="tag">&lt;/<span class="name">i</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"icon icon-uncheck"</span>&gt;</span>&amp;#xe634;<span class="tag">&lt;/<span class="name">i</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">    男</div><div class="line"><span class="tag">&lt;/<span class="name">label</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">"sex2"</span> <span class="attr">class</span>=<span class="string">"form-check"</span> &gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"radio"</span> <span class="attr">id</span>=<span class="string">"sex2"</span> <span class="attr">name</span>=<span class="string">"sex"</span> <span class="attr">value</span>=<span class="string">"0"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"check-icons"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"icon icon-check"</span>&gt;</span>&amp;#xe632;<span class="tag">&lt;/<span class="name">i</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"icon icon-uncheck"</span>&gt;</span>&amp;#xe634;<span class="tag">&lt;/<span class="name">i</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line">    女</div><div class="line"><span class="tag">&lt;/<span class="name">label</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>图标使用的<code>iconfont</code>，然后添加一些样式，我使用<code>less</code>作为<code>css</code>预处理语言。</p>
+<figure class="highlight less"><table><tr><td class="code"><pre><div class="line"><span class="selector-class">.form-check</span> &#123;</div><div class="line">    <span class="attribute">display</span>: inline-block;</div><div class="line">    <span class="attribute">position</span>: relative;</div><div class="line">    <span class="attribute">margin-right</span>: <span class="number">1em</span>;</div><div class="line">    <span class="attribute">padding-left</span>: <span class="number">24px</span>;</div><div class="line">    <span class="attribute">line-height</span>: <span class="number">28px</span>;</div><div class="line">    <span class="attribute">cursor</span>: pointer;</div><div class="line">    <span class="selector-tag">input</span> &#123;</div><div class="line">        <span class="attribute">display</span>: none;</div><div class="line">        <span class="selector-tag">&amp;</span><span class="selector-pseudo">:checked+.check-icons</span> &#123;</div><div class="line">            <span class="selector-class">.icon-check</span> &#123;</div><div class="line">                <span class="attribute">display</span>: inline-block;</div><div class="line">            &#125;</div><div class="line">            <span class="selector-class">.icon-uncheck</span> &#123;</div><div class="line">                <span class="attribute">display</span>: none;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.check-icons</span> &#123;</div><div class="line">        <span class="attribute">position</span>: absolute;</div><div class="line">        <span class="attribute">top</span>: <span class="number">5px</span>;</div><div class="line">        <span class="attribute">left</span>: <span class="number">0</span>;</div><div class="line">        <span class="attribute">width</span>: <span class="number">18px</span>;</div><div class="line">        <span class="attribute">height</span>: <span class="number">18px</span>;</div><div class="line">        <span class="attribute">text-align</span>: center;</div><div class="line">        <span class="selector-class">.icon</span> &#123;</div><div class="line">            <span class="attribute">position</span>: absolute;</div><div class="line">            <span class="attribute">top</span>: <span class="number">0</span>;</div><div class="line">            <span class="attribute">left</span>: <span class="number">0</span>;</div><div class="line">            <span class="attribute">line-height</span>: <span class="number">18px</span>;</div><div class="line">            <span class="attribute">font-size</span>: <span class="number">18px</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="selector-class">.icon-uncheck</span> &#123;</div><div class="line">            <span class="attribute">color</span>: <span class="number">#d7d7d7</span></div><div class="line">        &#125;</div><div class="line">        <span class="selector-class">.icon-check</span> &#123;</div><div class="line">            <span class="attribute">color</span>: <span class="number">#4776c8</span>;</div><div class="line">            <span class="attribute">display</span>: none;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>通过<code>label:for</code>属性来触发<code>input:checked</code>属性值更改。</li>
+<li>设置相邻选择器，由<code>:checked</code>状态变化影响对应的icon显示和隐藏。</li>
+</ul>
+<h3 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h3><p>相邻选择器<code>+</code>兼容IE7+，而伪类选择器<code>:checked</code>和<code>label:for</code>属性兼容IE9+（又是这一道坎…）。</p>
+<h3 id="IE7、8的兼容"><a href="#IE7、8的兼容" class="headerlink" title="IE7、8的兼容"></a>IE7、8的兼容</h3><p>由选择器的妙用，让我想到了属性选择器<code>[checked]</code>，兼容性为IE7+。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-class">.ie8</span> <span class="selector-attr">[checked]</span>+<span class="selector-class">.check-icons</span> <span class="selector-class">.icon-check</span>,</div><div class="line"><span class="selector-class">.ie7</span> <span class="selector-attr">[checked]</span>+<span class="selector-class">.check-icons</span> <span class="selector-class">.icon-check</span> &#123;</div><div class="line">    <span class="attribute">display</span>: inline-block;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.ie8</span> <span class="selector-attr">[checked]</span>+<span class="selector-class">.check-icons</span> <span class="selector-class">.icon-uncheck</span>,</div><div class="line"><span class="selector-class">.ie7</span> <span class="selector-attr">[checked]</span>+<span class="selector-class">.check-icons</span> <span class="selector-class">.icon-uncheck</span> &#123;</div><div class="line">    <span class="attribute">display</span>: none;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我针对IE7、8应用了这些样式，<code>for</code>属性失去了作用，就需要绑定点击事件来更改<code>checked</code>值。<br>做完之后发现并没有什么卵用。</p>
+<p>因为属性选择器是针对标签字面量属性启作用，而如<code>input.checked = true;</code>这种修改方式是不会影响到标签上定义的属性。</p>
+<p>这就牵扯到了<code>attribute</code>和<code>property</code>的区别。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> ck = <span class="built_in">document</span>.createElement(<span class="string">'input'</span>);</div><div class="line">ck.type = <span class="string">'checkbox'</span>;</div><div class="line"><span class="built_in">document</span>.body.appendChild(ck);</div><div class="line"></div><div class="line">ck.checked = <span class="literal">true</span>;</div><div class="line">ck.getAttribute(<span class="string">'checked'</span>); <span class="comment">// null</span></div><div class="line"></div><div class="line">ck.checked = <span class="literal">false</span>;</div><div class="line">ck.setAttribute(<span class="string">'checked'</span>,<span class="string">'checked'</span>);</div><div class="line">ck.checked  <span class="comment">// false</span></div></pre></td></tr></table></figure>
+<ul>
+<li>attribute 是 html 标签的属性</li>
+<li>property 是 Dom 标准属性</li>
+</ul>
+<p>也许是因为标签自定义属性的存在，这两个属性值是不同步的。</p>
+<p>如果想要使<code>[checked]</code>选择器生效，势必要在点击事件中同步修改<code>attribute</code>和<code>property</code>。</p>
+<p>实验后发现在IE7、8下正确运行了，对应的icon的<code>display</code>属性确实变化了，但是肉眼看不到样式更改。<br>不知道是不是渲染能力差的原因，总是需要在控制台里点击对应的标签后才看得到更改后的样式。</p>
+<p>思前思后，既然总归是需要用 js 去兼容，那在IE7、8下还是使用切换<code>class</code>来控制样式。</p>
+
+            </div>
+
+            <blockquote class="post-copyright">
+                <p>
+                本文地址：
+                <a href="http://imys.net/20151113/simulation-of-native-radio-checkbox.html" target="_blank" rel="external">http://imys.net/20151113/simulation-of-native-radio-checkbox.html</a>
+                </p>
+                <footer><cite><a href="http://imys.net">@Yusen's Blog</a></cite></footer>
+            </blockquote>
+
+            <div class="post-footer flex-row flex-middle">
+                <div class="flex-col">
+                    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/checkbox/">#checkbox</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">#css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iconfont/">#iconfont</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/radio/">#radio</a></li></ul>
+
+
+                </div>
+
+                
+                <div class="post-share-wrap">
+                    <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+                    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+                        <i class="icon icon-share-alt"></i>
+                    </a>
+                    
+                </div>
+
+            </div>
+
+
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/20151222/eval-with-new-function.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">神奇的eval()与new Function()</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/20151107/mobile-page-size-and-layout.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">移动端页面开发关键—尺寸和布局</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="simulation-of-native-radio-checkbox" data-title="优雅的模拟表单元素radio、checkbox" data-url="http://imys.net/20151113/simulation-of-native-radio-checkbox.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "优雅的模拟表单元素radio、checkbox",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://imys.net/20151113/simulation-of-native-radio-checkbox.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+<script src="http://s95.cnzz.com/z_stat.php?id=1255152447&web_id=1255152447"></script>
+
+
+
+
+
+</body>
+</html>

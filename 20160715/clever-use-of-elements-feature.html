@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>对元素特性巧妙利用的一些例子 | Yusen&#39;s Blog | 折腾不在乎成功与否。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  <meta name="google-site-verification" content="rlxpN--EBnMOLJnY1efTuwShQId3YX7A6RWkQEr0y9c">
+  
+  <meta name="keywords" content="html,技巧,element">
+  <meta name="description" content="对元素特性巧妙利用的一些案例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对元素特性巧妙利用的一些例子">
+<meta property="og:url" content="http://imys.net/20160715/clever-use-of-elements-feature.html">
+<meta property="og:site_name" content="Yusen's Blog">
+<meta property="og:description" content="对元素特性巧妙利用的一些案例">
+<meta property="og:updated_time" content="2016-08-15T13:28:56.401Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="对元素特性巧妙利用的一些例子">
+<meta name="twitter:description" content="对元素特性巧妙利用的一些案例">
+  
+    <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
+  
+  <meta name="summary" content="&lt;p&gt;在一些框架和库中都可见到一些创建一个空元素，通过对该元素特性测试来判定当前运行环境是否支持某种特性的运用。&lt;code&gt;jQuery&lt;/code&gt; 也是以此来 support 各种环境，与其通过可被随意修改的 UA 测试环境倒不如直接创建元素测试来的准确。&lt;/p&gt;
+&lt;p&gt;我们可利用元素本身特性去做的事并不止于 &lt;strong&gt;特性测试&lt;/strong&gt;。细心一点，你会发现一些元素独一无二的特性可以被巧妙利用来做一些工作。&lt;br&gt;">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">王昱森</h5>
+        <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/"  >
+            <i class="icon icon-lg icon-home"></i>
+            Home
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            Archives
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/tags"  >
+            <i class="icon icon-lg icon-tags"></i>
+            Tags
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/yscoder" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            Github
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://www.weibo.com/ysweb" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            Weibo
+          </a>
+        </li>
+    
+  </ul>
+
+  <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Yusen&#39;s Blog &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">对元素特性巧妙利用的一些例子</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">对元素特性巧妙利用的一些例子</h1>
+    <h5 class="subtitle">
+          
+            <time datetime="2016-07-15T01:10:40.000Z" itemprop="datePublished" class="page-time">
+  Jul 15, 2016
+</time>
+
+ 
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-clever-use-of-elements-feature"
+  class="article article-type-post" itemprop="blogPost">
+
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#HTML转义"><span class="post-toc-number">1.</span> <span class="post-toc-text">HTML转义</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解析URL"><span class="post-toc-number">2.</span> <span class="post-toc-text">解析URL</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#获取一串文字在浏览器中所占的宽度"><span class="post-toc-number">3.</span> <span class="post-toc-text">获取一串文字在浏览器中所占的宽度</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#判断canvas是否为空"><span class="post-toc-number">4.</span> <span class="post-toc-text">判断canvas是否为空</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#获取Computed-styles"><span class="post-toc-number">5.</span> <span class="post-toc-text">获取Computed styles</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <p>在一些框架和库中都可见到一些创建一个空元素，通过对该元素特性测试来判定当前运行环境是否支持某种特性的运用。<code>jQuery</code> 也是以此来 support 各种环境，与其通过可被随意修改的 UA 测试环境倒不如直接创建元素测试来的准确。</p>
+<p>我们可利用元素本身特性去做的事并不止于 <strong>特性测试</strong>。细心一点，你会发现一些元素独一无二的特性可以被巧妙利用来做一些工作。<br><a id="more"></a></p>
+<h2 id="HTML转义"><a href="#HTML转义" class="headerlink" title="HTML转义"></a>HTML转义</h2><p>创建 <code>Option</code> 实例，传入要被转义的字符串。因为 <code>Option</code> 构造函数第一个参数为 <code>text</code>，所以任你传入任何 <code>html</code> 代码都会被转义为 <code>textNode</code>。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">new</span> Option(<span class="string">'&lt;div&gt;&lt;/div&gt;'</span>).innerHTML     <span class="comment">// "&amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;"</span></div></pre></td></tr></table></figure>
+<p>同理，给 <code>div</code> 的 <code>innerText</code> 赋值，再通过 <code>innerHTML</code> 取，也可以做到，只是看起来不如一行代码来的巧妙。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> div = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</div><div class="line">div.innerText = <span class="string">'&lt;a&gt;&lt;/a&gt;'</span>;</div><div class="line"><span class="built_in">console</span>.log(div.innerHTML)      <span class="comment">// "&amp;lt;a&amp;gt;&amp;lt;/a&amp;gt;"</span></div></pre></td></tr></table></figure>
+<h2 id="解析URL"><a href="#解析URL" class="headerlink" title="解析URL"></a>解析URL</h2><p><code>a</code> 标签天生支持这些 URL 属性，是不是像极了 NodeJS 中 URL 对象。 </p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> a = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>);</div><div class="line">a.href = <span class="string">'http://test.com:3000/a/b?k=1#dd'</span>;</div><div class="line"><span class="built_in">console</span>.log(a.protocol);    <span class="comment">// "http:"</span></div><div class="line"><span class="built_in">console</span>.log(a.host);        <span class="comment">// "test.com"</span></div><div class="line"><span class="built_in">console</span>.log(a.hostname)     <span class="comment">// "test.com"</span></div><div class="line"><span class="built_in">console</span>.log(a.port)         <span class="comment">// 3000</span></div><div class="line"><span class="built_in">console</span>.log(a.pathname)     <span class="comment">// "/a/b"</span></div><div class="line"><span class="built_in">console</span>.log(a.search)       <span class="comment">// "?k=1"</span></div><div class="line"><span class="built_in">console</span>.log(a.hash)         <span class="comment">// "#dd"</span></div></pre></td></tr></table></figure>
+<h2 id="获取一串文字在浏览器中所占的宽度"><a href="#获取一串文字在浏览器中所占的宽度" class="headerlink" title="获取一串文字在浏览器中所占的宽度"></a>获取一串文字在浏览器中所占的宽度</h2><p>想知道宽度还不简单，扔到浏览器中跑一圈看看。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> tester = <span class="built_in">document</span>.createElement(<span class="string">'div'</span>);</div><div class="line">tester.style.display = <span class="string">'inline-block'</span>;</div><div class="line">tester.innerHTML = <span class="string">'博客：imys.net'</span>;</div><div class="line"><span class="built_in">document</span>.body.appendChild(tester);</div><div class="line"><span class="built_in">console</span>.log(tester.offsetWidth)</div></pre></td></tr></table></figure>
+<p><code>display</code> 属性一定要设置为 <code>inline-block</code>。因为 <code>div:display</code> 默认为 <code>block</code>，块级元素宽度默认等于父级元素宽度，这样获取到的宽度就不是字符的宽度了。</p>
+<p>当你想用 js 去截断一段长文字时，可以使用这个例子。</p>
+<h2 id="判断canvas是否为空"><a href="#判断canvas是否为空" class="headerlink" title="判断canvas是否为空"></a>判断canvas是否为空</h2><p>两个等宽等高内容相同的 canvas 所生成的 <code>dataURL</code> 是相同的，这样最终把对象的比较转换为字符串的比较。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isCanvasBlank</span>(<span class="params">canvas</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> blank = <span class="built_in">document</span>.createElement(<span class="string">'canvas'</span>);</div><div class="line">    blank.width = canvas.width;</div><div class="line">    blank.height = canvas.height;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> canvas.toDataURL() === blank.toDataURL();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="获取Computed-styles"><a href="#获取Computed-styles" class="headerlink" title="获取Computed styles"></a>获取Computed styles</h2><p>这里的 <code>Computed styles</code> 不是指 <code>getComputedStyle(element)</code> 函数结果，而是像浏览器 Dev Tools 中 Styles 面板右侧的计算样式。是要获取最终被样式表影响的 css 属性，不包括标签默认属性和 <code>user agent stylesheet</code>。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">filterInheritedStyles</span>(<span class="params">el</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> tester = <span class="built_in">document</span>.createElement(el.tagName);</div><div class="line">    <span class="built_in">document</span>.body.appendChild(tester);  <span class="comment">// 元素必须插入到文档中才能计算出默认样式</span></div><div class="line">    <span class="keyword">var</span> defaultStyle = <span class="built_in">window</span>.getComputedStyle(tester, <span class="literal">null</span>);</div><div class="line">    <span class="keyword">var</span> currentStyle = <span class="built_in">window</span>.getComputedStyle(el, <span class="literal">null</span>);</div><div class="line">    <span class="keyword">var</span> ret = &#123;&#125;;</div><div class="line"></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> k <span class="keyword">in</span> currentStyle) &#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(currentStyle.getPropertyValue(k) !== defaultStyle.getPropertyValue(k)) &#123;</div><div class="line">        </div><div class="line">            ret[k] = currentStyle.getPropertyValue(k);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">document</span>.body.removeChild(tester);</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>创建一个标签相同的 <code>Element</code> 添加到文档中产生默认样式，与当前元素样式逐个比较，返回不一致的样式属性。</p>
+<p>不过这个函数还不是最终版的。当一个元素被插入到文档中时，由于没有添加 id 、 class 、style 属性，也就不会受 id 选择器、类选择器、行内样式影响，但显示会受标签选择器影响。</p>
+<p>所以如果能在返回值基础上对标签选择器属性进行过滤，才是最终结果。但目前通过 <code>document.styleSheets</code> 只限于获取内联样式表中规则，对于外部样式表中的规则检索还没有什么好的办法。</p>
+<hr>
+<p>暂时只知道这么多。针对前端复杂的客户环境，单就 <strong>特性测试</strong> 而言已经可以帮我们解决很多问题了。</p>
+
+            </div>
+
+            <blockquote class="post-copyright">
+                <p>
+                本文地址：
+                <a href="http://imys.net/20160715/clever-use-of-elements-feature.html" target="_blank" rel="external">http://imys.net/20160715/clever-use-of-elements-feature.html</a>
+                </p>
+                <footer><cite><a href="http://imys.net">@Yusen's Blog</a></cite></footer>
+            </blockquote>
+
+            <div class="post-footer flex-row flex-middle">
+                <div class="flex-col">
+                    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/element/">#element</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/">#html</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技巧/">#技巧</a></li></ul>
+
+
+                </div>
+
+                
+                <div class="post-share-wrap">
+                    <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+                    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+                        <i class="icon icon-share-alt"></i>
+                    </a>
+                    
+                </div>
+
+            </div>
+
+
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/20160726/vscode-extension-qiniu-upload.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">VsCode插件：七牛图床工具，写文章更快一步</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/20160622/screen-rotation-case.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">获取移动设备旋转方向的几个方案</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="clever-use-of-elements-feature" data-title="对元素特性巧妙利用的一些例子" data-url="http://imys.net/20160715/clever-use-of-elements-feature.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "对元素特性巧妙利用的一些例子",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://imys.net/20160715/clever-use-of-elements-feature.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+<script src="http://s95.cnzz.com/z_stat.php?id=1255152447&web_id=1255152447"></script>
+
+
+
+
+
+</body>
+</html>

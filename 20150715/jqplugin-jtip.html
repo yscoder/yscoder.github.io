@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>造个轮子-基于jquery的文字提示插件jtip | Yusen&#39;s Blog | 折腾不在乎成功与否。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  <meta name="google-site-verification" content="rlxpN--EBnMOLJnY1efTuwShQId3YX7A6RWkQEr0y9c">
+  
+  <meta name="keywords" content="jquery插件">
+  <meta name="description" content="基于jquery的文字提示插件jtip">
+<meta property="og:type" content="article">
+<meta property="og:title" content="造个轮子-基于jquery的文字提示插件jtip">
+<meta property="og:url" content="http://imys.net/20150715/jqplugin-jtip.html">
+<meta property="og:site_name" content="Yusen's Blog">
+<meta property="og:description" content="基于jquery的文字提示插件jtip">
+<meta property="og:image" content="http://7ximpj.com1.z0.glb.clouddn.com/jtip.jpg">
+<meta property="og:updated_time" content="2016-08-15T13:28:56.417Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="造个轮子-基于jquery的文字提示插件jtip">
+<meta name="twitter:description" content="基于jquery的文字提示插件jtip">
+<meta name="twitter:image" content="http://7ximpj.com1.z0.glb.clouddn.com/jtip.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
+  
+  <meta name="summary" content="&lt;p&gt;最近工作不是很忙，看到站里一些纯图标的按钮还是使用的默认的&lt;code&gt;title&lt;/code&gt;属性作文字提示，就造了这个轮子。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7ximpj.com1.z0.glb.clouddn.com/jtip.jpg&quot; alt=&quot;jtip&quot;&gt;&lt;/p&gt;">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">王昱森</h5>
+        <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/"  >
+            <i class="icon icon-lg icon-home"></i>
+            Home
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            Archives
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/tags"  >
+            <i class="icon icon-lg icon-tags"></i>
+            Tags
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/yscoder" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            Github
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://www.weibo.com/ysweb" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            Weibo
+          </a>
+        </li>
+    
+  </ul>
+
+  <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Yusen&#39;s Blog &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">造个轮子-基于jquery的文字提示插件jtip</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">造个轮子-基于jquery的文字提示插件jtip</h1>
+    <h5 class="subtitle">
+          
+            <time datetime="2015-07-15T07:21:58.000Z" itemprop="datePublished" class="page-time">
+  Jul 15, 2015
+</time>
+
+ 
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-jqplugin-jtip"
+  class="article article-type-post" itemprop="blogPost">
+
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#jtip介绍"><span class="post-toc-number">1.</span> <span class="post-toc-text">jtip介绍</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#目前功能"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">目前功能</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#兼容性"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">兼容性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">使用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#依赖文件"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">依赖文件</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#调用"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">调用</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#遇到的问题"><span class="post-toc-number">2.</span> <span class="post-toc-text">遇到的问题</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <p>最近工作不是很忙，看到站里一些纯图标的按钮还是使用的默认的<code>title</code>属性作文字提示，就造了这个轮子。</p>
+<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/jtip.jpg" alt="jtip"></p>
+<a id="more"></a>
+<!-- toc -->
+<h2 id="jtip介绍"><a href="#jtip介绍" class="headerlink" title="jtip介绍"></a>jtip介绍</h2><h3 id="目前功能"><a href="#目前功能" class="headerlink" title="目前功能"></a>目前功能</h3><ol>
+<li>位置自动居中对齐；</li>
+<li>支持上下两个方向的的显示；</li>
+<li>宽度自适应（超出长度限制自动换行）；</li>
+<li>自定义显示场景（常态、警告、错误）；</li>
+<li>可设置位置偏移量。</li>
+</ol>
+<h3 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h3><p>IE7+(包括IE7)，等现代浏览器。</p>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>可用于任何具有<code>title</code>属性的DOM元素。 如：</p>
+<pre><code>&lt;a href=&quot;&quot; title=&quot;your title&quot;&gt;text&lt;/a&gt;
+
+&lt;div title=&quot;your title&quot;&gt;&lt;/div&gt;
+</code></pre><h3 id="依赖文件"><a href="#依赖文件" class="headerlink" title="依赖文件"></a>依赖文件</h3><ul>
+<li>jtip.css</li>
+<li>jquery.js</li>
+<li>jtip.js</li>
+</ul>
+<h3 id="调用"><a href="#调用" class="headerlink" title="调用"></a>调用</h3><pre><code>$(selector).jtip({
+  direction : &apos;top&apos;,      // 显示方向，可选值 top、bottom
+  className: &apos;jtip&apos;,      // 可自定义CSS类名
+  type: &apos;&apos;,               // 显示类型，可选值 &apos;&apos;(缺省为空)、warning、danger
+  skewing: 0              // 位置偏移量
+});
+</code></pre><p>源码已上传github，<a href="https://github.com/yscoder/jtip" target="_blank" rel="external">https://github.com/yscoder/jtip</a> 。</p>
+<h2 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h2><p><strong>1.获取DOM节点基于文档的位置</strong></p>
+<p>某些情况下<code>jQuery.offset()</code>在IE8下无法获取准确数值，可以使用原生DOM属性<code>offsetLeft</code>、<code>offsetTop</code>获取，IE7仍需使用<code>jQuery.offset()</code>获取。</p>
+<p><strong>2.IE7容器宽度自适应</strong></p>
+<p>单行内容设置<code>display:inline；</code>多行内容设置<code>min-width</code>和<code>overflow:visible</code>。</p>
+
+            </div>
+
+            <blockquote class="post-copyright">
+                <p>
+                本文地址：
+                <a href="http://imys.net/20150715/jqplugin-jtip.html" target="_blank" rel="external">http://imys.net/20150715/jqplugin-jtip.html</a>
+                </p>
+                <footer><cite><a href="http://imys.net">@Yusen's Blog</a></cite></footer>
+            </blockquote>
+
+            <div class="post-footer flex-row flex-middle">
+                <div class="flex-col">
+                    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jquery插件/">#jquery插件</a></li></ul>
+
+
+                </div>
+
+                
+                <div class="post-share-wrap">
+                    <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+                    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+                        <i class="icon icon-share-alt"></i>
+                    </a>
+                    
+                </div>
+
+            </div>
+
+
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/20150716/ue-shortcut-key.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">用户体验--WEB站点快捷键实现方案</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/20150709/ie-nodisplay-iconfont.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">ie不显示iconfont字体图标</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="jqplugin-jtip" data-title="造个轮子-基于jquery的文字提示插件jtip" data-url="http://imys.net/20150715/jqplugin-jtip.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "造个轮子-基于jquery的文字提示插件jtip",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://imys.net/20150715/jqplugin-jtip.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+<script src="http://s95.cnzz.com/z_stat.php?id=1255152447&web_id=1255152447"></script>
+
+
+
+
+
+</body>
+</html>

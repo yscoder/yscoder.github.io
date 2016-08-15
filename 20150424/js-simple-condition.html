@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用逻辑运算符 || &amp;&amp; 简化javascript中if else选择结构 | Yusen&#39;s Blog | 折腾不在乎成功与否。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  <meta name="google-site-verification" content="rlxpN--EBnMOLJnY1efTuwShQId3YX7A6RWkQEr0y9c">
+  
+  <meta name="keywords" content="javascript">
+  <meta name="description" content="使用逻辑运算符 || &amp;&amp; 简化javascript中if else选择结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用逻辑运算符 || && 简化javascript中if else选择结构">
+<meta property="og:url" content="http://imys.net/20150424/js-simple-condition.html">
+<meta property="og:site_name" content="Yusen's Blog">
+<meta property="og:description" content="使用逻辑运算符 || &amp;&amp; 简化javascript中if else选择结构">
+<meta property="og:updated_time" content="2016-08-15T13:28:56.417Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用逻辑运算符 || && 简化javascript中if else选择结构">
+<meta name="twitter:description" content="使用逻辑运算符 || &amp;&amp; 简化javascript中if else选择结构">
+  
+    <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
+  
+  <meta name="summary" content="&lt;blockquote&gt;
+&lt;p&gt;|| 和 &amp;amp;&amp;amp; 通常使用在条件表达式中，但是由于javascript语言的特殊性，这两个符号又被开发出了特别的使用技巧。&lt;/p&gt;
+&lt;/blockquote&gt;">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">王昱森</h5>
+        <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/"  >
+            <i class="icon icon-lg icon-home"></i>
+            Home
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            Archives
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/tags"  >
+            <i class="icon icon-lg icon-tags"></i>
+            Tags
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/yscoder" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            Github
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://www.weibo.com/ysweb" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            Weibo
+          </a>
+        </li>
+    
+  </ul>
+
+  <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Yusen&#39;s Blog &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用逻辑运算符 || &amp;&amp; 简化javascript中if else选择结构</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">使用逻辑运算符 || &amp;&amp; 简化javascript中if else选择结构</h1>
+    <h5 class="subtitle">
+          
+            <time datetime="2015-04-24T03:49:30.000Z" itemprop="datePublished" class="page-time">
+  Apr 24, 2015
+</time>
+
+ 
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-js-simple-condition"
+  class="article article-type-post" itemprop="blogPost">
+
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#最基本的用法"><span class="post-toc-number">1.</span> <span class="post-toc-text">最基本的用法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#javascript中可以这么用"><span class="post-toc-number">2.</span> <span class="post-toc-text">javascript中可以这么用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#于是有了高逼格的javascript代码"><span class="post-toc-number">3.</span> <span class="post-toc-text">于是有了高逼格的javascript代码</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>|| 和 &amp;&amp; 通常使用在条件表达式中，但是由于javascript语言的特殊性，这两个符号又被开发出了特别的使用技巧。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="最基本的用法"><a href="#最基本的用法" class="headerlink" title="最基本的用法"></a>最基本的用法</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> &amp;amp;&amp;amp; <span class="literal">true</span>);  <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> &amp;amp;&amp;amp; <span class="literal">false</span>);  <span class="comment">// false</span></div><div class="line"><span class="built_in">console</span>.log(<span class="literal">false</span> &amp;amp;&amp;amp; <span class="literal">true</span>);  <span class="comment">// false</span></div><div class="line"><span class="built_in">console</span>.log(<span class="literal">false</span> &amp;amp;&amp;amp; <span class="literal">false</span>);  <span class="comment">// false</span></div><div class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> || <span class="literal">true</span>);  <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="literal">true</span> || <span class="literal">false</span>);  <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="literal">false</span> || <span class="literal">true</span>);  <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="literal">false</span> || <span class="literal">false</span>);  <span class="comment">// false</span></div></pre></td></tr></table></figure>
+<p>这是所有的编程语音通用的使用方法，毋庸置疑。</p>
+<h3 id="javascript中可以这么用"><a href="#javascript中可以这么用" class="headerlink" title="javascript中可以这么用"></a>javascript中可以这么用</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> target, num;</div><div class="line">target = <span class="literal">undefined</span> || <span class="string">'defaultValue'</span>; <span class="comment">// defaultValue</span></div><div class="line">num = <span class="number">0</span> || <span class="number">1</span>; <span class="comment">// 1</span></div></pre></td></tr></table></figure>
+<p>你可以看成这样：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> target;</div><div class="line">target = <span class="literal">false</span> || <span class="string">'defaultValue'</span>; <span class="comment">// defaultValue</span></div><div class="line">num = <span class="literal">false</span> || <span class="number">1</span>; <span class="comment">// 1</span></div></pre></td></tr></table></figure>
+<p>因为在javascript中Object、function、非0的整数和字符串都为<code>true</code>，undefined、null和空字符串”” 为<code>false</code>。</p>
+<p>但是javascript中却可以返回为<code>true</code>表达式的值，应该理解为“真值”和“假值”更贴切。</p>
+<p><em>‘||’在javascript中的规则：如果||左侧表达式的值为真值，则返回左侧表达式的值；否则返回右侧表达式的值。</em></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">'真值'</span>||<span class="string">''</span>); <span class="comment">// 真值</span></div><div class="line"><span class="built_in">console</span>.log(<span class="literal">undefined</span>||object); <span class="comment">// object</span></div></pre></td></tr></table></figure>
+<p><em>‘&amp;&amp;’在javascript中的规则：如果&amp;&amp;左侧表达式的值为真值，则返回右侧表达式的值；否则返回左侧表达式的值。</em></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="number">1</span> === <span class="number">1</span> &amp;amp;&amp;amp; <span class="number">2</span>) <span class="comment">// 2</span></div><div class="line"><span class="built_in">console</span>.log(<span class="number">0</span> === <span class="number">1</span> &amp;amp;&amp;amp; <span class="number">2</span>) <span class="comment">// false</span></div></pre></td></tr></table></figure>
+<h3 id="于是有了高逼格的javascript代码"><a href="#于是有了高逼格的javascript代码" class="headerlink" title="于是有了高逼格的javascript代码"></a>于是有了高逼格的javascript代码</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> n=<span class="number">1</span>;</div><div class="line">((n === <span class="number">1</span>) &amp;amp;&amp;amp; (n = <span class="number">3</span>)) || ((n === <span class="number">3</span>) &amp;amp;&amp;amp; (n = <span class="number">6</span>)) || (n = <span class="number">2</span>);  <span class="comment">// 3</span></div><div class="line">((n === <span class="number">1</span>) &amp;amp;&amp;amp; (n = <span class="number">3</span>)) || ((n === <span class="number">3</span>) &amp;amp;&amp;amp; (n = <span class="number">6</span>)) || (n = <span class="number">2</span>);  <span class="comment">// 6</span></div><div class="line">((n === <span class="number">1</span>) &amp;amp;&amp;amp; (n = <span class="number">3</span>)) || ((n === <span class="number">3</span>) &amp;amp;&amp;amp; (n = <span class="number">6</span>)) || (n = <span class="number">2</span>);  <span class="comment">// 2</span></div><div class="line"></div><div class="line"><span class="comment">//以上代码等价于</span></div><div class="line"><span class="keyword">if</span>(n === <span class="number">1</span>) &#123;</div><div class="line">    n = <span class="number">3</span>;</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span>(n === <span class="number">3</span>) &#123;</div><div class="line">    n = <span class="number">6</span>;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    n = <span class="number">2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+            </div>
+
+            <blockquote class="post-copyright">
+                <p>
+                本文地址：
+                <a href="http://imys.net/20150424/js-simple-condition.html" target="_blank" rel="external">http://imys.net/20150424/js-simple-condition.html</a>
+                </p>
+                <footer><cite><a href="http://imys.net">@Yusen's Blog</a></cite></footer>
+            </blockquote>
+
+            <div class="post-footer flex-row flex-middle">
+                <div class="flex-col">
+                    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">#javascript</a></li></ul>
+
+
+                </div>
+
+                
+                <div class="post-share-wrap">
+                    <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+                    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+                        <i class="icon icon-share-alt"></i>
+                    </a>
+                    
+                </div>
+
+            </div>
+
+
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/20150426/css3-selector-multiple-color.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">使用css3后代选择器实现多背景色标签样式</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/20150420/css3-menu-style.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">css3导航按钮图标样式切换效果</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="js-simple-condition" data-title="使用逻辑运算符 || &amp;&amp; 简化javascript中if else选择结构" data-url="http://imys.net/20150424/js-simple-condition.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "使用逻辑运算符 || && 简化javascript中if else选择结构",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://imys.net/20150424/js-simple-condition.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+<script src="http://s95.cnzz.com/z_stat.php?id=1255152447&web_id=1255152447"></script>
+
+
+
+
+
+</body>
+</html>

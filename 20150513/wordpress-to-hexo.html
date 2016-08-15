@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>博客搬迁记 - 从WordPress到Hexo | Yusen&#39;s Blog | 折腾不在乎成功与否。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  <meta name="google-site-verification" content="rlxpN--EBnMOLJnY1efTuwShQId3YX7A6RWkQEr0y9c">
+  
+  <meta name="keywords" content="Hexo,WordPress,gitcafe">
+  <meta name="description" content="博客从WordPress搬迁到Hexo，gitcafe部署">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博客搬迁记 - 从WordPress到Hexo">
+<meta property="og:url" content="http://imys.net/20150513/wordpress-to-hexo.html">
+<meta property="og:site_name" content="Yusen's Blog">
+<meta property="og:description" content="博客从WordPress搬迁到Hexo，gitcafe部署">
+<meta property="og:updated_time" content="2016-08-15T13:28:56.417Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="博客搬迁记 - 从WordPress到Hexo">
+<meta name="twitter:description" content="博客从WordPress搬迁到Hexo，gitcafe部署">
+  
+    <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
+  
+  <meta name="summary" content="&lt;p&gt;今天早上打开电脑第一件事就是把pages绑定了域名，从此便可以使用&lt;code&gt;http://imys.net&lt;/code&gt;进行访问了。&lt;/p&gt;
+&lt;p&gt;至此已经折腾的差不多了，在此记录下搬迁过程中遇到的一些问题及解决办法。&lt;br&gt;">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">王昱森</h5>
+        <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/"  >
+            <i class="icon icon-lg icon-home"></i>
+            Home
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            Archives
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/tags"  >
+            <i class="icon icon-lg icon-tags"></i>
+            Tags
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/yscoder" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            Github
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://www.weibo.com/ysweb" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            Weibo
+          </a>
+        </li>
+    
+  </ul>
+
+  <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Yusen&#39;s Blog &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">博客搬迁记 - 从WordPress到Hexo</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">博客搬迁记 - 从WordPress到Hexo</h1>
+    <h5 class="subtitle">
+          
+            <time datetime="2015-05-13T01:50:02.000Z" itemprop="datePublished" class="page-time">
+  May 13, 2015
+</time>
+
+ 
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-wordpress-to-hexo"
+  class="article article-type-post" itemprop="blogPost">
+
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Hexo3本地部署"><span class="post-toc-number">1.</span> <span class="post-toc-text">Hexo3本地部署</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参考"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">参考</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Hexo无法解析模板文件"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Hexo无法解析模板文件</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#上传到GitCafe"><span class="post-toc-number">2.</span> <span class="post-toc-text">上传到GitCafe</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#生成SSH"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">生成SSH</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置git"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">设置git</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置本地gitcafe-pages版本库"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">设置本地gitcafe-pages版本库</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#上传到gitcafe"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">上传到gitcafe</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#WordPress文章迁移"><span class="post-toc-number">3.</span> <span class="post-toc-text">WordPress文章迁移</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Hexo配置优化"><span class="post-toc-number">4.</span> <span class="post-toc-text">Hexo配置优化</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参考-1"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">参考</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#无法开启RSS和sitemap"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">无法开启RSS和sitemap</span></a></li></ol></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <p>今天早上打开电脑第一件事就是把pages绑定了域名，从此便可以使用<code>http://imys.net</code>进行访问了。</p>
+<p>至此已经折腾的差不多了，在此记录下搬迁过程中遇到的一些问题及解决办法。<br><a id="more"></a></p>
+<h2 id="Hexo3本地部署"><a href="#Hexo3本地部署" class="headerlink" title="Hexo3本地部署"></a>Hexo3本地部署</h2><p>现在node下安装的hexo一般都是最新版本，网上搜索到的一些教程不乏是老版本的，要特别留意。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="http://forsweet.github.io/2015/04/20/%E7%94%A8Hexo%E6%90%AD%E5%BB%BAGithub%E5%8D%9A%E5%AE%A2/" target="_blank" rel="external">用Hexo 3 搭建github blog</a></li>
+<li><a href="http://www.jianshu.com/p/73779eacb494" target="_blank" rel="external">Hexo 3.0 静态博客使用指南</a></li>
+</ul>
+<p>以上两篇文章应该能使你顺利的在<code>http://localhost:4000/</code>看到自己的新博客，并且你也熟悉了Hexo的常用命令。</p>
+<h3 id="Hexo无法解析模板文件"><a href="#Hexo无法解析模板文件" class="headerlink" title="Hexo无法解析模板文件"></a>Hexo无法解析模板文件</h3><p>本地预览页面显示：</p>
+<pre><code>&lt;%- partial(&apos;_partial/head&apos;) %&gt;
+&lt;%- partial(&apos;_partial/header&apos;) %&gt;
+&lt;%- body %&gt;
+&lt;% if (theme.sidebar &amp;&amp; theme.sidebar !== &apos;bottom&apos;){ %&gt; &lt;%- partial(&apos;_partial/sidebar&apos;) %&gt; &lt;% } %&gt;
+&lt;%- partial(&apos;_partial/footer&apos;) %&gt;
+&lt;%- partial(&apos;_partial/mobile-nav&apos;) %&gt; &lt;%- partial(&apos;_partial/after-footer&apos;) %&gt;
+</code></pre><p>在工程目录执行下面3个命令，高版本的hexo移除默认的ejs。</p>
+<pre><code>$ npm install hexo-renderer-ejs --save
+$ npm install hexo-renderer-stylus --save
+$ npm install hexo-renderer-marked --save
+</code></pre><h2 id="上传到GitCafe"><a href="#上传到GitCafe" class="headerlink" title="上传到GitCafe"></a>上传到GitCafe</h2><ul>
+<li><a href="http://www.sumrday.com/2014/09-18-Hello-Hexo.html" target="_blank" rel="external">注册GitCafe创建Page项目</a></li>
+<li><a href="https://gitcafe.com/GitCafe/Help/wiki/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85%E5%92%8C%E8%AE%BE%E7%BD%AE%20Git" target="_blank" rel="external">安装和设置 Git</a></li>
+</ul>
+<p>以上两篇内容结合着看，不过对第一次操作这些的人来说可能会遇到一些问题。</p>
+<h3 id="生成SSH"><a href="#生成SSH" class="headerlink" title="生成SSH"></a>生成SSH</h3><p>当命令窗口出现以下信息时，需要你输入<code>passphrase</code>口令。不过在我操作时输入口令的话是无法生成成功的，直接按<code>enter</code>即可。</p>
+<pre><code>Enter passphrase (empty for no passphrase):
+</code></pre><h3 id="设置git"><a href="#设置git" class="headerlink" title="设置git"></a>设置git</h3><p>第一次在本地设置git时，需设置用户标识。</p>
+<pre><code>$ git config --global user.name &quot;yourname&quot;                   //gitcafe上的用户名
+$ git config --global user.email &quot;yourmaill@yourmaili.com&quot;   //填写自己的邮箱
+</code></pre><h3 id="设置本地gitcafe-pages版本库"><a href="#设置本地gitcafe-pages版本库" class="headerlink" title="设置本地gitcafe-pages版本库"></a>设置本地gitcafe-pages版本库</h3><ol>
+<li>GitBash进入本地Hexo目录</li>
+<li><code>git checkout -b gitcafe-pages</code> 创建Gitcafe-Pages分支，并切换到该分支。</li>
+<li><code>git add .</code> （.）点表示当前目录下的所有内容，交给git管理，也就是提交到了git的本地仓库。</li>
+</ol>
+<h3 id="上传到gitcafe"><a href="#上传到gitcafe" class="headerlink" title="上传到gitcafe"></a>上传到gitcafe</h3><p><strong>修改hexo配置文件，即config.yml，如下配置：</strong></p>
+<pre><code>deploy:
+  type: git
+  repository: git@gitcafe.com:yourname/yourname.git
+  branch: gitcafe-pages
+</code></pre><p>yourname 修改成你的用户名，如我的是：<code>git@gitcafe.com:justgo/justgo.git</code></p>
+<p>保存后直接在<strong>GitBash</strong>中<code>hexo g &amp;&amp; hexo d</code>上传即可（我在这一步折腾了很久，在cmd下运行<code>hexo d</code>命令会出错）。</p>
+<p>稍等片刻，打开 <code>http://youname/gitcafe.io</code> 便可以看到自己的博客了。</p>
+<h2 id="WordPress文章迁移"><a href="#WordPress文章迁移" class="headerlink" title="WordPress文章迁移"></a>WordPress文章迁移</h2><p>WordPress 后台可以直接导出wordpress.xml文件，把这个文件放入你的本地Hexo目录下，然后安装一个插件可以直接生成每篇文章的Markdown文件。</p>
+<pre><code>npm install hexo-migrator-wordpress --save    //安装插件
+
+hexo migrate wordpress wordpress.xml          //生成Markdown
+</code></pre><p>生成后的文件稍微修改一下格式就可以上传了。</p>
+<p>庆幸的是我博客里的图片不多，不需要太多的链接修改。</p>
+<p>不过以后我也开始使用七牛存储了，免得以后搬迁麻烦。</p>
+<h2 id="Hexo配置优化"><a href="#Hexo配置优化" class="headerlink" title="Hexo配置优化"></a>Hexo配置优化</h2><h3 id="参考-1"><a href="#参考-1" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="http://zipperary.com/2013/05/29/hexo-guide-3/" target="_blank" rel="external">hexo博客的配置、使用</a></li>
+<li><a href="http://zipperary.com/2013/05/30/hexo-guide-4/" target="_blank" rel="external">hexo博客的优化技巧</a></li>
+<li><a href="http://zipperary.com/2013/06/02/hexo-guide-5/" target="_blank" rel="external">hexo博客的优化技巧续</a></li>
+<li><a href="http://lukang.me/2014/optimization-of-hexo.html" target="_blank" rel="external">Hexo 优化与定制(一)</a></li>
+<li><a href="http://lukang.me/2015/optimization-of-hexo-2.html" target="_blank" rel="external">Hexo 优化与定制(二)</a></li>
+</ul>
+<h3 id="无法开启RSS和sitemap"><a href="#无法开启RSS和sitemap" class="headerlink" title="无法开启RSS和sitemap"></a>无法开启RSS和sitemap</h3><p>打开<code>http://localhost:4000/atom.xml</code> 页面显示 <code>Cannot GET atom.xml</code>，<code>http://localhost:4000/sitemap.xml</code> 页面显示 <code>Cannot GET sitemap.xml</code>。</p>
+<p>这个问题困扰了我很长的时间，因为我的插件安装和配置都是照着<a href="http://hexo.io/plugins/" target="_blank" rel="external">示例</a>分毫不差的进行的，可是google了几个小时都没解决！</p>
+<p>插件也重装更新了几次，想过重新初始化Hexo，怕会丢失原来的一些配置，最后在 <code>hexo/package.json</code> 中找到了原因。</p>
+<p>package.json：</p>
+<pre><code>{
+  &quot;name&quot;: &quot;hexo-site&quot;,
+  &quot;version&quot;: &quot;0.0.0&quot;,
+  &quot;private&quot;: true,
+  &quot;hexo&quot;: {
+    &quot;version&quot;: &quot;3.0.1&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;hexo&quot;: &quot;^3.0.0&quot;,
+    &quot;hexo-admin&quot;: &quot;^0.3.0&quot;,
+    &quot;hexo-deployer-git&quot;: &quot;0.0.4&quot;,
+    &quot;hexo-generator-archive&quot;: &quot;^0.1.0&quot;,
+    &quot;hexo-generator-category&quot;: &quot;^0.1.0&quot;,
+    &quot;hexo-generator-index&quot;: &quot;^0.1.0&quot;,
+    &quot;hexo-generator-tag&quot;: &quot;^0.1.0&quot;,
+    &quot;hexo-generator-feed&quot;: &quot;^1.0.1&quot;,
+    &quot;hexo-generator-sitemap&quot;: &quot;^1.0.1&quot;,
+    &quot;hexo-migrator-wordpress&quot;: &quot;^0.1.2&quot;,
+    &quot;hexo-renderer-ejs&quot;: &quot;^0.1.0&quot;,
+    &quot;hexo-renderer-marked&quot;: &quot;^0.2.4&quot;,
+    &quot;hexo-renderer-stylus&quot;: &quot;^0.2.0&quot;,
+    &quot;hexo-server&quot;: &quot;^0.1.2&quot;
+  }
+}
+</code></pre><p>检查此文件中是否包括了<code>hexo-generator-tag</code>和<code>hexo-generator-sitemap</code>，没有的话添加一下。<br>插件版本号查看对应插件下的<code>package.json</code>文件，其他插件的类似问题应该也可以尝试这样解决。</p>
+
+            </div>
+
+            <blockquote class="post-copyright">
+                <p>
+                本文地址：
+                <a href="http://imys.net/20150513/wordpress-to-hexo.html" target="_blank" rel="external">http://imys.net/20150513/wordpress-to-hexo.html</a>
+                </p>
+                <footer><cite><a href="http://imys.net">@Yusen's Blog</a></cite></footer>
+            </blockquote>
+
+            <div class="post-footer flex-row flex-middle">
+                <div class="flex-col">
+                    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">#Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WordPress/">#WordPress</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gitcafe/">#gitcafe</a></li></ul>
+
+
+                </div>
+
+                
+                <div class="post-share-wrap">
+                    <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+                    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+                        <i class="icon icon-share-alt"></i>
+                    </a>
+                    
+                </div>
+
+            </div>
+
+
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/20150514/hexo-toc.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Hexo添加Toc支持，生成文章目录</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/20150510/jquery-proxy.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">jQuery.proxy方法原理与使用</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="wordpress-to-hexo" data-title="博客搬迁记 - 从WordPress到Hexo" data-url="http://imys.net/20150513/wordpress-to-hexo.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "博客搬迁记 - 从WordPress到Hexo",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://imys.net/20150513/wordpress-to-hexo.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+<script src="http://s95.cnzz.com/z_stat.php?id=1255152447&web_id=1255152447"></script>
+
+
+
+
+
+</body>
+</html>

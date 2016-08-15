@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>如何为Canvas中特定图形绑定事件？ | Yusen&#39;s Blog | 折腾不在乎成功与否。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  <meta name="google-site-verification" content="rlxpN--EBnMOLJnY1efTuwShQId3YX7A6RWkQEr0y9c">
+  
+  <meta name="keywords" content="canvas,html5,event">
+  <meta name="description" content="Canvas绑定事件，为Canvas中特定图形绑定事件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何为Canvas中特定图形绑定事件？">
+<meta property="og:url" content="http://imys.net/20160808/canvas-event.html">
+<meta property="og:site_name" content="Yusen's Blog">
+<meta property="og:description" content="Canvas绑定事件，为Canvas中特定图形绑定事件">
+<meta property="og:updated_time" content="2016-08-15T13:28:56.401Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何为Canvas中特定图形绑定事件？">
+<meta name="twitter:description" content="Canvas绑定事件，为Canvas中特定图形绑定事件">
+  
+    <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
+  
+  <meta name="summary" content="&lt;p&gt;Canvas 本身也属于 HTMLElement，自然也是支持各种事件绑定的。&lt;br&gt;但绘制在其中的图形并不作为其子元素存在，这就不能方便的为 Canvas 中的某个特定图形去绑定事件。&lt;/p&gt;
+&lt;p&gt;我们都知道 js 中的事件委托，将事件绑定到父节点上，待到父节点响应事件时，动态判断当前响应元素为目标子节点时再执行对应的操作。&lt;/p&gt;
+&lt;p&gt;这个思想同样也可以用在 Canvas 上，只需要为 &lt;code&gt;canvas&lt;/code&gt; 元素绑定事件，事件响应时判断当前鼠标位置处于哪个图形之上，执行对应的操作。&lt;br&gt;">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">王昱森</h5>
+        <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/"  >
+            <i class="icon icon-lg icon-home"></i>
+            Home
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            Archives
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/tags"  >
+            <i class="icon icon-lg icon-tags"></i>
+            Tags
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/yscoder" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            Github
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://www.weibo.com/ysweb" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            Weibo
+          </a>
+        </li>
+    
+  </ul>
+
+  <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Yusen&#39;s Blog &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">如何为Canvas中特定图形绑定事件？</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">如何为Canvas中特定图形绑定事件？</h1>
+    <h5 class="subtitle">
+          
+            <time datetime="2016-08-08T06:43:38.000Z" itemprop="datePublished" class="page-time">
+  Aug 8, 2016
+</time>
+
+ 
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-canvas-event"
+  class="article article-type-post" itemprop="blogPost">
+
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#isPointInPath"><span class="post-toc-number">1.</span> <span class="post-toc-text">isPointInPath</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实现图形的事件绑定"><span class="post-toc-number">2.</span> <span class="post-toc-text">实现图形的事件绑定</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#路径"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">路径</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#正确结果"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">正确结果</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实战示例"><span class="post-toc-number">3.</span> <span class="post-toc-text">实战示例</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <p>Canvas 本身也属于 HTMLElement，自然也是支持各种事件绑定的。<br>但绘制在其中的图形并不作为其子元素存在，这就不能方便的为 Canvas 中的某个特定图形去绑定事件。</p>
+<p>我们都知道 js 中的事件委托，将事件绑定到父节点上，待到父节点响应事件时，动态判断当前响应元素为目标子节点时再执行对应的操作。</p>
+<p>这个思想同样也可以用在 Canvas 上，只需要为 <code>canvas</code> 元素绑定事件，事件响应时判断当前鼠标位置处于哪个图形之上，执行对应的操作。<br><a id="more"></a></p>
+<h2 id="isPointInPath"><a href="#isPointInPath" class="headerlink" title="isPointInPath"></a>isPointInPath</h2><figure class="highlight js"><table><tr><td class="code"><pre><div class="line">context.isPointInPath(x, y);</div></pre></td></tr></table></figure>
+<p>理论上讲，想要知道一个点是否处于一个图形之中，现成的算法应该是有很多了。不过难得 canvas 本身就提供了这样的函数，用来判断一个点是否处于当前路径中。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> c = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>);</div><div class="line"><span class="keyword">var</span> ctx = c.getContext(<span class="string">'2d'</span>);</div><div class="line">ctx.rect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">200</span>, <span class="number">200</span>);</div><div class="line"><span class="built_in">console</span>.log(ctx.isPointInPath(<span class="number">50</span>, <span class="number">100</span>))  <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>就像这样，当你创建一个矩形时，就会产生一个路径，此时就可以调用该方法去判断一个点是否存在于该路径。</p>
+<p>产生路径的函数还有其他，比如：<code>lineTo()</code>、<code>clip()</code>、<code>arc()</code>、<code>arcTo()</code> 等。</p>
+<h2 id="实现图形的事件绑定"><a href="#实现图形的事件绑定" class="headerlink" title="实现图形的事件绑定"></a>实现图形的事件绑定</h2><p>先来个简单的饼图吧。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"c"</span> <span class="attr">width</span>=<span class="string">"400"</span> <span class="attr">height</span>=<span class="string">"400"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'c'</span>);</div><div class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</div><div class="line"><span class="keyword">var</span> r = canvas.width / <span class="number">2</span>;</div><div class="line"></div><div class="line">ctx.beginPath();</div><div class="line">ctx.arc(r, r, r, <span class="number">0</span>, <span class="built_in">Math</span>.PI * <span class="number">1</span>);</div><div class="line">ctx.fillStyle = <span class="string">'#2196f3'</span>; <span class="comment">//蓝色</span></div><div class="line">ctx.fill();</div><div class="line"></div><div class="line">ctx.beginPath();</div><div class="line">ctx.arc(r, r, r, <span class="built_in">Math</span>.PI * <span class="number">1</span>, <span class="built_in">Math</span>.PI * <span class="number">2</span>);</div><div class="line">ctx.fillStyle = <span class="string">'#f44336'</span>; <span class="comment">//红色</span></div><div class="line">ctx.fill();</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isInPath</span> (<span class="params">x, y</span>)</span>&#123;</div><div class="line">    ctx.arc(r, r, r, <span class="number">0</span>, <span class="built_in">Math</span>.PI * <span class="number">1</span>);</div><div class="line">    <span class="keyword">return</span> ctx.isPointInPath(x, y);</div><div class="line">&#125;</div><div class="line"></div><div class="line">canvas.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(isInPath(e.offsetX, e.offsetY)) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">'hello'</span>)</div><div class="line">    &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>现在创建一个红蓝拼接的饼图，<code>isInPath</code> 方法判断一个点是否处于蓝色区。理想的结果是只有当鼠标点击区域为蓝色区域时才输出 <code>hello</code>。</p>
+<p>但事实确不是如此，<a href="https://jsfiddle.net/imys/7r4xes6v/1/" target="_blank" rel="external">示例Demo</a>。无论点击红色还是蓝色区域均会输出 <code>hello</code>，这是怎么回事呢？</p>
+<h3 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h3><p>既然 <code>isPointInPath(x, y)</code> 的基于路径判断的，那我们就从路径入手。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">ctx.arc(r, r, r, <span class="number">0</span>, <span class="built_in">Math</span>.PI * <span class="number">1</span>);</div><div class="line">ctx.fillStyle = <span class="string">'#2196f3'</span>;</div><div class="line">ctx.fill();</div><div class="line"></div><div class="line">ctx.arc(r, r, r, <span class="built_in">Math</span>.PI * <span class="number">1</span>, <span class="built_in">Math</span>.PI * <span class="number">2</span>);</div><div class="line">ctx.fillStyle = <span class="string">'#f44336'</span>;</div><div class="line">ctx.fill();</div></pre></td></tr></table></figure>
+<p>当我们把画图时的 <code>ctx.beginPath()</code> 去掉后，发现生成的图形变成一个红色的整圆了：<a href="https://jsfiddle.net/imys/7r4xes6v/2/" target="_blank" rel="external">示例Demo</a>。</p>
+<p><code>beginPath()</code> 用来重置路径，由于第一个半圆画完路径未重置，第二个半圆就绘制了两条路径。这似乎解释了上个问题的答案。</p>
+<p>在 <code>isInPath(x, y)</code> 函数中，由于路径没有重置，所以最终最终判断的不止是 <code>ctx.arc(r, r, r, 0, Math.PI * 1)</code> 这个路径，还有方法外的画红色圆的路径。两个路径加一起自然就是个整圆，所以无论蓝色区还是红色区都会输出。</p>
+<h3 id="正确结果"><a href="#正确结果" class="headerlink" title="正确结果"></a>正确结果</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isInPath</span> (<span class="params">x, y</span>)</span>&#123;</div><div class="line">    ctx.beginPath();</div><div class="line">    ctx.arc(r, r, r, <span class="number">0</span>, <span class="built_in">Math</span>.PI * <span class="number">1</span>);</div><div class="line">    <span class="keyword">return</span> ctx.isPointInPath(x, y)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>修改 <code>isInPath</code> 函数，加入重置路径，结果正确输出：<a href="https://jsfiddle.net/imys/58965umL/1/" target="_blank" rel="external">示例Demo</a>。</p>
+<h2 id="实战示例"><a href="#实战示例" class="headerlink" title="实战示例"></a>实战示例</h2><p><a href="https://jsfiddle.net/imys/48xx5fxu/2/" target="_blank" rel="external">鼠标悬浮显示区块数据的饼图</a>。</p>
+
+            </div>
+
+            <blockquote class="post-copyright">
+                <p>
+                本文地址：
+                <a href="http://imys.net/20160808/canvas-event.html" target="_blank" rel="external">http://imys.net/20160808/canvas-event.html</a>
+                </p>
+                <footer><cite><a href="http://imys.net">@Yusen's Blog</a></cite></footer>
+            </blockquote>
+
+            <div class="post-footer flex-row flex-middle">
+                <div class="flex-col">
+                    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/canvas/">#canvas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/event/">#event</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">#html5</a></li></ul>
+
+
+                </div>
+
+                
+                <div class="post-share-wrap">
+                    <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+                    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+                        <i class="icon icon-share-alt"></i>
+                    </a>
+                    
+                </div>
+
+            </div>
+
+
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/20160815/js-cancel-event.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">js阻止子元素响应父元素事件</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/20160726/vscode-extension-qiniu-upload.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">VsCode插件：七牛图床工具，写文章更快一步</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="canvas-event" data-title="如何为Canvas中特定图形绑定事件？" data-url="http://imys.net/20160808/canvas-event.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "如何为Canvas中特定图形绑定事件？",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://imys.net/20160808/canvas-event.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+<script src="http://s95.cnzz.com/z_stat.php?id=1255152447&web_id=1255152447"></script>
+
+
+
+
+
+</body>
+</html>

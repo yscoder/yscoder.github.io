@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>我刚知道的 Promise | Yusen&#39;s Blog | 折腾不在乎成功与否。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  <meta name="google-site-verification" content="rlxpN--EBnMOLJnY1efTuwShQId3YX7A6RWkQEr0y9c">
+  
+  <meta name="keywords" content="javascript,es6,promise,async">
+  <meta name="description" content="ES6 Promise介绍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我刚知道的 Promise">
+<meta property="og:url" content="http://imys.net/20160203/js-promise.html">
+<meta property="og:site_name" content="Yusen's Blog">
+<meta property="og:description" content="ES6 Promise介绍">
+<meta property="og:updated_time" content="2016-08-15T13:28:56.417Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="我刚知道的 Promise">
+<meta name="twitter:description" content="ES6 Promise介绍">
+  
+    <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
+  
+  <meta name="summary" content="&lt;p&gt;有时候，你会发现满世界都是某个字眼。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Promise&lt;/strong&gt;，就是这个家伙。简直阴魂不散，走到哪儿都能看到它。&lt;code&gt;fetch&lt;/code&gt;、&lt;code&gt;koa&lt;/code&gt;中都有TA的身影，而我却对TA一无所知。&lt;br&gt;搜索TA的文章介绍，第一页中最早的一篇文章已经是2011年了。那是个我还不会&lt;code&gt;HelloWorld&lt;/code&gt;的年代啊！&lt;/p&gt;
+&lt;h2 id=&quot;用法&quot;&gt;&lt;a href=&quot;#用法&quot; class=&quot;headerlink&quot; title=&quot;用法&quot;&gt;&lt;/a&gt;用法&lt;/h2&gt;&lt;p&gt;Promise 对象用于延迟(deferred) 计算和异步(asynchronous ) 计算。一个Promise对象代表着一个还未完成，但预期将来会完成的操作。&lt;/p&gt;
+&lt;p&gt;看概念很迷糊，直接看实例理解吧。&lt;/p&gt;">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">王昱森</h5>
+        <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/"  >
+            <i class="icon icon-lg icon-home"></i>
+            Home
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            Archives
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/tags"  >
+            <i class="icon icon-lg icon-tags"></i>
+            Tags
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/yscoder" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            Github
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://www.weibo.com/ysweb" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            Weibo
+          </a>
+        </li>
+    
+  </ul>
+
+  <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Yusen&#39;s Blog &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">我刚知道的 Promise</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">我刚知道的 Promise</h1>
+    <h5 class="subtitle">
+          
+            <time datetime="2016-02-03T03:19:47.000Z" itemprop="datePublished" class="page-time">
+  Feb 3, 2016
+</time>
+
+ 
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-js-promise"
+  class="article article-type-post" itemprop="blogPost">
+
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#用法"><span class="post-toc-number">1.</span> <span class="post-toc-text">用法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#为何要用"><span class="post-toc-number">2.</span> <span class="post-toc-text">为何要用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#jQuery-中的-Promise"><span class="post-toc-number">3.</span> <span class="post-toc-text">jQuery 中的 Promise</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考"><span class="post-toc-number">4.</span> <span class="post-toc-text">参考</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <p>有时候，你会发现满世界都是某个字眼。</p>
+<p><strong>Promise</strong>，就是这个家伙。简直阴魂不散，走到哪儿都能看到它。<code>fetch</code>、<code>koa</code>中都有TA的身影，而我却对TA一无所知。<br>搜索TA的文章介绍，第一页中最早的一篇文章已经是2011年了。那是个我还不会<code>HelloWorld</code>的年代啊！</p>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>Promise 对象用于延迟(deferred) 计算和异步(asynchronous ) 计算。一个Promise对象代表着一个还未完成，但预期将来会完成的操作。</p>
+<p>看概念很迷糊，直接看实例理解吧。</p>
+<a id="more"></a>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">$http</span>(<span class="params">url</span>)</span>&#123;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> core = &#123;</div><div class="line"></div><div class="line">    ajax : <span class="function"><span class="keyword">function</span> (<span class="params">method, url, args</span>) </span>&#123;</div><div class="line"></div><div class="line">      <span class="keyword">var</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>( <span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">var</span> client = <span class="keyword">new</span> XMLHttpRequest();</div><div class="line">        <span class="keyword">var</span> uri = url;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (args &amp;&amp; (method === <span class="string">'POST'</span> || method === <span class="string">'PUT'</span>)) &#123;</div><div class="line">          uri += <span class="string">'?'</span>;</div><div class="line">          <span class="keyword">var</span> argcount = <span class="number">0</span>;</div><div class="line">          <span class="keyword">for</span> (<span class="keyword">var</span> key <span class="keyword">in</span> args) &#123;</div><div class="line">            <span class="keyword">if</span> (args.hasOwnProperty(key)) &#123;</div><div class="line">              <span class="keyword">if</span> (argcount++) &#123;</div><div class="line">                uri += <span class="string">'&amp;'</span>;</div><div class="line">              &#125;</div><div class="line">              uri += <span class="built_in">encodeURIComponent</span>(key) + <span class="string">'='</span> + <span class="built_in">encodeURIComponent</span>(args[key]);</div><div class="line">            &#125;</div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        client.open(method, uri);</div><div class="line">        client.send();</div><div class="line"></div><div class="line">        client.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">          <span class="keyword">if</span> (<span class="keyword">this</span>.status &gt;= <span class="number">200</span> &amp;&amp; <span class="keyword">this</span>.status &lt; <span class="number">300</span>) &#123;</div><div class="line">            resolve(<span class="keyword">this</span>.response);</div><div class="line">          &#125; <span class="keyword">else</span> &#123;</div><div class="line">            reject(<span class="keyword">this</span>.statusText);</div><div class="line">          &#125;</div><div class="line">        &#125;;</div><div class="line">        client.onerror = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">          reject(<span class="keyword">this</span>.statusText);</div><div class="line">        &#125;;</div><div class="line">      &#125;);</div><div class="line"></div><div class="line">      <span class="keyword">return</span> promise;</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line"></div><div class="line"></div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    get : <span class="function"><span class="keyword">function</span>(<span class="params">args</span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> core.ajax(<span class="string">'GET'</span>, url, args);</div><div class="line">    &#125;,</div><div class="line">    post : <span class="function"><span class="keyword">function</span>(<span class="params">args</span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> core.ajax(<span class="string">'POST'</span>, url, args);</div><div class="line">    &#125;,</div><div class="line">    put : <span class="function"><span class="keyword">function</span>(<span class="params">args</span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> core.ajax(<span class="string">'PUT'</span>, url, args);</div><div class="line">    &#125;,</div><div class="line">    <span class="keyword">delete</span> : <span class="function"><span class="keyword">function</span>(<span class="params">args</span>) </span>&#123;</div><div class="line">      <span class="keyword">return</span> core.ajax(<span class="string">'DELETE'</span>, url, args);</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">$http(<span class="string">'http://url/api'</span>).get(&#123;</div><div class="line">    id: <span class="number">111</span></div><div class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">    <span class="comment">// success</span></div><div class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">    <span class="comment">// error</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>以上是一个基于 Promise 的 ajax 实现，调用形式跟 vue-resource 如出一辙（果然又是大神们嚼烂的玩意儿）。</p>
+<p>Promise 的构造函数可以带有1个参数，它是带有<code>resolve</code>、<code>reject</code>两个参数的函数对象，如以上<code>core.ajax</code>函数中创建的 Promise 对象。<br>其中 resolve 用于处理执行成功的场景，reject 用于处理执行失败的场景。<br>在成功与失败的处理阶段 hook 到一个 Promise 对象中，最后通过<code>then</code>方法来真正的处理返回结果。</p>
+<ul>
+<li><code>Promise.prototype.then(onFulfilled[, onRejected])</code></li>
+<li><code>Promise.prototype.catch(onRejected)</code></li>
+</ul>
+<p>并不是所有的失败场景都需要在<code>then</code>方法中处理，在其后继续追加<code>catch</code>方法也是可以的。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">$http(<span class="string">'http://url/api'</span>).get(&#123;</div><div class="line">    id: <span class="number">111</span></div><div class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">    <span class="comment">// success</span></div><div class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">    <span class="comment">// error</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>由于<code>then</code>和<code>catch</code>仍然返回一个 Promise 对象，所以可以出现多个<code>then</code>或<code>catch</code>来处理不同的业务场景。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">$http(<span class="string">'http://url/api'</span>).get(&#123;</div><div class="line">    id: <span class="number">111</span></div><div class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> handleA(data);</div><div class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">    <span class="comment">// 此处 data 为 handleA 方法处理后的数据</span></div><div class="line">    <span class="keyword">return</span> handleB(data);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="为何要用"><a href="#为何要用" class="headerlink" title="为何要用"></a>为何要用</h2><p>咋一看 Promise 就是一个包装好的代理对象。<strong>不过它的出现究竟是为了解决什么问题呢？</strong></p>
+<p>在 Promise 出现之前，如果你的逻辑中出现了异步操作，而又需要在异步操作外获取异步操作内的结果，不外乎是要使用回调了。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getList</span>(<span class="params">callback</span>) </span>&#123;</div><div class="line">    $.get(yourApi, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">        callback(data);</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用 Promise 呢？</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getList</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>( <span class="function"><span class="keyword">function</span> (<span class="params">resolve, reject</span>) </span>&#123;</div><div class="line">        $.get(yourApi, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">            resolve(data);</div><div class="line">        &#125;).error(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">            reject(data);</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用 Promise 代理了原来所需要的回调的，返回一个对象而不是传入回调参数的方法形式更直观和容易理解。<br>在之后的编程中，当目标方法返回了一个 Promise 对象，我们就知道发生了异步操作，需要通过 then 方法来处理场景需求。</p>
+<p>到此为止，Promise 给我的感觉也只不过是语法糖罢了，这种形式的写法我也可以封装出来啊。<br>接下来才是其真正的优点。</p>
+<p>比如异步处理多个的请求结果，原始写法。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params">callback</span>)</span>&#123;</div><div class="line">    $.get(<span class="string">'/ApiA'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">dataA</span>)</span>&#123;</div><div class="line">        $.get(<span class="string">'/ApiB'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">dataB</span>)</span>&#123;</div><div class="line">            $.get(<span class="string">'/ApiC'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">dataC</span>)</span>&#123;</div><div class="line">                callback(dataA, dataB, dataC);</div><div class="line">            &#125;);</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当然以上是一种比较蠢的写法，当请求数量发生变化时的时候，这段代码就需要修改了。<br>可以用递归优化下。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getData</span>(<span class="params">url, callback</span>)</span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(url <span class="keyword">instanceof</span> <span class="built_in">Array</span>) &#123;</div><div class="line">        <span class="keyword">var</span> i = <span class="number">0</span>,</div><div class="line">            len = url.length,</div><div class="line">            dataArr = [],</div><div class="line"></div><div class="line">            eachLoad = <span class="function"><span class="keyword">function</span>(<span class="params">url</span>)</span>&#123;</div><div class="line"></div><div class="line">                $.get(url, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line"></div><div class="line">                    dataArr.push(data);</div><div class="line"></div><div class="line">                    <span class="keyword">if</span>(i++ <span class="xml"><span class="tag">&lt; <span class="attr">len</span> <span class="attr">-</span> <span class="attr">1</span>) &#123;</span></span></div><div class="line">                        <span class="attr">eachLoad</span>(<span class="attr">url</span>[<span class="attr">i</span>]);</div><div class="line">                    &#125; <span class="attr">else</span> &#123;</div><div class="line">                        <span class="attr">callback.apply</span>(<span class="attr">null</span>, <span class="attr">dataArr</span>);</div><div class="line">                    &#125;</div><div class="line">                &#125;);</div><div class="line">            &#125;;</div><div class="line"></div><div class="line">        <span class="attr">eachLoad</span>(<span class="attr">url</span>[<span class="attr">i</span>]);</div><div class="line"></div><div class="line">    &#125; <span class="attr">else</span> &#123;</div><div class="line">        $<span class="attr">.get</span>(<span class="attr">url</span>, <span class="attr">function</span>(<span class="attr">data</span>)&#123;</div><div class="line">            <span class="attr">callback</span>(<span class="attr">data</span>);</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>使用 Promise 解决。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> promiseA = $http(<span class="string">'/List'</span>).get(&#123;</div><div class="line">        id: <span class="number">111</span></div><div class="line">    &#125;),</div><div class="line">    promiseB = $http(<span class="string">'/List'</span>).get(&#123;</div><div class="line">        id: <span class="number">222</span></div><div class="line">    &#125;);</div><div class="line"></div><div class="line"><span class="built_in">Promise</span>.all([promiseA, promiseB]).then(<span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">    <span class="comment">// do...</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>使用<code>Promise.all</code>方法一次性处理多个操作。</p>
+<p>Promise 属于 ES6 特性，目前在 IE 中还不能用，不过各大框架也都有自己的实现。</p>
+<h2 id="jQuery-中的-Promise"><a href="#jQuery-中的-Promise" class="headerlink" title="jQuery 中的 Promise"></a>jQuery 中的 Promise</h2><p>jQuery 中很多异步操作都会返回一个延迟对象<code>$.Deferred</code>，该对象具有一系列的操作方法。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// animate</span></div><div class="line">$(<span class="string">'div'</span>).animate(&#123;</div><div class="line">    width: <span class="string">'50%'</span></div><div class="line">&#125;, <span class="number">300</span>).done(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">// 当延迟成功时调用</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// ajax</span></div><div class="line">$.get(<span class="string">'/List'</span>).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">// succee</span></div><div class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">// error</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// when</span></div><div class="line">$.when($.ajax(<span class="string">'/List1'</span>), $.ajax(<span class="string">'/List2'</span>)).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">// succee</span></div><div class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="comment">// error</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 还有很多，可以去 jQuery Api 中看。</span></div></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="external">javascript标准库-Promise | MDN</a></li>
+<li><a href="http://www.infoq.com/cn/news/2011/09/js-promise" target="_blank" rel="external">JavaScript异步编程的Promise模式</a></li>
+<li><a href="http://liubin.org/promises-book/" target="_blank" rel="external">JavaScript Promise迷你书</a></li>
+</ul>
+
+            </div>
+
+            <blockquote class="post-copyright">
+                <p>
+                本文地址：
+                <a href="http://imys.net/20160203/js-promise.html" target="_blank" rel="external">http://imys.net/20160203/js-promise.html</a>
+                </p>
+                <footer><cite><a href="http://imys.net">@Yusen's Blog</a></cite></footer>
+            </blockquote>
+
+            <div class="post-footer flex-row flex-middle">
+                <div class="flex-col">
+                    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/async/">#async</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es6/">#es6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">#javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/promise/">#promise</a></li></ul>
+
+
+                </div>
+
+                
+                <div class="post-share-wrap">
+                    <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+                    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+                        <i class="icon icon-share-alt"></i>
+                    </a>
+                    
+                </div>
+
+            </div>
+
+
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/20160207/end-2015.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">我为什么选择了前端？</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/20160127/mobile-1px.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">你以为你写的1px就是1px吗？</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="js-promise" data-title="我刚知道的 Promise" data-url="http://imys.net/20160203/js-promise.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "我刚知道的 Promise",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://imys.net/20160203/js-promise.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+<script src="http://s95.cnzz.com/z_stat.php?id=1255152447&web_id=1255152447"></script>
+
+
+
+
+
+</body>
+</html>

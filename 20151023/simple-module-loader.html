@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>实现一个简单的模块加载器 | Yusen&#39;s Blog | 折腾不在乎成功与否。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  <meta name="google-site-verification" content="rlxpN--EBnMOLJnY1efTuwShQId3YX7A6RWkQEr0y9c">
+  
+  <meta name="keywords" content="模块化,javascript">
+  <meta name="description" content="实现一个简单的模块加载器,javascript module loader">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实现一个简单的模块加载器">
+<meta property="og:url" content="http://imys.net/20151023/simple-module-loader.html">
+<meta property="og:site_name" content="Yusen's Blog">
+<meta property="og:description" content="实现一个简单的模块加载器,javascript module loader">
+<meta property="og:updated_time" content="2016-08-15T13:28:56.417Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="实现一个简单的模块加载器">
+<meta name="twitter:description" content="实现一个简单的模块加载器,javascript module loader">
+  
+    <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
+  
+  <meta name="summary" content="&lt;p&gt;最近大半年也写了不少通用模块，却从来没使用过一种通过书写格式。&lt;br&gt;目前公司的前端通用库还是&lt;code&gt;jQuery&lt;/code&gt;, 但也不是所有的模块都适合以&lt;code&gt;jQuery 插件&lt;/code&gt;的形式开发。平时写的时候一般以立即执行函数或 OO 形式开发，以目前项目情况来看也不是很需要用&lt;code&gt;require.js&lt;/code&gt;或&lt;code&gt;sea.js&lt;/code&gt;之类的加载器。&lt;/p&gt;
+&lt;p&gt;其实我的需求很简单，就是抹去模块在全局作用域的定义，以通用的形式定义和引用。&lt;/p&gt;">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">王昱森</h5>
+        <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/"  >
+            <i class="icon icon-lg icon-home"></i>
+            Home
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            Archives
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/tags"  >
+            <i class="icon icon-lg icon-tags"></i>
+            Tags
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/yscoder" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            Github
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://www.weibo.com/ysweb" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            Weibo
+          </a>
+        </li>
+    
+  </ul>
+
+  <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Yusen&#39;s Blog &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">实现一个简单的模块加载器</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">实现一个简单的模块加载器</h1>
+    <h5 class="subtitle">
+          
+            <time datetime="2015-10-23T12:41:39.000Z" itemprop="datePublished" class="page-time">
+  Oct 23, 2015
+</time>
+
+ 
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-simple-module-loader"
+  class="article article-type-post" itemprop="blogPost">
+
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#最终目标"><span class="post-toc-number">1.</span> <span class="post-toc-text">最终目标</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-注入环境变量"><span class="post-toc-number">2.</span> <span class="post-toc-text">1. 注入环境变量</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-解析-module-参数"><span class="post-toc-number">3.</span> <span class="post-toc-text">2. 解析 module 参数</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-实现-module"><span class="post-toc-number">4.</span> <span class="post-toc-text">3. 实现 module</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-实现-require"><span class="post-toc-number">5.</span> <span class="post-toc-text">4. 实现 require</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-完整代码"><span class="post-toc-number">6.</span> <span class="post-toc-text">5. 完整代码</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <p>最近大半年也写了不少通用模块，却从来没使用过一种通过书写格式。<br>目前公司的前端通用库还是<code>jQuery</code>, 但也不是所有的模块都适合以<code>jQuery 插件</code>的形式开发。平时写的时候一般以立即执行函数或 OO 形式开发，以目前项目情况来看也不是很需要用<code>require.js</code>或<code>sea.js</code>之类的加载器。</p>
+<p>其实我的需求很简单，就是抹去模块在全局作用域的定义，以通用的形式定义和引用。</p>
+<a id="more"></a>
+<h2 id="最终目标"><a href="#最终目标" class="headerlink" title="最终目标"></a>最终目标</h2><p>从结果出发分析需求，先列出来最终想要的代码形式。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 形式1：匿名模块，只有一个注入exports参数的函数体</span></div><div class="line"><span class="built_in">module</span>(<span class="function"><span class="keyword">function</span> (<span class="params">exports</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="built_in">require</span>(<span class="string">'m1'</span>).msg);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 形式2：具名模块，包含一个模块名称参数和一个注入exports参数的函数体</span></div><div class="line"><span class="built_in">module</span>(<span class="string">'m1'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">exports</span>) </span>&#123;</div><div class="line">    exports.msg = <span class="string">'hello'</span>;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 形式3：具名模块，包含一个模块名称参数、依赖模块数组、和一个注入依赖模块、exports参数的函数体</span></div><div class="line"><span class="built_in">module</span>(<span class="string">'m2'</span>, [<span class="string">'m1'</span>], <span class="function"><span class="keyword">function</span> (<span class="params">m1, exports</span>) </span>&#123;</div><div class="line">    exports.msg = m1.msg + <span class="string">"World"</span>;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 形式4：匿名模块，与形式3相比没有模块名称</span></div><div class="line"><span class="built_in">module</span>([<span class="string">'m2'</span>], <span class="function"><span class="keyword">function</span> (<span class="params">m2, exports</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(m2.msg);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>使用<code>module</code>定义一个模块，拥有一个函数上下文，可以定义模块名称和引用其他模块，也可以通过注入的<code>exports</code>参数输出模块开放接口。<br>某些时候也许需要<code>require(&#39;模块名&#39;)</code>这种形式来直接引用模块。</p>
+<h2 id="1-注入环境变量"><a href="#1-注入环境变量" class="headerlink" title="1. 注入环境变量"></a>1. 注入环境变量</h2><p>从以上四种模块形式来看，<code>module</code>和<code>require</code>两个变量的作用域是全局，需要注入到<code>window</code>中。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">w, f</span>)</span>&#123;</div><div class="line"></div><div class="line">    w.module = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    w.require = <span class="function"><span class="keyword">function</span> (<span class="params">namne</span>) </span>&#123;</div><div class="line">        </div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;(<span class="built_in">window</span>, <span class="literal">undefined</span>));</div></pre></td></tr></table></figure>
+<p>一个简单的立即执行函数就可以做到。</p>
+<h2 id="2-解析-module-参数"><a href="#2-解析-module-参数" class="headerlink" title="2. 解析 module 参数"></a>2. 解析 module 参数</h2><p><code>module</code>参数的数量是不固定的，最少1个（形式1）、最多3个（形式3）。<br>可以需要通过判断参数数量和类型加以区分。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">w.module = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> modName = <span class="built_in">arguments</span>[<span class="number">0</span>],     <span class="comment">// 模块名 String</span></div><div class="line">        mods = <span class="built_in">arguments</span>[<span class="number">1</span>],        <span class="comment">// 引用模块 Array</span></div><div class="line">        context = <span class="built_in">arguments</span>[<span class="built_in">arguments</span>.length - <span class="number">1</span>];      <span class="comment">// 模块函数 Function</span></div><div class="line"></div><div class="line">    <span class="keyword">if</span>(modName <span class="keyword">instanceof</span> <span class="built_in">Array</span>) &#123;</div><div class="line">        mods = modName;</div><div class="line">        modName = f;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>参数数量不固定，也就不必定义形参了，直接从<code>arguments</code>中获取。</p>
+<blockquote>
+<p><code>arguments[0]</code>是模块名，模块名存在时永远是参数第一位；<br><code>arguments[1]</code>是引用模块，模块名不存在时<code>arguments[0]</code>为引用模块，所以判断模块名是数组类型时重新赋值；<br>不管何种形式模块函数都是最后一个参数，直接使用<code>arguments[arguments.length - 1]</code>获取；</p>
+</blockquote>
+<h2 id="3-实现-module"><a href="#3-实现-module" class="headerlink" title="3. 实现 module"></a>3. 实现 module</h2><p>模块函数的参数数量也是不固定的，但至少需要注入<code>exports</code>来输出开放接口。<br>每多引用一个模块，就需要向模块函数中注入一个对应参数。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> modules = &#123;&#125;;  <span class="comment">// 模块容器</span></div><div class="line"></div><div class="line">w.module = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> modName = <span class="built_in">arguments</span>[<span class="number">0</span>],     <span class="comment">// 模块名 String</span></div><div class="line">        mods = <span class="built_in">arguments</span>[<span class="number">1</span>],        <span class="comment">// 引用模块 Array</span></div><div class="line">        context = <span class="built_in">arguments</span>[<span class="built_in">arguments</span>.length - <span class="number">1</span>];      <span class="comment">// 模块函数 Function</span></div><div class="line"></div><div class="line">    <span class="keyword">if</span>(modName <span class="keyword">instanceof</span> <span class="built_in">Array</span>) &#123;</div><div class="line">        mods = modName;</div><div class="line">        modName = f;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// 1. 取出模块</span></div><div class="line">    <span class="keyword">var</span> args = [];</div><div class="line">    <span class="keyword">if</span>(mods <span class="keyword">instanceof</span> <span class="built_in">Array</span>) &#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; mods.length; i++) &#123;</div><div class="line">            args.push(modules[mods[i]]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// 2. 注册模块</span></div><div class="line">    <span class="keyword">if</span>(<span class="keyword">typeof</span> modName === <span class="string">'string'</span>) &#123;</div><div class="line">        modules[modName] = &#123;&#125;;</div><div class="line">        args.push(modules[modName]);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">// 3. 注入参数，执行模块</span></div><div class="line">    context.apply(<span class="keyword">this</span>, args);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>遍历<code>mods</code>取出模块：定义了一个变量<code>modules</code>存放模块，那么假如一个模块引用了模块<code>a</code>、<code>b</code>，则<code>mods = [&#39;a&#39;, &#39;b&#39;];</code>，<code>a</code>、<code>b</code>两个模块的真值即为<code>modules[&#39;a&#39;]</code>、<code>modules[&#39;b&#39;]</code>。当模块为形式2时，参数有两个，参数2为模块函数。此时 <code>arguments[1] === arguments[arguments.length - 1]</code>，引用模块(mods)也指向了模块函数，所以要判断<code>mods</code>类型。<br>注册模块：每一个具名模块都需要注册到<code>modules</code>中，以备其他模块引用。当模块为匿名模块时，不需要注册，所以要判断<code>modName</code>类型。<br>注入参数，执行模块：对于不定数量的参数注入，显然是使用<code>apply</code>最简单。</p>
+</blockquote>
+<h2 id="4-实现-require"><a href="#4-实现-require" class="headerlink" title="4. 实现 require"></a>4. 实现 require</h2><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> modules = &#123;&#125;;  <span class="comment">// 模块容器</span></div><div class="line"></div><div class="line">w.module = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">w.require = <span class="function"><span class="keyword">function</span> (<span class="params">namne</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> modules[namne];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>暂时不考虑异步加载、加载路径解析等各种情况了，直接从容器中取到模块…</p>
+<h2 id="5-完整代码"><a href="#5-完整代码" class="headerlink" title="5. 完整代码"></a>5. 完整代码</h2><figure class="highlight js"><table><tr><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">w, f</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> modules = &#123;&#125;;   <span class="comment">// 模块容器</span></div><div class="line"></div><div class="line">    w.module = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> modName = <span class="built_in">arguments</span>[<span class="number">0</span>],     <span class="comment">// 模块名 String</span></div><div class="line">            mods = <span class="built_in">arguments</span>[<span class="number">1</span>],        <span class="comment">// 引用模块 Array</span></div><div class="line">            context = <span class="built_in">arguments</span>[<span class="built_in">arguments</span>.length - <span class="number">1</span>];      <span class="comment">// 模块函数 Function</span></div><div class="line"></div><div class="line">        <span class="keyword">if</span>(modName <span class="keyword">instanceof</span> <span class="built_in">Array</span>) &#123;</div><div class="line">            mods = modName;</div><div class="line">            modName = f;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">var</span> args = [];</div><div class="line">        <span class="keyword">if</span>(mods <span class="keyword">instanceof</span> <span class="built_in">Array</span>) &#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; mods.length; i++) &#123;</div><div class="line">                args.push(modules[mods[i]]);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        </div><div class="line">        <span class="keyword">if</span>(<span class="keyword">typeof</span> modName === <span class="string">'string'</span>) &#123;</div><div class="line">            modules[modName] = &#123;&#125;;</div><div class="line">            args.push(modules[modName]);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        context.apply(<span class="keyword">this</span>, args);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    w.require = <span class="function"><span class="keyword">function</span> (<span class="params">namne</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> modules[namne];</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;(<span class="built_in">window</span>, <span class="literal">undefined</span>));</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 形式1：匿名模块，只有一个注入exports参数的函数体</span></div><div class="line"><span class="built_in">module</span>(<span class="function"><span class="keyword">function</span> (<span class="params">exports</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="built_in">require</span>(<span class="string">'m1'</span>).msg);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 形式2：具名模块，包含一个模块名称参数和一个注入exports参数的函数体</span></div><div class="line"><span class="built_in">module</span>(<span class="string">'m1'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">exports</span>) </span>&#123;</div><div class="line">    exports.msg = <span class="string">'hello'</span>;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 形式3：具名模块，包含一个模块名称参数、依赖模块数组、和一个注入依赖模块、exports参数的函数体</span></div><div class="line"><span class="built_in">module</span>(<span class="string">'m2'</span>, [<span class="string">'m1'</span>], <span class="function"><span class="keyword">function</span> (<span class="params">m1, exports</span>) </span>&#123;</div><div class="line">    exports.msg = m1.msg + <span class="string">"World"</span>;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// 形式4：匿名模块，与形式3相比没有模块名称</span></div><div class="line"><span class="built_in">module</span>([<span class="string">'m2'</span>], <span class="function"><span class="keyword">function</span> (<span class="params">m2, exports</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(m2.msg);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>执行以上代码会报错，代码是自上而下同步执行的，形式1运行阶段模块<code>m1</code>还未定义。<br>把形式1放到形式4之后执行，输出：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">helloWorld</div><div class="line">hello</div></pre></td></tr></table></figure>
+
+            </div>
+
+            <blockquote class="post-copyright">
+                <p>
+                本文地址：
+                <a href="http://imys.net/20151023/simple-module-loader.html" target="_blank" rel="external">http://imys.net/20151023/simple-module-loader.html</a>
+                </p>
+                <footer><cite><a href="http://imys.net">@Yusen's Blog</a></cite></footer>
+            </blockquote>
+
+            <div class="post-footer flex-row flex-middle">
+                <div class="flex-col">
+                    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">#javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模块化/">#模块化</a></li></ul>
+
+
+                </div>
+
+                
+                <div class="post-share-wrap">
+                    <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+                    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+                        <i class="icon icon-share-alt"></i>
+                    </a>
+                    
+                </div>
+
+            </div>
+
+
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/20151107/mobile-page-size-and-layout.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">移动端页面开发关键—尺寸和布局</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/20151022/use-gulp-front-building-exp.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">gulp改善工作流记录</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="simple-module-loader" data-title="实现一个简单的模块加载器" data-url="http://imys.net/20151023/simple-module-loader.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "实现一个简单的模块加载器",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://imys.net/20151023/simple-module-loader.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+<script src="http://s95.cnzz.com/z_stat.php?id=1255152447&web_id=1255152447"></script>
+
+
+
+
+
+</body>
+</html>

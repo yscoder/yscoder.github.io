@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>屏幕旋转方案测试</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<style>
+@media screen and (orientation: portrait){
+    html {
+        background: #000;
+        color: #fff;
+    }
+}
+@media screen and (orientation: landscape){
+    html {
+        background: #eee;
+    }
+}
+</style>
+</head>
+<body>
+    <p id="p1"></p>
+    <p id="p2"></p>
+    <p id="p3"></p>
+    <p id="p4"></p>
+    <script>
+
+    var p1 = document.getElementById('p1');
+    var p2 = document.getElementById('p2');
+    var p3 = document.getElementById('p3');
+    var p4 = document.getElementById('p4');
+
+    if('ondeviceorientation' in window ) {
+        window.addEventListener('deviceorientation', function(e){
+           var ret = 'absolute: ' + e.absolute;
+           ret += '<br>alpha: ' + e.alpha;
+           ret += '<br>beta: ' + e.beta;
+           ret += '<br>gamma: ' + e.gamma;
+           p1.innerHTML = ret;
+        });
+    } else {
+        alert('不支持 deviceorientation')
+    }
+
+    if(screen.orientation) {
+        screen.orientation.onchange = function (e) {
+            p2.innerHTML = 'screen.orientation.onchange angle: ' + screen.orientation.angle;
+        }
+    } else {
+        p2.innerHTML = '不支持 screen.orientation';
+    }
+
+    if('onorientationchange' in window) {
+        window.addEventListener("orientationchange", function() {
+            p3.innerHTML = 'orientationchange angle: ' + screen.orientation.angle;
+            p3.innerHTML += ' type: ' + screen.orientation.type;
+        })
+    } else {
+        p3.innerHTML = '不支持 orientationchange angle'
+    }
+
+    window.onresize = function(){
+
+        p4.innerHTML = 'innerWidth: ' + this.innerWidth + ' innerHeight: ' + this.innerHeight;
+    }
+
+
+    </script>
+</body>
+
+</html>

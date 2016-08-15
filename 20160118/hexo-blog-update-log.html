@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo博客改版记录 | Yusen&#39;s Blog | 折腾不在乎成功与否。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  <meta name="google-site-verification" content="rlxpN--EBnMOLJnY1efTuwShQId3YX7A6RWkQEr0y9c">
+  
+  <meta name="keywords" content="Hexo,material">
+  <meta name="description" content="Hexo博客改版记录, material theme">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo博客改版记录">
+<meta property="og:url" content="http://imys.net/20160118/hexo-blog-update-log.html">
+<meta property="og:site_name" content="Yusen's Blog">
+<meta property="og:description" content="Hexo博客改版记录, material theme">
+<meta property="og:updated_time" content="2016-08-15T13:28:56.401Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo博客改版记录">
+<meta name="twitter:description" content="Hexo博客改版记录, material theme">
+  
+    <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
+  
+  <meta name="summary" content="&lt;p&gt;每当我把之前立下的 flag 执行的时候，都感觉是一件很骄傲的事，太多的计划被我用各种接口扼杀在摇篮中了。&lt;/p&gt;
+&lt;h2 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h2&gt;&lt;p&gt;在 Android 更新到 5.0 后，我就对触摸反馈这一点很感兴趣。也尝试模拟过，但是最后的效果都不太满意。&lt;br&gt;偶然的一次在 github上 看到了 Materialize 这个项目，才知道了谷歌的&lt;code&gt;Material Design(原质化设计)&lt;/code&gt; 设计规范。而后在公司听到设计师提到这个东西时，突然有种跟上了潮流的感觉。&lt;/p&gt;
+&lt;p&gt;就像一些文章中提到的，&lt;strong&gt;即使你不懂设计，但是照着样式去做，也不会太丑。&lt;/strong&gt;&lt;br&gt;这显然很对我的胃口。&lt;br&gt;">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">王昱森</h5>
+        <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/"  >
+            <i class="icon icon-lg icon-home"></i>
+            Home
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            Archives
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/tags"  >
+            <i class="icon icon-lg icon-tags"></i>
+            Tags
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/yscoder" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            Github
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://www.weibo.com/ysweb" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            Weibo
+          </a>
+        </li>
+    
+  </ul>
+
+  <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Yusen&#39;s Blog &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Hexo博客改版记录</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">Hexo博客改版记录</h1>
+    <h5 class="subtitle">
+          
+            <time datetime="2016-01-18T01:02:18.000Z" itemprop="datePublished" class="page-time">
+  Jan 18, 2016
+</time>
+
+ 
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-hexo-blog-update-log"
+  class="article article-type-post" itemprop="blogPost">
+
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#引言"><span class="post-toc-number">1.</span> <span class="post-toc-text">引言</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#改版内容"><span class="post-toc-number">2.</span> <span class="post-toc-text">改版内容</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Hexo-toc"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">Hexo toc</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#去-jquery"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">去 jquery</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#去-fancybox"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">去 fancybox</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#去-stylus-用-less"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">去 stylus, 用 less</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#安装-roboto-字体"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">安装 roboto 字体</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#增加-Waves-效果"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">增加 Waves 效果</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分享"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">分享</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#最后"><span class="post-toc-number">3.</span> <span class="post-toc-text">最后</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <p>每当我把之前立下的 flag 执行的时候，都感觉是一件很骄傲的事，太多的计划被我用各种接口扼杀在摇篮中了。</p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>在 Android 更新到 5.0 后，我就对触摸反馈这一点很感兴趣。也尝试模拟过，但是最后的效果都不太满意。<br>偶然的一次在 github上 看到了 Materialize 这个项目，才知道了谷歌的<code>Material Design(原质化设计)</code> 设计规范。而后在公司听到设计师提到这个东西时，突然有种跟上了潮流的感觉。</p>
+<p>就像一些文章中提到的，<strong>即使你不懂设计，但是照着样式去做，也不会太丑。</strong><br>这显然很对我的胃口。<br><a id="more"></a></p>
+<h2 id="改版内容"><a href="#改版内容" class="headerlink" title="改版内容"></a>改版内容</h2><p>除了博客风格改版外，也改变了以下一些内容。</p>
+<h3 id="Hexo-toc"><a href="#Hexo-toc" class="headerlink" title="Hexo toc"></a>Hexo toc</h3><p>在我刚使用 Hexo 不久时，还曾专门写了一篇文章介绍 hexo-toc 插件的使用。不过最近在我升级了 hexo-toc 插件后，发现已经不需要像我写的那么麻烦了。这还不是重点。<br>因为博客布局结构要有很大变化，很多模版我都需要重写。所以就需要查阅 Hexo 文档寻找一些可利用的资料。<br>就在这个过程中，我居然发现了 Hexo 居然有生成 toc 的辅助方法。好气好气，也不是第一次翻文档了，之前居然都没注意到。</p>
+<p>与 hexo-toc 插件比，这个辅助方法更加便利。<a href="https://hexo.io/docs/helpers.html#toc" target="_blank" rel="external">文档链接</a><br>hexo-toc 需要在编辑时插入<code>&lt;!--toc--&gt;</code>标记，且生成后的内容还在文章中占位。这对于想实现一些浮动式文章导航的同学十分不便。<br>而<code>&lt;%- toc(str, [options]) %&gt;</code>方法就简单多了，只要是在文章页中，你放到什么地方，就在什么地方渲染。</p>
+<h3 id="去-jquery"><a href="#去-jquery" class="headerlink" title="去 jquery"></a>去 jquery</h3><p>仅仅是一个博客，也没有多少复杂的 Dom 操作。读者也都是程序猿，也不存在要考虑浏览器兼容。jquery 能不用则不用，当前的 js 也就写了100多行。</p>
+<h3 id="去-fancybox"><a href="#去-fancybox" class="headerlink" title="去 fancybox"></a>去 fancybox</h3><p>fancybox 是基于 jquery 的一个图片浏览插件，jquery 去了，它自然也就失效了。请求数挺多的,而且它本身的功能，我并不在意，没什么卵用的感觉。如果后续有需要，也可以用原生实现一个。</p>
+<h3 id="去-stylus-用-less"><a href="#去-stylus-用-less" class="headerlink" title="去 stylus, 用 less"></a>去 stylus, 用 less</h3><p>这个纯粹是个人的习惯。html 和 css 还是喜欢原生的代码风格，stylus 和 jade 这种强缩进的都不太喜欢。</p>
+<p>替换时需要在配置文件中增加 less 插件的依赖和参数配置。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">plugins:</div><div class="line">  - hexo-renderer-less</div><div class="line"></div><div class="line">less:</div><div class="line">  paths:</div><div class="line">    - source/css/style.less</div></pre></td></tr></table></figure>
+<h3 id="安装-roboto-字体"><a href="#安装-roboto-字体" class="headerlink" title="安装 roboto 字体"></a>安装 roboto 字体</h3><p>Roboto 字体是 Material Design 的推荐英文字体。英文字体文件字节小，毕竟只有26个字母。虽然写不了几个单词。<br>中文推荐字体是 Note，但是要115.5MB。<a href="http://www.google.com/get/noto/#sans-hans" target="_blank" rel="external">Google Note Fonts</a></p>
+<h3 id="增加-Waves-效果"><a href="#增加-Waves-效果" class="headerlink" title="增加 Waves 效果"></a>增加 Waves 效果</h3><p>这个也是 Material Design 提倡的响应式交互效果。<br>Materialize 中使用的是 <a href="https://github.com/fians/Waves" target="_blank" rel="external">Waves</a>。我也是顺藤摸瓜才知道了这个库。</p>
+<h3 id="分享"><a href="#分享" class="headerlink" title="分享"></a>分享</h3><p>现在的文章分享是直接通过 <a href="http://www.jiathis.com/help/html/share-with-jiathis-api" target="_blank" rel="external">JiaThis API</a> 接口，不需要引用额外的js。这样DIY就更方便了。<br>默认的分享样式，很难实现一些效果。像我现在的分享，有文章右侧的静态挂件和顶部浮动导航右侧的分享按钮。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>我不懂设计，所以关于 Material Design 的介绍，也就不多提。附上参考链接，有兴趣的可以去提高一下审美。</p>
+<ul>
+<li><a href="http://www.google.com/design/spec/material-design/introduction.html" target="_blank" rel="external">Google Material design</a></li>
+<li><a href="http://wiki.jikexueyuan.com/project/material-design/" target="_blank" rel="external">Material Design 中文版</a></li>
+<li><a href="https://github.com/dogfalo/materialize/" target="_blank" rel="external">Material design的实现：Materialize</a></li>
+</ul>
+<p>一些小细节还会不断的调整，之后整理下再把主题发布到 github 上。</p>
+
+            </div>
+
+            <blockquote class="post-copyright">
+                <p>
+                本文地址：
+                <a href="http://imys.net/20160118/hexo-blog-update-log.html" target="_blank" rel="external">http://imys.net/20160118/hexo-blog-update-log.html</a>
+                </p>
+                <footer><cite><a href="http://imys.net">@Yusen's Blog</a></cite></footer>
+            </blockquote>
+
+            <div class="post-footer flex-row flex-middle">
+                <div class="flex-col">
+                    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">#Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/material/">#material</a></li></ul>
+
+
+                </div>
+
+                
+                <div class="post-share-wrap">
+                    <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+                    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+                        <i class="icon icon-share-alt"></i>
+                    </a>
+                    
+                </div>
+
+            </div>
+
+
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/20160127/mobile-1px.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">你以为你写的1px就是1px吗？</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/20151231/simulation-of-wheelview-selector.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">前端技术模拟移动端wheelview滑动选择器</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="hexo-blog-update-log" data-title="Hexo博客改版记录" data-url="http://imys.net/20160118/hexo-blog-update-log.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "Hexo博客改版记录",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://imys.net/20160118/hexo-blog-update-log.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+<script src="http://s95.cnzz.com/z_stat.php?id=1255152447&web_id=1255152447"></script>
+
+
+
+
+
+</body>
+</html>

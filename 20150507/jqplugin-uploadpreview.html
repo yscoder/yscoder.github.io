@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>图片上传本地预览jquery插件 | Yusen&#39;s Blog | 折腾不在乎成功与否。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  <meta name="google-site-verification" content="rlxpN--EBnMOLJnY1efTuwShQId3YX7A6RWkQEr0y9c">
+  
+  <meta name="keywords" content="jquery,jquery插件">
+  <meta name="description" content="图片上传本地预览jquery插件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图片上传本地预览jquery插件">
+<meta property="og:url" content="http://imys.net/20150507/jqplugin-uploadpreview.html">
+<meta property="og:site_name" content="Yusen's Blog">
+<meta property="og:description" content="图片上传本地预览jquery插件">
+<meta property="og:updated_time" content="2016-08-15T13:28:56.417Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图片上传本地预览jquery插件">
+<meta name="twitter:description" content="图片上传本地预览jquery插件">
+  
+    <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
+  
+  <meta name="summary" content="&lt;blockquote&gt;
+&lt;p&gt;网上找到的一段代码，经过一番测试修改，兼容了IE7+、火狐、谷歌。&lt;br&gt;  并且扩展了多尺寸预览功能，可完美搭配 &lt;a href=&quot;http://code.ciaoca.com/jquery/jcrop/&quot;&gt;jquery.Jcrop&lt;/a&gt; 插件进行图像裁剪。&lt;br&gt;">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">王昱森</h5>
+        <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/"  >
+            <i class="icon icon-lg icon-home"></i>
+            Home
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            Archives
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/tags"  >
+            <i class="icon icon-lg icon-tags"></i>
+            Tags
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/yscoder" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            Github
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://www.weibo.com/ysweb" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            Weibo
+          </a>
+        </li>
+    
+  </ul>
+
+  <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Yusen&#39;s Blog &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">图片上传本地预览jquery插件</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">图片上传本地预览jquery插件</h1>
+    <h5 class="subtitle">
+          
+            <time datetime="2015-05-07T10:11:00.000Z" itemprop="datePublished" class="page-time">
+  May 7, 2015
+</time>
+
+ 
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-jqplugin-uploadpreview"
+  class="article article-type-post" itemprop="blogPost">
+
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#插件代码"><span class="post-toc-number">1.</span> <span class="post-toc-text">插件代码</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参数"><span class="post-toc-number">2.</span> <span class="post-toc-text">参数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实例"><span class="post-toc-number">3.</span> <span class="post-toc-text">实例</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>网上找到的一段代码，经过一番测试修改，兼容了IE7+、火狐、谷歌。<br>  并且扩展了多尺寸预览功能，可完美搭配 <a href="http://code.ciaoca.com/jquery/jcrop/" target="_blank" rel="external">jquery.Jcrop</a> 插件进行图像裁剪。<br><a id="more"></a></p>
+</blockquote>
+<h3 id="插件代码"><a href="#插件代码" class="headerlink" title="插件代码"></a>插件代码</h3><pre><code>(function($) {
+    jQuery.fn.extend({
+        uploadPreview: function(opts) {
+            opts = jQuery.extend({
+                width: null,    
+                height: null,
+                imgDiv: &quot;#imgDiv&quot;,  
+                anyTarget: null,    
+                maxSize: 300,       
+                imgType: [&quot;gif&quot;, &quot;jpeg&quot;, &quot;jpg&quot;, &quot;bmp&quot;, &quot;png&quot;],  
+                callback: function() { return false; }  
+            }, opts || {});
+
+            var _this = $(this);
+            var imgDiv = $(opts.imgDiv);
+            opts.width &amp;amp;&amp;amp; imgDiv.width(opts.width);
+            opts.height &amp;amp;&amp;amp; imgDiv.height(opts.height);
+
+            var isIE = navigator.appName == &apos;Microsoft Internet Explorer&apos;, 
+                brVersion = navigator.appVersion, version;
+            isIE &amp;amp;&amp;amp; (version = brVersion.split(&apos;;&apos;)[1].replace(/MSIE[ ]/g,&apos;&apos;).replace(&apos;.0&apos;,&apos;&apos;));
+
+            handle = function() {
+                var img = imgDiv.find(&apos;img&apos;);
+                opts.anyTarget &amp;amp;&amp;amp; $.each(opts.anyTarget.split(&apos;,&apos;), function(index, val) {
+                    $(val).html(img.clone());
+                });
+                img.width(opts.width).height(opts.height);
+                opts.callback(img);
+            },
+
+            createImg = function(){
+                imgDiv.html(&apos;&apos;);
+
+                var img = $(&quot;&lt;img /&gt;&quot;);
+                imgDiv.append(img);
+                return img;
+            },
+
+            _this.change(function() {
+
+                if (this.value) {
+                    if (!RegExp(&quot;\.(&quot; + opts.imgType.join(&quot;|&quot;) + &quot;)$&quot;, &quot;i&quot;).test(this.value.toLowerCase())) {
+                        alert(&quot;图片类型必须是&quot; + opts.imgType.join(&quot;，&quot;) + &quot;中的一种&quot;);
+                        this.value = &quot;&quot;;
+                        return false;
+                    }
+
+                    if (isIE &amp;amp;&amp;amp; version &lt; 10) {
+
+                        if (version == 6) {
+
+                            var image = new Image();
+                            image.onload = function(){
+                                if( (image.fileSize/1024) &gt; opts.maxSize) {
+                                    alert(&apos;图片大小不能超过&apos;+opts.maxSize+&apos;K&apos;);
+                                    return false;
+                                }
+                            }
+                            image.src = &apos;file:///&apos; + this.value;
+
+                            createImg().attr(&apos;src&apos;, image.src);
+                            handle();
+                        }  else {
+
+                            var img = document.selection.createRange().text || $(this).val();
+                            var image = $(&apos;&lt;img /&gt;&apos;)
+                            image.load(function(){
+                                if( (image.fileSize/1024) &gt; opts.maxSize) {
+                                    alert(&apos;图片大小不能超过&apos;+opts.maxSize+&apos;K&apos;);
+                                    return false;
+                                }
+                            });
+                            image.attr(&apos;src&apos;, img);                           
+                            imgDiv.html(&apos;&apos;);           
+
+                            image.css({ filter: &quot;progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=&apos;scale&apos;,src=&apos;&quot;+img+&quot;&apos;)&quot; });
+                            imgDiv.append(image);
+                            setTimeout(handle, 100);                            
+                        }
+                    }
+                    else {
+                        var img;
+                        try{   
+                            var file = null;
+                            var size = 0;
+                            if(this.files &amp;amp;&amp;amp; this.files[0] ){
+                                file = this.files[0]; 
+                                size = file.size;
+                            }else if(this.files &amp;amp;&amp;amp; this.files.item(0)) {                                
+                                file = this.files.item(0);   
+                                size = file.fileSize;
+                            } 
+
+                            if((size/1024) &gt; opts.maxSize){
+                                alert(&apos;图片大小不能超过&apos;+opts.maxSize+&apos;K&apos;);
+                                return false;
+                            }
+
+                            img = createImg();
+
+                            //Firefox 因安全性问题已无法直接通过input[file].value 获取完整的文件路径
+                            try{
+                                //Firefox7.0 以下                             
+                                img.attr(&apos;src&apos;, file.getAsDataURL());
+                            }catch(e){
+                                //Firefox8.0以上                              
+                                img.attr(&apos;src&apos;, window.URL.createObjectURL(file));
+                            }
+
+                            img.css({ &quot;vertical-align&quot;: &quot;middle&quot; });
+                            setTimeout(handle, 100);
+                        }catch(e){                          
+                            //支持html5的浏览器,比如高版本的firefox、chrome、ie10
+                            if (this.files &amp;amp;&amp;amp; this.files[0]) {                          
+                                if((this.files[0].size/1024) &gt; opts.maxSize){
+                                    alert(&apos;图片大小不能超过&apos;+opts.maxSize+&apos;K&apos;);
+                                    return false;
+                                }
+
+                                var reader = new FileReader(); 
+                                reader.onload = function (e) {                                      
+                                    imgDiv.attr(&apos;src&apos;, e.target.result);  
+                                };
+                                reader.readAsDataURL(this.files[0]); 
+                                setTimeout(handle, 100);
+                            }  
+                        };
+                    }
+                }
+            });
+        }
+    });
+})(jQuery);
+</code></pre><h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>width: 图片容器宽度；</li>
+<li>height: 图片容器高度；</li>
+<li>imgDiv: 图片预览容器；</li>
+<li>anyTarget: 其他关联容器，多个容器逗号隔开；</li>
+<li>maxSize: 图片大小限制，单位KB；</li>
+<li>imgType: 图片类型限制；</li>
+<li>callback: 预览成功后的回调，参数 img(预览的图片节点，jquery类型)。</li>
+</ul>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;&gt;
+&lt;title&gt;图片上传预览&lt;/title&gt;
+&lt;link href=&quot;http://cdn.bootcss.com/jquery-jcrop/0.9.12/css/jquery.Jcrop.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+    .fl {
+        float: left;
+    }
+    .fr {
+        float: right;
+    }
+    .logo-wrap {
+        overflow: hidden;
+        margin: 30px 0;
+    }
+    .logo-350, .logo-350 img {
+        width: 350px;
+        height: 350px;
+    }
+    .logo-350 {
+        margin-right: 30px;
+    }
+    .logo-200, .logo-200 img {
+        width: 200px;
+        height: 200px;
+    }
+    .logo-200 {
+        margin-bottom: 30px;
+    }
+    .logo-200-wrap {
+        width: 200px;
+    }
+    .logo-100, .logo-100 img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .logo-60, .logo-60 img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .logo-350, .logo-200, .logo-100, .logo-60, .qrcode {
+        border: 1px solid #ddd;
+        overflow: hidden;
+    }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;input type=&quot;file&quot; value=&quot;上传文件&quot; id=&quot;file&quot;&gt;  
+    &lt;div class=&quot;logo-wrap&quot;&gt;
+        &lt;div class=&quot;fl logo-350&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;fl logo-200-wrap&quot;&gt;
+          &lt;div class=&quot;logo-200&quot;&gt;&lt;div class=&quot;content&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+          &lt;div&gt;
+            &lt;div class=&quot;fl logo-100&quot;&gt;&lt;div class=&quot;content&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;fr logo-60&quot;&gt;&lt;div class=&quot;content&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;script src=&quot;http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;http://ysdn-wordpress.stor.sinaapp.com/js/jquery.uploadPreview.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;http://cdn.bootcss.com/jquery-jcrop/0.9.12/js/jquery.Jcrop.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;  
+//&lt;![CDATA[
+    $(&quot;#file&quot;).uploadPreview({ 
+        width: 350,     
+        height: 350, 
+        imgDiv: &apos;.logo-350&apos;,    
+        anyTarget: &apos;.logo-200 .content, .logo-100 .content, .logo-60 .content&apos;,
+        maxSize: 1024 * 2,
+        callback: function(el) {
+            var jOption = {
+                setSelect: [75, 75, 275, 275],
+                minSize: [200, 200],
+                onChange: updatePreview,
+                onSelect: updatePreview,
+                aspectRatio: 1
+            };
+
+            var isIE = navigator.appName == &apos;Microsoft Internet Explorer&apos;, 
+                brVersion = navigator.appVersion, version;
+            isIE &amp;amp;&amp;amp; (version = brVersion.split(&apos;;&apos;)[1].replace(/MSIE[ ]/g,&apos;&apos;).replace(&apos;.0&apos;,&apos;&apos;));
+
+            if (isIE &amp;amp;&amp;amp; version &lt; 10) {
+                var api = $.Jcrop(el.selector, jOption); 
+            } else {
+                el.Jcrop(jOption);
+            }
+
+        }
+    });
+
+    function updatePreview(c) {
+        if (parseInt(c.w) &gt; 0) {
+            $(&apos;.logo-200, .logo-100, .logo-60&apos;).each(function(index, el) {
+                var box = $(el), content = box.find(&apos;.content&apos;), img = content.find(&apos;img&apos;);
+                content.width($(&apos;.logo-350&apos;).outerWidth()).height($(&apos;.logo-350&apos;).outerHeight());
+
+                var rx = box.width() / c.w;
+                var ry = box.height() / c.h;
+
+                img.css({
+                    width: Math.round(rx * 350) + &apos;px&apos;,
+                    height: Math.round(ry * 350) + &apos;px&apos;,
+                    marginLeft: &apos;-&apos; + Math.round(rx * c.x) + &apos;px&apos;,
+                    marginTop: &apos;-&apos; + Math.round(ry * c.y) + &apos;px&apos;
+                });
+            });
+        }
+    }
+//]]&gt;
+&lt;/script&gt;  
+&lt;/html&gt;
+</code></pre>
+            </div>
+
+            <blockquote class="post-copyright">
+                <p>
+                本文地址：
+                <a href="http://imys.net/20150507/jqplugin-uploadpreview.html" target="_blank" rel="external">http://imys.net/20150507/jqplugin-uploadpreview.html</a>
+                </p>
+                <footer><cite><a href="http://imys.net">@Yusen's Blog</a></cite></footer>
+            </blockquote>
+
+            <div class="post-footer flex-row flex-middle">
+                <div class="flex-col">
+                    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jquery/">#jquery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jquery插件/">#jquery插件</a></li></ul>
+
+
+                </div>
+
+                
+                <div class="post-share-wrap">
+                    <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+                    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+                        <i class="icon icon-share-alt"></i>
+                    </a>
+                    
+                </div>
+
+            </div>
+
+
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/20150508/javascript-with.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">javascript中with语句用法</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/20150429/javascript-arguments.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">javascript之arguments对象</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="jqplugin-uploadpreview" data-title="图片上传本地预览jquery插件" data-url="http://imys.net/20150507/jqplugin-uploadpreview.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "图片上传本地预览jquery插件",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://imys.net/20150507/jqplugin-uploadpreview.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+<script src="http://s95.cnzz.com/z_stat.php?id=1255152447&web_id=1255152447"></script>
+
+
+
+
+
+</body>
+</html>

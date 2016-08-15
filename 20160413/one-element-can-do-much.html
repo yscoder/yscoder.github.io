@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>一个HTML元素可以做什么？ | Yusen&#39;s Blog | 折腾不在乎成功与否。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  <meta name="google-site-verification" content="rlxpN--EBnMOLJnY1efTuwShQId3YX7A6RWkQEr0y9c">
+  
+  <meta name="keywords" content="html,css,css3">
+  <meta name="description" content="一个标签可以实现什么效果，一个标签可以做什么">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个HTML元素可以做什么？">
+<meta property="og:url" content="http://imys.net/20160413/one-element-can-do-much.html">
+<meta property="og:site_name" content="Yusen's Blog">
+<meta property="og:description" content="一个标签可以实现什么效果，一个标签可以做什么">
+<meta property="og:updated_time" content="2016-08-15T13:28:56.417Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个HTML元素可以做什么？">
+<meta name="twitter:description" content="一个标签可以实现什么效果，一个标签可以做什么">
+  
+    <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
+  
+  <meta name="summary" content="&lt;p&gt;自 CSS3 问世以来，在广大开发者的智慧下诞生了很多创造性的设计，如：&lt;a href=&quot;http://www.html5cn.org/article-8663-1.html&quot;&gt;18个你可能不相信是用CSS制作出来的东西&lt;/a&gt;。个人平时也喜欢收藏这些有趣的东西，其中一些设计对单个 HTML 元素的极限利用，很值得我们去学习。&lt;/p&gt;
+&lt;p&gt;以下就来说一说这些神奇的&lt;strong&gt;黑科技&lt;/strong&gt;。&lt;/p&gt;">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">王昱森</h5>
+        <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/"  >
+            <i class="icon icon-lg icon-home"></i>
+            Home
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            Archives
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/tags"  >
+            <i class="icon icon-lg icon-tags"></i>
+            Tags
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/yscoder" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            Github
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://www.weibo.com/ysweb" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            Weibo
+          </a>
+        </li>
+    
+  </ul>
+
+  <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Yusen&#39;s Blog &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">一个HTML元素可以做什么？</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">一个HTML元素可以做什么？</h1>
+    <h5 class="subtitle">
+          
+            <time datetime="2016-04-13T08:37:53.000Z" itemprop="datePublished" class="page-time">
+  Apr 13, 2016
+</time>
+
+ 
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-one-element-can-do-much"
+  class="article article-type-post" itemprop="blogPost">
+
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#伪元素"><span class="post-toc-number">1.</span> <span class="post-toc-text">伪元素</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#border"><span class="post-toc-number">2.</span> <span class="post-toc-text">border</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#box-shadow"><span class="post-toc-number">3.</span> <span class="post-toc-text">box-shadow</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <p>自 CSS3 问世以来，在广大开发者的智慧下诞生了很多创造性的设计，如：<a href="http://www.html5cn.org/article-8663-1.html" target="_blank" rel="external">18个你可能不相信是用CSS制作出来的东西</a>。个人平时也喜欢收藏这些有趣的东西，其中一些设计对单个 HTML 元素的极限利用，很值得我们去学习。</p>
+<p>以下就来说一说这些神奇的<strong>黑科技</strong>。</p>
+<a id="more"></a>
+<h2 id="伪元素"><a href="#伪元素" class="headerlink" title="伪元素"></a>伪元素</h2><p>伪元素是比较常见的单元素利用了，<code>:before</code>与<code>:after</code>基本上支持普通元素的所有 CSS 属性，它使 1 个元素可以当作 3 个元素来使用。</p>
+<p>比如制作一个单元素的菜单图标，三条线。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-class">.icon-menu</span> &#123;</div><div class="line">    <span class="attribute">position</span>: relative;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.icon-menu</span>,</div><div class="line"><span class="selector-class">.icon-menu</span><span class="selector-pseudo">:before</span>,</div><div class="line"><span class="selector-class">.icon-menu</span><span class="selector-pseudo">:after</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">1em</span>;</div><div class="line">    <span class="attribute">height</span>: .<span class="number">25em</span>;</div><div class="line">    <span class="attribute">background</span>: <span class="number">#666</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.icon-menu</span><span class="selector-pseudo">:before</span>,</div><div class="line"><span class="selector-class">.icon-menu</span><span class="selector-pseudo">:after</span> &#123;</div><div class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</div><div class="line">    <span class="attribute">position</span>: absolute;</div><div class="line">    <span class="attribute">left</span>: <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.icon-menu</span><span class="selector-pseudo">:before</span> &#123;</div><div class="line">    <span class="attribute">top</span>: .<span class="number">3125em</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.icon-menu</span><span class="selector-pseudo">:after</span> &#123;</div><div class="line">    <span class="attribute">top</span>: .<span class="number">625em</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在辅以圆角、CSS三角等，一些看起来复杂的图标也不是不能实现。<br>Github 早已有 css 图标的项目了：<a href="https://github.com/zzap/Cikonss" target="_blank" rel="external">Cikonss</a>。</p>
+<p>实际场景中的应用不限于此，如：下拉菜单上的三角箭头、时间线上的圆点标记（在我的博客归档页就是此种）等。<br>当你需要添加一些无内容的修饰性元素时，你就该想到使用伪元素。但也不是说有内容的用伪元素无法实现，一些静态的展示内容也可以用，可以利用伪元素<code>content</code>属性。</p>
+<p>比如一个带统计数量的<code>badge</code>，对应的 html 可以这样写。</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">data-count</span>=<span class="string">"10"</span> <span class="attr">class</span>=<span class="string">"badge"</span>&gt;</span>消息<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>在 css 中利用伪元素展示自定义属性。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-class">.badge</span><span class="selector-pseudo">:after</span> &#123;</div><div class="line">    <span class="attribute">content</span>: <span class="built_in">attr</span>(data-count);</div><div class="line">   <span class="comment">/* ... */</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我的博客 PC 端文章页右侧的分享所用的 tips 就是利用伪元素纯 css 实现的。</p>
+<h2 id="border"><a href="#border" class="headerlink" title="border"></a>border</h2><p><code>border</code>实现 css 图形的案例已经屡见不鲜了，实际应用中常用的还是三角形。</p>
+<p>既然提到了<code>border</code>，也应该顺带提下<code>outline</code>。两者都可以肆意的实现各种长短粗细的线条，一些特殊的场景中一条粗边框就可当作一个矩形来利用。还拿菜单图标来说，设置上下两个边框样式，outline 在画上一条，可以通过<code>outline-offset</code>来调整间距，是不是也能凑出一个图标呢。</p>
+<p>除了使用<code>border</code>绘制多边形外，其实扇形、弧线也是可以很容易实现的。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="comment">/* 扇形 */</span></div><div class="line"><span class="selector-class">.sector</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">0</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">0</span>;</div><div class="line">    <span class="attribute">border</span>: <span class="number">30px</span> solid <span class="number">#000</span>;</div><div class="line">    <span class="attribute">border-top-color</span>: transparent;</div><div class="line">    <span class="attribute">border-bottom-color</span>: transparent;</div><div class="line">    <span class="attribute">border-radius</span>: <span class="number">50%</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/* 弧线 */</span></div><div class="line"><span class="selector-class">.arc</span> &#123;</div><div class="line">    <span class="attribute">width</span>: <span class="number">40px</span>;</div><div class="line">    <span class="attribute">height</span>: <span class="number">40px</span>;</div><div class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#000</span>;</div><div class="line">    <span class="attribute">border-top-color</span>: transparent;</div><div class="line">    <span class="attribute">border-bottom-color</span>: transparent;</div><div class="line">    <span class="attribute">border-radius</span>: <span class="number">50%</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>具体是什么效果，自测吧。</p>
+<p>扇形、弧线可以轻易的制作一个 loading 效果：<a href="http://cssload.net/" target="_blank" rel="external">css实现的各种loading效果</a>。</p>
+<h2 id="box-shadow"><a href="#box-shadow" class="headerlink" title="box-shadow"></a>box-shadow</h2><p><code>box-shadow</code>可以设置元素阴影效果，且可以设置多组值。但是我万万没有想到它居然强大如斯：<a href="http://codepen.io/HugoGiraudel/pen/gpcwa" target="_blank" rel="external">1个元素实现的像素画</a>。</p>
+<p>先看下<code>box-shadow</code>的文档介绍压压惊。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-tag">box-shadow</span>: <span class="selector-attr">[inset]</span> <span class="selector-tag">offset-x</span> <span class="selector-tag">offset-y</span> <span class="selector-attr">[blur]</span> <span class="selector-attr">[spread]</span> <span class="selector-attr">[color]</span>;</div></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">inset</td>
+<td>可选，默认阴影在边框外。使用inset后，阴影在边框内（即使是透明边框），背景之上内容之下。</td>
+</tr>
+<tr>
+<td style="text-align:center">offset-x/offset-y</td>
+<td>必需，用来设置阴影偏移量。<code>offset-x</code>设置水平偏移量，如果是负值则阴影位于元素左边。<code>offset-y</code>设置垂直偏移量，如果是负值则阴影位于元素上面。如果两者都是 0，那么阴影位于元素后面。这时如果设置了<code>blur</code>或<code>spread</code>则有模糊效果。</td>
+</tr>
+<tr>
+<td style="text-align:center">blur</td>
+<td>可选，模糊距离。值越大，糊糊面积越大，阴影就越大越淡。 不能为负值。默认为 0，此时阴影边缘锐利。</td>
+</tr>
+<tr>
+<td style="text-align:center">spread</td>
+<td>可选，阴影的大小。取正值时，阴影扩大；取负值时，阴影收缩。默认为0，此时阴影与元素同样大。</td>
+</tr>
+<tr>
+<td style="text-align:center">color</td>
+<td>可选，阴影的颜色。</td>
+</tr>
+</tbody>
+</table>
+<p>平常使用中一般会设置 4 个值来实现阴影效果，即<code>offset-x</code>、<code>offset-y</code>、<code>blur</code>、<code>color</code>。从属性介绍中看当<code>blur</code>省略后，默认值为 0，边缘锋利，也就是小方块的效果。而通过设置每一组<code>offset-x</code>、<code>offset-y</code>的偏移值，加上不同的颜色设置，的确是实现像素画的绝妙之想。</p>
+<p>当前博客的<a href="/404">404页面</a>就是用<code>box-shadow</code>堆叠出来的。</p>
+<p>相关资源分享：</p>
+<ul>
+<li><a href="http://a.singlediv.com/" target="_blank" rel="external">singlediv</a></li>
+<li><a href="https://css-tricks.com/examples/ShapesOfCSS/" target="_blank" rel="external">css图形</a></li>
+<li><a href="http://yusugomori.com/projects/css-sans/fonts" target="_blank" rel="external">26个字母</a></li>
+</ul>
+<p>原来这个世界还有另外一种 css：<strong>别人手中的 css</strong>。</p>
+
+            </div>
+
+            <blockquote class="post-copyright">
+                <p>
+                本文地址：
+                <a href="http://imys.net/20160413/one-element-can-do-much.html" target="_blank" rel="external">http://imys.net/20160413/one-element-can-do-much.html</a>
+                </p>
+                <footer><cite><a href="http://imys.net">@Yusen's Blog</a></cite></footer>
+            </blockquote>
+
+            <div class="post-footer flex-row flex-middle">
+                <div class="flex-col">
+                    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">#css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css3/">#css3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/">#html</a></li></ul>
+
+
+                </div>
+
+                
+                <div class="post-share-wrap">
+                    <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+                    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+                        <i class="icon icon-share-alt"></i>
+                    </a>
+                    
+                </div>
+
+            </div>
+
+
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/20160503/vue-data-interaction.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Vue中的数据交互</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/20160406/css-tips.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">CSS实用Tips</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="one-element-can-do-much" data-title="一个HTML元素可以做什么？" data-url="http://imys.net/20160413/one-element-can-do-much.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "一个HTML元素可以做什么？",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://imys.net/20160413/one-element-can-do-much.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+<script src="http://s95.cnzz.com/z_stat.php?id=1255152447&web_id=1255152447"></script>
+
+
+
+
+
+</body>
+</html>

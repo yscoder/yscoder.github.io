@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>javascript高阶函数介绍 | Yusen&#39;s Blog | 折腾不在乎成功与否。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  <meta name="google-site-verification" content="rlxpN--EBnMOLJnY1efTuwShQId3YX7A6RWkQEr0y9c">
+  
+  <meta name="keywords" content="Function,javascript">
+  <meta name="description" content="javascript高阶函数介绍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript高阶函数介绍">
+<meta property="og:url" content="http://imys.net/20160530/javascript-advanced-functions.html">
+<meta property="og:site_name" content="Yusen's Blog">
+<meta property="og:description" content="javascript高阶函数介绍">
+<meta property="og:updated_time" content="2016-08-15T13:28:56.401Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript高阶函数介绍">
+<meta name="twitter:description" content="javascript高阶函数介绍">
+  
+    <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
+  
+  <meta name="summary" content="&lt;p&gt;javascript 语言的特色之一便是函数即对象，因此便满足了高级函数的条件。&lt;/p&gt;
+&lt;h2 id=&quot;高阶函数&quot;&gt;&lt;a href=&quot;#高阶函数&quot; class=&quot;headerlink&quot; title=&quot;高阶函数&quot;&gt;&lt;/a&gt;高阶函数&lt;/h2&gt;&lt;p&gt;在《javascript设计模式和开发实践》中是这样定义的。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;函数可以作为参数被传递；&lt;/li&gt;
+&lt;li&gt;函数可以作为返回值输出。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;实际上我们日常开发中会经常用到高阶函数。&lt;/p&gt;
+&lt;p&gt;接下来通过几个经典的应用案例，带你认知&lt;code&gt;高阶函数&lt;/code&gt;。&lt;br&gt;">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <nav id="menu" class="hide" >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">王昱森</h5>
+        <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+      </hgroup>
+    </div>
+  </div>
+  <ul class="nav flex-col">
+    
+        <li class="waves-block waves-effect">
+          <a href="/"  >
+            <i class="icon icon-lg icon-home"></i>
+            Home
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/archives"  >
+            <i class="icon icon-lg icon-archives"></i>
+            Archives
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="/tags"  >
+            <i class="icon icon-lg icon-tags"></i>
+            Tags
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="https://github.com/yscoder" target="_blank" >
+            <i class="icon icon-lg icon-github"></i>
+            Github
+          </a>
+        </li>
+    
+        <li class="waves-block waves-effect">
+          <a href="http://www.weibo.com/ysweb" target="_blank" >
+            <i class="icon icon-lg icon-weibo"></i>
+            Weibo
+          </a>
+        </li>
+    
+  </ul>
+
+  <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Yusen&#39;s Blog &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+</div>
+
+  </nav>
+  <main id="main">
+    <header class="header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">javascript高阶函数介绍</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">javascript高阶函数介绍</h1>
+    <h5 class="subtitle">
+          
+            <time datetime="2016-05-30T15:02:08.000Z" itemprop="datePublished" class="page-time">
+  May 30, 2016
+</time>
+
+ 
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      <article id="post-javascript-advanced-functions"
+  class="article article-type-post" itemprop="blogPost">
+
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
+
+            
+            <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#高阶函数"><span class="post-toc-number">1.</span> <span class="post-toc-text">高阶函数</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#回调函数"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">回调函数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#AOP"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">AOP</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#柯里化"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">柯里化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#反柯里化"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">反柯里化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#函数节流"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">函数节流</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#分时函数"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">分时函数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#惰性加载"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">惰性加载</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#参考"><span class="post-toc-number">2.</span> <span class="post-toc-text">参考</span></a></li></ol>
+            </nav>
+            
+        </aside>
+
+        <div class="post-main">
+
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <p>javascript 语言的特色之一便是函数即对象，因此便满足了高级函数的条件。</p>
+<h2 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h2><p>在《javascript设计模式和开发实践》中是这样定义的。</p>
+<ul>
+<li>函数可以作为参数被传递；</li>
+<li>函数可以作为返回值输出。</li>
+</ul>
+<p>实际上我们日常开发中会经常用到高阶函数。</p>
+<p>接下来通过几个经典的应用案例，带你认知<code>高阶函数</code>。<br><a id="more"></a></p>
+<h3 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h3><p>提起回调，经典的应用莫过于 Ajax 异步请求。</p>
+<p>以 jQuery 为例。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> getData = <span class="function"><span class="keyword">function</span>(<span class="params">url, callback</span>) </span>&#123;</div><div class="line">    $.get(url, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">        callback(data);</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>由于网络请求时间的不固定性，我们不能确定请求完成的具体时间，那么解决的办法就是传递一个处理函数作为参数到请求数据的方法中，请求完成后执行回调函数。</p>
+<h3 id="AOP"><a href="#AOP" class="headerlink" title="AOP"></a>AOP</h3><p>AOP（面向切面编程）是著名的<code>Java Spring</code>框架中的核心概念之一。通过此编程模式可以在保持主逻辑代码不变的前提下，进行额外的功能拓展。</p>
+<p>在 Java 中使用 AOP 往往要通过一些高级特性来实现，而 javascript 就简单多了。</p>
+<p>比如测试一个函数的执行效率。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> service = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'功能逻辑...'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> test = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> time_start;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        before: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            time_start = (+<span class="keyword">new</span> <span class="built_in">Date</span>());</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'计时开始...'</span>);</div><div class="line">        &#125;,</div><div class="line">        after: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">            <span class="keyword">var</span> end = (+<span class="keyword">new</span> <span class="built_in">Date</span>()) - time_start;</div><div class="line">            <span class="built_in">console</span>.log(<span class="string">'计时结束，用时：'</span> + end);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;)();</div><div class="line"></div><div class="line"><span class="keyword">var</span> aop = <span class="function"><span class="keyword">function</span>(<span class="params">fn, proxy</span>)</span>&#123;</div><div class="line">    proxy.before &amp;&amp; proxy.before();</div><div class="line">    fn();</div><div class="line">    proxy.after &amp;&amp; proxy.after();</div><div class="line">&#125;</div><div class="line"></div><div class="line">aop(service, test);</div><div class="line"><span class="comment">//   计时开始...</span></div><div class="line"><span class="comment">//   功能逻辑...</span></div><div class="line"><span class="comment">//   计时结束：1</span></div></pre></td></tr></table></figure>
+<h3 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h3><blockquote>
+<p>在计算机科学中，柯里化（英语：Currying），又译为卡瑞化或加里化，是把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数，并且返回接受余下的参数而且返回结果的新函数的技术。</p>
+</blockquote>
+<p>这概念着实让我琢磨了半天，转换成代码大概是这样的。</p>
+<pre><code>fn(1, 2, 3, 4)  -&gt;  fn(1)(2)(3)(4)()
+</code></pre><p>假设这个函数是用于求和，那么就是把本来接收多个参数一次性求和的函数改成了接收单一参数逐个求和的函数。这样是不是容易理解了。</p>
+<p>来实现一个柯里化求和函数。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> currying = <span class="function"><span class="keyword">function</span>(<span class="params">fn</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> args = [];</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="keyword">if</span>(!!<span class="built_in">arguments</span>.length) &#123;</div><div class="line">            [].push.apply(args, <span class="built_in">arguments</span>);</div><div class="line">            <span class="keyword">return</span> <span class="built_in">arguments</span>.callee;</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> fn.apply(<span class="keyword">this</span>, args);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> sum = (<span class="function"><span class="keyword">function</span>(<span class="params">num</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> ret = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>, len = <span class="built_in">arguments</span>.length; i &lt; len; i++) &#123;</div><div class="line">            ret += <span class="built_in">arguments</span>[i];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> ret;</div><div class="line">    &#125;</div><div class="line">&#125;)();</div><div class="line"></div><div class="line"><span class="keyword">var</span> newSum = currying(sum);</div><div class="line"></div><div class="line">newSum(<span class="number">1</span>)(<span class="number">2</span>)(<span class="number">3</span>)(<span class="number">4</span>)()  <span class="comment">// 10</span></div></pre></td></tr></table></figure>
+<p>看起来挺巧妙，但是这种案例明摆着就像不从实际出发的面试题。那再看下一个例子。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> find = <span class="function"><span class="keyword">function</span>(<span class="params">arr, el</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> arr.indexOf(el) !== <span class="number">-1</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>一个简单的函数用于查询数组中是否某个值，每次使用都需要这样调用。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">find(arr, <span class="number">1</span>);</div><div class="line"></div><div class="line">find(arr, <span class="number">2</span>);</div></pre></td></tr></table></figure>
+<p>既然 arr 是个固定参数，那么我们可以先保存一个接收过 arr 的函数，再用这个函数去处理变化的参数。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> newFind = currying(find)(arr);</div><div class="line"></div><div class="line">newFind(<span class="number">1</span>);</div><div class="line">newFind(<span class="number">2</span>);</div></pre></td></tr></table></figure>
+<h3 id="反柯里化"><a href="#反柯里化" class="headerlink" title="反柯里化"></a>反柯里化</h3><p>与柯里化相对应。</p>
+<ul>
+<li>柯里化是为了缩小适用范围，创建一个针对性更强的函数；</li>
+<li>反柯里化则是扩大适用范围，创建一个应用范围更广的函数。</li>
+</ul>
+<p>对应的代码转换就变成这样。</p>
+<pre><code>fn(1)(2)(3)(4)  -&gt;  fn(1, 2, 3, 4)
+</code></pre><p>实例</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="built_in">Array</span>.forEach = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> fn = [].pop.call(<span class="built_in">arguments</span>);</div><div class="line">    <span class="keyword">var</span> arr = <span class="built_in">arguments</span>.length &gt; <span class="number">1</span> ? <span class="built_in">arguments</span> : <span class="built_in">arguments</span>[<span class="number">0</span>];</div><div class="line">    <span class="keyword">return</span> [].forEach.call(arr, fn);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">Array</span>.forEach(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(i);     <span class="comment">// 1 2 3</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">Array</span>.forEach(<span class="string">'123'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(i);     <span class="comment">// 1 2 3</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">Array</span>.forEach(&#123;</div><div class="line">    <span class="string">'0'</span>: <span class="number">1</span>,</div><div class="line">    <span class="string">'1'</span>: <span class="number">2</span>,</div><div class="line">    <span class="string">'2'</span>: <span class="number">3</span>,</div><div class="line">    <span class="string">'length'</span>: <span class="number">3</span></div><div class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">i</span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(i);     <span class="comment">// 1 2 3</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>类数组借用 Array 原型函数，是很常见的应用了。这个例子应用 call 函数提取出一个新的函数，可以接收更多的参数和类型，适用性更广。</p>
+<h3 id="函数节流"><a href="#函数节流" class="headerlink" title="函数节流"></a>函数节流</h3><p>函数节流也不算很厉害的技巧了，平常写代码严谨的人应该都有此类应用的经历。</p>
+<p>比如页面滚动加载数据的场景。</p>
+<p>当页面滚动到底部时，会触发 Ajax 去请求数据；当页面滚动频繁时，就可能出现上个请求还未结束又开始了一个新的请求。<br>这个时候就需要用函数节流了。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> getData = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> onAjax = <span class="literal">false</span>;     <span class="comment">// 是否开始 ajax</span></div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">callback</span>)</span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(!onAjax) &#123;</div><div class="line"></div><div class="line">            onAjax = <span class="literal">true</span>;</div><div class="line"></div><div class="line">            $.get(<span class="string">'/xxx'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</div><div class="line">                callback(data);</div><div class="line">                onAjax = <span class="literal">false</span>;</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;)();</div><div class="line"></div><div class="line">$(<span class="built_in">window</span>).scroll(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(滚动到底部) &#123;</div><div class="line">        getData(render);</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="分时函数"><a href="#分时函数" class="headerlink" title="分时函数"></a>分时函数</h3><p>与函数节流一样，分时函数也是用来解决函数频繁执行带来的性能问题。<br>不同的是，函数节流场景为被动调用，分时函数为主动调用。</p>
+<p>就算一个列表展示页面没有使用分页组件，也会像上个例子那样触发式分组渲染。而如果真的遇到需要一次性把所有数据渲染到列表时，大量的 DOM 创建会对浏览器造成极大开销，或卡顿、或假死等。</p>
+<ul>
+<li>该处理是否必须同步完成？</li>
+<li>数据是否必须按顺序完成？</li>
+</ul>
+<p>如果以上两个问题都为“否”的话，为何不尝试分割这个处理过程。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">//  arr: 源数据</span></div><div class="line"><span class="comment">//  process: 处理函数</span></div><div class="line"><span class="comment">//  count: 每次抽取个数</span></div><div class="line"><span class="keyword">var</span> chunk = <span class="function"><span class="keyword">function</span>(<span class="params">arr, process, count</span>)</span>&#123;</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="built_in">Math</span>.min(count, arr.length); i++) &#123;</div><div class="line">            process(arr.shift());</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(arr.length &gt; <span class="number">0</span>) &#123;</div><div class="line">            setTimeout(<span class="built_in">arguments</span>.callee, <span class="number">100</span>);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;, <span class="number">100</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>创建一个队列，使用定时器取出下一批要处理的项目进行处理，接着在设置另一个定时器。</p>
+<blockquote>
+<p>一旦某个函数需要花 50ms 以上的时间完成，那么最好看看能否将任务分割为一系列可以使用定时器的小任务。</p>
+</blockquote>
+<h3 id="惰性加载"><a href="#惰性加载" class="headerlink" title="惰性加载"></a>惰性加载</h3><p>当你逛网店发现了心怡的商品时，是立刻收藏或加购物车，还是等到买的时候再搜索相关商品一个一个的找到它？</p>
+<p>浏览器特征检测是前端开发中必不可少的，比如返回顶部，我们需要区分火狐和其他浏览器来决定 scrollTop 应当设置给谁。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 新手</span></div><div class="line"><span class="keyword">var</span> gotop = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(<span class="regexp">/firefox/i</span>.test(navigator.userAgent)) &#123;</div><div class="line">        <span class="built_in">document</span>.documentElement.scrollTop = <span class="number">0</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="built_in">document</span>.body.scrollTop = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 老司机</span></div><div class="line"><span class="keyword">var</span> gotop = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> isFF = <span class="regexp">/firefox/i</span>.test(navigator.userAgent);</div><div class="line">    <span class="keyword">var</span> docEl = <span class="built_in">document</span>[ isFF ? <span class="string">'documentElement'</span> : <span class="string">'body'</span> ];</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        docEl.scrollTop = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<p>浏览器的特征是保持不变的，既然如此为什么不一开始就保存下来呢。</p>
+<p>与此同理，日常编程中要注意缓存那些经常使用、改变较少或不做改变的内容。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="http://www.ituring.com.cn/book/1632" target="_blank" rel="external">《JavaScript设计模式与开发实践》</a></li>
+<li><a href="http://www.ituring.com.cn/book/946" target="_blank" rel="external">《JavaScript高级程序设计》 第三版</a></li>
+<li><a href="https://llh911001.gitbooks.io/mostly-adequate-guide-chinese/content/ch4.html" target="_blank" rel="external">JS函数式编程指南 - 柯里化</a></li>
+<li>《编写高质量代码：改善JavaScript程序的188个建议》</li>
+</ul>
+
+            </div>
+
+            <blockquote class="post-copyright">
+                <p>
+                本文地址：
+                <a href="http://imys.net/20160530/javascript-advanced-functions.html" target="_blank" rel="external">http://imys.net/20160530/javascript-advanced-functions.html</a>
+                </p>
+                <footer><cite><a href="http://imys.net">@Yusen's Blog</a></cite></footer>
+            </blockquote>
+
+            <div class="post-footer flex-row flex-middle">
+                <div class="flex-col">
+                    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Function/">#Function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">#javascript</a></li></ul>
+
+
+                </div>
+
+                
+                <div class="post-share-wrap">
+                    <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+                    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+                        <i class="icon icon-share-alt"></i>
+                    </a>
+                    
+                </div>
+
+            </div>
+
+
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/20160622/screen-rotation-case.html" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">获取移动设备旋转方向的几个方案</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next fr">
+      <a href="/20160511/hexo-search.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Hexo添加站内搜索功能初步完成</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+            
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="javascript-advanced-functions" data-title="javascript高阶函数介绍" data-url="http://imys.net/20160530/javascript-advanced-functions.html"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+
+        </div>
+    </div>
+</article>
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "javascript高阶函数介绍",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://imys.net/20160530/javascript-advanced-functions.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+<script src="http://s95.cnzz.com/z_stat.php?id=1255152447&web_id=1255152447"></script>
+
+
+
+
+
+</body>
+</html>

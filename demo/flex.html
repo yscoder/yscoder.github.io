@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>flex常用布局</title>
+<style type="text/css">
+	.box {
+		margin: 20px;
+		width: 808px;
+		border: 1px solid #03777E;
+		background: #f5f5f5
+	}
+	.block {
+		height: 60px;
+		background: #9AE8ED;
+		border: 1px solid #03777E;
+	}
+	.w200 {
+		width: 200px;
+	}
+	.w150 {
+		width: 150px;
+	}
+	.h200 {
+		height: 200px;
+	}
+	.flex-row, .flex-row-vertical {
+		display: flex;
+	}
+	.flex-row-vertical {
+		flex-direction: column;
+	}
+	.flex-between {
+		 justify-content: space-between;
+	}
+	.flex-wrap {
+		flex-wrap: wrap;
+	}
+	.flex-middle {
+		align-items: center;
+	}
+	.flex-bottom {
+		align-items: flex-end;
+	}
+	.flex-col {
+		flex: 1;
+	}
+	.flex-col-auto {
+		flex: 0 auto;
+	}
+</style>
+</head>
+<body>
+    <div class="box flex-row">
+    	<div class="block flex-col"></div>
+    	<div class="block flex-col"></div>
+    	<div class="block flex-col"></div>
+    	<div class="block flex-col"></div>
+    </div>
+
+    <div class="box flex-row flex-between">
+    	<div class="block w150"></div>
+    	<div class="block w150"></div>
+    	<div class="block w150"></div>
+    	<div class="block w150"></div>
+    </div>
+
+    <div class="box flex-row">
+    	<div class="block w200"></div>
+    	<div class="block flex-col"></div>
+    	<div class="block w200"></div>
+    </div>
+
+    <div class="box flex-row flex-wrap">
+    	<div class="block w200"></div>
+    	<div class="block w200"></div>
+    	<div class="block w200"></div>
+    	<div class="block w200"></div>
+    	<div class="block w200"></div>
+    	<div class="block w200"></div>
+    	<div class="block w200"></div>
+    </div>
+
+    <div class="box h200 flex-row flex-middle">
+    	<div class="block flex-col"></div>
+    	<div class="block flex-col"></div>
+    	<div class="block flex-col"></div>
+    	<div class="block flex-col"></div>
+    </div>
+
+    <div class="box h200 flex-row flex-bottom">
+    	<div class="block flex-col"></div>
+    	<div class="block flex-col"></div>
+    	<div class="block flex-col"></div>
+    </div>
+
+    <div class="box h200 flex-row-vertical flex-center flex-between">
+    	<div class="block"></div>
+    	<div class="block"></div>
+    	<div class="block"></div>
+    </div>
+</body>
+</html>
