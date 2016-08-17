@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://imys.net/20160715/clever-use-of-elements-feature.html">
 <meta property="og:site_name" content="Yusen's Blog">
 <meta property="og:description" content="对元素特性巧妙利用的一些案例">
-<meta property="og:updated_time" content="2016-08-15T13:28:56.401Z">
+<meta property="og:updated_time" content="2016-08-17T11:10:56.662Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="对元素特性巧妙利用的一些例子">
 <meta name="twitter:description" content="对元素特性巧妙利用的一些案例">
@@ -172,7 +172,7 @@
 <h2 id="获取Computed-styles"><a href="#获取Computed-styles" class="headerlink" title="获取Computed styles"></a>获取Computed styles</h2><p>这里的 <code>Computed styles</code> 不是指 <code>getComputedStyle(element)</code> 函数结果，而是像浏览器 Dev Tools 中 Styles 面板右侧的计算样式。是要获取最终被样式表影响的 css 属性，不包括标签默认属性和 <code>user agent stylesheet</code>。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">filterInheritedStyles</span>(<span class="params">el</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> tester = <span class="built_in">document</span>.createElement(el.tagName);</div><div class="line">    <span class="built_in">document</span>.body.appendChild(tester);  <span class="comment">// 元素必须插入到文档中才能计算出默认样式</span></div><div class="line">    <span class="keyword">var</span> defaultStyle = <span class="built_in">window</span>.getComputedStyle(tester, <span class="literal">null</span>);</div><div class="line">    <span class="keyword">var</span> currentStyle = <span class="built_in">window</span>.getComputedStyle(el, <span class="literal">null</span>);</div><div class="line">    <span class="keyword">var</span> ret = &#123;&#125;;</div><div class="line"></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> k <span class="keyword">in</span> currentStyle) &#123;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(currentStyle.getPropertyValue(k) !== defaultStyle.getPropertyValue(k)) &#123;</div><div class="line">        </div><div class="line">            ret[k] = currentStyle.getPropertyValue(k);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="built_in">document</span>.body.removeChild(tester);</div><div class="line">    <span class="keyword">return</span> ret;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>创建一个标签相同的 <code>Element</code> 添加到文档中产生默认样式，与当前元素样式逐个比较，返回不一致的样式属性。</p>
-<p>不过这个函数还不是最终版的。当一个元素被插入到文档中时，由于没有添加 id 、 class 、style 属性，也就不会受 id 选择器、类选择器、行内样式影响，但显示会受标签选择器影响。</p>
+<p>不过这个函数还不是最终版的。当一个元素被插入到文档中时，由于没有添加 id 、 class 、style 属性，也就不会受 id 选择器、类选择器、行内样式影响，但显然会受标签选择器影响。</p>
 <p>所以如果能在返回值基础上对标签选择器属性进行过滤，才是最终结果。但目前通过 <code>document.styleSheets</code> 只限于获取内联样式表中规则，对于外部样式表中的规则检索还没有什么好的办法。</p>
 <hr>
 <p>暂时只知道这么多。针对前端复杂的客户环境，单就 <strong>特性测试</strong> 而言已经可以帮我们解决很多问题了。</p>
