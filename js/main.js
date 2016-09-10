@@ -1,6 +1,7 @@
 (function(w, d) {
 
     var body = d.body,
+        root = d.querySelector('html'),
         gotop = d.getElementById('gotop'),
         menu = d.getElementById('menu'),
         header = d.getElementById('header'),
@@ -54,11 +55,13 @@
                 if (w.innerWidth < 1241) {
                     mask.classList.add('in');
                     menu.classList.add('show');
+                    root.style.overflow = 'hidden';
                 }
 
             } else {
                 menu.classList.remove('show');
                 mask.classList.remove('in');
+                root.style.overflow = '';
             }
         },
         fixedHeader: function(top) {
@@ -165,13 +168,44 @@
             }
 
             d.getElementById('search').addEventListener(even, toggleSearch);
-            d.getElementById('search').addEventListener(even, toggleSearch);
-        }
-    };
+        },
+        reward: (function(){
 
-    menu.addEventListener('touchmove', function(e) {
-        e.preventDefault();
-    }, false);
+            var reward = d.getElementById('reward');
+            var rewardBtn = d.getElementById('rewardBtn');
+            var rewardOff = d.getElementById('rewardOff');
+
+            if(!reward) {
+                return;
+            }
+
+            function show(){
+                reward.classList.add('ready');
+                setTimeout(function(){
+                    reward.classList.add('in');
+                    d.addEventListener(even, hideByBody);
+                }, 0) 
+            }
+
+            function hide(){
+                reward.classList.remove('in');
+                setTimeout(function(){
+                    reward.classList.remove('ready');
+                    d.removeEventListener(even, hideByBody);
+                }, 300)
+            }
+
+            function hideByBody(e){
+                if(!reward.contains(e.target)) {
+                    hide();
+                }
+            }
+
+            rewardBtn.addEventListener(even, show);
+            rewardOff.addEventListener(even, hide);
+
+        })()
+    };
 
     w.addEventListener('load', function() {
         loading.classList.remove('active');
