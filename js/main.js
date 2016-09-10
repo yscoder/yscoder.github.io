@@ -201,7 +201,9 @@
                 }
             }
 
-            rewardBtn.addEventListener(even, show);
+            rewardBtn.addEventListener(even, function(){
+                return reward.classList.contains('in') ? hide() : show();
+            });
             rewardOff.addEventListener(even, hide);
 
         })()
