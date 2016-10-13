@@ -98,9 +98,9 @@
     </summary>
     
     
-      <category term="html5" scheme="http://imys.net/tags/html5/"/>
-    
       <category term="canvas" scheme="http://imys.net/tags/canvas/"/>
+    
+      <category term="html5" scheme="http://imys.net/tags/html5/"/>
     
       <category term="event" scheme="http://imys.net/tags/event/"/>
     
@@ -1211,15 +1211,15 @@ git push origin master
     
       <category term="css" scheme="http://imys.net/tags/css/"/>
     
-      <category term="devicePixelRatio" scheme="http://imys.net/tags/devicePixelRatio/"/>
-    
-      <category term="em" scheme="http://imys.net/tags/em/"/>
-    
       <category term="mobile" scheme="http://imys.net/tags/mobile/"/>
+    
+      <category term="devicePixelRatio" scheme="http://imys.net/tags/devicePixelRatio/"/>
     
       <category term="webview" scheme="http://imys.net/tags/webview/"/>
     
       <category term="viewport" scheme="http://imys.net/tags/viewport/"/>
+    
+      <category term="em" scheme="http://imys.net/tags/em/"/>
     
   </entry>
   
@@ -1544,11 +1544,11 @@ git push origin master
     </summary>
     
     
-      <category term="移动端" scheme="http://imys.net/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
-    
       <category term="devicePixelRatio" scheme="http://imys.net/tags/devicePixelRatio/"/>
     
       <category term="em" scheme="http://imys.net/tags/em/"/>
+    
+      <category term="移动端" scheme="http://imys.net/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
     
       <category term="rem" scheme="http://imys.net/tags/rem/"/>
     
@@ -2071,9 +2071,9 @@ package.json
     </summary>
     
     
-      <category term="html5" scheme="http://imys.net/tags/html5/"/>
-    
       <category term="canvas" scheme="http://imys.net/tags/canvas/"/>
+    
+      <category term="html5" scheme="http://imys.net/tags/html5/"/>
     
       <category term="chart" scheme="http://imys.net/tags/chart/"/>
     
@@ -2154,9 +2154,9 @@ package.json
     </summary>
     
     
-      <category term="html5" scheme="http://imys.net/tags/html5/"/>
-    
       <category term="canvas" scheme="http://imys.net/tags/canvas/"/>
+    
+      <category term="html5" scheme="http://imys.net/tags/html5/"/>
     
       <category term="process" scheme="http://imys.net/tags/process/"/>
     

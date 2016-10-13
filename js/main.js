@@ -1,5 +1,5 @@
 (function(w, d) {
-alert(111)
+
     var body = d.body,
         root = d.querySelector('html'),
         gotop = d.getElementById('gotop'),
