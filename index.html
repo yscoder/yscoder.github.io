@@ -137,6 +137,49 @@
       <ul class="post-list">
   
     <li class="post-list-item">
+        <article id="post-java-webpack-dev-build"
+  class="article article-type-post" itemprop="blogPost">
+     
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/20161013/java-webpack-dev-build.html">java项目下基于webpack的前端开发环境构建</a>
+    </h3>
+  
+
+
+
+    <div class="post-meta">
+        <time datetime="2016-10-13T06:05:56.000Z" itemprop="datePublished" class="post-time">
+  Oct 13, 2016
+</time>
+
+        
+
+
+    </div>
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+        
+             标题可能不是很恰当，想不到一个合适的标题来概括我遇到以及解决的问题，暂且这样吧。 
+   项目描述  是一个不完全与后端分离的基于 webpack 构建的 Vue 项目。 
+ 项目入口是一个 jsp 页面，其中引用了一些 jsp 模版。我想是因为有一些内容需要后端直出到页面上。 该页面上固定引用了 webpack 打包好的 css 及 js 文件路径，当然也加了动态参数用于刷新版本更新后的客户端缓存。 
+ 可以使用  webpack  命令打包，或是用  webpack --progress --colors --watch  命令启动监听模式动态构建。 
+        
+        <a href="/20161013/java-webpack-dev-build.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browsersync/">#browsersync</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">#java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jsp/">#jsp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">#webpack</a></li></ul>
+
+
+</article>
+
+    </li>
+  
+    <li class="post-list-item">
         <article id="post-canvas-event"
   class="article article-type-post" itemprop="blogPost">
      
@@ -520,54 +563,6 @@
     </div>
     
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">#css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css3/">#css3</a></li></ul>
-
-
-</article>
-
-    </li>
-  
-    <li class="post-list-item">
-        <article id="post-use-history-pushState"
-  class="article article-type-post" itemprop="blogPost">
-     
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/20160316/use-history-pushState.html">使用HTML5 history API增强移动端用户体验</a>
-    </h3>
-  
-
-
-
-    <div class="post-meta">
-        <time datetime="2016-03-16T06:42:51.000Z" itemprop="datePublished" class="post-time">
-  Mar 16, 2016
-</time>
-
-        
-
-
-    </div>
-
-    <div class="post-content" id="post-content" itemprop="postContent" >
-        
-               起因  最近做的一个图片浏览功能，请自行脑补手机图库、微博查看图片等场景。 功能做好之后，马上有同学反应： 进入图片浏览层时，如果用户触摸手机后退按钮，整个页面都会返回，能否在触摸返回时只关闭浏览层？  
- 一般移动端会对 WebView 做一些默认的设置，比如 Hook 用户触摸后退按钮，调用 WebView 后退方法。既然如此，就可以利用这一点，通过操纵浏览记录使用户触摸后退关闭浏览层。 
-   history  想要操纵浏览记录，就不得不提 history 对象了。通过常用的 back() 、 forward() 、 go() 方法就可以自由的控制浏览器跳转到任意一个历史记录。 而在 HTML5 中，history 又添加一些新的成员，允许你对浏览记录进行添加和修改却不会刷新页面，这就是解决问题的关键了。 
- 
-  history.pushState(stateObj, title, url)  用于创建新历史记录； 
-  history.replaceState(stateObj, title, url)  用于修改当前历史记录； 
-  history.state  读取当前状态，创建历史记录时会添加状态对象； 
-  window.onpopstate  是一个事件，当历史记录被修改时会触发。 
- 
-        
-        <a href="/20160316/use-history-pushState.html" class="post-more waves-effect waves-button">
-            阅读全文...
-        </a>
-    </div>
-    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/history/">#history</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">#html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/用户体验/">#用户体验</a></li></ul>
 
 
 </article>
