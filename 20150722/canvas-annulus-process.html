@@ -2,13 +2,13 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="google-site-verification" content="rlxpN--EBnMOLJnY1efTuwShQId3YX7A6RWkQEr0y9c">
   
   <title>Canvas初试--环形进度条的实现 | Yusen&#39;s Blog | 折腾不在乎成功与否。</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
-  <meta name="google-site-verification" content="rlxpN--EBnMOLJnY1efTuwShQId3YX7A6RWkQEr0y9c">
   
   <meta name="keywords" content="canvas,html5,process">
   <meta name="description" content="Canvas实现环形进度条">
@@ -38,61 +38,61 @@
 <body>
   <div id="loading" class="active"></div>
 
-  <nav id="menu" class="hide" >
-   <div class="inner flex-row-vertical">
-  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
-      <i class="icon icon-lg icon-close"></i>
-  </a>
-  <div class="brand-wrap">
-    <div class="brand">
-      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
-      <hgroup class="introduce">
-        <h5 class="nickname">王昱森</h5>
-        <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
-      </hgroup>
+  <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+        <hgroup class="introduce">
+          <h5 class="nickname">王昱森</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
     </div>
-  </div>
-  <div class="scroll-wrap flex-col">
-    <ul class="nav">
-      
-          <li class="waves-block waves-effect">
-            <a href="/"  >
-              <i class="icon icon-lg icon-home"></i>
-              Home
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/archives"  >
-              <i class="icon icon-lg icon-archives"></i>
-              Archives
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/tags"  >
-              <i class="icon icon-lg icon-tags"></i>
-              Tags
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="https://github.com/yscoder" target="_blank" >
-              <i class="icon icon-lg icon-github"></i>
-              Github
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="http://www.weibo.com/ysweb" target="_blank" >
-              <i class="icon icon-lg icon-weibo"></i>
-              Weibo
-            </a>
-          </li>
-      
-    </ul>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
 
-    <footer class="footer">
+      <footer class="footer">
   <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
   <p>Yusen&#39;s Blog &copy; 2016</p>
   <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
@@ -100,12 +100,11 @@
   <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
 </footer>
 
+    </div>
   </div>
-</div>
-
-  </nav>
+</aside>
   <main id="main">
-    <header class="header" id="header">
+    <header class="top-header" id="header">
     <div class="flex-row">
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
@@ -116,7 +115,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -129,39 +128,35 @@
         
     </div>
 </header>
-<header class="content-header">
-  <div class="container">
-    <h1 class="author">Canvas初试--环形进度条的实现</h1>
-    <h5 class="subtitle">
-          
-            <time datetime="2015-07-22T00:21:53.000Z" itemprop="datePublished" class="page-time">
+<header class="content-header post-header">
+
+    <div class="container">
+        <h1 class="title">Canvas初试--环形进度条的实现</h1>
+        
+        
+
+    </div>
+
+    
+
+</header>
+
+<div class="container body-wrap">
+    <article id="post-canvas-annulus-process" 
+  class="post-article article-type-post" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Canvas初试--环形进度条的实现</h1>
+        <div class="post-meta">
+            <time datetime="2015-07-22T00:21:53.000Z" itemprop="datePublished" class="post-time">
   Jul 22, 2015
 </time>
 
- 
-        
-    </h5>
-  </div>
-</header>
-
-    <div class="container body-wrap">
-      <article id="post-canvas-annulus-process"
-  class="article article-type-post" itemprop="blogPost">
-
-    <div class="post-body">
-        <aside class="post-widget" id="post-widget">
-
             
-            <nav class="post-toc-wrap" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#定义canvas"><span class="post-toc-number">1.</span> <span class="post-toc-text">定义canvas</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#画背景圆（灰色）"><span class="post-toc-number">2.</span> <span class="post-toc-text">画背景圆（灰色）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#画进度环（橙色）"><span class="post-toc-number">3.</span> <span class="post-toc-text">画进度环（橙色）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#画内填充圆（白色）"><span class="post-toc-number">4.</span> <span class="post-toc-text">画内填充圆（白色）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#填充显示文字（数字百分比）"><span class="post-toc-number">5.</span> <span class="post-toc-text">填充显示文字（数字百分比）</span></a></li></ol>
-            </nav>
-            
-        </aside>
 
-        <div class="post-main">
 
-            <div class="post-content" id="post-content" itemprop="postContent">
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
             <p>起初想这么做既是<code>css3</code>不易实现圆环，而且也有低版本兼容问题，也想借此机会学习下<code>canvas</code>(虽然最后还是难逃兼容性 &gt;_&lt; )。<br>做的过程中发现<code>canvas</code>跟<code>C#</code>中<code>gdi</code>绘图的步骤其实是差不多的。</p>
 <p>先大概看了下<code>canvas</code>的相关API，有个可以画弧的方法<code>arc</code>。</p>
 <p>通过合理的参数设置就能实现各种角度的圆弧，或者满圆。</p>
@@ -222,33 +217,34 @@
 <p>完成！</p>
 <p>关于<code>canvas</code>在IE7、8下的兼容需要引用google的 <a href="https://github.com/arv/ExplorerCanvas" target="_blank" rel="external">excanvas.js</a> ，并把画图的相关的代码放到<code>window.onload</code>下。<br>不过这个文件有些大，40K+，压缩后17K。</p>
 
+        </div>
+        
+        <blockquote class="post-copyright">
+            <div class="content">
+               转载请注明出处：<a href="/20150722/canvas-annulus-process.html" target="_blank" rel="external">http://imys.net/20150722/canvas-annulus-process.html</a>
             </div>
+            <footer>
+                <a href="http://imys.net">
+                    <img src="/img/logo.jpg" alt="王昱森">
+                    王昱森
+                </a>
+            </footer>
+        </blockquote>
+
+        
+        <div class="post-reward">
+            <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+        </div>
+        
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/canvas/">canvas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/process/">process</a></li></ul>
+
 
             
-            <div class="post-reward">
-                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
-            </div>
-            
-
-            <blockquote class="post-copyright">
-                <p>
-                本文地址：
-                <a href="http://imys.net/20150722/canvas-annulus-process.html" target="_blank" rel="external">http://imys.net/20150722/canvas-annulus-process.html</a>
-                </p>
-                <footer><cite><a href="http://imys.net">@Yusen's Blog</a></cite></footer>
-            </blockquote>
-
-            <div class="post-footer flex-row flex-middle">
-                <div class="flex-col">
-                    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/canvas/">#canvas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">#html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/process/">#process</a></li></ul>
-
-
-                </div>
-
-                
-                <div class="post-share-wrap">
-                    <div class="post-share" id="post-share">
+            <div class="post-share-wrap">
+                <div class="post-share" id="post-share">
     <div class="tit">分享到：</div>
     <ul class="reset share-icons">
       <li>
@@ -284,19 +280,19 @@
     </ul>
  </div>
 
-                    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
-                        <i class="icon icon-share-alt"></i>
-                    </a>
-                    
-                </div>
-
+                <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+                    <i class="icon icon-share-alt icon-lg"></i>
+                </a>
             </div>
-
-
             
-<nav class="post-nav">
+
+        </div>
+    </div>   
+
+    
+<nav class="post-nav flex-row flex-justify-between">
   
-    <div class="waves-block waves-effect prev fl">
+    <div class="waves-block waves-effect prev">
       <a href="/20150731/canvas-chart-demo.html" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
         <h4 class="title">canvas实践--图表组件仪表盘、雷达图</h4>
@@ -305,7 +301,7 @@
   
 
   
-    <div class="waves-block waves-effect next fr">
+    <div class="waves-block waves-effect next">
       <a href="/20150716/ue-shortcut-key.html" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
         <h4 class="title">用户体验--WEB站点快捷键实现方案</h4>
@@ -315,8 +311,8 @@
 </nav>
 
 
-
             
+    
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
 	<div class="ds-thread" data-thread-key="canvas-annulus-process" data-title="Canvas初试--环形进度条的实现" data-url="http://imys.net/20150722/canvas-annulus-process.html"></div>
@@ -340,13 +336,21 @@
 
 
 
-        </div>
-    </div>
 </article>
 
-    </div>
+<aside class="post-widget" id="post-widget">
+
+    
+    <nav class="post-toc-wrap" id="post-toc">
+        <h4>TOC</h4>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#定义canvas"><span class="post-toc-number">1.</span> <span class="post-toc-text">定义canvas</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#画背景圆（灰色）"><span class="post-toc-number">2.</span> <span class="post-toc-text">画背景圆（灰色）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#画进度环（橙色）"><span class="post-toc-number">3.</span> <span class="post-toc-text">画进度环（橙色）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#画内填充圆（白色）"><span class="post-toc-number">4.</span> <span class="post-toc-text">画内填充圆（白色）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#填充显示文字（数字百分比）"><span class="post-toc-number">5.</span> <span class="post-toc-text">填充显示文字（数字百分比）</span></a></li></ol>
+    </nav>
+    
+</aside>
+
+</div>
   </main>
-<div class="mask" id="mask"></div>
+  <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 <script>
@@ -420,7 +424,7 @@ var BLOG_SHARE = {
     </ul>
 </div>
 
-<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+  <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 
 <script src="/js/main.js"></script>
 

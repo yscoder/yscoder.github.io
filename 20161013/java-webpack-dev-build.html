@@ -2,13 +2,13 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="google-site-verification" content="rlxpN--EBnMOLJnY1efTuwShQId3YX7A6RWkQEr0y9c">
   
   <title>java项目下基于webpack的前端开发环境构建 | Yusen&#39;s Blog | 折腾不在乎成功与否。</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
-  <meta name="google-site-verification" content="rlxpN--EBnMOLJnY1efTuwShQId3YX7A6RWkQEr0y9c">
   
   <meta name="keywords" content="java,jsp,webpack,browsersync">
   <meta name="description" content="java项目下基于webpack的前端开发环境构建，实时刷新预览">
@@ -35,61 +35,61 @@
 <body>
   <div id="loading" class="active"></div>
 
-  <nav id="menu" class="hide" >
-   <div class="inner flex-row-vertical">
-  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
-      <i class="icon icon-lg icon-close"></i>
-  </a>
-  <div class="brand-wrap">
-    <div class="brand">
-      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
-      <hgroup class="introduce">
-        <h5 class="nickname">王昱森</h5>
-        <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
-      </hgroup>
+  <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+        <hgroup class="introduce">
+          <h5 class="nickname">王昱森</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
     </div>
-  </div>
-  <div class="scroll-wrap flex-col">
-    <ul class="nav">
-      
-          <li class="waves-block waves-effect">
-            <a href="/"  >
-              <i class="icon icon-lg icon-home"></i>
-              Home
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/archives"  >
-              <i class="icon icon-lg icon-archives"></i>
-              Archives
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/tags"  >
-              <i class="icon icon-lg icon-tags"></i>
-              Tags
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="https://github.com/yscoder" target="_blank" >
-              <i class="icon icon-lg icon-github"></i>
-              Github
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="http://www.weibo.com/ysweb" target="_blank" >
-              <i class="icon icon-lg icon-weibo"></i>
-              Weibo
-            </a>
-          </li>
-      
-    </ul>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
 
-    <footer class="footer">
+      <footer class="footer">
   <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
   <p>Yusen&#39;s Blog &copy; 2016</p>
   <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
@@ -97,12 +97,11 @@
   <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
 </footer>
 
+    </div>
   </div>
-</div>
-
-  </nav>
+</aside>
   <main id="main">
-    <header class="header" id="header">
+    <header class="top-header" id="header">
     <div class="flex-row">
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
@@ -113,7 +112,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -126,39 +125,35 @@
         
     </div>
 </header>
-<header class="content-header">
-  <div class="container">
-    <h1 class="author">java项目下基于webpack的前端开发环境构建</h1>
-    <h5 class="subtitle">
-          
-            <time datetime="2016-10-13T06:05:56.000Z" itemprop="datePublished" class="page-time">
+<header class="content-header post-header">
+
+    <div class="container">
+        <h1 class="title">java项目下基于webpack的前端开发环境构建</h1>
+        
+        
+
+    </div>
+
+    
+
+</header>
+
+<div class="container body-wrap">
+    <article id="post-java-webpack-dev-build" 
+  class="post-article article-type-post" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">java项目下基于webpack的前端开发环境构建</h1>
+        <div class="post-meta">
+            <time datetime="2016-10-13T06:05:56.000Z" itemprop="datePublished" class="post-time">
   Oct 13, 2016
 </time>
 
- 
-        
-    </h5>
-  </div>
-</header>
-
-    <div class="container body-wrap">
-      <article id="post-java-webpack-dev-build"
-  class="article article-type-post" itemprop="blogPost">
-
-    <div class="post-body">
-        <aside class="post-widget" id="post-widget">
-
             
-            <nav class="post-toc-wrap" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#项目描述"><span class="post-toc-number">1.</span> <span class="post-toc-text">项目描述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解决方案"><span class="post-toc-number">2.</span> <span class="post-toc-text">解决方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#webpack-dev-server"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">webpack-dev-server</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#browsersync"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">browsersync</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#感叹一句"><span class="post-toc-number">3.</span> <span class="post-toc-text">感叹一句</span></a></li></ol>
-            </nav>
-            
-        </aside>
 
-        <div class="post-main">
 
-            <div class="post-content" id="post-content" itemprop="postContent">
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
             <p>标题可能不是很恰当，想不到一个合适的标题来概括我遇到以及解决的问题，暂且这样吧。</p>
 <h2 id="项目描述"><a href="#项目描述" class="headerlink" title="项目描述"></a>项目描述</h2><p>是一个不完全与后端分离的基于 webpack 构建的 Vue 项目。</p>
 <p>项目入口是一个 jsp 页面，其中引用了一些 jsp 模版。我想是因为有一些内容需要后端直出到页面上。<br>该页面上固定引用了 webpack 打包好的 css 及 js 文件路径，当然也加了动态参数用于刷新版本更新后的客户端缓存。</p>
@@ -180,33 +175,34 @@
 <p>如今的前端把多少时间都耗在环境搭建上了~</p>
 </blockquote>
 
+        </div>
+        
+        <blockquote class="post-copyright">
+            <div class="content">
+               转载请注明出处：<a href="/20161013/java-webpack-dev-build.html" target="_blank" rel="external">http://imys.net/20161013/java-webpack-dev-build.html</a>
             </div>
+            <footer>
+                <a href="http://imys.net">
+                    <img src="/img/logo.jpg" alt="王昱森">
+                    王昱森
+                </a>
+            </footer>
+        </blockquote>
+
+        
+        <div class="post-reward">
+            <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+        </div>
+        
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browsersync/">browsersync</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jsp/">jsp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
+
 
             
-            <div class="post-reward">
-                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
-            </div>
-            
-
-            <blockquote class="post-copyright">
-                <p>
-                本文地址：
-                <a href="http://imys.net/20161013/java-webpack-dev-build.html" target="_blank" rel="external">http://imys.net/20161013/java-webpack-dev-build.html</a>
-                </p>
-                <footer><cite><a href="http://imys.net">@Yusen's Blog</a></cite></footer>
-            </blockquote>
-
-            <div class="post-footer flex-row flex-middle">
-                <div class="flex-col">
-                    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browsersync/">#browsersync</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">#java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jsp/">#jsp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">#webpack</a></li></ul>
-
-
-                </div>
-
-                
-                <div class="post-share-wrap">
-                    <div class="post-share" id="post-share">
+            <div class="post-share-wrap">
+                <div class="post-share" id="post-share">
     <div class="tit">分享到：</div>
     <ul class="reset share-icons">
       <li>
@@ -242,21 +238,21 @@
     </ul>
  </div>
 
-                    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
-                        <i class="icon icon-share-alt"></i>
-                    </a>
-                    
-                </div>
-
+                <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+                    <i class="icon icon-share-alt icon-lg"></i>
+                </a>
             </div>
-
-
             
-<nav class="post-nav">
+
+        </div>
+    </div>   
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
-    <div class="waves-block waves-effect next fr">
+    <div class="waves-block waves-effect next">
       <a href="/20160808/canvas-event.html" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
         <h4 class="title">如何为Canvas中特定图形绑定事件？</h4>
@@ -266,8 +262,8 @@
 </nav>
 
 
-
             
+    
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
 	<div class="ds-thread" data-thread-key="java-webpack-dev-build" data-title="java项目下基于webpack的前端开发环境构建" data-url="http://imys.net/20161013/java-webpack-dev-build.html"></div>
@@ -291,13 +287,21 @@
 
 
 
-        </div>
-    </div>
 </article>
 
-    </div>
+<aside class="post-widget" id="post-widget">
+
+    
+    <nav class="post-toc-wrap" id="post-toc">
+        <h4>TOC</h4>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#项目描述"><span class="post-toc-number">1.</span> <span class="post-toc-text">项目描述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#解决方案"><span class="post-toc-number">2.</span> <span class="post-toc-text">解决方案</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#webpack-dev-server"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">webpack-dev-server</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#browsersync"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">browsersync</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#感叹一句"><span class="post-toc-number">3.</span> <span class="post-toc-text">感叹一句</span></a></li></ol>
+    </nav>
+    
+</aside>
+
+</div>
   </main>
-<div class="mask" id="mask"></div>
+  <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 <script>
@@ -371,7 +375,7 @@ var BLOG_SHARE = {
     </ul>
 </div>
 
-<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+  <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 
 <script src="/js/main.js"></script>
 

@@ -2,13 +2,13 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="google-site-verification" content="rlxpN--EBnMOLJnY1efTuwShQId3YX7A6RWkQEr0y9c">
   
   <title>require.js入门--用面向对象语言来理解js模块化 | Yusen&#39;s Blog | 折腾不在乎成功与否。</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
-  <meta name="google-site-verification" content="rlxpN--EBnMOLJnY1efTuwShQId3YX7A6RWkQEr0y9c">
   
   <meta name="keywords" content="javascript,模块化,require.js">
   <meta name="description" content="require.js入门，用面向对象语言来理解js模块化">
@@ -32,61 +32,61 @@
 <body>
   <div id="loading" class="active"></div>
 
-  <nav id="menu" class="hide" >
-   <div class="inner flex-row-vertical">
-  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
-      <i class="icon icon-lg icon-close"></i>
-  </a>
-  <div class="brand-wrap">
-    <div class="brand">
-      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
-      <hgroup class="introduce">
-        <h5 class="nickname">王昱森</h5>
-        <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
-      </hgroup>
+  <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+        <hgroup class="introduce">
+          <h5 class="nickname">王昱森</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
     </div>
-  </div>
-  <div class="scroll-wrap flex-col">
-    <ul class="nav">
-      
-          <li class="waves-block waves-effect">
-            <a href="/"  >
-              <i class="icon icon-lg icon-home"></i>
-              Home
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/archives"  >
-              <i class="icon icon-lg icon-archives"></i>
-              Archives
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/tags"  >
-              <i class="icon icon-lg icon-tags"></i>
-              Tags
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="https://github.com/yscoder" target="_blank" >
-              <i class="icon icon-lg icon-github"></i>
-              Github
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="http://www.weibo.com/ysweb" target="_blank" >
-              <i class="icon icon-lg icon-weibo"></i>
-              Weibo
-            </a>
-          </li>
-      
-    </ul>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
 
-    <footer class="footer">
+      <footer class="footer">
   <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
   <p>Yusen&#39;s Blog &copy; 2016</p>
   <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
@@ -94,12 +94,11 @@
   <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
 </footer>
 
+    </div>
   </div>
-</div>
-
-  </nav>
+</aside>
   <main id="main">
-    <header class="header" id="header">
+    <header class="top-header" id="header">
     <div class="flex-row">
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
@@ -110,7 +109,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -123,39 +122,35 @@
         
     </div>
 </header>
-<header class="content-header">
-  <div class="container">
-    <h1 class="author">require.js入门--用面向对象语言来理解js模块化</h1>
-    <h5 class="subtitle">
-          
-            <time datetime="2015-08-07T02:33:25.000Z" itemprop="datePublished" class="page-time">
+<header class="content-header post-header">
+
+    <div class="container">
+        <h1 class="title">require.js入门--用面向对象语言来理解js模块化</h1>
+        
+        
+
+    </div>
+
+    
+
+</header>
+
+<div class="container body-wrap">
+    <article id="post-js-module-requirejs" 
+  class="post-article article-type-post" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">require.js入门--用面向对象语言来理解js模块化</h1>
+        <div class="post-meta">
+            <time datetime="2015-08-07T02:33:25.000Z" itemprop="datePublished" class="post-time">
   Aug 7, 2015
 </time>
 
- 
-        
-    </h5>
-  </div>
-</header>
-
-    <div class="container body-wrap">
-      <article id="post-js-module-requirejs"
-  class="article article-type-post" itemprop="blogPost">
-
-    <div class="post-body">
-        <aside class="post-widget" id="post-widget">
-
             
-            <nav class="post-toc-wrap" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#模块化"><span class="post-toc-number">1.</span> <span class="post-toc-text">模块化</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#require-js入门"><span class="post-toc-number">2.</span> <span class="post-toc-text">require.js入门</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#页面加载"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">页面加载</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#入口模块"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">入口模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#加载模块"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">加载模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#定义模块"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">定义模块</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#结束"><span class="post-toc-number">3.</span> <span class="post-toc-text">结束</span></a></li></ol>
-            </nav>
-            
-        </aside>
 
-        <div class="post-main">
 
-            <div class="post-content" id="post-content" itemprop="postContent">
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
             <p>作为一个曾经的后端开发者，当我第一眼看到一些javascript模块化的代码案例时，我就想到了java、c#这些天生的模块化语言。<br>今天就拿 require.js 来捋一捋这其中的异同。<br><a id="more"></a><br><!-- toc --></p>
 <h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><p>一个基本的javascript模块，应该是隐藏私有成员及方法，暴漏外部调用的所需的接口。<br>常见的写法有：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> <span class="built_in">module</span> = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> prop = <span class="string">''</span>;</div><div class="line">  <span class="keyword">var</span> tool = <span class="function"><span class="keyword">function</span>(<span class="params">p</span>)</span>&#123;</div><div class="line">  </div><div class="line">  &#125;;</div><div class="line">  </div><div class="line">  <span class="comment">//...</span></div><div class="line">  </div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    fn: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      tool(prop);</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
@@ -193,33 +188,34 @@
 <h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p>各种模块化规范殊途同归，都是为了解决同样的问题。理解了其中一种，都可以轻松掌握其他规范的写法。<br>未来我们还有天然支持类和模块的ES6，期待吧？</p>
 <p>我一直认为好的开发人员不应该局限于一个技术栈，因为这样会阻碍你对一个问题的全面认知和对新知识的快速领会。</p>
 
+        </div>
+        
+        <blockquote class="post-copyright">
+            <div class="content">
+               转载请注明出处：<a href="/20150807/js-module-requirejs.html" target="_blank" rel="external">http://imys.net/20150807/js-module-requirejs.html</a>
             </div>
+            <footer>
+                <a href="http://imys.net">
+                    <img src="/img/logo.jpg" alt="王昱森">
+                    王昱森
+                </a>
+            </footer>
+        </blockquote>
+
+        
+        <div class="post-reward">
+            <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+        </div>
+        
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/require-js/">require.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模块化/">模块化</a></li></ul>
+
 
             
-            <div class="post-reward">
-                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
-            </div>
-            
-
-            <blockquote class="post-copyright">
-                <p>
-                本文地址：
-                <a href="http://imys.net/20150807/js-module-requirejs.html" target="_blank" rel="external">http://imys.net/20150807/js-module-requirejs.html</a>
-                </p>
-                <footer><cite><a href="http://imys.net">@Yusen's Blog</a></cite></footer>
-            </blockquote>
-
-            <div class="post-footer flex-row flex-middle">
-                <div class="flex-col">
-                    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">#javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/require-js/">#require.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模块化/">#模块化</a></li></ul>
-
-
-                </div>
-
-                
-                <div class="post-share-wrap">
-                    <div class="post-share" id="post-share">
+            <div class="post-share-wrap">
+                <div class="post-share" id="post-share">
     <div class="tit">分享到：</div>
     <ul class="reset share-icons">
       <li>
@@ -255,19 +251,19 @@
     </ul>
  </div>
 
-                    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
-                        <i class="icon icon-share-alt"></i>
-                    </a>
-                    
-                </div>
-
+                <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+                    <i class="icon icon-share-alt icon-lg"></i>
+                </a>
             </div>
-
-
             
-<nav class="post-nav">
+
+        </div>
+    </div>   
+
+    
+<nav class="post-nav flex-row flex-justify-between">
   
-    <div class="waves-block waves-effect prev fl">
+    <div class="waves-block waves-effect prev">
       <a href="/20150902/h5-upload-progress.html" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
         <h4 class="title">html5上传进度实现</h4>
@@ -276,7 +272,7 @@
   
 
   
-    <div class="waves-block waves-effect next fr">
+    <div class="waves-block waves-effect next">
       <a href="/20150731/canvas-chart-demo.html" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
         <h4 class="title">canvas实践--图表组件仪表盘、雷达图</h4>
@@ -286,8 +282,8 @@
 </nav>
 
 
-
             
+    
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
 	<div class="ds-thread" data-thread-key="js-module-requirejs" data-title="require.js入门--用面向对象语言来理解js模块化" data-url="http://imys.net/20150807/js-module-requirejs.html"></div>
@@ -311,13 +307,21 @@
 
 
 
-        </div>
-    </div>
 </article>
 
-    </div>
+<aside class="post-widget" id="post-widget">
+
+    
+    <nav class="post-toc-wrap" id="post-toc">
+        <h4>TOC</h4>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#模块化"><span class="post-toc-number">1.</span> <span class="post-toc-text">模块化</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#require-js入门"><span class="post-toc-number">2.</span> <span class="post-toc-text">require.js入门</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#页面加载"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">页面加载</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#入口模块"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">入口模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#加载模块"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">加载模块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#定义模块"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">定义模块</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#结束"><span class="post-toc-number">3.</span> <span class="post-toc-text">结束</span></a></li></ol>
+    </nav>
+    
+</aside>
+
+</div>
   </main>
-<div class="mask" id="mask"></div>
+  <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 <script>
@@ -391,7 +395,7 @@ var BLOG_SHARE = {
     </ul>
 </div>
 
-<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+  <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 
 <script src="/js/main.js"></script>
 

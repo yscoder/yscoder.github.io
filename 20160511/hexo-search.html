@@ -2,13 +2,13 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="google-site-verification" content="rlxpN--EBnMOLJnY1efTuwShQId3YX7A6RWkQEr0y9c">
   
   <title>Hexo添加站内搜索功能初步完成 | Yusen&#39;s Blog | 折腾不在乎成功与否。</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
-  <meta name="google-site-verification" content="rlxpN--EBnMOLJnY1efTuwShQId3YX7A6RWkQEr0y9c">
   
   <meta name="keywords" content="Hexo">
   <meta name="description" content="Hexo search, Hexo文章搜索, Hexo站内搜索">
@@ -45,61 +45,61 @@
 <body>
   <div id="loading" class="active"></div>
 
-  <nav id="menu" class="hide" >
-   <div class="inner flex-row-vertical">
-  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
-      <i class="icon icon-lg icon-close"></i>
-  </a>
-  <div class="brand-wrap">
-    <div class="brand">
-      <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
-      <hgroup class="introduce">
-        <h5 class="nickname">王昱森</h5>
-        <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
-      </hgroup>
+  <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+        <hgroup class="introduce">
+          <h5 class="nickname">王昱森</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
     </div>
-  </div>
-  <div class="scroll-wrap flex-col">
-    <ul class="nav">
-      
-          <li class="waves-block waves-effect">
-            <a href="/"  >
-              <i class="icon icon-lg icon-home"></i>
-              Home
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/archives"  >
-              <i class="icon icon-lg icon-archives"></i>
-              Archives
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="/tags"  >
-              <i class="icon icon-lg icon-tags"></i>
-              Tags
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="https://github.com/yscoder" target="_blank" >
-              <i class="icon icon-lg icon-github"></i>
-              Github
-            </a>
-          </li>
-      
-          <li class="waves-block waves-effect">
-            <a href="http://www.weibo.com/ysweb" target="_blank" >
-              <i class="icon icon-lg icon-weibo"></i>
-              Weibo
-            </a>
-          </li>
-      
-    </ul>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
 
-    <footer class="footer">
+      <footer class="footer">
   <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
   <p>Yusen&#39;s Blog &copy; 2016</p>
   <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
@@ -107,12 +107,11 @@
   <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
 </footer>
 
+    </div>
   </div>
-</div>
-
-  </nav>
+</aside>
   <main id="main">
-    <header class="header" id="header">
+    <header class="top-header" id="header">
     <div class="flex-row">
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
@@ -123,7 +122,7 @@
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
                 <i class="icon icon-lg icon-chevron-left"></i>
             </a>
-            <input type="text" id="key" class="search-input " autocomplete="off" placeholder="输入感兴趣的关键字">
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
                 <i class="icon icon-lg icon-search"></i>
             </a>
@@ -136,39 +135,35 @@
         
     </div>
 </header>
-<header class="content-header">
-  <div class="container">
-    <h1 class="author">Hexo添加站内搜索功能初步完成</h1>
-    <h5 class="subtitle">
-          
-            <time datetime="2016-05-11T08:08:50.000Z" itemprop="datePublished" class="page-time">
+<header class="content-header post-header">
+
+    <div class="container">
+        <h1 class="title">Hexo添加站内搜索功能初步完成</h1>
+        
+        
+
+    </div>
+
+    
+
+</header>
+
+<div class="container body-wrap">
+    <article id="post-hexo-search" 
+  class="post-article article-type-post" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Hexo添加站内搜索功能初步完成</h1>
+        <div class="post-meta">
+            <time datetime="2016-05-11T08:08:50.000Z" itemprop="datePublished" class="post-time">
   May 11, 2016
 </time>
 
- 
-        
-    </h5>
-  </div>
-</header>
-
-    <div class="container body-wrap">
-      <article id="post-hexo-search"
-  class="article article-type-post" itemprop="blogPost">
-
-    <div class="post-body">
-        <aside class="post-widget" id="post-widget">
-
             
-            <nav class="post-toc-wrap" id="post-toc">
-            <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#搜索方案"><span class="post-toc-number">1.</span> <span class="post-toc-text">搜索方案</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第三方搜索服务"><span class="post-toc-number">2.</span> <span class="post-toc-text">第三方搜索服务</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基于搜索引擎的"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">基于搜索引擎的</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Swiftype"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Swiftype</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Algolia"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">Algolia</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#自定义搜索"><span class="post-toc-number">3.</span> <span class="post-toc-text">自定义搜索</span></a></li></ol>
-            </nav>
-            
-        </aside>
 
-        <div class="post-main">
 
-            <div class="post-content" id="post-content" itemprop="postContent">
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
             <p>不止一次有同学在 <a href="https://github.com/yscoder/hexo-theme-indigo/issues" target="_blank" rel="external">Issues</a>、邮件等渠道中向我反馈<strong>增加站内搜索功能</strong>。本来准备什么时候搞个 2.0 版的主题再加上这些新功能，可一直没什么太好的想法，反正也是折腾，就把搜索功能做了一下。</p>
 <h2 id="搜索方案"><a href="#搜索方案" class="headerlink" title="搜索方案"></a>搜索方案</h2><p>针对无数据库的静态博客搜索方案一般有两种：</p>
 <ol>
@@ -223,33 +218,34 @@
 <p>正则加上<code>filter</code>、<code>some</code>两个数组过滤函数，就这么简单。也没想做太复杂，否则匹配结果高亮、匹配片段截取又够折腾半天。</p>
 <p>完成后就是现在博客的搜索了，PC 端浮动面板显示，Mobile 端全屏显示。</p>
 
+        </div>
+        
+        <blockquote class="post-copyright">
+            <div class="content">
+               转载请注明出处：<a href="/20160511/hexo-search.html" target="_blank" rel="external">http://imys.net/20160511/hexo-search.html</a>
             </div>
+            <footer>
+                <a href="http://imys.net">
+                    <img src="/img/logo.jpg" alt="王昱森">
+                    王昱森
+                </a>
+            </footer>
+        </blockquote>
+
+        
+        <div class="post-reward">
+            <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+        </div>
+        
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
+
 
             
-            <div class="post-reward">
-                <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
-            </div>
-            
-
-            <blockquote class="post-copyright">
-                <p>
-                本文地址：
-                <a href="http://imys.net/20160511/hexo-search.html" target="_blank" rel="external">http://imys.net/20160511/hexo-search.html</a>
-                </p>
-                <footer><cite><a href="http://imys.net">@Yusen's Blog</a></cite></footer>
-            </blockquote>
-
-            <div class="post-footer flex-row flex-middle">
-                <div class="flex-col">
-                    
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">#Hexo</a></li></ul>
-
-
-                </div>
-
-                
-                <div class="post-share-wrap">
-                    <div class="post-share" id="post-share">
+            <div class="post-share-wrap">
+                <div class="post-share" id="post-share">
     <div class="tit">分享到：</div>
     <ul class="reset share-icons">
       <li>
@@ -285,19 +281,19 @@
     </ul>
  </div>
 
-                    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
-                        <i class="icon icon-share-alt"></i>
-                    </a>
-                    
-                </div>
-
+                <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+                    <i class="icon icon-share-alt icon-lg"></i>
+                </a>
             </div>
-
-
             
-<nav class="post-nav">
+
+        </div>
+    </div>   
+
+    
+<nav class="post-nav flex-row flex-justify-between">
   
-    <div class="waves-block waves-effect prev fl">
+    <div class="waves-block waves-effect prev">
       <a href="/20160530/javascript-advanced-functions.html" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
         <h4 class="title">javascript高阶函数介绍</h4>
@@ -306,7 +302,7 @@
   
 
   
-    <div class="waves-block waves-effect next fr">
+    <div class="waves-block waves-effect next">
       <a href="/20160503/vue-data-interaction.html" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
         <h4 class="title">Vue中的数据交互</h4>
@@ -316,8 +312,8 @@
 </nav>
 
 
-
             
+    
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
 	<div class="ds-thread" data-thread-key="hexo-search" data-title="Hexo添加站内搜索功能初步完成" data-url="http://imys.net/20160511/hexo-search.html"></div>
@@ -341,13 +337,21 @@
 
 
 
-        </div>
-    </div>
 </article>
 
-    </div>
+<aside class="post-widget" id="post-widget">
+
+    
+    <nav class="post-toc-wrap" id="post-toc">
+        <h4>TOC</h4>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#搜索方案"><span class="post-toc-number">1.</span> <span class="post-toc-text">搜索方案</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第三方搜索服务"><span class="post-toc-number">2.</span> <span class="post-toc-text">第三方搜索服务</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#基于搜索引擎的"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">基于搜索引擎的</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Swiftype"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Swiftype</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Algolia"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">Algolia</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#自定义搜索"><span class="post-toc-number">3.</span> <span class="post-toc-text">自定义搜索</span></a></li></ol>
+    </nav>
+    
+</aside>
+
+</div>
   </main>
-<div class="mask" id="mask"></div>
+  <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
 <script>
@@ -421,7 +425,7 @@ var BLOG_SHARE = {
     </ul>
 </div>
 
-<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+  <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 
 <script src="/js/main.js"></script>
 
