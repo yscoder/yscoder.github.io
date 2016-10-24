@@ -10,9 +10,7 @@
         menuOff = d.getElementById('menu-off'),
         loading = d.getElementById('loading'),
         animate = w.requestAnimationFrame,
-        ua = navigator.userAgent,
-        isMD = ua.indexOf('Mobile') !== -1 || ua.indexOf('Android') !== -1 || ua.indexOf('iPhone') !== -1 || ua.indexOf('iPad') !== -1 || ua.indexOf('KFAPWI') !== -1,
-        even = isMD ? 'touchstart' : 'click',
+        even = 'ontouchstart' in window ? 'touchstart' : 'click',
         noop = function() {},
         offset = function(el) {
             var x = el.offsetLeft,
@@ -29,7 +27,7 @@
                 y: y
             };
         },
-        docEl = ua.indexOf('Firefox') !== -1 ? d.documentElement : body;
+        docEl = navigator.userAgent.indexOf('Firefox') !== -1 ? d.documentElement : body;
 
     var Blog = {
         goTop: function() {
@@ -84,13 +82,13 @@
                 headerH = header.clientHeight,
                 titles = d.getElementById('post-content').querySelectorAll('h1, h2, h3, h4, h5, h6');
 
-            toc.querySelector('a[href="#' + titles[0].id + '"]').parentNode.classList.add('active');  
+            toc.querySelector('a[href="#' + titles[0].id + '"]').parentNode.classList.add('active');
 
-            [].forEach.call(d.querySelectorAll('a[href*="#"]'), function(el){
-                
-                el.addEventListener('click', function(e){
+            [].forEach.call(d.querySelectorAll('a[href*="#"]'), function(el) {
+
+                el.addEventListener('click', function(e) {
                     e.preventDefault();
-                    docEl.scrollTop = offset(d.querySelector('[id="'+ decodeURIComponent(this.hash).substr(1) +'"]')).y - headerH + 10;
+                    docEl.scrollTop = offset(d.querySelector('[id="' + decodeURIComponent(this.hash).substr(1) + '"]')).y - headerH + 10;
                 })
             });
 
@@ -103,17 +101,17 @@
                         var active = toc.querySelector('a[href="#' + titles[i].id + '"]').parentNode;
                         active.classList.add('active');
 
-                        if(active.offsetTop >= toc.clientHeight - headerH) {
-                            toc.scrollTop = active.offsetTop - toc.clientHeight + parseInt(w.innerHeight/3);
+                        if (active.offsetTop >= toc.clientHeight - headerH) {
+                            toc.scrollTop = active.offsetTop - toc.clientHeight + parseInt(w.innerHeight / 3);
                         } else {
                             toc.scrollTop = 0;
                         }
-                    } 
+                    }
                 }
 
-                if(top < offset(titles[0]).y) {
+                if (top < offset(titles[0]).y) {
                     toc.querySelector('li.active').classList.remove('active');
-                    toc.querySelector('a[href="#' + titles[0].id + '"]').parentNode.classList.add('active');  
+                    toc.querySelector('a[href="#' + titles[0].id + '"]').parentNode.classList.add('active');
                 }
             }
 
@@ -122,11 +120,10 @@
                     toc.classList.add('fixed');
                 } else {
                     toc.classList.remove('fixed');
-                    
+
                 }
 
                 setActive(top);
-
             };
         })(),
         share: function() {
@@ -186,63 +183,65 @@
 
             d.getElementById('search').addEventListener(even, toggleSearch);
         },
-        reward: (function(){
+        reward: (function() {
 
             var reward = d.getElementById('reward');
             var rewardBtn = d.getElementById('rewardBtn');
             var rewardOff = d.getElementById('rewardOff');
 
-            if(!reward) {
+            if (!reward) {
                 return;
             }
 
-            function show(){
+            function show() {
                 mask.classList.add('in');
                 reward.classList.add('ready');
-                setTimeout(function(){
+                setTimeout(function() {
                     reward.classList.add('in');
                     d.addEventListener(even, hideByBody);
-                }, 0) 
+                }, 0)
             }
 
-            function hide(){
+            function hide() {
                 mask.classList.remove('in');
                 reward.classList.remove('in');
-                setTimeout(function(){
+                setTimeout(function() {
                     reward.classList.remove('ready');
                     d.removeEventListener(even, hideByBody);
                 }, 300)
             }
 
-            function hideByBody(e){
-                if(!reward.contains(e.target)) {
+            function hideByBody(e) {
+                if (!reward.contains(e.target)) {
                     hide();
                 }
             }
 
-            rewardBtn.addEventListener(even, function(){
+            rewardBtn.addEventListener(even, function() {
                 return reward.classList.contains('in') ? hide() : show();
             });
             rewardOff.addEventListener(even, hide);
 
         })(),
-        fixNavMinH: (function(){
+        fixNavMinH: (function() {
             var nav = d.querySelector('.nav');
 
             function calcH() {
-                nav.style.minHeight =  (nav.parentNode.clientHeight - nav.nextElementSibling.offsetHeight) + 'px';
+                nav.style.minHeight = (nav.parentNode.clientHeight - nav.nextElementSibling.offsetHeight) + 'px';
             }
 
             return calcH;
         })(),
         waterfall: function() {
 
+            if (w.innerWidth < 760) return;
+
             var els = [].slice.call(d.querySelectorAll('.waterfall'));
 
             els.forEach(function(el) {
                 var childs = [].slice.call(el.querySelectorAll('.waterfall-item'));
                 var columns = [0, 0];
-                
+
                 childs.forEach(function(item) {
                     var i = columns[0] <= columns[1] ? 0 : 1;
                     item.style.cssText = 'top:' + columns[i] + 'px;left:' + (i > 0 ? '50%' : 0);
@@ -251,7 +250,7 @@
 
                 el.style.height = Math.max(columns[0], columns[1]) + 'px'
             })
-            
+
         },
         tabBar(el) {
             el.parentNode.classList.toggle('expand')
@@ -260,12 +259,14 @@
 
     w.addEventListener('load', function() {
         Blog.fixNavMinH();
+        Blog.waterfall();
         loading.classList.remove('active');
     });
 
     w.addEventListener('resize', function() {
         Blog.fixNavMinH();
         Blog.toggleMenu();
+        Blog.waterfall();
     });
 
     gotop.addEventListener(even, function() {
@@ -294,10 +295,6 @@
 
     if (typeof BLOG_SHARE !== 'undefined') {
         Blog.share();
-    }
-
-    if(!isMD) {
-        Blog.waterfall();
     }
 
     window.Blog = Blog;
