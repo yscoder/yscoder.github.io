@@ -146,6 +146,54 @@
     <ul class="post-list">
     
         <li class="post-list-item">
+            <article id="post-use-queue-solve-continuous-request"
+  class="article-card article-type-post" itemprop="blogPost">
+     
+    <div class="post-meta">
+        <time datetime="2016-10-27T09:21:23.000Z" itemprop="datePublished" class="post-time">
+  Oct 27, 2016
+</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/20161027/use-queue-solve-continuous-request.html">使用“队列”解决“插队”业务场景</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent" >
+
+    
+        为了达到操作变化的实时性，在多选择项的业务场景中，往往点击一次就会发送一次 HTTP 请求。但同时又面临另外一个问题，在连续点击同一个选择项时，就会连续触发针对此项的删除或添加逻辑，进而连续发送 POST 或 DELETE 请求。理想的状态是上一个请求结束后才开始下一个请求，但是网络请求是异步的、请求耗时是不可控的，也就有可能在此项的添加请求未完成前，删除请求先完成了。
+我觉得用“插队”来描述这个场景真是再好不过了。
+    
+    
+        <a href="/20161027/use-queue-solve-continuous-request.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/promise/">promise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/queue/">queue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/request/">request</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item">
             <article id="post-java-webpack-dev-build"
   class="article-card article-type-post" itemprop="blogPost">
      
@@ -180,13 +228,17 @@
 可以使用 webpack 命令打包，或是用 webpack --progress --colors --watch 命令启动监听模式动态构建。
     
     
-        <a href="/20161013/java-webpack-dev-build.html" class="post-more waves-effect waves-button">阅读全文...</a>
+        <a href="/20161013/java-webpack-dev-build.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
     </div>
+    
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/browsersync/">browsersync</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jsp/">jsp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
 
     </div>
+    
 </article>
 
         </li>
@@ -225,13 +277,17 @@
 这个思想同样也可以用在 Canvas 上，只需要为 canvas 元素绑定事件，事件响应时判断当前鼠标位置处于哪个图形之上，执行对应的操作。
     
     
-        <a href="/20160808/canvas-event.html" class="post-more waves-effect waves-button">阅读全文...</a>
+        <a href="/20160808/canvas-event.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
     </div>
+    
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/canvas/">canvas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/event/">event</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li></ul>
 
     </div>
+    
 </article>
 
         </li>
@@ -272,13 +328,17 @@ Vscode 是基于浏览器内核的跨平台编辑器，底层代码大部分都�
 
     
     
-        <a href="/20160726/vscode-extension-qiniu-upload.html" class="post-more waves-effect waves-button">阅读全文...</a>
+        <a href="/20160726/vscode-extension-qiniu-upload.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
     </div>
+    
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VsCode/">VsCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/markdown/">markdown</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/qiniu/">qiniu</a></li></ul>
 
     </div>
+    
 </article>
 
         </li>
@@ -316,13 +376,17 @@ Vscode 是基于浏览器内核的跨平台编辑器，底层代码大部分都�
 我们可利用元素本身特性去做的事并不止于 特性测试。细心一点，你会发现一些元素独一无二的特性可以被巧妙利用来做一些工作。
     
     
-        <a href="/20160715/clever-use-of-elements-feature.html" class="post-more waves-effect waves-button">阅读全文...</a>
+        <a href="/20160715/clever-use-of-elements-feature.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
     </div>
+    
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/element/">element</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/">html</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技巧/">技巧</a></li></ul>
 
     </div>
+    
 </article>
 
         </li>
@@ -365,13 +429,17 @@ deviceorientationwindow.addEventListener('deviceorientation', function(e)&#123; 
 该事件触发频率高，适合对设备旋转精度要求较高的场景或是 3d 场景等，比如上面问题中的平衡球。
     
     
-        <a href="/20160622/screen-rotation-case.html" class="post-more waves-effect waves-button">阅读全文...</a>
+        <a href="/20160622/screen-rotation-case.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
     </div>
+    
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mobile/">mobile</a></li></ul>
 
     </div>
+    
 </article>
 
         </li>
@@ -415,13 +483,17 @@ deviceorientationwindow.addEventListener('deviceorientation', function(e)&#123; 
 接下来通过几个经典的应用案例，带你认知高阶函数。
     
     
-        <a href="/20160530/javascript-advanced-functions.html" class="post-more waves-effect waves-button">阅读全文...</a>
+        <a href="/20160530/javascript-advanced-functions.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
     </div>
+    
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Function/">Function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
 
     </div>
+    
 </article>
 
         </li>
@@ -462,13 +534,17 @@ deviceorientationwindow.addEventListener('deviceorientation', function(e)&#123; 
 序列化站点内容作为数据源，然后自己写查询方法。
     
     
-        <a href="/20160511/hexo-search.html" class="post-more waves-effect waves-button">阅读全文...</a>
+        <a href="/20160511/hexo-search.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
     </div>
+    
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li></ul>
 
     </div>
+    
 </article>
 
         </li>
@@ -505,13 +581,17 @@ deviceorientationwindow.addEventListener('deviceorientation', function(e)&#123; 
         在 Vue 中通常以一个 Vue 实例来表示一个应用，一个应用由若干个组件拼装而成。没错，就像“装机”一样。当你把主板、CPU、显卡、内存、散热器、SSD、电源等摆放到机箱的各个位置后，很明显产生了一个明确的需求：我怎么让这些东西协同工作？回到 Vue 中，处理不同组件之间的数据或状态是一件经常遇到的事。
     
     
-        <a href="/20160503/vue-data-interaction.html" class="post-more waves-effect waves-button">阅读全文...</a>
+        <a href="/20160503/vue-data-interaction.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
     </div>
+    
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vuex/">vuex</a></li></ul>
 
     </div>
+    
 </article>
 
         </li>
@@ -549,61 +629,17 @@ deviceorientationwindow.addEventListener('deviceorientation', function(e)&#123; 
 以下就来说一说这些神奇的黑科技。
     
     
-        <a href="/20160413/one-element-can-do-much.html" class="post-more waves-effect waves-button">阅读全文...</a>
+        <a href="/20160413/one-element-can-do-much.html" class="post-more waves-effect waves-button">
+            阅读全文...
+        </a>
     </div>
+    
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css3/">css3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/">html</a></li></ul>
 
     </div>
-</article>
-
-        </li>
     
-        <li class="post-list-item">
-            <article id="post-css-tips"
-  class="article-card article-type-post" itemprop="blogPost">
-     
-    <div class="post-meta">
-        <time datetime="2016-04-06T09:42:48.000Z" itemprop="datePublished" class="post-time">
-  Apr 6, 2016
-</time>
-
-        
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/20160406/css-tips.html">CSS实用Tips</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent" >
-
-    
-        作为自己做前端开发以来的CSS爬坑总结，内容偏向PC端，不定期补充。只作提示，不深谈。
-盒子模型1、区分content-box和border-box的尺寸计算。
-2、行级元素无宽高，但可设内外边距。
-3、外边距margin可设负值，内边距padding不可以。
-4、当内外边距值为百分比时是相对于元素宽度计算的。
-5、border是个好玩的东西，关键字：css三角形。
-    
-    
-        <a href="/20160406/css-tips.html" class="post-more waves-effect waves-button">阅读全文...</a>
-    </div>
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/css3/">css3</a></li></ul>
-
-    </div>
 </article>
 
         </li>
@@ -666,7 +702,6 @@ var BLOG_SHARE = {
       </li>
     </ul>
  </div>
-
 
 
 

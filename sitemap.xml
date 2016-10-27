@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://imys.net/20161027/use-queue-solve-continuous-request.html</loc>
+    
+    <lastmod>2016-10-27T15:12:05.291Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://imys.net/20161013/java-webpack-dev-build.html</loc>
     
     <lastmod>2016-10-13T13:03:34.212Z</lastmod>
@@ -37,7 +44,14 @@
   </url>
   
   <url>
-    <loc>http://imys.net/tags/index.html</loc>
+    <loc>http://imys.net/about/about.css</loc>
+    
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://imys.net/about/about.js</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     
@@ -58,27 +72,6 @@
   </url>
   
   <url>
-    <loc>http://imys.net/about/index.html</loc>
-    
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://imys.net/about/about.css</loc>
-    
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://imys.net/about/about.js</loc>
-    
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://imys.net/demo/h5.html</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
@@ -93,42 +86,7 @@
   </url>
   
   <url>
-    <loc>http://imys.net/demo/border-1px/index.html</loc>
-    
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://imys.net/20160503/vue-data-interaction.html</loc>
-    
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://imys.net/20160726/vscode-extension-qiniu-upload.html</loc>
-    
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://imys.net/20151022/use-gulp-front-building-exp.html</loc>
-    
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://imys.net/20160316/use-history-pushState.html</loc>
-    
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://imys.net/20150716/ue-shortcut-key.html</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     
@@ -142,7 +100,42 @@
   </url>
   
   <url>
-    <loc>http://imys.net/20150906/text-truncation.html</loc>
+    <loc>http://imys.net/20160726/vscode-extension-qiniu-upload.html</loc>
+    
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://imys.net/demo/border-1px/index.html</loc>
+    
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://imys.net/20160316/use-history-pushState.html</loc>
+    
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://imys.net/20151022/use-gulp-front-building-exp.html</loc>
+    
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://imys.net/20150716/ue-shortcut-key.html</loc>
+    
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://imys.net/20160220/start-linux-on-aliyun.html</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     
@@ -156,7 +149,7 @@
   </url>
   
   <url>
-    <loc>http://imys.net/20150508/javascript-with.html</loc>
+    <loc>http://imys.net/demo/border-1px/1px.css</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     
@@ -177,7 +170,7 @@
   </url>
   
   <url>
-    <loc>http://imys.net/20150407/jquery-anchor-scroll.html</loc>
+    <loc>http://imys.net/20150508/javascript-with.html</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     
@@ -191,6 +184,13 @@
   </url>
   
   <url>
+    <loc>http://imys.net/20150407/jquery-anchor-scroll.html</loc>
+    
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://imys.net/20150428/jquery-delayHover.html</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
@@ -198,14 +198,14 @@
   </url>
   
   <url>
-    <loc>http://imys.net/demo/border-1px/1px.css</loc>
+    <loc>http://imys.net/20150510/jquery-proxy.html</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://imys.net/20150510/jquery-proxy.html</loc>
+    <loc>http://imys.net/tags/index.html</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     
@@ -226,7 +226,7 @@
   </url>
   
   <url>
-    <loc>http://imys.net/20151113/simulation-of-native-radio-checkbox.html</loc>
+    <loc>http://imys.net/about/index.html</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     
@@ -254,6 +254,13 @@
   </url>
   
   <url>
+    <loc>http://imys.net/20150919/nodejs-shell.html</loc>
+    
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://imys.net/20151107/mobile-page-size-and-layout.html</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
@@ -261,7 +268,7 @@
   </url>
   
   <url>
-    <loc>http://imys.net/20150919/nodejs-shell.html</loc>
+    <loc>http://imys.net/20160622/screen-rotation-case.html</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     
@@ -282,13 +289,6 @@
   </url>
   
   <url>
-    <loc>http://imys.net/20160622/screen-rotation-case.html</loc>
-    
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://imys.net/20151023/simple-module-loader.html</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
@@ -296,7 +296,14 @@
   </url>
   
   <url>
-    <loc>http://imys.net/20160220/start-linux-on-aliyun.html</loc>
+    <loc>http://imys.net/20151113/simulation-of-native-radio-checkbox.html</loc>
+    
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://imys.net/20150906/text-truncation.html</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     
@@ -310,14 +317,7 @@
   </url>
   
   <url>
-    <loc>http://imys.net/20160808/canvas-event.html</loc>
-    
-    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://imys.net/20150709/ie-nodisplay-iconfont.html</loc>
+    <loc>http://imys.net/20160530/javascript-advanced-functions.html</loc>
     
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
     
@@ -366,20 +366,6 @@
   </url>
   
   <url>
-    <loc>http://imys.net/20151222/eval-with-new-function.html</loc>
-    
-    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://imys.net/20160530/javascript-advanced-functions.html</loc>
-    
-    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://imys.net/20150908/gulp-ejs-module.html</loc>
     
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
@@ -394,6 +380,20 @@
   </url>
   
   <url>
+    <loc>http://imys.net/20150709/ie-nodisplay-iconfont.html</loc>
+    
+    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://imys.net/20151222/eval-with-new-function.html</loc>
+    
+    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://imys.net/20160207/end-2015.html</loc>
     
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
@@ -401,14 +401,14 @@
   </url>
   
   <url>
-    <loc>http://imys.net/20150629/css3-target-selector.html</loc>
+    <loc>http://imys.net/20150426/css3-selector-multiple-color.html</loc>
     
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://imys.net/20150426/css3-selector-multiple-color.html</loc>
+    <loc>http://imys.net/20150629/css3-target-selector.html</loc>
     
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
     
@@ -444,6 +444,13 @@
   
   <url>
     <loc>http://imys.net/20150722/canvas-annulus-process.html</loc>
+    
+    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://imys.net/20160808/canvas-event.html</loc>
     
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
     

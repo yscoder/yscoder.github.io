@@ -4,6 +4,31 @@
 
     
   <url>
+    <loc>http://imys.net/20161027/use-queue-solve-continuous-request.html</loc>
+    <lastmod>2016-10-27T15:12:05.291Z</lastmod>
+    <data>
+        <display>
+        <title>使用“队列”解决“插队”业务场景</title>
+        <pubTime>2016-10-27T09:21:23.000Z</pubTime>
+        
+        <tag>promise</tag>
+         
+        <tag>request</tag>
+         
+        <tag>HTTP</tag>
+         
+        <tag>queue</tag>
+         
+        <tag>数据结构</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://imys.net/20161013/java-webpack-dev-build.html</loc>
     <lastmod>2016-10-13T13:03:34.212Z</lastmod>
     <data>
@@ -109,8 +134,6 @@
     
     
     
-    
-    
   <url>
     <loc>http://imys.net/20150513/wordpress-to-hexo.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
@@ -132,7 +155,6 @@
     </url>
 
     
-    
   <url>
     <loc>http://imys.net/20160503/vue-data-interaction.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
@@ -151,6 +173,7 @@
     </data>
     </url>
 
+    
     
   <url>
     <loc>http://imys.net/20160726/vscode-extension-qiniu-upload.html</loc>
@@ -173,24 +196,6 @@
     </url>
 
     
-  <url>
-    <loc>http://imys.net/20151022/use-gulp-front-building-exp.html</loc>
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    <data>
-        <display>
-        <title>gulp改善工作流记录</title>
-        <pubTime>2015-10-22T02:37:53.000Z</pubTime>
-        
-        <tag>gulp</tag>
-         
-        <tag>前端构建</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://imys.net/20160316/use-history-pushState.html</loc>
@@ -205,6 +210,25 @@
         <tag>用户体验</tag>
          
         <tag>history</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://imys.net/20151022/use-gulp-front-building-exp.html</loc>
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    <data>
+        <display>
+        <title>gulp改善工作流记录</title>
+        <pubTime>2015-10-22T02:37:53.000Z</pubTime>
+        
+        <tag>gulp</tag>
+         
+        <tag>前端构建</tag>
          
          
            
@@ -234,20 +258,19 @@
     </url>
 
     
-    
   <url>
-    <loc>http://imys.net/20150906/text-truncation.html</loc>
+    <loc>http://imys.net/20160220/start-linux-on-aliyun.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
         <display>
-        <title>前端文字的截断处理</title>
-        <pubTime>2015-09-06T09:37:32.000Z</pubTime>
+        <title>阿里云Linux-Ubuntu折腾记</title>
+        <pubTime>2016-02-20T08:25:34.000Z</pubTime>
         
-        <tag>html</tag>
+        <tag>Nodejs</tag>
          
-        <tag>css</tag>
+        <tag>Linux</tag>
          
-        <tag>ellipsis</tag>
+        <tag>Ubuntu</tag>
          
          
            
@@ -279,22 +302,6 @@
     </url>
 
     
-  <url>
-    <loc>http://imys.net/20150508/javascript-with.html</loc>
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    <data>
-        <display>
-        <title>javascript中with语句用法</title>
-        <pubTime>2015-05-08T03:16:52.000Z</pubTime>
-        
-        <tag>javascript</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://imys.net/20150429/javascript-arguments.html</loc>
@@ -331,14 +338,14 @@
 
     
   <url>
-    <loc>http://imys.net/20150407/jquery-anchor-scroll.html</loc>
+    <loc>http://imys.net/20150508/javascript-with.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
         <display>
-        <title>jQuery实现通用的单页面锚点平滑滚动</title>
-        <pubTime>2015-04-07T05:45:03.000Z</pubTime>
+        <title>javascript中with语句用法</title>
+        <pubTime>2015-05-08T03:16:52.000Z</pubTime>
         
-        <tag>jquery</tag>
+        <tag>javascript</tag>
          
          
            
@@ -367,6 +374,23 @@
 
     
   <url>
+    <loc>http://imys.net/20150407/jquery-anchor-scroll.html</loc>
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    <data>
+        <display>
+        <title>jQuery实现通用的单页面锚点平滑滚动</title>
+        <pubTime>2015-04-07T05:45:03.000Z</pubTime>
+        
+        <tag>jquery</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://imys.net/20150428/jquery-delayHover.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
@@ -385,7 +409,6 @@
     </url>
 
     
-    
   <url>
     <loc>http://imys.net/20150510/jquery-proxy.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
@@ -402,6 +425,7 @@
     </data>
     </url>
 
+    
     
   <url>
     <loc>http://imys.net/20150414/js-copytext.html</loc>
@@ -428,9 +452,9 @@
         <title>require.js入门--用面向对象语言来理解js模块化</title>
         <pubTime>2015-08-07T02:33:25.000Z</pubTime>
         
-        <tag>模块化</tag>
-         
         <tag>javascript</tag>
+         
+        <tag>模块化</tag>
          
         <tag>require.js</tag>
          
@@ -441,28 +465,6 @@
     </url>
 
     
-  <url>
-    <loc>http://imys.net/20151113/simulation-of-native-radio-checkbox.html</loc>
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    <data>
-        <display>
-        <title>优雅的模拟表单元素radio、checkbox</title>
-        <pubTime>2015-11-13T00:51:49.000Z</pubTime>
-        
-        <tag>css</tag>
-         
-        <tag>iconfont</tag>
-         
-        <tag>radio</tag>
-         
-        <tag>checkbox</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://imys.net/20160203/js-promise.html</loc>
@@ -532,6 +534,25 @@
 
     
   <url>
+    <loc>http://imys.net/20150919/nodejs-shell.html</loc>
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    <data>
+        <display>
+        <title>Node.js命令行玩法</title>
+        <pubTime>2015-09-19T12:20:13.000Z</pubTime>
+        
+        <tag>Nodejs</tag>
+         
+        <tag>cmd</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://imys.net/20151107/mobile-page-size-and-layout.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
@@ -559,16 +580,16 @@
 
     
   <url>
-    <loc>http://imys.net/20150919/nodejs-shell.html</loc>
+    <loc>http://imys.net/20160622/screen-rotation-case.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
         <display>
-        <title>Node.js命令行玩法</title>
-        <pubTime>2015-09-19T12:20:13.000Z</pubTime>
+        <title>获取移动设备旋转方向的几个方案</title>
+        <pubTime>2016-06-22T01:02:03.000Z</pubTime>
         
-        <tag>Nodejs</tag>
+        <tag>html5</tag>
          
-        <tag>cmd</tag>
+        <tag>mobile</tag>
          
          
            
@@ -616,25 +637,6 @@
 
     
   <url>
-    <loc>http://imys.net/20160622/screen-rotation-case.html</loc>
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    <data>
-        <display>
-        <title>获取移动设备旋转方向的几个方案</title>
-        <pubTime>2016-06-22T01:02:03.000Z</pubTime>
-        
-        <tag>html5</tag>
-         
-        <tag>mobile</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://imys.net/20151023/simple-module-loader.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
@@ -642,9 +644,9 @@
         <title>实现一个简单的模块加载器</title>
         <pubTime>2015-10-23T12:41:39.000Z</pubTime>
         
-        <tag>模块化</tag>
-         
         <tag>javascript</tag>
+         
+        <tag>模块化</tag>
          
          
            
@@ -654,40 +656,20 @@
 
     
   <url>
-    <loc>http://imys.net/20160220/start-linux-on-aliyun.html</loc>
+    <loc>http://imys.net/20151113/simulation-of-native-radio-checkbox.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
         <display>
-        <title>阿里云Linux-Ubuntu折腾记</title>
-        <pubTime>2016-02-20T08:25:34.000Z</pubTime>
+        <title>优雅的模拟表单元素radio、checkbox</title>
+        <pubTime>2015-11-13T00:51:49.000Z</pubTime>
         
-        <tag>Nodejs</tag>
+        <tag>css</tag>
          
-        <tag>Linux</tag>
+        <tag>iconfont</tag>
          
-        <tag>Ubuntu</tag>
+        <tag>radio</tag>
          
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-    
-  <url>
-    <loc>http://imys.net/20160808/canvas-event.html</loc>
-    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
-    <data>
-        <display>
-        <title>如何为Canvas中特定图形绑定事件？</title>
-        <pubTime>2016-08-08T06:43:38.000Z</pubTime>
-        
-        <tag>canvas</tag>
-         
-        <tag>html5</tag>
-         
-        <tag>event</tag>
+        <tag>checkbox</tag>
          
          
            
@@ -697,14 +679,38 @@
 
     
   <url>
-    <loc>http://imys.net/20150709/ie-nodisplay-iconfont.html</loc>
-    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
+    <loc>http://imys.net/20150906/text-truncation.html</loc>
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
         <display>
-        <title>ie不显示iconfont字体图标</title>
-        <pubTime>2015-07-09T02:12:33.000Z</pubTime>
+        <title>前端文字的截断处理</title>
+        <pubTime>2015-09-06T09:37:32.000Z</pubTime>
         
         <tag>html</tag>
+         
+        <tag>css</tag>
+         
+        <tag>ellipsis</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
+    <loc>http://imys.net/20160530/javascript-advanced-functions.html</loc>
+    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
+    <data>
+        <display>
+        <title>javascript高阶函数介绍</title>
+        <pubTime>2016-05-30T15:02:08.000Z</pubTime>
+        
+        <tag>Function</tag>
+         
+        <tag>javascript</tag>
          
          
            
@@ -826,46 +832,6 @@
 
     
   <url>
-    <loc>http://imys.net/20151222/eval-with-new-function.html</loc>
-    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
-    <data>
-        <display>
-        <title>神奇的eval()与new Function()</title>
-        <pubTime>2015-12-22T05:07:00.000Z</pubTime>
-        
-        <tag>Function</tag>
-         
-        <tag>eval</tag>
-         
-        <tag>javascript</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://imys.net/20160530/javascript-advanced-functions.html</loc>
-    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
-    <data>
-        <display>
-        <title>javascript高阶函数介绍</title>
-        <pubTime>2016-05-30T15:02:08.000Z</pubTime>
-        
-        <tag>Function</tag>
-         
-        <tag>javascript</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://imys.net/20150908/gulp-ejs-module.html</loc>
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
     <data>
@@ -908,6 +874,44 @@
 
     
   <url>
+    <loc>http://imys.net/20150709/ie-nodisplay-iconfont.html</loc>
+    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
+    <data>
+        <display>
+        <title>ie不显示iconfont字体图标</title>
+        <pubTime>2015-07-09T02:12:33.000Z</pubTime>
+        
+        <tag>html</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://imys.net/20151222/eval-with-new-function.html</loc>
+    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
+    <data>
+        <display>
+        <title>神奇的eval()与new Function()</title>
+        <pubTime>2015-12-22T05:07:00.000Z</pubTime>
+        
+        <tag>Function</tag>
+         
+        <tag>eval</tag>
+         
+        <tag>javascript</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://imys.net/20160207/end-2015.html</loc>
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
     <data>
@@ -927,12 +931,12 @@
 
     
   <url>
-    <loc>http://imys.net/20150629/css3-target-selector.html</loc>
+    <loc>http://imys.net/20150426/css3-selector-multiple-color.html</loc>
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
     <data>
         <display>
-        <title>css3选择器(:target)用法</title>
-        <pubTime>2015-06-29T00:57:17.000Z</pubTime>
+        <title>使用css3后代选择器实现多背景色标签样式</title>
+        <pubTime>2015-04-25T19:09:06.000Z</pubTime>
         
         <tag>css3</tag>
          
@@ -944,12 +948,12 @@
 
     
   <url>
-    <loc>http://imys.net/20150426/css3-selector-multiple-color.html</loc>
+    <loc>http://imys.net/20150629/css3-target-selector.html</loc>
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
     <data>
         <display>
-        <title>使用css3后代选择器实现多背景色标签样式</title>
-        <pubTime>2015-04-25T19:09:06.000Z</pubTime>
+        <title>css3选择器(:target)用法</title>
+        <pubTime>2015-06-29T00:57:17.000Z</pubTime>
         
         <tag>css3</tag>
          
@@ -1023,9 +1027,9 @@
         <title>canvas实践--图表组件仪表盘、雷达图</title>
         <pubTime>2015-07-31T01:14:34.000Z</pubTime>
         
-        <tag>canvas</tag>
-         
         <tag>html5</tag>
+         
+        <tag>canvas</tag>
          
         <tag>chart</tag>
          
@@ -1044,11 +1048,32 @@
         <title>Canvas初试--环形进度条的实现</title>
         <pubTime>2015-07-22T00:21:53.000Z</pubTime>
         
-        <tag>canvas</tag>
-         
         <tag>html5</tag>
          
+        <tag>canvas</tag>
+         
         <tag>process</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://imys.net/20160808/canvas-event.html</loc>
+    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
+    <data>
+        <display>
+        <title>如何为Canvas中特定图形绑定事件？</title>
+        <pubTime>2016-08-08T06:43:38.000Z</pubTime>
+        
+        <tag>html5</tag>
+         
+        <tag>canvas</tag>
+         
+        <tag>event</tag>
          
          
            

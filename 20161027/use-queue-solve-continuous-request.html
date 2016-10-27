@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="google-site-verification" content="rlxpN--EBnMOLJnY1efTuwShQId3YX7A6RWkQEr0y9c">
+  
+  <title>使用“队列”解决“插队”业务场景 | Yusen&#39;s Blog | 折腾不在乎成功与否。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="theme-color" content="#3F51B5">
+  
+  
+  <meta name="keywords" content="promise,request,HTTP,queue,数据结构">
+  <meta name="description" content="开发实践中数据结构的应用，使用“队列”解决需要连续请求的业务场景">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用“队列”解决“插队”业务场景">
+<meta property="og:url" content="http://imys.net/20161027/use-queue-solve-continuous-request.html">
+<meta property="og:site_name" content="Yusen's Blog">
+<meta property="og:description" content="开发实践中数据结构的应用，使用“队列”解决需要连续请求的业务场景">
+<meta property="og:updated_time" content="2016-10-27T15:12:05.291Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用“队列”解决“插队”业务场景">
+<meta name="twitter:description" content="开发实践中数据结构的应用，使用“队列”解决需要连续请求的业务场景">
+  
+    <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
+  
+  <meta name="summary" content="&lt;p&gt;为了达到操作变化的实时性，在多选择项的业务场景中，往往点击一次就会发送一次 HTTP 请求。&lt;br&gt;但同时又面临另外一个问题，在连续点击同一个选择项时，就会连续触发针对此项的删除或添加逻辑，进而连续发送 POST 或 DELETE 请求。&lt;br&gt;理想的状态是上一个请求结束后才开始下一个请求，但是网络请求是异步的、请求耗时是不可控的，也就有可能在此项的添加请求未完成前，删除请求先完成了。&lt;/p&gt;
+&lt;p&gt;我觉得用“插队”来描述这个场景真是再好不过了。&lt;br&gt;">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="loading" class="active"></div>
+
+  <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar"><img src="/img/logo.jpg"></a>
+        <hgroup class="introduce">
+          <h5 class="nickname">王昱森</h5>
+          <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                Home
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+      </ul>
+
+      <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>Yusen&#39;s Blog &copy; 2016</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+    </div>
+  </div>
+</aside>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">使用“队列”解决“插队”业务场景</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container">
+        <h1 class="title">使用“队列”解决“插队”业务场景</h1>
+        
+        
+
+    </div>
+
+    
+
+</header>
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#队列"><span class="post-toc-number">1.</span> <span class="post-toc-text">队列</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实践"><span class="post-toc-number">2.</span> <span class="post-toc-text">实践</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-use-queue-solve-continuous-request" 
+  class="post-article article-type-post" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用“队列”解决“插队”业务场景</h1>
+        <div class="post-meta">
+            <time datetime="2016-10-27T09:21:23.000Z" itemprop="datePublished" class="post-time">
+  Oct 27, 2016
+</time>
+
+            
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>为了达到操作变化的实时性，在多选择项的业务场景中，往往点击一次就会发送一次 HTTP 请求。<br>但同时又面临另外一个问题，在连续点击同一个选择项时，就会连续触发针对此项的删除或添加逻辑，进而连续发送 POST 或 DELETE 请求。<br>理想的状态是上一个请求结束后才开始下一个请求，但是网络请求是异步的、请求耗时是不可控的，也就有可能在此项的添加请求未完成前，删除请求先完成了。</p>
+<p>我觉得用“插队”来描述这个场景真是再好不过了。<br><a id="more"></a></p>
+<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><p>既然有人要“插队”，我们就要定义一个规则：<strong>先进先出</strong>。<br>也就是数据结构中的“队列”了。</p>
+<p>javascript 中队列的实现：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 实现1</span></div><div class="line"><span class="keyword">var</span> queue = []</div><div class="line"><span class="comment">// 进队</span></div><div class="line">queue.push(<span class="number">1</span>)</div><div class="line">queue.push(<span class="number">2</span>)</div><div class="line">queue.push(<span class="number">3</span>)</div><div class="line"><span class="comment">// 出队</span></div><div class="line">queue.shift() <span class="comment">// 1</span></div><div class="line">queue.shift() <span class="comment">// 2</span></div><div class="line">queue.shift() <span class="comment">// 3</span></div><div class="line"></div><div class="line"><span class="comment">// 实现2</span></div><div class="line"><span class="keyword">var</span> queue2 = []</div><div class="line"><span class="comment">// 进队</span></div><div class="line">queue2.unshift(<span class="number">1</span>)</div><div class="line">queue2.unshift(<span class="number">2</span>)</div><div class="line">queue2.unshift(<span class="number">3</span>)</div><div class="line"><span class="comment">// 出队</span></div><div class="line">queue2.pop() <span class="comment">// 1</span></div><div class="line">queue2.pop() <span class="comment">// 2</span></div><div class="line">queue2.pop() <span class="comment">// 3</span></div></pre></td></tr></table></figure>
+<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><p>定义一个数组存放每一次点击的 HTTP 请求，此外不管你使用何种开发技术都应该有个发送请求的函数或库，如果是基于 promise 就更好了，这里简单用 XHR 代替。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> requestQueue = []</div><div class="line"><span class="keyword">var</span> XHR = <span class="function"><span class="keyword">function</span>(<span class="params">method, url, param</span>) </span>&#123;&#125;</div></pre></td></tr></table></figure>
+<p>点击操作的入口函数，先创建请求进队。<br>因为第二次请求必须要在第一次请求完成之后，所以只有队列中仅存在一个请求时才去触发更新。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myClick</span>(<span class="params">method, url, param</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> len = requestQueue.push(XHR(method, url, param))</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(len === <span class="number">1</span>) &#123;</div><div class="line">        update()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>执行的永远是队列中的第一个请求。<br>当一个请求完成后，就出队，队列中剩余的请求依次前进一个位置。<br>如果存在未完成的请求，继续调用更新操作。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">update</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    requestQueue[<span class="number">0</span>].then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</div><div class="line">        <span class="comment">// request success</span></div><div class="line">        requestQueue.shift()</div><div class="line">        requestQueue.length &amp;&amp; update()</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+        </div>
+        
+        <blockquote class="post-copyright">
+            <div class="content">
+               转载请注明出处：<a href="/20161027/use-queue-solve-continuous-request.html" target="_blank" rel="external">http://imys.net/20161027/use-queue-solve-continuous-request.html</a>
+            </div>
+            <footer>
+                <a href="http://imys.net">
+                    <img src="/img/logo.jpg" alt="王昱森">
+                    王昱森
+                </a>
+            </footer>
+        </blockquote>
+
+        
+        <div class="post-reward">
+            <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+        </div>
+        
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/promise/">promise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/queue/">queue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/request/">request</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+
+
+            
+            <div class="post-share-wrap">
+                <div class="post-share" id="post-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+                <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+                    <i class="icon icon-share-alt icon-lg"></i>
+                </a>
+            </div>
+            
+
+        </div>
+    </div>   
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/20161013/java-webpack-dev-build.html" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">java项目下基于webpack的前端开发环境构建</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+            
+    
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="use-queue-solve-continuous-request" data-title="使用“队列”解决“插队”业务场景" data-url="http://imys.net/20161027/use-queue-solve-continuous-request.html">
+	</div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"ysblog"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+<script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
+<script>
+window.addEventListener('load', function(){
+
+	this.addEventListener('click', function(e) {
+		if(e.target.className === 'ds-post-button') {
+			postComment(e.target.form)
+			e.preventDefault()
+		}
+	})
+
+	function postComment(form) {
+
+		var message = form.message.value.trim()
+
+		if(!message) {
+			alert('你还没有输入评论！')
+			return
+		}
+
+		if(!DUOSHUO.visitor.data.name) {
+			alert('你还没有登陆！')
+			return
+		}
+
+		DUOSHUO.API.post('posts/create', {
+			message: marked(message).replace(/>\n/g, '>'),
+			thread_id: form.thread_id.value,
+			parent_id: form.parent_id.value,
+			nonce: form.nonce.value,
+			v: DUOSHUO.version
+		}, function(res){
+			if(res.code === 0) {
+				form.message.value = ''
+				if(form.parentNode.classList.contains('ds-inline-replybox')) {
+					form.parentNode.previousElementSibling.querySelector('.ds-post-reply').click()
+				}
+			}
+		})
+	}
+
+})
+</script>
+
+
+
+
+
+</article>
+
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃辣条~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+</div>
+  </main>
+  <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script>
+var BLOG_SHARE = {
+    title: "使用“队列”解决“插队”业务场景",
+    pic: "/img/logo.jpg",
+    summary: document.getElementsByName('summary')[0].content,
+    url: "http://imys.net/20161027/use-queue-solve-continuous-request.html"
+};
+</script>
+<div class="global-share" id="global-share">
+    <div class="tit">分享到：</div>
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
+          豆
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+  <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<script type="text/template" id="search-tpl">
+<li class="item">
+    <a href="/{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</script>
+
+<script src="/js/search.js"></script>
+
+
+
+
+
+<script src="//s95.cnzz.com/z_stat.php?id=1255152447&web_id=1255152447"></script>
+
+
+
+
+
+</body>
+</html>

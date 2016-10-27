@@ -143,7 +143,15 @@
 </header>
 
 <div class="container body-wrap">
-    <article id="post-gulp-ejs-module" 
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#目录结构"><span class="post-toc-number">1.</span> <span class="post-toc-text">目录结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#工作流程"><span class="post-toc-number">2.</span> <span class="post-toc-text">工作流程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#未模块化页面的处理"><span class="post-toc-number">3.</span> <span class="post-toc-text">未模块化页面的处理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#完整Demo"><span class="post-toc-number">4.</span> <span class="post-toc-text">完整Demo</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#写在最后"><span class="post-toc-number">5.</span> <span class="post-toc-text">写在最后</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-gulp-ejs-module" 
   class="post-article article-type-post" itemprop="blogPost">
 
     <div class="post-card">
@@ -318,7 +326,8 @@
     
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="gulp-ejs-module" data-title="使用gulp+ejs模块化html" data-url="http://imys.net/20150908/gulp-ejs-module.html"></div>
+	<div class="ds-thread" data-thread-key="gulp-ejs-module" data-title="使用gulp+ejs模块化html" data-url="http://imys.net/20150908/gulp-ejs-module.html">
+	</div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -326,7 +335,7 @@
 	(function() {
 		var ds = document.createElement('script');
 		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.src = '//static.duoshuo.com/embed.js';
 		ds.charset = 'UTF-8';
 		(document.getElementsByTagName('head')[0] 
 		 || document.getElementsByTagName('body')[0]).appendChild(ds);
@@ -334,6 +343,49 @@
 	</script>
 	<!-- 多说公共JS代码 end -->
 </div>
+<script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
+<script>
+window.addEventListener('load', function(){
+
+	this.addEventListener('click', function(e) {
+		if(e.target.className === 'ds-post-button') {
+			postComment(e.target.form)
+			e.preventDefault()
+		}
+	})
+
+	function postComment(form) {
+
+		var message = form.message.value.trim()
+
+		if(!message) {
+			alert('你还没有输入评论！')
+			return
+		}
+
+		if(!DUOSHUO.visitor.data.name) {
+			alert('你还没有登陆！')
+			return
+		}
+
+		DUOSHUO.API.post('posts/create', {
+			message: marked(message).replace(/>\n/g, '>'),
+			thread_id: form.thread_id.value,
+			parent_id: form.parent_id.value,
+			nonce: form.nonce.value,
+			v: DUOSHUO.version
+		}, function(res){
+			if(res.code === 0) {
+				form.message.value = ''
+				if(form.parentNode.classList.contains('ds-inline-replybox')) {
+					form.parentNode.previousElementSibling.querySelector('.ds-post-reply').click()
+				}
+			}
+		})
+	}
+
+})
+</script>
 
 
 
@@ -341,15 +393,30 @@
 
 </article>
 
-<aside class="post-widget" id="post-widget">
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃辣条~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
 
-    
-    <nav class="post-toc-wrap" id="post-toc">
-        <h4>TOC</h4>
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#目录结构"><span class="post-toc-number">1.</span> <span class="post-toc-text">目录结构</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#工作流程"><span class="post-toc-number">2.</span> <span class="post-toc-text">工作流程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#未模块化页面的处理"><span class="post-toc-number">3.</span> <span class="post-toc-text">未模块化页面的处理</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#完整Demo"><span class="post-toc-number">4.</span> <span class="post-toc-text">完整Demo</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#写在最后"><span class="post-toc-number">5.</span> <span class="post-toc-text">写在最后</span></a></li></ol>
-    </nav>
-    
-</aside>
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
 
 </div>
   </main>
@@ -401,31 +468,6 @@ var BLOG_SHARE = {
  </div>
 
 
-
-
-<div id="reward" class="reward-lay">
-    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
-    <h3 class="reward-title">
-        <i class="icon icon-quote-left"></i>
-        请我吃辣条~
-        <i class="icon icon-quote-right"></i>
-    </h3>
-    <ul class="reward-items">
-        
-        <li>
-            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
-            <p>微信</p>
-        </li>
-        
-
-        
-        <li>
-            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
-            <p>支付宝</p>
-        </li>
-        
-    </ul>
-</div>
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 

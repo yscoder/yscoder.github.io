@@ -145,7 +145,15 @@
 </header>
 
 <div class="container body-wrap">
-    <article id="post-download-music-by-nodejs" 
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#搜索"><span class="post-toc-number">1.</span> <span class="post-toc-text">搜索</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#模版"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">模版</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#路由"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">路由</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实现"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">实现</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#下载"><span class="post-toc-number">2.</span> <span class="post-toc-text">下载</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#成果展示"><span class="post-toc-number">3.</span> <span class="post-toc-text">成果展示</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#截图"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">截图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Code"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">Code</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-download-music-by-nodejs" 
   class="post-article article-type-post" itemprop="blogPost">
 
     <div class="post-card">
@@ -309,7 +317,8 @@
     
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="download-music-by-nodejs" data-title="写一个歌曲下载工具" data-url="http://imys.net/20160215/download-music-by-nodejs.html"></div>
+	<div class="ds-thread" data-thread-key="download-music-by-nodejs" data-title="写一个歌曲下载工具" data-url="http://imys.net/20160215/download-music-by-nodejs.html">
+	</div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -317,7 +326,7 @@
 	(function() {
 		var ds = document.createElement('script');
 		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.src = '//static.duoshuo.com/embed.js';
 		ds.charset = 'UTF-8';
 		(document.getElementsByTagName('head')[0] 
 		 || document.getElementsByTagName('body')[0]).appendChild(ds);
@@ -325,6 +334,49 @@
 	</script>
 	<!-- 多说公共JS代码 end -->
 </div>
+<script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
+<script>
+window.addEventListener('load', function(){
+
+	this.addEventListener('click', function(e) {
+		if(e.target.className === 'ds-post-button') {
+			postComment(e.target.form)
+			e.preventDefault()
+		}
+	})
+
+	function postComment(form) {
+
+		var message = form.message.value.trim()
+
+		if(!message) {
+			alert('你还没有输入评论！')
+			return
+		}
+
+		if(!DUOSHUO.visitor.data.name) {
+			alert('你还没有登陆！')
+			return
+		}
+
+		DUOSHUO.API.post('posts/create', {
+			message: marked(message).replace(/>\n/g, '>'),
+			thread_id: form.thread_id.value,
+			parent_id: form.parent_id.value,
+			nonce: form.nonce.value,
+			v: DUOSHUO.version
+		}, function(res){
+			if(res.code === 0) {
+				form.message.value = ''
+				if(form.parentNode.classList.contains('ds-inline-replybox')) {
+					form.parentNode.previousElementSibling.querySelector('.ds-post-reply').click()
+				}
+			}
+		})
+	}
+
+})
+</script>
 
 
 
@@ -332,15 +384,30 @@
 
 </article>
 
-<aside class="post-widget" id="post-widget">
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃辣条~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
 
-    
-    <nav class="post-toc-wrap" id="post-toc">
-        <h4>TOC</h4>
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#搜索"><span class="post-toc-number">1.</span> <span class="post-toc-text">搜索</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#模版"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">模版</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#路由"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">路由</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实现"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">实现</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#下载"><span class="post-toc-number">2.</span> <span class="post-toc-text">下载</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#成果展示"><span class="post-toc-number">3.</span> <span class="post-toc-text">成果展示</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#截图"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">截图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Code"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">Code</span></a></li></ol></li></ol>
-    </nav>
-    
-</aside>
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
 
 </div>
   </main>
@@ -392,31 +459,6 @@ var BLOG_SHARE = {
  </div>
 
 
-
-
-<div id="reward" class="reward-lay">
-    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
-    <h3 class="reward-title">
-        <i class="icon icon-quote-left"></i>
-        请我吃辣条~
-        <i class="icon icon-quote-right"></i>
-    </h3>
-    <ul class="reward-items">
-        
-        <li>
-            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
-            <p>微信</p>
-        </li>
-        
-
-        
-        <li>
-            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
-            <p>支付宝</p>
-        </li>
-        
-    </ul>
-</div>
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 

@@ -137,7 +137,15 @@
 </header>
 
 <div class="container body-wrap">
-    <article id="post-wordpress-to-hexo" 
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Hexo3本地部署"><span class="post-toc-number">1.</span> <span class="post-toc-text">Hexo3本地部署</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参考"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">参考</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Hexo无法解析模板文件"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Hexo无法解析模板文件</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#上传到GitCafe"><span class="post-toc-number">2.</span> <span class="post-toc-text">上传到GitCafe</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#生成SSH"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">生成SSH</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置git"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">设置git</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置本地gitcafe-pages版本库"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">设置本地gitcafe-pages版本库</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#上传到gitcafe"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">上传到gitcafe</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#WordPress文章迁移"><span class="post-toc-number">3.</span> <span class="post-toc-text">WordPress文章迁移</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Hexo配置优化"><span class="post-toc-number">4.</span> <span class="post-toc-text">Hexo配置优化</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参考-1"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">参考</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#无法开启RSS和sitemap"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">无法开启RSS和sitemap</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-wordpress-to-hexo" 
   class="post-article article-type-post" itemprop="blogPost">
 
     <div class="post-card">
@@ -336,7 +344,8 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="wordpress-to-hexo" data-title="博客搬迁记 - 从WordPress到Hexo" data-url="http://imys.net/20150513/wordpress-to-hexo.html"></div>
+	<div class="ds-thread" data-thread-key="wordpress-to-hexo" data-title="博客搬迁记 - 从WordPress到Hexo" data-url="http://imys.net/20150513/wordpress-to-hexo.html">
+	</div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -344,7 +353,7 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
 	(function() {
 		var ds = document.createElement('script');
 		ds.type = 'text/javascript';ds.async = true;
-		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.src = '//static.duoshuo.com/embed.js';
 		ds.charset = 'UTF-8';
 		(document.getElementsByTagName('head')[0] 
 		 || document.getElementsByTagName('body')[0]).appendChild(ds);
@@ -352,6 +361,49 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
 	</script>
 	<!-- 多说公共JS代码 end -->
 </div>
+<script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
+<script>
+window.addEventListener('load', function(){
+
+	this.addEventListener('click', function(e) {
+		if(e.target.className === 'ds-post-button') {
+			postComment(e.target.form)
+			e.preventDefault()
+		}
+	})
+
+	function postComment(form) {
+
+		var message = form.message.value.trim()
+
+		if(!message) {
+			alert('你还没有输入评论！')
+			return
+		}
+
+		if(!DUOSHUO.visitor.data.name) {
+			alert('你还没有登陆！')
+			return
+		}
+
+		DUOSHUO.API.post('posts/create', {
+			message: marked(message).replace(/>\n/g, '>'),
+			thread_id: form.thread_id.value,
+			parent_id: form.parent_id.value,
+			nonce: form.nonce.value,
+			v: DUOSHUO.version
+		}, function(res){
+			if(res.code === 0) {
+				form.message.value = ''
+				if(form.parentNode.classList.contains('ds-inline-replybox')) {
+					form.parentNode.previousElementSibling.querySelector('.ds-post-reply').click()
+				}
+			}
+		})
+	}
+
+})
+</script>
 
 
 
@@ -359,15 +411,30 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
 
 </article>
 
-<aside class="post-widget" id="post-widget">
+<div id="reward" class="reward-lay">
+    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃辣条~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
 
-    
-    <nav class="post-toc-wrap" id="post-toc">
-        <h4>TOC</h4>
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Hexo3本地部署"><span class="post-toc-number">1.</span> <span class="post-toc-text">Hexo3本地部署</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参考"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">参考</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Hexo无法解析模板文件"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Hexo无法解析模板文件</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#上传到GitCafe"><span class="post-toc-number">2.</span> <span class="post-toc-text">上传到GitCafe</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#生成SSH"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">生成SSH</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置git"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">设置git</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#设置本地gitcafe-pages版本库"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">设置本地gitcafe-pages版本库</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#上传到gitcafe"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">上传到gitcafe</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#WordPress文章迁移"><span class="post-toc-number">3.</span> <span class="post-toc-text">WordPress文章迁移</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Hexo配置优化"><span class="post-toc-number">4.</span> <span class="post-toc-text">Hexo配置优化</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参考-1"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">参考</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#无法开启RSS和sitemap"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">无法开启RSS和sitemap</span></a></li></ol></li></ol>
-    </nav>
-    
-</aside>
+        
+        <li>
+            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
 
 </div>
   </main>
@@ -419,31 +486,6 @@ var BLOG_SHARE = {
  </div>
 
 
-
-
-<div id="reward" class="reward-lay">
-    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
-    <h3 class="reward-title">
-        <i class="icon icon-quote-left"></i>
-        请我吃辣条~
-        <i class="icon icon-quote-right"></i>
-    </h3>
-    <ul class="reward-items">
-        
-        <li>
-            <img src="/img/wechat.jpg" title="微信打赏二维码" alt="微信打赏二维码">
-            <p>微信</p>
-        </li>
-        
-
-        
-        <li>
-            <img src="/img/alipay.jpg" title="支付宝打赏二维码" alt="支付宝打赏二维码">
-            <p>支付宝</p>
-        </li>
-        
-    </ul>
-</div>
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
 
