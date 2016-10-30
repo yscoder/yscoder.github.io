@@ -2,7 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="google-site-verification" content="rlxpN--EBnMOLJnY1efTuwShQId3YX7A6RWkQEr0y9c">
+  
+  
   
   <title>阿里云搭建Git服务，实现Hexo自动部署 | Yusen&#39;s Blog | 折腾不在乎成功与否。</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -32,7 +33,7 @@
 &lt;p&gt;这需要在服务器上建立一个 Git 远程仓库，和一个用于获取更新（git pull）的本地仓库。&lt;/p&gt;
 &lt;p&gt;远程仓库：最原始的版本库，所有的本地仓库就可以克隆这个仓库。就像你在 Github 创建一个项目，这就是一个远程仓库。&lt;br&gt;本地仓库：这个就是平常的工作目录，容易理解。&lt;br&gt;">
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/style.css?v=1.1.4">
 </head>
 
 <body>
@@ -140,6 +141,7 @@
     
 
 </header>
+
 
 <div class="container body-wrap">
     
@@ -365,68 +367,13 @@ git push origin master
             
     
 <div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="hexo-nginx-auto-deploy" data-title="阿里云搭建Git服务，实现Hexo自动部署" data-url="http://imys.net/20160303/hexo-nginx-auto-deploy.html">
-	</div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"ysblog"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
+	<div class="ds-thread" data-thread-key="hexo-nginx-auto-deploy" data-title="阿里云搭建Git服务，实现Hexo自动部署" data-url="http://imys.net/20160303/hexo-nginx-auto-deploy.html"></div>
 </div>
+<script src="/js/embed.min.js?v=1.1.4"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
-window.addEventListener('load', function(){
-
-	this.addEventListener('click', function(e) {
-		if(e.target.className === 'ds-post-button') {
-			postComment(e.target.form)
-			e.preventDefault()
-		}
-	})
-
-	function postComment(form) {
-
-		var message = form.message.value.trim()
-
-		if(!message) {
-			alert('你还没有输入评论！')
-			return
-		}
-
-		if(!DUOSHUO.visitor.data.name) {
-			alert('你还没有登陆！')
-			return
-		}
-
-		DUOSHUO.API.post('posts/create', {
-			message: marked(message).replace(/>\n/g, '>'),
-			thread_id: form.thread_id.value,
-			parent_id: form.parent_id.value,
-			nonce: form.nonce.value,
-			v: DUOSHUO.version
-		}, function(res){
-			if(res.code === 0) {
-				form.message.value = ''
-				if(form.parentNode.classList.contains('ds-inline-replybox')) {
-					form.parentNode.previousElementSibling.querySelector('.ds-post-reply').click()
-				}
-			}
-		})
-	}
-
-})
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
 </script>
-
 
 
 
@@ -508,17 +455,15 @@ var BLOG_SHARE = {
  </div>
 
 
-
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-
-<script src="/js/main.js"></script>
+<script src="/js/main.min.js?v=1.1.4"></script>
 
 
 
 <div class="search-panel" id="search-panel">
     <ul class="search-result" id="search-result"></ul>
 </div>
-<script type="text/template" id="search-tpl">
+<template id="search-tpl">
 <li class="item">
     <a href="/{path}" class="waves-block waves-effect">
         <div class="title ellipsis" title="{title}">{title}</div>
@@ -530,9 +475,9 @@ var BLOG_SHARE = {
         </div>
     </a>
 </li>
-</script>
+</template>
 
-<script src="/js/search.js"></script>
+<script src="/js/search.min.js?v=1.1.4"></script>
 
 
 

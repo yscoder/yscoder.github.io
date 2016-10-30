@@ -719,9 +719,9 @@
     
       <category term="html5" scheme="http://imys.net/tags/html5/"/>
     
-      <category term="history" scheme="http://imys.net/tags/history/"/>
-    
       <category term="用户体验" scheme="http://imys.net/tags/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C/"/>
+    
+      <category term="history" scheme="http://imys.net/tags/history/"/>
     
   </entry>
   
@@ -1637,9 +1637,9 @@ git push origin master
     </summary>
     
     
-      <category term="模块化" scheme="http://imys.net/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
-    
       <category term="javascript" scheme="http://imys.net/tags/javascript/"/>
+    
+      <category term="模块化" scheme="http://imys.net/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
     
   </entry>
   
@@ -2036,9 +2036,9 @@ package.json
     </summary>
     
     
-      <category term="模块化" scheme="http://imys.net/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
-    
       <category term="javascript" scheme="http://imys.net/tags/javascript/"/>
+    
+      <category term="模块化" scheme="http://imys.net/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
     
       <category term="require.js" scheme="http://imys.net/tags/require-js/"/>
     
@@ -2248,9 +2248,9 @@ package.json
     </summary>
     
     
-      <category term="用户体验" scheme="http://imys.net/tags/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C/"/>
-    
       <category term="WEB" scheme="http://imys.net/tags/WEB/"/>
+    
+      <category term="用户体验" scheme="http://imys.net/tags/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C/"/>
     
       <category term="快捷键" scheme="http://imys.net/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
     

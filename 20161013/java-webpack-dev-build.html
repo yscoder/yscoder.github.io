@@ -2,7 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="google-site-verification" content="rlxpN--EBnMOLJnY1efTuwShQId3YX7A6RWkQEr0y9c">
+  
+  
   
   <title>java项目下基于webpack的前端开发环境构建 | Yusen&#39;s Blog | 折腾不在乎成功与否。</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -29,7 +30,7 @@
 &lt;p&gt;项目入口是一个 jsp 页面，其中引用了一些 jsp 模版。我想是因为有一些内容需要后端直出到页面上。&lt;br&gt;该页面上固定引用了 webpack 打包好的 css 及 js 文件路径，当然也加了动态参数用于刷新版本更新后的客户端缓存。&lt;/p&gt;
 &lt;p&gt;可以使用 &lt;code&gt;webpack&lt;/code&gt; 命令打包，或是用 &lt;code&gt;webpack --progress --colors --watch&lt;/code&gt; 命令启动监听模式动态构建。&lt;br&gt;">
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/style.css?v=1.1.4">
 </head>
 
 <body>
@@ -137,6 +138,7 @@
     
 
 </header>
+
 
 <div class="container body-wrap">
     
@@ -280,68 +282,13 @@
             
     
 <div class="duoshuo">
-	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="java-webpack-dev-build" data-title="java项目下基于webpack的前端开发环境构建" data-url="http://imys.net/20161013/java-webpack-dev-build.html">
-	</div>
-	<!-- 多说评论框 end -->
-	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-	<script type="text/javascript">
-	var duoshuoQuery = {short_name:"ysblog"};
-	(function() {
-		var ds = document.createElement('script');
-		ds.type = 'text/javascript';ds.async = true;
-		ds.src = '//static.duoshuo.com/embed.js';
-		ds.charset = 'UTF-8';
-		(document.getElementsByTagName('head')[0] 
-		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-	})();
-	</script>
-	<!-- 多说公共JS代码 end -->
+	<div class="ds-thread" data-thread-key="java-webpack-dev-build" data-title="java项目下基于webpack的前端开发环境构建" data-url="http://imys.net/20161013/java-webpack-dev-build.html"></div>
 </div>
+<script src="/js/embed.min.js?v=1.1.4"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
-window.addEventListener('load', function(){
-
-	this.addEventListener('click', function(e) {
-		if(e.target.className === 'ds-post-button') {
-			postComment(e.target.form)
-			e.preventDefault()
-		}
-	})
-
-	function postComment(form) {
-
-		var message = form.message.value.trim()
-
-		if(!message) {
-			alert('你还没有输入评论！')
-			return
-		}
-
-		if(!DUOSHUO.visitor.data.name) {
-			alert('你还没有登陆！')
-			return
-		}
-
-		DUOSHUO.API.post('posts/create', {
-			message: marked(message).replace(/>\n/g, '>'),
-			thread_id: form.thread_id.value,
-			parent_id: form.parent_id.value,
-			nonce: form.nonce.value,
-			v: DUOSHUO.version
-		}, function(res){
-			if(res.code === 0) {
-				form.message.value = ''
-				if(form.parentNode.classList.contains('ds-inline-replybox')) {
-					form.parentNode.previousElementSibling.querySelector('.ds-post-reply').click()
-				}
-			}
-		})
-	}
-
-})
+var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
 </script>
-
 
 
 
@@ -423,17 +370,15 @@ var BLOG_SHARE = {
  </div>
 
 
-
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-
-<script src="/js/main.js"></script>
+<script src="/js/main.min.js?v=1.1.4"></script>
 
 
 
 <div class="search-panel" id="search-panel">
     <ul class="search-result" id="search-result"></ul>
 </div>
-<script type="text/template" id="search-tpl">
+<template id="search-tpl">
 <li class="item">
     <a href="/{path}" class="waves-block waves-effect">
         <div class="title ellipsis" title="{title}">{title}</div>
@@ -445,9 +390,9 @@ var BLOG_SHARE = {
         </div>
     </a>
 </li>
-</script>
+</template>
 
-<script src="/js/search.js"></script>
+<script src="/js/search.min.js?v=1.1.4"></script>
 
 
 
