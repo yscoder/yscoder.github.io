@@ -16,7 +16,7 @@
         function tag(fName, name) {
             return '<span class="ds-env-tag '+ name +'" data-title="'+ fName +'">'+ name +'</span>'
         }
-        return tag(info.device.name + ' ' + info.device.fullVersion, info.device.name) + tag(os.replace('macosx', 'OSX'), info.os.name) + tag(info.browser.name + ' ' + info.browser.fullVersion, info.browser.name)
+        return tag(info.device.name + ' ' + info.device.fullVersion, info.device.name) + tag(os.replace('macosx', 'OSX'), info.os.name.replace('macosx', 'OSX')) + tag(info.browser.name + ' ' + info.browser.fullVersion, info.browser.name)
     }
     function a() {
         return c.short_name ? g + "//" + c.short_name + "." + S.DOMAIN : S.REMOTE

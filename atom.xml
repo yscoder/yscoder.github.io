@@ -136,9 +136,9 @@
     </summary>
     
     
-      <category term="canvas" scheme="http://imys.net/tags/canvas/"/>
-    
       <category term="html5" scheme="http://imys.net/tags/html5/"/>
+    
+      <category term="canvas" scheme="http://imys.net/tags/canvas/"/>
     
       <category term="event" scheme="http://imys.net/tags/event/"/>
     
@@ -627,11 +627,11 @@
     </summary>
     
     
-      <category term="html" scheme="http://imys.net/tags/html/"/>
-    
       <category term="css" scheme="http://imys.net/tags/css/"/>
     
       <category term="css3" scheme="http://imys.net/tags/css3/"/>
+    
+      <category term="html" scheme="http://imys.net/tags/html/"/>
     
   </entry>
   
@@ -1930,9 +1930,9 @@ package.json
     </summary>
     
     
-      <category term="html" scheme="http://imys.net/tags/html/"/>
-    
       <category term="css" scheme="http://imys.net/tags/css/"/>
+    
+      <category term="html" scheme="http://imys.net/tags/html/"/>
     
       <category term="ellipsis" scheme="http://imys.net/tags/ellipsis/"/>
     
@@ -2109,9 +2109,9 @@ package.json
     </summary>
     
     
-      <category term="canvas" scheme="http://imys.net/tags/canvas/"/>
-    
       <category term="html5" scheme="http://imys.net/tags/html5/"/>
+    
+      <category term="canvas" scheme="http://imys.net/tags/canvas/"/>
     
       <category term="chart" scheme="http://imys.net/tags/chart/"/>
     
@@ -2192,9 +2192,9 @@ package.json
     </summary>
     
     
-      <category term="canvas" scheme="http://imys.net/tags/canvas/"/>
-    
       <category term="html5" scheme="http://imys.net/tags/html5/"/>
+    
+      <category term="canvas" scheme="http://imys.net/tags/canvas/"/>
     
       <category term="process" scheme="http://imys.net/tags/process/"/>
     

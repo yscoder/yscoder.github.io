@@ -111,20 +111,16 @@
 
     
   <url>
-    <loc>http://imys.net/20160203/js-promise.html</loc>
+    <loc>http://imys.net/20150615/js-page-visible.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
         <display>
-        <title>我刚知道的 Promise</title>
-        <pubTime>2016-02-03T03:19:47.000Z</pubTime>
+        <title>HTML5页面可见性改变事件</title>
+        <pubTime>2015-06-15T03:01:53.000Z</pubTime>
         
+        <tag>html5</tag>
+         
         <tag>javascript</tag>
-         
-        <tag>es6</tag>
-         
-        <tag>promise</tag>
-         
-        <tag>async</tag>
          
          
            
@@ -159,6 +155,7 @@
     </data>
     </url>
 
+    
     
   <url>
     <loc>http://imys.net/20160503/vue-data-interaction.html</loc>
@@ -200,6 +197,7 @@
     </url>
 
     
+    
   <url>
     <loc>http://imys.net/20160316/use-history-pushState.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
@@ -221,7 +219,6 @@
     </url>
 
     
-    
   <url>
     <loc>http://imys.net/20151022/use-gulp-front-building-exp.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
@@ -240,28 +237,6 @@
     </data>
     </url>
 
-    
-  <url>
-    <loc>http://imys.net/20160220/start-linux-on-aliyun.html</loc>
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    <data>
-        <display>
-        <title>阿里云Linux-Ubuntu折腾记</title>
-        <pubTime>2016-02-20T08:25:34.000Z</pubTime>
-        
-        <tag>Nodejs</tag>
-         
-        <tag>Linux</tag>
-         
-        <tag>Ubuntu</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
     
   <url>
     <loc>http://imys.net/20150716/ue-shortcut-key.html</loc>
@@ -284,6 +259,28 @@
     </url>
 
     
+    
+  <url>
+    <loc>http://imys.net/20150906/text-truncation.html</loc>
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    <data>
+        <display>
+        <title>前端文字的截断处理</title>
+        <pubTime>2015-09-06T09:37:32.000Z</pubTime>
+        
+        <tag>css</tag>
+         
+        <tag>html</tag>
+         
+        <tag>ellipsis</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
   <url>
     <loc>http://imys.net/20150429/javascript-arguments.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
@@ -291,6 +288,23 @@
         <display>
         <title>javascript之arguments对象</title>
         <pubTime>2015-04-29T03:55:20.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://imys.net/20150508/javascript-with.html</loc>
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    <data>
+        <display>
+        <title>javascript中with语句用法</title>
+        <pubTime>2015-05-08T03:16:52.000Z</pubTime>
         
         <tag>javascript</tag>
          
@@ -319,40 +333,6 @@
 
     
   <url>
-    <loc>http://imys.net/20150508/javascript-with.html</loc>
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    <data>
-        <display>
-        <title>javascript中with语句用法</title>
-        <pubTime>2015-05-08T03:16:52.000Z</pubTime>
-        
-        <tag>javascript</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://imys.net/20150407/jquery-anchor-scroll.html</loc>
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    <data>
-        <display>
-        <title>jQuery实现通用的单页面锚点平滑滚动</title>
-        <pubTime>2015-04-07T05:45:03.000Z</pubTime>
-        
-        <tag>jquery</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://imys.net/20150507/jqplugin-uploadpreview.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
@@ -372,31 +352,12 @@
 
     
   <url>
-    <loc>http://imys.net/20151023/simple-module-loader.html</loc>
+    <loc>http://imys.net/20150407/jquery-anchor-scroll.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
         <display>
-        <title>实现一个简单的模块加载器</title>
-        <pubTime>2015-10-23T12:41:39.000Z</pubTime>
-        
-        <tag>javascript</tag>
-         
-        <tag>模块化</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://imys.net/20150510/jquery-proxy.html</loc>
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    <data>
-        <display>
-        <title>jQuery.proxy方法原理与使用</title>
-        <pubTime>2015-05-09T16:25:13.000Z</pubTime>
+        <title>jQuery实现通用的单页面锚点平滑滚动</title>
+        <pubTime>2015-04-07T05:45:03.000Z</pubTime>
         
         <tag>jquery</tag>
          
@@ -427,6 +388,41 @@
 
     
   <url>
+    <loc>http://imys.net/20150510/jquery-proxy.html</loc>
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    <data>
+        <display>
+        <title>jQuery.proxy方法原理与使用</title>
+        <pubTime>2015-05-09T16:25:13.000Z</pubTime>
+        
+        <tag>jquery</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
+    <loc>http://imys.net/20150414/js-copytext.html</loc>
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    <data>
+        <display>
+        <title>js文本复制全兼容实例</title>
+        <pubTime>2015-04-14T06:00:45.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://imys.net/20150807/js-module-requirejs.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
@@ -448,53 +444,18 @@
 
     
   <url>
-    <loc>http://imys.net/20150414/js-copytext.html</loc>
+    <loc>http://imys.net/20160220/start-linux-on-aliyun.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
         <display>
-        <title>js文本复制全兼容实例</title>
-        <pubTime>2015-04-14T06:00:45.000Z</pubTime>
-        
-        <tag>javascript</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://imys.net/20150615/js-page-visible.html</loc>
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    <data>
-        <display>
-        <title>HTML5页面可见性改变事件</title>
-        <pubTime>2015-06-15T03:01:53.000Z</pubTime>
-        
-        <tag>html5</tag>
-         
-        <tag>javascript</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-    
-  <url>
-    <loc>http://imys.net/20150919/nodejs-shell.html</loc>
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    <data>
-        <display>
-        <title>Node.js命令行玩法</title>
-        <pubTime>2015-09-19T12:20:13.000Z</pubTime>
+        <title>阿里云Linux-Ubuntu折腾记</title>
+        <pubTime>2016-02-20T08:25:34.000Z</pubTime>
         
         <tag>Nodejs</tag>
          
-        <tag>cmd</tag>
+        <tag>Linux</tag>
+         
+        <tag>Ubuntu</tag>
          
          
            
@@ -504,14 +465,20 @@
 
     
   <url>
-    <loc>http://imys.net/20150424/js-simple-condition.html</loc>
+    <loc>http://imys.net/20160203/js-promise.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
         <display>
-        <title>使用逻辑运算符 || && 简化javascript中if else选择结构</title>
-        <pubTime>2015-04-24T03:49:30.000Z</pubTime>
+        <title>我刚知道的 Promise</title>
+        <pubTime>2016-02-03T03:19:47.000Z</pubTime>
         
         <tag>javascript</tag>
+         
+        <tag>es6</tag>
+         
+        <tag>promise</tag>
+         
+        <tag>async</tag>
          
          
            
@@ -519,7 +486,6 @@
     </data>
     </url>
 
-    
     
   <url>
     <loc>http://imys.net/20160127/mobile-1px.html</loc>
@@ -549,18 +515,14 @@
 
     
   <url>
-    <loc>http://imys.net/20160413/one-element-can-do-much.html</loc>
+    <loc>http://imys.net/20150424/js-simple-condition.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
         <display>
-        <title>一个HTML元素可以做什么？</title>
-        <pubTime>2016-04-13T08:37:53.000Z</pubTime>
+        <title>使用逻辑运算符 || && 简化javascript中if else选择结构</title>
+        <pubTime>2015-04-24T03:49:30.000Z</pubTime>
         
-        <tag>html</tag>
-         
-        <tag>css</tag>
-         
-        <tag>css3</tag>
+        <tag>javascript</tag>
          
          
            
@@ -588,6 +550,46 @@
         <tag>vw</tag>
          
         <tag>flex</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://imys.net/20150919/nodejs-shell.html</loc>
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    <data>
+        <display>
+        <title>Node.js命令行玩法</title>
+        <pubTime>2015-09-19T12:20:13.000Z</pubTime>
+        
+        <tag>Nodejs</tag>
+         
+        <tag>cmd</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://imys.net/20160413/one-element-can-do-much.html</loc>
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    <data>
+        <display>
+        <title>一个HTML元素可以做什么？</title>
+        <pubTime>2016-04-13T08:37:53.000Z</pubTime>
+        
+        <tag>css</tag>
+         
+        <tag>css3</tag>
+         
+        <tag>html</tag>
          
          
            
@@ -656,6 +658,25 @@
 
     
   <url>
+    <loc>http://imys.net/20151023/simple-module-loader.html</loc>
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    <data>
+        <display>
+        <title>实现一个简单的模块加载器</title>
+        <pubTime>2015-10-23T12:41:39.000Z</pubTime>
+        
+        <tag>javascript</tag>
+         
+        <tag>模块化</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://imys.net/20151231/simulation-of-wheelview-selector.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
@@ -678,39 +699,20 @@
     </url>
 
     
-  <url>
-    <loc>http://imys.net/20150906/text-truncation.html</loc>
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    <data>
-        <display>
-        <title>前端文字的截断处理</title>
-        <pubTime>2015-09-06T09:37:32.000Z</pubTime>
-        
-        <tag>html</tag>
-         
-        <tag>css</tag>
-         
-        <tag>ellipsis</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
     
   <url>
-    <loc>http://imys.net/20160530/javascript-advanced-functions.html</loc>
+    <loc>http://imys.net/20150722/canvas-annulus-process.html</loc>
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
     <data>
         <display>
-        <title>javascript高阶函数介绍</title>
-        <pubTime>2016-05-30T15:02:08.000Z</pubTime>
+        <title>Canvas初试--环形进度条的实现</title>
+        <pubTime>2015-07-22T00:21:53.000Z</pubTime>
         
-        <tag>Function</tag>
+        <tag>html5</tag>
          
-        <tag>javascript</tag>
+        <tag>canvas</tag>
+         
+        <tag>process</tag>
          
          
            
@@ -728,6 +730,23 @@
         <pubTime>2015-12-23T05:47:34.000Z</pubTime>
         
         <tag>iconfont</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://imys.net/20150709/ie-nodisplay-iconfont.html</loc>
+    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
+    <data>
+        <display>
+        <title>ie不显示iconfont字体图标</title>
+        <pubTime>2015-07-09T02:12:33.000Z</pubTime>
+        
+        <tag>html</tag>
          
          
            
@@ -794,25 +813,6 @@
 
     
   <url>
-    <loc>http://imys.net/20150902/h5-upload-progress.html</loc>
-    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
-    <data>
-        <display>
-        <title>html5上传进度实现</title>
-        <pubTime>2015-09-02T08:26:13.000Z</pubTime>
-        
-        <tag>html5</tag>
-         
-        <tag>文件上传</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://imys.net/20160118/hexo-blog-update-log.html</loc>
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
     <data>
@@ -823,6 +823,25 @@
         <tag>Hexo</tag>
          
         <tag>material</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://imys.net/20150902/h5-upload-progress.html</loc>
+    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
+    <data>
+        <display>
+        <title>html5上传进度实现</title>
+        <pubTime>2015-09-02T08:26:13.000Z</pubTime>
+        
+        <tag>html5</tag>
+         
+        <tag>文件上传</tag>
          
          
            
@@ -853,33 +872,16 @@
 
     
   <url>
-    <loc>http://imys.net/20160207/end-2015.html</loc>
+    <loc>http://imys.net/20160530/javascript-advanced-functions.html</loc>
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
     <data>
         <display>
-        <title>我为什么选择了前端？</title>
-        <pubTime>2016-02-07T05:43:14.000Z</pubTime>
+        <title>javascript高阶函数介绍</title>
+        <pubTime>2016-05-30T15:02:08.000Z</pubTime>
         
-        <tag>前端</tag>
+        <tag>Function</tag>
          
-        <tag>面试</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://imys.net/20150709/ie-nodisplay-iconfont.html</loc>
-    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
-    <data>
-        <display>
-        <title>ie不显示iconfont字体图标</title>
-        <pubTime>2015-07-09T02:12:33.000Z</pubTime>
-        
-        <tag>html</tag>
+        <tag>javascript</tag>
          
          
            
@@ -910,18 +912,16 @@
 
     
   <url>
-    <loc>http://imys.net/20160215/download-music-by-nodejs.html</loc>
+    <loc>http://imys.net/20160207/end-2015.html</loc>
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
     <data>
         <display>
-        <title>写一个歌曲下载工具</title>
-        <pubTime>2016-02-15T08:33:31.000Z</pubTime>
+        <title>我为什么选择了前端？</title>
+        <pubTime>2016-02-07T05:43:14.000Z</pubTime>
         
-        <tag>Nodejs</tag>
+        <tag>前端</tag>
          
-        <tag>express</tag>
-         
-        <tag>cheerio</tag>
+        <tag>面试</tag>
          
          
            
@@ -948,14 +948,18 @@
 
     
   <url>
-    <loc>http://imys.net/20150420/css3-menu-style.html</loc>
+    <loc>http://imys.net/20160215/download-music-by-nodejs.html</loc>
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
     <data>
         <display>
-        <title>css3导航按钮图标样式切换效果</title>
-        <pubTime>2015-04-20T05:29:44.000Z</pubTime>
+        <title>写一个歌曲下载工具</title>
+        <pubTime>2016-02-15T08:33:31.000Z</pubTime>
         
-        <tag>css3</tag>
+        <tag>Nodejs</tag>
+         
+        <tag>express</tag>
+         
+        <tag>cheerio</tag>
          
          
            
@@ -965,15 +969,13 @@
 
     
   <url>
-    <loc>http://imys.net/20160406/css-tips.html</loc>
+    <loc>http://imys.net/20150420/css3-menu-style.html</loc>
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
     <data>
         <display>
-        <title>CSS实用Tips</title>
-        <pubTime>2016-04-06T09:42:48.000Z</pubTime>
+        <title>css3导航按钮图标样式切换效果</title>
+        <pubTime>2015-04-20T05:29:44.000Z</pubTime>
         
-        <tag>css</tag>
-         
         <tag>css3</tag>
          
          
@@ -1020,18 +1022,16 @@
 
     
   <url>
-    <loc>http://imys.net/20150731/canvas-chart-demo.html</loc>
+    <loc>http://imys.net/20160406/css-tips.html</loc>
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
     <data>
         <display>
-        <title>canvas实践--图表组件仪表盘、雷达图</title>
-        <pubTime>2015-07-31T01:14:34.000Z</pubTime>
+        <title>CSS实用Tips</title>
+        <pubTime>2016-04-06T09:42:48.000Z</pubTime>
         
-        <tag>canvas</tag>
+        <tag>css</tag>
          
-        <tag>html5</tag>
-         
-        <tag>chart</tag>
+        <tag>css3</tag>
          
          
            
@@ -1048,9 +1048,9 @@
         <title>如何为Canvas中特定图形绑定事件？</title>
         <pubTime>2016-08-08T06:43:38.000Z</pubTime>
         
-        <tag>canvas</tag>
-         
         <tag>html5</tag>
+         
+        <tag>canvas</tag>
          
         <tag>event</tag>
          
@@ -1062,18 +1062,18 @@
 
     
   <url>
-    <loc>http://imys.net/20150722/canvas-annulus-process.html</loc>
+    <loc>http://imys.net/20150731/canvas-chart-demo.html</loc>
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
     <data>
         <display>
-        <title>Canvas初试--环形进度条的实现</title>
-        <pubTime>2015-07-22T00:21:53.000Z</pubTime>
+        <title>canvas实践--图表组件仪表盘、雷达图</title>
+        <pubTime>2015-07-31T01:14:34.000Z</pubTime>
         
-        <tag>canvas</tag>
-         
         <tag>html5</tag>
          
-        <tag>process</tag>
+        <tag>canvas</tag>
+         
+        <tag>chart</tag>
          
          
            
