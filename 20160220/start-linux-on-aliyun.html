@@ -29,12 +29,12 @@
   
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
-  <meta name="summary" content="&lt;p&gt;观望阿里云很久了，终于在这个春节来了后，一咬牙、一狠心、一跺脚就买下了一台 ECS。不分昼夜的折腾了几天后，终于在几天前配置好了自己期望的使用环境。&lt;br&gt;由于本人初次接触 Linux，配置期间三度初始化磁盘（等价于手机恢复出厂设置），可以说是一步一个坑的走下来的。现趁热打铁对最后一次正确的安装配置做一下总结，给后人乘凉吧。&lt;/p&gt;
-&lt;h2 id=&quot;选择配置&quot;&gt;&lt;a href=&quot;#选择配置&quot; class=&quot;headerlink&quot; title=&quot;选择配置&quot;&gt;&lt;/a&gt;选择配置&lt;/h2&gt;&lt;p&gt;作为开发者，选择 Linux 是毋庸置疑的。&lt;/p&gt;
-&lt;p&gt;CPU 单核2G，对于我目前来说绝对是够用了。我会用来做什么？当然是瞎折腾了！一台远程服务器就相当于你多了一台24小时不关机的电脑，可以挂点有趣的服务跑着，比如爬虫之类。或者当个代码仓库，用来项目演示。当然，博客也肯定会迁过去的。&lt;br&gt;带宽 2G，不知道带宽提升是不是会影响远程桌面速度。&lt;br&gt;对于 Linux 的诸多版本之间的优劣，我也不甚了解，就选了个耳濡目染较多的 Ubuntu，版本自然是选最新版的64位。&lt;br&gt;Linux 自带 20G 系统盘，另外我又加了一块 100G 云盘，感觉现在还用不了这么大空间。&lt;/p&gt;
-&lt;p&gt;以上配置一年的价格是 1200+，我选择的地域是青岛，比国内其他地域相对便宜点。另外付款的时候填写推荐码可以优惠 10%，这是我的推荐码：&lt;strong&gt;rg2j5m&lt;/strong&gt;。当然你使用我的推荐码付款后我将得到一定的返比代金卷，可以用来购买阿里云的产品。&lt;br&gt;">
+  <meta name="summary" content="观望阿里云很久了，终于在这个春节来了后，一咬牙、一狠心、一跺脚就买下了一台 ECS。不分昼夜的折腾了几天后，终于在几天前配置好了自己期望的使用环境。由于本人初次接触 Linux，配置期间三度初始化磁盘（等价于手机恢复出厂设置），可以说是一步一个坑的走下来的。现趁热打铁对最后一次正确的安装配置做一下总结，给后人乘凉吧。
+选择配置作为开发者，选择 Linux 是毋庸置疑的。
+CPU 单核2G，对于我目前来说绝对是够用了。我会用来做什么？当然是瞎折腾了！一台远程服务器就相当于你多了一台24小时不关机的电脑，可以挂点有趣的服务跑着，比如爬虫之类。或者当个代码仓库，用来项目演示。当然，博客也肯定会迁过去的。带宽 2G，不知道带宽提升是不是会影响远程桌面速度。对于 Linux 的诸多版本之间的优劣，我也不甚了解，就选了个耳濡目染较多的 Ubuntu，版本自然是选最新版的64位。Linux 自带 20G 系统盘，另外我又加了一块 100G 云盘，感觉现在还用不了这么大空间。
+以上配置一年的价格是 1200+，我选择的地域是青岛，比国内其他地域相对便宜点。另外付款的时候填写推荐码可以优惠 10%，这是我的推荐码：rg2j5m。当然你使用我的推荐码付款后我将得到一定的返比代金卷，可以用来购买阿里云的产品。">
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.1.4">
+  <link rel="stylesheet" href="/css/style.css?v=1.1.6">
 </head>
 
 <body>
@@ -396,7 +396,7 @@
 <div class="duoshuo">
 	<div class="ds-thread" data-thread-key="start-linux-on-aliyun" data-title="阿里云Linux-Ubuntu折腾记" data-url="http://imys.net/20160220/start-linux-on-aliyun.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.1.4"></script>
+<script src="/js/embed.min.js?v=1.1.6"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -437,13 +437,12 @@ var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
   <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-<script>
-var BLOG_SHARE = {
-    title: "阿里云Linux-Ubuntu折腾记",
-    pic: "/img/logo.jpg",
-    summary: document.getElementsByName('summary')[0].content,
-    url: "http://imys.net/20160220/start-linux-on-aliyun.html"
-};
+<script>var BLOG = { ROOT: '/' };
+BLOG.SHARE = {
+title: "阿里云Linux-Ubuntu折腾记",
+pic: "/img/logo.jpg",
+summary: document.getElementsByName('summary')[0].content,
+url: "http://imys.net/20160220/start-linux-on-aliyun.html" }
 </script>
 <div class="global-share" id="global-share">
     <div class="tit">分享到：</div>
@@ -483,7 +482,7 @@ var BLOG_SHARE = {
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.1.4"></script>
+<script src="/js/main.min.js?v=1.1.6"></script>
 
 
 
@@ -504,7 +503,7 @@ var BLOG_SHARE = {
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.1.4"></script>
+<script src="/js/search.min.js?v=1.1.6"></script>
 
 
 

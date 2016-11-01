@@ -31,15 +31,15 @@
   
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
-  <meta name="summary" content="&lt;p&gt;某些偏门的 API 真是没有需求一辈子都不知道啊。&lt;/p&gt;
-&lt;p&gt;分享一下最近对于获取移动设备旋转方向的探索。&lt;/p&gt;
-&lt;h2 id=&quot;deviceorientation&quot;&gt;&lt;a href=&quot;#deviceorientation&quot; class=&quot;headerlink&quot; title=&quot;deviceorientation&quot;&gt;&lt;/a&gt;deviceorientation&lt;/h2&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;window&lt;/span&gt;.addEventListener(&lt;span class=&quot;string&quot;&gt;&#39;deviceorientation&#39;&lt;/span&gt;, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;e&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;string&quot;&gt;&#39;absolute: &#39;&lt;/span&gt; + e.absolute)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;string&quot;&gt;&#39;alpha: &#39;&lt;/span&gt; + e.alpha)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;string&quot;&gt;&#39;beta: &#39;&lt;/span&gt; + e.beta)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;   &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;string&quot;&gt;&#39;gamma: &#39;&lt;/span&gt; + e.gamma)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;);&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;之前在 segmentfault 回答过相关问题，当时是从 MDN 翻出了这个事件。&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;https://segmentfault.com/q/1010000005630022?share_user=1030000002791361&quot;&gt;原贴：h5 页面如何获取手机陀螺仪的参数&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;该事件在移动端兼容较好：Android Webview 4.3+、Chrome for Android 5.0、iOS 8.4+，据我测试微信也是支持的。&lt;br&gt;没有在低端机上测试过，可能该事件会依赖设备传感器，可以加个 &lt;code&gt;&amp;#39;ondeviceorientation&amp;#39; in window&lt;/code&gt; 判断一下。&lt;/p&gt;
-&lt;p&gt;该事件触发频率高，适合对设备旋转精度要求较高的场景或是 3d 场景等，比如上面问题中的平衡球。&lt;br&gt;">
+  <meta name="summary" content="某些偏门的 API 真是没有需求一辈子都不知道啊。
+分享一下最近对于获取移动设备旋转方向的探索。
+deviceorientationwindow.addEventListener(&#39;deviceorientation&#39;, function(e)&amp;#123;   console.log(&#39;absolute: &#39; + e.absolute)   console.log(&#39;alpha: &#39; + e.alpha)   console.log(&#39;beta: &#39; + e.beta)   console.log(&#39;gamma: &#39; + e.gamma)&amp;#125;);
+之前在 segmentfault 回答过相关问题，当时是从 MDN 翻出了这个事件。
+原贴：h5 页面如何获取手机陀螺仪的参数
+该事件在移动端兼容较好：Android Webview 4.3+、Chrome for Android 5.0、iOS 8.4+，据我测试微信也是支持的。没有在低端机上测试过，可能该事件会依赖设备传感器，可以加个 &amp;#39;ondeviceorientation&amp;#39; in window 判断一下。
+该事件触发频率高，适合对设备旋转精度要求较高的场景或是 3d 场景等，比如上面问题中的平衡球。">
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.1.4">
+  <link rel="stylesheet" href="/css/style.css?v=1.1.6">
 </head>
 
 <body>
@@ -305,7 +305,7 @@
 <div class="duoshuo">
 	<div class="ds-thread" data-thread-key="screen-rotation-case" data-title="获取移动设备旋转方向的几个方案" data-url="http://imys.net/20160622/screen-rotation-case.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.1.4"></script>
+<script src="/js/embed.min.js?v=1.1.6"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -346,13 +346,12 @@ var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
   <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-<script>
-var BLOG_SHARE = {
-    title: "获取移动设备旋转方向的几个方案",
-    pic: "/img/logo.jpg",
-    summary: document.getElementsByName('summary')[0].content,
-    url: "http://imys.net/20160622/screen-rotation-case.html"
-};
+<script>var BLOG = { ROOT: '/' };
+BLOG.SHARE = {
+title: "获取移动设备旋转方向的几个方案",
+pic: "/img/logo.jpg",
+summary: document.getElementsByName('summary')[0].content,
+url: "http://imys.net/20160622/screen-rotation-case.html" }
 </script>
 <div class="global-share" id="global-share">
     <div class="tit">分享到：</div>
@@ -392,7 +391,7 @@ var BLOG_SHARE = {
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.1.4"></script>
+<script src="/js/main.min.js?v=1.1.6"></script>
 
 
 
@@ -413,7 +412,7 @@ var BLOG_SHARE = {
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.1.4"></script>
+<script src="/js/search.min.js?v=1.1.6"></script>
 
 
 

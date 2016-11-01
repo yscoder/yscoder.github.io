@@ -29,10 +29,10 @@
   
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
-  <meta name="summary" content="&lt;p&gt;最近大半年也写了不少通用模块，却从来没使用过一种通过书写格式。&lt;br&gt;目前公司的前端通用库还是&lt;code&gt;jQuery&lt;/code&gt;, 但也不是所有的模块都适合以&lt;code&gt;jQuery 插件&lt;/code&gt;的形式开发。平时写的时候一般以立即执行函数或 OO 形式开发，以目前项目情况来看也不是很需要用&lt;code&gt;require.js&lt;/code&gt;或&lt;code&gt;sea.js&lt;/code&gt;之类的加载器。&lt;/p&gt;
-&lt;p&gt;其实我的需求很简单，就是抹去模块在全局作用域的定义，以通用的形式定义和引用。&lt;/p&gt;">
+  <meta name="summary" content="最近大半年也写了不少通用模块，却从来没使用过一种通过书写格式。目前公司的前端通用库还是jQuery, 但也不是所有的模块都适合以jQuery 插件的形式开发。平时写的时候一般以立即执行函数或 OO 形式开发，以目前项目情况来看也不是很需要用require.js或sea.js之类的加载器。
+其实我的需求很简单，就是抹去模块在全局作用域的定义，以通用的形式定义和引用。">
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.1.4">
+  <link rel="stylesheet" href="/css/style.css?v=1.1.6">
 </head>
 
 <body>
@@ -291,7 +291,7 @@
 <div class="duoshuo">
 	<div class="ds-thread" data-thread-key="simple-module-loader" data-title="实现一个简单的模块加载器" data-url="http://imys.net/20151023/simple-module-loader.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.1.4"></script>
+<script src="/js/embed.min.js?v=1.1.6"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -332,13 +332,12 @@ var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
   <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-<script>
-var BLOG_SHARE = {
-    title: "实现一个简单的模块加载器",
-    pic: "/img/logo.jpg",
-    summary: document.getElementsByName('summary')[0].content,
-    url: "http://imys.net/20151023/simple-module-loader.html"
-};
+<script>var BLOG = { ROOT: '/' };
+BLOG.SHARE = {
+title: "实现一个简单的模块加载器",
+pic: "/img/logo.jpg",
+summary: document.getElementsByName('summary')[0].content,
+url: "http://imys.net/20151023/simple-module-loader.html" }
 </script>
 <div class="global-share" id="global-share">
     <div class="tit">分享到：</div>
@@ -378,7 +377,7 @@ var BLOG_SHARE = {
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.1.4"></script>
+<script src="/js/main.min.js?v=1.1.6"></script>
 
 
 
@@ -399,7 +398,7 @@ var BLOG_SHARE = {
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.1.4"></script>
+<script src="/js/search.min.js?v=1.1.6"></script>
 
 
 

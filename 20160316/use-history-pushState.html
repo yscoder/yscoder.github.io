@@ -29,17 +29,17 @@
   
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
-  <meta name="summary" content="&lt;h2 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot; title=&quot;起因&quot;&gt;&lt;/a&gt;起因&lt;/h2&gt;&lt;p&gt;最近做的一个图片浏览功能，请自行脑补手机图库、微博查看图片等场景。&lt;br&gt;功能做好之后，马上有同学反应：&lt;strong&gt;进入图片浏览层时，如果用户触摸手机后退按钮，整个页面都会返回，能否在触摸返回时只关闭浏览层？&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;一般移动端会对 WebView 做一些默认的设置，比如 Hook 用户触摸后退按钮，调用 WebView 后退方法。既然如此，就可以利用这一点，通过操纵浏览记录使用户触摸后退关闭浏览层。&lt;/p&gt;
-&lt;h2 id=&quot;history&quot;&gt;&lt;a href=&quot;#history&quot; class=&quot;headerlink&quot; title=&quot;history&quot;&gt;&lt;/a&gt;history&lt;/h2&gt;&lt;p&gt;想要操纵浏览记录，就不得不提&lt;code&gt;history&lt;/code&gt;对象了。通过常用的&lt;code&gt;back()&lt;/code&gt;、&lt;code&gt;forward()&lt;/code&gt;、&lt;code&gt;go()&lt;/code&gt;方法就可以自由的控制浏览器跳转到任意一个历史记录。&lt;br&gt;而在 HTML5 中，history 又添加一些新的成员，允许你对浏览记录进行添加和修改却不会刷新页面，这就是解决问题的关键了。&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;history.pushState(stateObj, title, url)&lt;/code&gt; 用于创建新历史记录；&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;history.replaceState(stateObj, title, url)&lt;/code&gt; 用于修改当前历史记录；&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;history.state&lt;/code&gt; 读取当前状态，创建历史记录时会添加状态对象；&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;window.onpopstate&lt;/code&gt; 是一个事件，当历史记录被修改时会触发。&lt;/li&gt;
-&lt;/ul&gt;">
+  <meta name="summary" content="起因最近做的一个图片浏览功能，请自行脑补手机图库、微博查看图片等场景。功能做好之后，马上有同学反应：进入图片浏览层时，如果用户触摸手机后退按钮，整个页面都会返回，能否在触摸返回时只关闭浏览层？
+一般移动端会对 WebView 做一些默认的设置，比如 Hook 用户触摸后退按钮，调用 WebView 后退方法。既然如此，就可以利用这一点，通过操纵浏览记录使用户触摸后退关闭浏览层。
+history想要操纵浏览记录，就不得不提history对象了。通过常用的back()、forward()、go()方法就可以自由的控制浏览器跳转到任意一个历史记录。而在 HTML5 中，history 又添加一些新的成员，允许你对浏览记录进行添加和修改却不会刷新页面，这就是解决问题的关键了。
+
+history.pushState(stateObj, title, url) 用于创建新历史记录；
+history.replaceState(stateObj, title, url) 用于修改当前历史记录；
+history.state 读取当前状态，创建历史记录时会添加状态对象；
+window.onpopstate 是一个事件，当历史记录被修改时会触发。
+">
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.1.4">
+  <link rel="stylesheet" href="/css/style.css?v=1.1.6">
 </head>
 
 <body>
@@ -289,7 +289,7 @@
 <div class="duoshuo">
 	<div class="ds-thread" data-thread-key="use-history-pushState" data-title="使用HTML5 history API增强移动端用户体验" data-url="http://imys.net/20160316/use-history-pushState.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.1.4"></script>
+<script src="/js/embed.min.js?v=1.1.6"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -330,13 +330,12 @@ var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
   <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-<script>
-var BLOG_SHARE = {
-    title: "使用HTML5 history API增强移动端用户体验",
-    pic: "/img/logo.jpg",
-    summary: document.getElementsByName('summary')[0].content,
-    url: "http://imys.net/20160316/use-history-pushState.html"
-};
+<script>var BLOG = { ROOT: '/' };
+BLOG.SHARE = {
+title: "使用HTML5 history API增强移动端用户体验",
+pic: "/img/logo.jpg",
+summary: document.getElementsByName('summary')[0].content,
+url: "http://imys.net/20160316/use-history-pushState.html" }
 </script>
 <div class="global-share" id="global-share">
     <div class="tit">分享到：</div>
@@ -376,7 +375,7 @@ var BLOG_SHARE = {
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.1.4"></script>
+<script src="/js/main.min.js?v=1.1.6"></script>
 
 
 
@@ -397,7 +396,7 @@ var BLOG_SHARE = {
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.1.4"></script>
+<script src="/js/search.min.js?v=1.1.6"></script>
 
 
 

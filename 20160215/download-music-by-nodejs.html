@@ -33,14 +33,14 @@
   
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
-  <meta name="summary" content="&lt;p&gt;最近有朋友找我帮他下载歌曲，果然在其他人眼里，程序员简直是“无所不能”的存在啊。&lt;br&gt;不过，这个需求对于程序员来讲，还算是比较正常的，比那些找你“刷QB”、“盗号”什么的强多了。&lt;/p&gt;
-&lt;p&gt;要是放到以前下载歌曲，直接回一句“搜百度”完事，近年来歌曲版权逐渐被重视了，一些歌曲逐渐变为会员下载或者收费下载。不过好歹还是可以在线播放的，只要能播放，那想找到歌曲文件就很简单了。&lt;/p&gt;
-&lt;p&gt;可以从&lt;strong&gt;开发者工具 - Network&lt;/strong&gt; 里找音乐文件的请求链接，或者打开浏览器本地缓存文件夹找大文件。&lt;/p&gt;
-&lt;p&gt;为了防止以后有朋友发出重复需求，我决定写一个工具出来。&lt;/p&gt;
-&lt;p&gt;这其中涉及到了跨域访问、页面内容抓取，最终决定用&lt;code&gt;express&lt;/code&gt;和&lt;code&gt;cheerio&lt;/code&gt;来搞，服务端不存在跨域问题。&lt;/p&gt;
-&lt;p&gt;试了一些音乐网站的歌曲搜索和播放后，最终把目标瞄准了&lt;strong&gt;酷我音乐&lt;/strong&gt;。&lt;/p&gt;">
+  <meta name="summary" content="最近有朋友找我帮他下载歌曲，果然在其他人眼里，程序员简直是“无所不能”的存在啊。不过，这个需求对于程序员来讲，还算是比较正常的，比那些找你“刷QB”、“盗号”什么的强多了。
+要是放到以前下载歌曲，直接回一句“搜百度”完事，近年来歌曲版权逐渐被重视了，一些歌曲逐渐变为会员下载或者收费下载。不过好歹还是可以在线播放的，只要能播放，那想找到歌曲文件就很简单了。
+可以从开发者工具 - Network 里找音乐文件的请求链接，或者打开浏览器本地缓存文件夹找大文件。
+为了防止以后有朋友发出重复需求，我决定写一个工具出来。
+这其中涉及到了跨域访问、页面内容抓取，最终决定用express和cheerio来搞，服务端不存在跨域问题。
+试了一些音乐网站的歌曲搜索和播放后，最终把目标瞄准了酷我音乐。">
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.1.4">
+  <link rel="stylesheet" href="/css/style.css?v=1.1.6">
 </head>
 
 <body>
@@ -324,7 +324,7 @@
 <div class="duoshuo">
 	<div class="ds-thread" data-thread-key="download-music-by-nodejs" data-title="写一个歌曲下载工具" data-url="http://imys.net/20160215/download-music-by-nodejs.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.1.4"></script>
+<script src="/js/embed.min.js?v=1.1.6"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -365,13 +365,12 @@ var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
   <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-<script>
-var BLOG_SHARE = {
-    title: "写一个歌曲下载工具",
-    pic: "/img/logo.jpg",
-    summary: document.getElementsByName('summary')[0].content,
-    url: "http://imys.net/20160215/download-music-by-nodejs.html"
-};
+<script>var BLOG = { ROOT: '/' };
+BLOG.SHARE = {
+title: "写一个歌曲下载工具",
+pic: "/img/logo.jpg",
+summary: document.getElementsByName('summary')[0].content,
+url: "http://imys.net/20160215/download-music-by-nodejs.html" }
 </script>
 <div class="global-share" id="global-share">
     <div class="tit">分享到：</div>
@@ -411,7 +410,7 @@ var BLOG_SHARE = {
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.1.4"></script>
+<script src="/js/main.min.js?v=1.1.6"></script>
 
 
 
@@ -432,7 +431,7 @@ var BLOG_SHARE = {
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.1.4"></script>
+<script src="/js/search.min.js?v=1.1.6"></script>
 
 
 

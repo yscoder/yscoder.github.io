@@ -15,7 +15,7 @@
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="css,mobile,devicePixelRatio,webview,viewport,em">
+  <meta name="keywords" content="css,devicePixelRatio,em,mobile,webview,viewport">
   <meta name="description" content="解决移动端1px border，图片模糊等问题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="你以为你写的1px就是1px吗？">
@@ -29,14 +29,14 @@
   
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
-  <meta name="summary" content="&lt;p&gt;“这一行的分割线高了一点。”&lt;br&gt;好的，减小行高, 加点上下内边距。&lt;/p&gt;
-&lt;p&gt;“这几个元素要两端对齐。”&lt;br&gt;好的，flex没有解决不了的布局，&lt;code&gt;justify-content: space-between;&lt;/code&gt;搞定。&lt;/p&gt;
-&lt;p&gt;……&lt;/p&gt;
-&lt;p&gt;“这个图标颜色不对，应该是#999。”&lt;br&gt;好的，我改…等等，明明就是 #999 啊，这分明是想被打脸的节奏。打开页面，右键图标，审查元素，截图。&lt;br&gt;是不是 999 ？是不是 999 ？？是不是 999 ？？？&lt;/p&gt;
-&lt;p&gt;“所有的下边框都应该是1px。”&lt;br&gt;我看到这个问题的瞬间，感觉像在侮辱我的智商。边框 1px 这么常用的样式，我还会写错不成？&lt;/p&gt;
-&lt;p&gt;正当准备继续“打脸”时，突然我的好奇心上来了。关于 &lt;strong&gt;1px 边框在移动设备上看起来比较粗&lt;/strong&gt; 这个问题，我也曾经想过。&lt;br&gt;因为页面其他内容看起来都是正常的，所以我一直觉得这是移动设备浏览器的渲染问题，属于外部原因。&lt;br&gt;也曾设置过 .5px ，但显然浏览器并不买账。&lt;br&gt;">
+  <meta name="summary" content="“这一行的分割线高了一点。”好的，减小行高, 加点上下内边距。
+“这几个元素要两端对齐。”好的，flex没有解决不了的布局，justify-content: space-between;搞定。
+……
+“这个图标颜色不对，应该是#999。”好的，我改…等等，明明就是 #999 啊，这分明是想被打脸的节奏。打开页面，右键图标，审查元素，截图。是不是 999 ？是不是 999 ？？是不是 999 ？？？
+“所有的下边框都应该是1px。”我看到这个问题的瞬间，感觉像在侮辱我的智商。边框 1px 这么常用的样式，我还会写错不成？
+正当准备继续“打脸”时，突然我的好奇心上来了。关于 1px 边框在移动设备上看起来比较粗 这个问题，我也曾经想过。因为页面其他内容看起来都是正常的，所以我一直觉得这是移动设备浏览器的渲染问题，属于外部原因。也曾设置过 .5px ，但显然浏览器并不买账。">
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.1.4">
+  <link rel="stylesheet" href="/css/style.css?v=1.1.6">
 </head>
 
 <body>
@@ -302,7 +302,7 @@
 <div class="duoshuo">
 	<div class="ds-thread" data-thread-key="mobile-1px" data-title="你以为你写的1px就是1px吗？" data-url="http://imys.net/20160127/mobile-1px.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.1.4"></script>
+<script src="/js/embed.min.js?v=1.1.6"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -343,13 +343,12 @@ var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
   <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-<script>
-var BLOG_SHARE = {
-    title: "你以为你写的1px就是1px吗？",
-    pic: "/img/logo.jpg",
-    summary: document.getElementsByName('summary')[0].content,
-    url: "http://imys.net/20160127/mobile-1px.html"
-};
+<script>var BLOG = { ROOT: '/' };
+BLOG.SHARE = {
+title: "你以为你写的1px就是1px吗？",
+pic: "/img/logo.jpg",
+summary: document.getElementsByName('summary')[0].content,
+url: "http://imys.net/20160127/mobile-1px.html" }
 </script>
 <div class="global-share" id="global-share">
     <div class="tit">分享到：</div>
@@ -389,7 +388,7 @@ var BLOG_SHARE = {
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.1.4"></script>
+<script src="/js/main.min.js?v=1.1.6"></script>
 
 
 
@@ -410,7 +409,7 @@ var BLOG_SHARE = {
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.1.4"></script>
+<script src="/js/search.min.js?v=1.1.6"></script>
 
 
 

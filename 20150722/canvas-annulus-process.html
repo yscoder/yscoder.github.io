@@ -15,7 +15,7 @@
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="canvas,html5,process">
+  <meta name="keywords" content="html5,canvas,process">
   <meta name="description" content="Canvas实现环形进度条">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Canvas初试--环形进度条的实现">
@@ -32,12 +32,12 @@
   
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
-  <meta name="summary" content="&lt;p&gt;起初想这么做既是&lt;code&gt;css3&lt;/code&gt;不易实现圆环，而且也有低版本兼容问题，也想借此机会学习下&lt;code&gt;canvas&lt;/code&gt;(虽然最后还是难逃兼容性 &amp;gt;_&amp;lt; )。&lt;br&gt;做的过程中发现&lt;code&gt;canvas&lt;/code&gt;跟&lt;code&gt;C#&lt;/code&gt;中&lt;code&gt;gdi&lt;/code&gt;绘图的步骤其实是差不多的。&lt;/p&gt;
-&lt;p&gt;先大概看了下&lt;code&gt;canvas&lt;/code&gt;的相关API，有个可以画弧的方法&lt;code&gt;arc&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;通过合理的参数设置就能实现各种角度的圆弧，或者满圆。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://7ximpj.com1.z0.glb.clouddn.com/process.jpg&quot; alt=&quot;Canvas初试--环形进度条的实现&quot;&gt;&lt;/p&gt;">
+  <meta name="summary" content="起初想这么做既是css3不易实现圆环，而且也有低版本兼容问题，也想借此机会学习下canvas(虽然最后还是难逃兼容性 &amp;gt;_&amp;lt; )。做的过程中发现canvas跟C#中gdi绘图的步骤其实是差不多的。
+先大概看了下canvas的相关API，有个可以画弧的方法arc。
+通过合理的参数设置就能实现各种角度的圆弧，或者满圆。
+">
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.1.4">
+  <link rel="stylesheet" href="/css/style.css?v=1.1.6">
 </head>
 
 <body>
@@ -330,7 +330,7 @@
 <div class="duoshuo">
 	<div class="ds-thread" data-thread-key="canvas-annulus-process" data-title="Canvas初试--环形进度条的实现" data-url="http://imys.net/20150722/canvas-annulus-process.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.1.4"></script>
+<script src="/js/embed.min.js?v=1.1.6"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -371,13 +371,12 @@ var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
   <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-<script>
-var BLOG_SHARE = {
-    title: "Canvas初试--环形进度条的实现",
-    pic: "/img/logo.jpg",
-    summary: document.getElementsByName('summary')[0].content,
-    url: "http://imys.net/20150722/canvas-annulus-process.html"
-};
+<script>var BLOG = { ROOT: '/' };
+BLOG.SHARE = {
+title: "Canvas初试--环形进度条的实现",
+pic: "/img/logo.jpg",
+summary: document.getElementsByName('summary')[0].content,
+url: "http://imys.net/20150722/canvas-annulus-process.html" }
 </script>
 <div class="global-share" id="global-share">
     <div class="tit">分享到：</div>
@@ -417,7 +416,7 @@ var BLOG_SHARE = {
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.1.4"></script>
+<script src="/js/main.min.js?v=1.1.6"></script>
 
 
 
@@ -438,7 +437,7 @@ var BLOG_SHARE = {
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.1.4"></script>
+<script src="/js/search.min.js?v=1.1.6"></script>
 
 
 

@@ -29,9 +29,9 @@
   
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
-  <meta name="summary" content="&lt;p&gt;在需要兼容IE8以下的日子里，往往需要使用&lt;code&gt;eval()&lt;/code&gt;来把后端传过来的JSON串转成可操作的JSON对象。直到昨天在翻看jQuery源码时，才发现&lt;code&gt;jQuery.parseJSON&lt;/code&gt;的兼容实现用的是&lt;code&gt;new Function()&lt;/code&gt;。马上Google了相关资料，寻找两者的区别。&lt;/p&gt;">
+  <meta name="summary" content="在需要兼容IE8以下的日子里，往往需要使用eval()来把后端传过来的JSON串转成可操作的JSON对象。直到昨天在翻看jQuery源码时，才发现jQuery.parseJSON的兼容实现用的是new Function()。马上Google了相关资料，寻找两者的区别。">
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.1.4">
+  <link rel="stylesheet" href="/css/style.css?v=1.1.6">
 </head>
 
 <body>
@@ -292,7 +292,7 @@
 <div class="duoshuo">
 	<div class="ds-thread" data-thread-key="eval-with-new-function" data-title="神奇的eval()与new Function()" data-url="http://imys.net/20151222/eval-with-new-function.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.1.4"></script>
+<script src="/js/embed.min.js?v=1.1.6"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -333,13 +333,12 @@ var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
   <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-<script>
-var BLOG_SHARE = {
-    title: "神奇的eval()与new Function()",
-    pic: "/img/logo.jpg",
-    summary: document.getElementsByName('summary')[0].content,
-    url: "http://imys.net/20151222/eval-with-new-function.html"
-};
+<script>var BLOG = { ROOT: '/' };
+BLOG.SHARE = {
+title: "神奇的eval()与new Function()",
+pic: "/img/logo.jpg",
+summary: document.getElementsByName('summary')[0].content,
+url: "http://imys.net/20151222/eval-with-new-function.html" }
 </script>
 <div class="global-share" id="global-share">
     <div class="tit">分享到：</div>
@@ -379,7 +378,7 @@ var BLOG_SHARE = {
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.1.4"></script>
+<script src="/js/main.min.js?v=1.1.6"></script>
 
 
 
@@ -400,7 +399,7 @@ var BLOG_SHARE = {
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.1.4"></script>
+<script src="/js/search.min.js?v=1.1.6"></script>
 
 
 

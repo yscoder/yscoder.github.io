@@ -15,7 +15,7 @@
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="canvas,html5,event">
+  <meta name="keywords" content="html5,canvas,event">
   <meta name="description" content="Canvas绑定事件，为Canvas中特定图形绑定事件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何为Canvas中特定图形绑定事件？">
@@ -29,11 +29,11 @@
   
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
-  <meta name="summary" content="&lt;p&gt;Canvas 本身也属于 HTMLElement，自然也是支持各种事件绑定的。&lt;br&gt;但绘制在其中的图形并不作为其子元素存在，这就不能方便的为 Canvas 中的某个特定图形去绑定事件。&lt;/p&gt;
-&lt;p&gt;我们都知道 js 中的事件委托，将事件绑定到父节点上，待到父节点响应事件时，动态判断当前响应元素为目标子节点时再执行对应的操作。&lt;/p&gt;
-&lt;p&gt;这个思想同样也可以用在 Canvas 上，只需要为 &lt;code&gt;canvas&lt;/code&gt; 元素绑定事件，事件响应时判断当前鼠标位置处于哪个图形之上，执行对应的操作。&lt;br&gt;">
+  <meta name="summary" content="Canvas 本身也属于 HTMLElement，自然也是支持各种事件绑定的。但绘制在其中的图形并不作为其子元素存在，这就不能方便的为 Canvas 中的某个特定图形去绑定事件。
+我们都知道 js 中的事件委托，将事件绑定到父节点上，待到父节点响应事件时，动态判断当前响应元素为目标子节点时再执行对应的操作。
+这个思想同样也可以用在 Canvas 上，只需要为 canvas 元素绑定事件，事件响应时判断当前鼠标位置处于哪个图形之上，执行对应的操作。">
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.1.4">
+  <link rel="stylesheet" href="/css/style.css?v=1.1.6">
 </head>
 
 <body>
@@ -288,7 +288,7 @@
 <div class="duoshuo">
 	<div class="ds-thread" data-thread-key="canvas-event" data-title="如何为Canvas中特定图形绑定事件？" data-url="http://imys.net/20160808/canvas-event.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.1.4"></script>
+<script src="/js/embed.min.js?v=1.1.6"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -329,13 +329,12 @@ var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
   <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-<script>
-var BLOG_SHARE = {
-    title: "如何为Canvas中特定图形绑定事件？",
-    pic: "/img/logo.jpg",
-    summary: document.getElementsByName('summary')[0].content,
-    url: "http://imys.net/20160808/canvas-event.html"
-};
+<script>var BLOG = { ROOT: '/' };
+BLOG.SHARE = {
+title: "如何为Canvas中特定图形绑定事件？",
+pic: "/img/logo.jpg",
+summary: document.getElementsByName('summary')[0].content,
+url: "http://imys.net/20160808/canvas-event.html" }
 </script>
 <div class="global-share" id="global-share">
     <div class="tit">分享到：</div>
@@ -375,7 +374,7 @@ var BLOG_SHARE = {
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.1.4"></script>
+<script src="/js/main.min.js?v=1.1.6"></script>
 
 
 
@@ -396,7 +395,7 @@ var BLOG_SHARE = {
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.1.4"></script>
+<script src="/js/search.min.js?v=1.1.6"></script>
 
 
 

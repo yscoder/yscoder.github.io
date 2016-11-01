@@ -29,16 +29,16 @@
   
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
-  <meta name="summary" content="&lt;p&gt;在静态页面目录中，同子目录下的页面往往有很多通用的模块。&lt;br&gt;平常的编码一般是通用的代码直接复制到各个页面，样式写成公用，然后在各个需要的页面引用。&lt;br&gt;而一个产品在实地运行中往往要经历无数次的迭代，于是页面文档结构和样式也在不断的变化。&lt;br&gt;独立性的页面比较轻松，一个页面修改就好了，而一些公用的页面模块往往需要在各个页面逐个修改。&lt;br&gt;这显然是一种极其枯燥的重复性动作！&lt;/p&gt;
-&lt;p&gt;在此之前我用 &lt;code&gt;C#&lt;/code&gt; 写了一个文件批量替换的工具，用于批量替换某个目录下的某个模块代码。&lt;br&gt;虽然效率提高了一些，但是从方法学角度看绝对不是最好的。&lt;/p&gt;
-&lt;p&gt;很久之前就想过使用前端模块拼装 html。&lt;br&gt;以 &lt;code&gt;ejs&lt;/code&gt; 为例，则需要在页面中引入模版解析文件 &lt;code&gt;ejs.js&lt;/code&gt;，页面中还需要写一些 ejs 相关的配置代码。而这些东西对于后端套用页面来说是无用的，可能还会造成一些混乱。&lt;br&gt;还有一种引用方式是使用 &lt;code&gt;nodeJs&lt;/code&gt; 调用 ejs 去解析模版文件，这样在预览静态页面时则需要建立 node 服务器。而当前团队中并不是每个人都装有 node 环境。&lt;/p&gt;
-&lt;p&gt;最近工作闲暇了又想到这个问题，其实要解决的最根本问题就是：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;模块化开发页面，开发完成后可以一条指令合并成可直接预览的静态页面。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;我早该想到 &lt;code&gt;gulp&lt;/code&gt; 了，既然 gulp 是一个基于流的前端构建工具，那么对于这个问题应该是可以解决的。&lt;/p&gt;">
+  <meta name="summary" content="在静态页面目录中，同子目录下的页面往往有很多通用的模块。平常的编码一般是通用的代码直接复制到各个页面，样式写成公用，然后在各个需要的页面引用。而一个产品在实地运行中往往要经历无数次的迭代，于是页面文档结构和样式也在不断的变化。独立性的页面比较轻松，一个页面修改就好了，而一些公用的页面模块往往需要在各个页面逐个修改。这显然是一种极其枯燥的重复性动作！
+在此之前我用 C# 写了一个文件批量替换的工具，用于批量替换某个目录下的某个模块代码。虽然效率提高了一些，但是从方法学角度看绝对不是最好的。
+很久之前就想过使用前端模块拼装 html。以 ejs 为例，则需要在页面中引入模版解析文件 ejs.js，页面中还需要写一些 ejs 相关的配置代码。而这些东西对于后端套用页面来说是无用的，可能还会造成一些混乱。还有一种引用方式是使用 nodeJs 调用 ejs 去解析模版文件，这样在预览静态页面时则需要建立 node 服务器。而当前团队中并不是每个人都装有 node 环境。
+最近工作闲暇了又想到这个问题，其实要解决的最根本问题就是：
+
+模块化开发页面，开发完成后可以一条指令合并成可直接预览的静态页面。
+
+我早该想到 gulp 了，既然 gulp 是一个基于流的前端构建工具，那么对于这个问题应该是可以解决的。">
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.1.4">
+  <link rel="stylesheet" href="/css/style.css?v=1.1.6">
 </head>
 
 <body>
@@ -333,7 +333,7 @@
 <div class="duoshuo">
 	<div class="ds-thread" data-thread-key="gulp-ejs-module" data-title="使用gulp+ejs模块化html" data-url="http://imys.net/20150908/gulp-ejs-module.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.1.4"></script>
+<script src="/js/embed.min.js?v=1.1.6"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -374,13 +374,12 @@ var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
   <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-<script>
-var BLOG_SHARE = {
-    title: "使用gulp+ejs模块化html",
-    pic: "/img/logo.jpg",
-    summary: document.getElementsByName('summary')[0].content,
-    url: "http://imys.net/20150908/gulp-ejs-module.html"
-};
+<script>var BLOG = { ROOT: '/' };
+BLOG.SHARE = {
+title: "使用gulp+ejs模块化html",
+pic: "/img/logo.jpg",
+summary: document.getElementsByName('summary')[0].content,
+url: "http://imys.net/20150908/gulp-ejs-module.html" }
 </script>
 <div class="global-share" id="global-share">
     <div class="tit">分享到：</div>
@@ -420,7 +419,7 @@ var BLOG_SHARE = {
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.1.4"></script>
+<script src="/js/main.min.js?v=1.1.6"></script>
 
 
 
@@ -441,7 +440,7 @@ var BLOG_SHARE = {
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.1.4"></script>
+<script src="/js/search.min.js?v=1.1.6"></script>
 
 
 
