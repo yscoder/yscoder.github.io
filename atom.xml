@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://imys.net/"/>
-  <updated>2016-10-27T15:12:05.291Z</updated>
+  <updated>2016-11-01T16:45:20.551Z</updated>
   <id>http://imys.net/</id>
   
   <author>
@@ -14,6 +14,66 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于 text-transform: capitalize 失效的场景与解决方案</title>
+    <link href="http://imys.net/20161031/text-transform-capitalize-not-working.html"/>
+    <id>http://imys.net/20161031/text-transform-capitalize-not-working.html</id>
+    <published>2016-10-31T05:39:02.000Z</published>
+    <updated>2016-11-01T16:45:20.551Z</updated>
+    
+    <content type="html"><![CDATA[<p><code>text-transform</code> 是一个可以将文字进行大小写转换或单词首字符大写的 CSS 属性。自从知道了它，我就开始偷懒不在 js 中去在调用相关的转换函数了。</p>
+<p>昨天在给多说扩展用户 UA 功能时遇到一个 <code>text-transform: capitalize</code> 失效的问题，经过一番测试，找到了问题的原因。<br><a id="more"></a></p>
+<h2 id="场景还原"><a href="#场景还原" class="headerlink" title="场景还原"></a>场景还原</h2><p>根据当时场景，抽取关键 css 属性：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-class">.capitalize</span> &#123;</div><div class="line">  <span class="attribute">text-transform</span>: capitalize</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.before</span><span class="selector-pseudo">:before</span> &#123;</div><div class="line">  <span class="attribute">content</span>: <span class="string">'hello'</span></div><div class="line">&#125;</div><div class="line"><span class="selector-class">.after</span><span class="selector-pseudo">:after</span> &#123;</div><div class="line">  <span class="attribute">content</span>: <span class="string">'world'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现有如下的 HTML，你们猜最终会是什么结果？</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"capitalize"</span>&gt;</span>hello world<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"capitalize"</span>&gt;</span>HELLO WORLD<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"capitalize before"</span>&gt;</span>world<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"capitalize after"</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Hello World</div><div class="line">HELLO WORLD</div><div class="line">Helloworld</div><div class="line">Helloworld</div></pre></td></tr></table></figure>
+<p>问题DEMO链接：<a href="https://jsfiddle.net/imys/2mb9ykL3/" target="_blank" rel="external">text-transform: capitalize 失效demo</a></p>
+<h2 id="问题解析"><a href="#问题解析" class="headerlink" title="问题解析"></a>问题解析</h2><p>通过运行结果可以发现全小写单词组合时，转换没有任何问题，略过。</p>
+<h3 id="大写单词组合"><a href="#大写单词组合" class="headerlink" title="大写单词组合"></a>大写单词组合</h3><p>全大写单词组合，转换失效？真的是这样吗？</p>
+<p>通过查阅相关文档，关于 <code>capitalize</code> 的介绍为：<strong>将每个单词的第一个字母转换成大写</strong>。<br>看来是我们对它期望太高了，<code>text-transform: capitalize</code>并不能像 <code>lodash</code> 库中的转换函数那样，将全大写的的 <code>AAA</code> 转换成你期望的 <code>Aaa</code>。</p>
+<h3 id="含有伪元素"><a href="#含有伪元素" class="headerlink" title="含有伪元素"></a>含有伪元素</h3><p>这也是我面临到的问题，每个 UA 标签上的 tootip 都是我用伪类模拟的。<br>由于当时伪元素是绝对定位的，在视觉上真的是当作了另外的元素看待。</p>
+<p>而在问题 DEMO 中，我们还原了伪元素默认显示的位置：<code>:before</code> 就是在原始内容前追加内容，<code>:after</code> 就是在原始内容后追加内容。<br><strong>由于最后生成的内容之间没有间隙，导致 <code>text-transform</code> 转换时将其当作一个单词。</strong></p>
+<p>为了验证我的结论，我在含有伪元素的内容前或后加了个空格：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"capitalize before"</span>&gt;</span> world<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"capitalize after"</span>&gt;</span>hello <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>最后转换成功：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Hello World</div><div class="line">Hello World</div></pre></td></tr></table></figure>
+<p><a href="https://jsfiddle.net/imys/2mb9ykL3/1/" target="_blank" rel="external">DEMO</a></p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>虽然找到了问题的原因，但是实际场景中使用伪元素的初衷就是要将一个元素当作多个元素使用，HTML 中加空格会有半个中文字符宽度的空白，也就等于产生了不必要的边距。</p>
+<p>做到这里真是感觉不如直接写个 js 转换函数算了。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">capitalize</span>(<span class="params">string</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> string.charAt(<span class="number">0</span>).toUpperCase() + string.substr(<span class="number">1</span>).toLowerCase()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>写出来后忽然发现这段代码完全可以用 CSS 去“实现”。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-class">.capitalize</span> &#123;</div><div class="line">    <span class="attribute">text-transform</span>: lowercase;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.capitalize</span><span class="selector-pseudo">:first-letter</span> &#123;</div><div class="line">    <span class="attribute">text-transform</span>: uppercase;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上个月旭哥博客有篇很详细的 <code>:first-letter</code> 介绍：<a href="http://www.zhangxinxu.com/wordpress/2016/09/css-first-letter-pseudo-element/" target="_blank" rel="external">张鑫旭：深入CSS :first-letter伪元素及其实例等</a></p>
+<p>其中提到了 <code>:first-letter</code> 和 <code>:before</code> 之间的猫腻，就是说 <code>:first-letter</code> 也生效于 <code>:before</code> 伪元素。<br>不过我测试后发现，<strong>当 <code>:before</code> 伪元素设置为绝对定位时，<code>:first-letter</code>将只作用于原始内容</strong>。</p>
+<p><a href="https://jsfiddle.net/imys/x4ntopqr/" target="_blank" rel="external">:first-letter和:before示例demo</a></p>
+<p>利用这个机制，总算可以给自己一个完美的答复了。</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-class">.capitalize</span> &#123;</div><div class="line">  <span class="attribute">text-transform</span>: capitalize</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.before</span> &#123;</div><div class="line">  <span class="attribute">padding-left</span>: <span class="number">2.5em</span></div><div class="line">&#125;</div><div class="line"><span class="selector-class">.before</span><span class="selector-pseudo">:before</span> &#123;</div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">content</span>: <span class="string">'hello'</span></div><div class="line">&#125;</div><div class="line"><span class="selector-class">.before</span><span class="selector-pseudo">:first-letter</span> &#123;</div><div class="line">  <span class="attribute">text-transform</span>: uppercase</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.after</span><span class="selector-pseudo">:after</span> &#123;</div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">  <span class="attribute">content</span>: <span class="string">'world'</span>;</div><div class="line">  <span class="attribute">text-transform</span>: capitalize</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>附加内容在 <code>:before</code> 时，使用 <code>:first-letter</code> + <code>uppercase</code> 解决，如果原始内容有大写，需要再给原标签加 <code>lowercase</code>；</li>
+<li>附加内容在 <code>:after</code> 时，给 <code>:after</code> 再加 <code>capitalize</code>。</li>
+</ul>
+<p><a href="https://jsfiddle.net/imys/2mb9ykL3/2/" target="_blank" rel="external">DEMO</a></p>
+<h2 id="End"><a href="#End" class="headerlink" title="End"></a>End</h2>]]></content>
+    
+    <summary type="html">
+    
+      关于 text-transform: capitalize 失效的场景与解决方案
+    
+    </summary>
+    
+    
+      <category term="css" scheme="http://imys.net/tags/css/"/>
+    
+      <category term="css3" scheme="http://imys.net/tags/css3/"/>
+    
+      <category term="text-transform" scheme="http://imys.net/tags/text-transform/"/>
+    
+      <category term="capitalize" scheme="http://imys.net/tags/capitalize/"/>
+    
+  </entry>
   
   <entry>
     <title>使用“队列”解决“插队”业务场景</title>
@@ -136,9 +196,9 @@
     </summary>
     
     
-      <category term="html5" scheme="http://imys.net/tags/html5/"/>
-    
       <category term="canvas" scheme="http://imys.net/tags/canvas/"/>
+    
+      <category term="html5" scheme="http://imys.net/tags/html5/"/>
     
       <category term="event" scheme="http://imys.net/tags/event/"/>
     
@@ -149,7 +209,7 @@
     <link href="http://imys.net/20160726/vscode-extension-qiniu-upload.html"/>
     <id>http://imys.net/20160726/vscode-extension-qiniu-upload.html</id>
     <published>2016-07-26T01:53:52.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-01T16:45:20.551Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一直以来，我都很少在文章中加插图。因为每加一张插图，我都需要先把图片上传到七牛，然后才能获取外链插入文章。</p>
 <p>之前写 Markdown 一直是用的 Sublime，直到 Vscode 最近一次更新有了 Tabs 之后，便开始尝试在工作中使用。与最初的预览版相比进步蛮大的，能看到很多 VS 的影子。之前也用过一段时间 Atom，虽然界面挺喜欢，但始终没有原生客户端的流畅感。到底客户端还是微软的强项，Vscode 这方面舒服多了，启动与大文件编辑都不比 Sublime 差。</p>
@@ -179,11 +239,11 @@
 </ul>
 <p>这四项应该是最常用的，更多：<a href="https://code.visualstudio.com/docs/extensionAPI/extension-points" target="_blank" rel="external">Contribution Points</a>。</p>
 <p>OK，有了这些，大概可以为你的插件编写作构思了。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="comment">// 插件何时被激活</span></div><div class="line">  <span class="string">"activationEvents"</span>: [     </div><div class="line"></div><div class="line">      <span class="comment">// 打开一个 Markdown 文件时，插件将被激活</span></div><div class="line">    <span class="string">"onLanguage:markdown"</span>   </div><div class="line"></div><div class="line">  ],</div><div class="line">    <span class="comment">// 插件入口文件</span></div><div class="line">  <span class="string">"main"</span>: <span class="string">"./extension"</span>,</div><div class="line"></div><div class="line">    <span class="comment">// 扩展点</span></div><div class="line">  <span class="string">"contributes"</span>: &#123;</div><div class="line"></div><div class="line">      <span class="comment">// 按键绑定，当编辑区具有焦点且语言为 markdown 时，按 ctrl+q OR cmd+q 执行 extension.qiniu.upload</span></div><div class="line">    <span class="string">"keybindings"</span>: [&#123;</div><div class="line">        <span class="string">"command"</span>: <span class="string">"extension.qiniu.upload"</span>,</div><div class="line">        <span class="string">"key"</span>: <span class="string">"ctrl+q"</span>,</div><div class="line">        <span class="string">"mac"</span>: <span class="string">"cmd+q"</span>,</div><div class="line">        <span class="string">"when"</span>: <span class="string">"editorTextFocus &amp;&amp; editorLangId == 'markdown'"</span> </div><div class="line">    &#125;],</div><div class="line"></div><div class="line">    <span class="comment">// 插件配置属性，当你想要获取 qiniu 的配置时，以下所有 qiniu.xx 属性将合并于一个对象中</span></div><div class="line">    <span class="comment">// title 和 description 将作为注释和属性提示分别在默认配置文件和用户配置文件中呈现</span></div><div class="line">    <span class="string">"configuration"</span>: &#123;</div><div class="line">        <span class="string">"type"</span>: <span class="string">"object"</span>,</div><div class="line">        <span class="string">"title"</span>: <span class="string">"qiniu configuration"</span>,</div><div class="line">        <span class="string">"properties"</span>: &#123;</div><div class="line">            <span class="string">"qiniu.enable"</span>: &#123;</div><div class="line">                <span class="string">"type"</span>: <span class="string">"boolean"</span>,</div><div class="line">                <span class="string">"default"</span>: <span class="literal">false</span>,</div><div class="line">                <span class="string">"description"</span>: <span class="string">"七牛图片上传工具开关"</span></div><div class="line">            &#125;,</div><div class="line">            <span class="string">"qiniu.access_key"</span>: &#123;</div><div class="line">                <span class="string">"type"</span>: <span class="string">"string"</span>,</div><div class="line">                <span class="string">"default"</span>: <span class="string">""</span>,</div><div class="line">                <span class="string">"description"</span>: <span class="string">"一个有效的七牛 AccessKey 签名授权。"</span></div><div class="line">            &#125;,</div><div class="line">            <span class="string">"qiniu.secret_key"</span>: &#123;</div><div class="line">                <span class="string">"type"</span>: <span class="string">"string"</span>,</div><div class="line">                <span class="string">"default"</span>: <span class="string">""</span>,</div><div class="line">                <span class="string">"description"</span>: <span class="string">"一个有效的七牛 SecretKey 签名授权。"</span></div><div class="line">            &#125;,</div><div class="line">            <span class="string">"qiniu.bucket"</span>: &#123;</div><div class="line">                <span class="string">"type"</span>: <span class="string">"string"</span>,</div><div class="line">                <span class="string">"default"</span>: <span class="string">""</span>,</div><div class="line">                <span class="string">"description"</span>: <span class="string">"七牛图片上传空间."</span></div><div class="line">            &#125;,</div><div class="line">            <span class="string">"qiniu.remotePath"</span>: &#123;</div><div class="line">                <span class="string">"type"</span>: <span class="string">"string"</span>,</div><div class="line">                <span class="string">"default"</span>: <span class="string">"$&#123;fileName&#125;"</span>,</div><div class="line">                <span class="string">"description"</span>: <span class="string">"七牛图片上传路径，参数化命名。"</span></div><div class="line">            &#125;,</div><div class="line">            <span class="string">"qiniu.domain"</span>: &#123;</div><div class="line">                <span class="string">"type"</span>: <span class="string">"string"</span>,</div><div class="line">                <span class="string">"default"</span>: <span class="string">""</span>,</div><div class="line">                <span class="string">"description"</span>: <span class="string">"七牛图床域名。"</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="comment">// 插件何时被激活</span></div><div class="line">  <span class="string">"activationEvents"</span>: [     </div><div class="line"></div><div class="line">      <span class="comment">// 打开一个 Markdown 文件时，插件将被激活</span></div><div class="line">    <span class="string">"onLanguage:markdown"</span>   </div><div class="line"></div><div class="line">  ],</div><div class="line">    <span class="comment">// 插件入口文件</span></div><div class="line">  <span class="string">"main"</span>: <span class="string">"./extension"</span>,</div><div class="line"></div><div class="line">    <span class="comment">// 扩展点</span></div><div class="line">  <span class="string">"contributes"</span>: &#123;</div><div class="line"></div><div class="line">      <span class="comment">// 按键绑定，当编辑区具有焦点且语言为 markdown 时，按 ctrl+q 执行 extension.qiniu.upload，也可针对 mac 平台独立配置</span></div><div class="line">    <span class="string">"keybindings"</span>: [&#123;</div><div class="line">        <span class="string">"command"</span>: <span class="string">"extension.qiniu.upload"</span>,</div><div class="line">        <span class="string">"key"</span>: <span class="string">"ctrl+q"</span>,</div><div class="line">        <span class="string">"mac"</span>: <span class="string">"ctrl+q"</span>,</div><div class="line">        <span class="string">"when"</span>: <span class="string">"editorTextFocus &amp;&amp; editorLangId == 'markdown'"</span> </div><div class="line">    &#125;],</div><div class="line"></div><div class="line">    <span class="comment">// 插件配置属性，当你想要获取 qiniu 的配置时，以下所有 qiniu.xx 属性将合并于一个对象中</span></div><div class="line">    <span class="comment">// title 和 description 将作为注释和属性提示分别在默认配置文件和用户配置文件中呈现</span></div><div class="line">    <span class="string">"configuration"</span>: &#123;</div><div class="line">        <span class="string">"type"</span>: <span class="string">"object"</span>,</div><div class="line">        <span class="string">"title"</span>: <span class="string">"qiniu configuration"</span>,</div><div class="line">        <span class="string">"properties"</span>: &#123;</div><div class="line">            <span class="string">"qiniu.enable"</span>: &#123;</div><div class="line">                <span class="string">"type"</span>: <span class="string">"boolean"</span>,</div><div class="line">                <span class="string">"default"</span>: <span class="literal">false</span>,</div><div class="line">                <span class="string">"description"</span>: <span class="string">"七牛图片上传工具开关"</span></div><div class="line">            &#125;,</div><div class="line">            <span class="string">"qiniu.access_key"</span>: &#123;</div><div class="line">                <span class="string">"type"</span>: <span class="string">"string"</span>,</div><div class="line">                <span class="string">"default"</span>: <span class="string">""</span>,</div><div class="line">                <span class="string">"description"</span>: <span class="string">"一个有效的七牛 AccessKey 签名授权。"</span></div><div class="line">            &#125;,</div><div class="line">            <span class="string">"qiniu.secret_key"</span>: &#123;</div><div class="line">                <span class="string">"type"</span>: <span class="string">"string"</span>,</div><div class="line">                <span class="string">"default"</span>: <span class="string">""</span>,</div><div class="line">                <span class="string">"description"</span>: <span class="string">"一个有效的七牛 SecretKey 签名授权。"</span></div><div class="line">            &#125;,</div><div class="line">            <span class="string">"qiniu.bucket"</span>: &#123;</div><div class="line">                <span class="string">"type"</span>: <span class="string">"string"</span>,</div><div class="line">                <span class="string">"default"</span>: <span class="string">""</span>,</div><div class="line">                <span class="string">"description"</span>: <span class="string">"七牛图片上传空间."</span></div><div class="line">            &#125;,</div><div class="line">            <span class="string">"qiniu.remotePath"</span>: &#123;</div><div class="line">                <span class="string">"type"</span>: <span class="string">"string"</span>,</div><div class="line">                <span class="string">"default"</span>: <span class="string">"$&#123;fileName&#125;"</span>,</div><div class="line">                <span class="string">"description"</span>: <span class="string">"七牛图片上传路径，参数化命名。"</span></div><div class="line">            &#125;,</div><div class="line">            <span class="string">"qiniu.domain"</span>: &#123;</div><div class="line">                <span class="string">"type"</span>: <span class="string">"string"</span>,</div><div class="line">                <span class="string">"default"</span>: <span class="string">""</span>,</div><div class="line">                <span class="string">"description"</span>: <span class="string">"七牛图床域名。"</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>以我的 <code>package.json</code> 为例，描述了以下信息：</p>
 <ol>
 <li>当你打开一个 Markdown 文件时，插件将被激活。</li>
-<li>执行 <code>ctrl+Q</code> 或 <code>cmd+Q</code> 将启动一个命令，还有一个 <code>when</code> 属性，表示额外的命令激活条件。</li>
+<li>执行 <code>ctrl+Q</code> 将启动一个命令，还有一个 <code>when</code> 属性，表示额外的命令激活条件。</li>
 <li>因为要上传到七牛，所以需要一些你的七牛用户信息，也就是 <code>configuration</code>，这可以在代码中方便的读取到。</li>
 </ol>
 <p>最后我需要以合适的方式获取你想上传的本地图片，以 Markdown 的图片格式写入到你的光标位置。</p>
@@ -202,7 +262,7 @@
 <p>以下是我用到的一些API：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 获取配置文件中的插件配置</span></div><div class="line">vscode.workspace.getConfiguration(<span class="string">'qiniu'</span>)</div><div class="line"></div><div class="line"><span class="comment">// 显示错误信息</span></div><div class="line">vscode.window.showErrorMessage(<span class="string">'error'</span>)</div><div class="line"></div><div class="line"><span class="comment">// 显示一个输入框，返回 Promise 对象</span></div><div class="line">vscode.window.showInputBox(option)</div><div class="line"></div><div class="line"><span class="comment">// 编辑文件的函数，参数还是一个函数，这个回调函数的参数才是真正的可以用来增删文字的对象</span></div><div class="line">vscode.window.activeTextEditor.edit(<span class="function"><span class="keyword">function</span>(<span class="params">textEditorEdit</span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// 在光标位置插入文本</span></div><div class="line">    <span class="comment">// textEditorEdit.insert(editor.selection.active, img);</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <p>最终技术支持其实是 <a href="http://developer.qiniu.com/code/v6/sdk/nodejs.html" target="_blank" rel="external">七牛SDK</a> ヾ(･ω･`｡)。<br>具体的代码可以去 Github 上看。</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>打包、发布那篇文章中也提到了，我已经打包放到了 Github 仓库中，就是那个 <code>·vsix</code> 文件。使用 <code>Ctrl+O</code> 选择插件包就可以安装了，在用户配置文件中加一下你的七牛配置，重启下就能用了，快捷键 <code>ctrl+q</code> or <code>cmd+q</code>。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>打包、发布那篇文章中也提到了，我已经打包放到了 Github 仓库中，就是那个 <code>·vsix</code> 文件。使用 <code>Ctrl+O</code> 选择插件包就可以安装了，在用户配置文件中加一下你的七牛配置，重启下就能用了，快捷键 <code>ctrl+q</code>。</p>
 <p>同时可以通过编辑器左侧插件面板在线搜索 <code>qiniu-upload-image</code> 安装。</p>
 <p><strong>文件 -&gt; 首选项 -&gt; 用户设置</strong>，在右侧区域编写插件配置覆盖默认配置。<br>配置文件示例如下，参考你的七牛用户信息填写：</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"qiniu.enable"</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">"qiniu.access_key"</span>: <span class="string">"xxxxxxxxxxxxx"</span>,</div><div class="line">    <span class="attr">"qiniu.secret_key"</span>: <span class="string">"xxxxxxxxxxxxx"</span>,</div><div class="line">    <span class="attr">"qiniu.bucket"</span>: <span class="string">"yourBucket"</span>,</div><div class="line">    <span class="attr">"qiniu.remotePath"</span>: <span class="string">"$&#123;fileName&#125;"</span>,</div><div class="line">    <span class="attr">"qiniu.domain"</span>: <span class="string">"http://xxx.xxxxx.com"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -1249,15 +1309,15 @@ git push origin master
     
       <category term="css" scheme="http://imys.net/tags/css/"/>
     
-      <category term="devicePixelRatio" scheme="http://imys.net/tags/devicePixelRatio/"/>
-    
-      <category term="em" scheme="http://imys.net/tags/em/"/>
-    
       <category term="mobile" scheme="http://imys.net/tags/mobile/"/>
+    
+      <category term="devicePixelRatio" scheme="http://imys.net/tags/devicePixelRatio/"/>
     
       <category term="webview" scheme="http://imys.net/tags/webview/"/>
     
       <category term="viewport" scheme="http://imys.net/tags/viewport/"/>
+    
+      <category term="em" scheme="http://imys.net/tags/em/"/>
     
   </entry>
   
@@ -1582,11 +1642,11 @@ git push origin master
     </summary>
     
     
-      <category term="移动端" scheme="http://imys.net/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
-    
       <category term="devicePixelRatio" scheme="http://imys.net/tags/devicePixelRatio/"/>
     
       <category term="em" scheme="http://imys.net/tags/em/"/>
+    
+      <category term="移动端" scheme="http://imys.net/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
     
       <category term="rem" scheme="http://imys.net/tags/rem/"/>
     
@@ -2109,9 +2169,9 @@ package.json
     </summary>
     
     
-      <category term="html5" scheme="http://imys.net/tags/html5/"/>
-    
       <category term="canvas" scheme="http://imys.net/tags/canvas/"/>
+    
+      <category term="html5" scheme="http://imys.net/tags/html5/"/>
     
       <category term="chart" scheme="http://imys.net/tags/chart/"/>
     
@@ -2192,9 +2252,9 @@ package.json
     </summary>
     
     
-      <category term="html5" scheme="http://imys.net/tags/html5/"/>
-    
       <category term="canvas" scheme="http://imys.net/tags/canvas/"/>
+    
+      <category term="html5" scheme="http://imys.net/tags/html5/"/>
     
       <category term="process" scheme="http://imys.net/tags/process/"/>
     

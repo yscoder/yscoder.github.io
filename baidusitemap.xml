@@ -4,6 +4,50 @@
 
     
   <url>
+    <loc>http://imys.net/20160726/vscode-extension-qiniu-upload.html</loc>
+    <lastmod>2016-11-01T16:45:20.551Z</lastmod>
+    <data>
+        <display>
+        <title>VsCode插件：七牛图床工具，写文章更快一步</title>
+        <pubTime>2016-07-26T01:53:52.000Z</pubTime>
+        
+        <tag>VsCode</tag>
+         
+        <tag>qiniu</tag>
+         
+        <tag>markdown</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://imys.net/20161031/text-transform-capitalize-not-working.html</loc>
+    <lastmod>2016-11-01T16:45:20.551Z</lastmod>
+    <data>
+        <display>
+        <title>关于 text-transform: capitalize 失效的场景与解决方案</title>
+        <pubTime>2016-10-31T05:39:02.000Z</pubTime>
+        
+        <tag>css</tag>
+         
+        <tag>css3</tag>
+         
+        <tag>text-transform</tag>
+         
+        <tag>capitalize</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://imys.net/20161027/use-queue-solve-continuous-request.html</loc>
     <lastmod>2016-10-27T15:12:05.291Z</lastmod>
     <data>
@@ -110,17 +154,20 @@
     </url>
 
     
+    
+    
+    
   <url>
-    <loc>http://imys.net/20150615/js-page-visible.html</loc>
+    <loc>http://imys.net/20160503/vue-data-interaction.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
         <display>
-        <title>HTML5页面可见性改变事件</title>
-        <pubTime>2015-06-15T03:01:53.000Z</pubTime>
+        <title>Vue中的数据交互</title>
+        <pubTime>2016-05-03T09:39:44.000Z</pubTime>
         
-        <tag>html5</tag>
+        <tag>vue</tag>
          
-        <tag>javascript</tag>
+        <tag>vuex</tag>
          
          
            
@@ -128,9 +175,6 @@
     </data>
     </url>
 
-    
-    
-    
     
     
   <url>
@@ -146,27 +190,6 @@
         <tag>WordPress</tag>
          
         <tag>gitcafe</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://imys.net/20160726/vscode-extension-qiniu-upload.html</loc>
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    <data>
-        <display>
-        <title>VsCode插件：七牛图床工具，写文章更快一步</title>
-        <pubTime>2016-07-26T01:53:52.000Z</pubTime>
-        
-        <tag>VsCode</tag>
-         
-        <tag>qiniu</tag>
-         
-        <tag>markdown</tag>
          
          
            
@@ -197,16 +220,16 @@
 
     
   <url>
-    <loc>http://imys.net/20160503/vue-data-interaction.html</loc>
+    <loc>http://imys.net/20151022/use-gulp-front-building-exp.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
         <display>
-        <title>Vue中的数据交互</title>
-        <pubTime>2016-05-03T09:39:44.000Z</pubTime>
+        <title>gulp改善工作流记录</title>
+        <pubTime>2015-10-22T02:37:53.000Z</pubTime>
         
-        <tag>vue</tag>
+        <tag>gulp</tag>
          
-        <tag>vuex</tag>
+        <tag>前端构建</tag>
          
          
            
@@ -237,62 +260,7 @@
     </url>
 
     
-  <url>
-    <loc>http://imys.net/20151022/use-gulp-front-building-exp.html</loc>
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    <data>
-        <display>
-        <title>gulp改善工作流记录</title>
-        <pubTime>2015-10-22T02:37:53.000Z</pubTime>
-        
-        <tag>gulp</tag>
-         
-        <tag>前端构建</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
     
-  <url>
-    <loc>http://imys.net/20160220/start-linux-on-aliyun.html</loc>
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    <data>
-        <display>
-        <title>阿里云Linux-Ubuntu折腾记</title>
-        <pubTime>2016-02-20T08:25:34.000Z</pubTime>
-        
-        <tag>Nodejs</tag>
-         
-        <tag>Linux</tag>
-         
-        <tag>Ubuntu</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://imys.net/20150415/online-run-code.html</loc>
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    <data>
-        <display>
-        <title>不链接页面在新窗口或标签页运行代码</title>
-        <pubTime>2015-04-15T01:58:21.000Z</pubTime>
-        
-        <tag>javascript</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://imys.net/20150906/text-truncation.html</loc>
@@ -315,22 +283,19 @@
     </url>
 
     
-    
   <url>
-    <loc>http://imys.net/20151231/simulation-of-wheelview-selector.html</loc>
+    <loc>http://imys.net/20160220/start-linux-on-aliyun.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
         <display>
-        <title>前端技术模拟移动端wheelview滑动选择器</title>
-        <pubTime>2015-12-31T01:59:48.000Z</pubTime>
+        <title>阿里云Linux-Ubuntu折腾记</title>
+        <pubTime>2016-02-20T08:25:34.000Z</pubTime>
         
-        <tag>mobile</tag>
+        <tag>Nodejs</tag>
          
-        <tag>wheelview</tag>
+        <tag>Linux</tag>
          
-        <tag>component</tag>
-         
-        <tag>iscroll</tag>
+        <tag>Ubuntu</tag>
          
          
            
@@ -374,6 +339,29 @@
 
     
   <url>
+    <loc>http://imys.net/20151231/simulation-of-wheelview-selector.html</loc>
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    <data>
+        <display>
+        <title>前端技术模拟移动端wheelview滑动选择器</title>
+        <pubTime>2015-12-31T01:59:48.000Z</pubTime>
+        
+        <tag>mobile</tag>
+         
+        <tag>wheelview</tag>
+         
+        <tag>component</tag>
+         
+        <tag>iscroll</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://imys.net/20150715/jqplugin-jtip.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
@@ -382,6 +370,25 @@
         <pubTime>2015-07-15T07:21:58.000Z</pubTime>
         
         <tag>jquery插件</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://imys.net/20150428/jquery-delayHover.html</loc>
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    <data>
+        <display>
+        <title>jQuery扩展 - 延迟执行hover事件</title>
+        <pubTime>2015-04-28T09:15:57.000Z</pubTime>
+        
+        <tag>jquery插件</tag>
+         
+        <tag>jquery</tag>
          
          
            
@@ -427,16 +434,14 @@
 
     
   <url>
-    <loc>http://imys.net/20150428/jquery-delayHover.html</loc>
+    <loc>http://imys.net/20150414/js-copytext.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
         <display>
-        <title>jQuery扩展 - 延迟执行hover事件</title>
-        <pubTime>2015-04-28T09:15:57.000Z</pubTime>
+        <title>js文本复制全兼容实例</title>
+        <pubTime>2015-04-14T06:00:45.000Z</pubTime>
         
-        <tag>jquery插件</tag>
-         
-        <tag>jquery</tag>
+        <tag>javascript</tag>
          
          
            
@@ -463,35 +468,16 @@
 
     
   <url>
-    <loc>http://imys.net/20150414/js-copytext.html</loc>
+    <loc>http://imys.net/20150615/js-page-visible.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
         <display>
-        <title>js文本复制全兼容实例</title>
-        <pubTime>2015-04-14T06:00:45.000Z</pubTime>
+        <title>HTML5页面可见性改变事件</title>
+        <pubTime>2015-06-15T03:01:53.000Z</pubTime>
         
+        <tag>html5</tag>
+         
         <tag>javascript</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://imys.net/20150807/js-module-requirejs.html</loc>
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    <data>
-        <display>
-        <title>require.js入门--用面向对象语言来理解js模块化</title>
-        <pubTime>2015-08-07T02:33:25.000Z</pubTime>
-        
-        <tag>javascript</tag>
-         
-        <tag>模块化</tag>
-         
-        <tag>require.js</tag>
          
          
            
@@ -511,23 +497,6 @@
         <tag>javascript</tag>
          
         <tag>模块化</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://imys.net/20150424/js-simple-condition.html</loc>
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    <data>
-        <display>
-        <title>使用逻辑运算符 || && 简化javascript中if else选择结构</title>
-        <pubTime>2015-04-24T03:49:30.000Z</pubTime>
-        
-        <tag>javascript</tag>
          
          
            
@@ -560,24 +529,18 @@
 
     
   <url>
-    <loc>http://imys.net/20151107/mobile-page-size-and-layout.html</loc>
+    <loc>http://imys.net/20150807/js-module-requirejs.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
         <display>
-        <title>移动端页面开发关键—尺寸和布局</title>
-        <pubTime>2015-11-07T15:02:29.000Z</pubTime>
+        <title>require.js入门--用面向对象语言来理解js模块化</title>
+        <pubTime>2015-08-07T02:33:25.000Z</pubTime>
         
-        <tag>移动端</tag>
+        <tag>javascript</tag>
          
-        <tag>devicePixelRatio</tag>
+        <tag>模块化</tag>
          
-        <tag>em</tag>
-         
-        <tag>rem</tag>
-         
-        <tag>vw</tag>
-         
-        <tag>flex</tag>
+        <tag>require.js</tag>
          
          
            
@@ -586,20 +549,15 @@
     </url>
 
     
-    
   <url>
-    <loc>http://imys.net/20160413/one-element-can-do-much.html</loc>
+    <loc>http://imys.net/20150424/js-simple-condition.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
         <display>
-        <title>一个HTML元素可以做什么？</title>
-        <pubTime>2016-04-13T08:37:53.000Z</pubTime>
+        <title>使用逻辑运算符 || && 简化javascript中if else选择结构</title>
+        <pubTime>2015-04-24T03:49:30.000Z</pubTime>
         
-        <tag>css</tag>
-         
-        <tag>css3</tag>
-         
-        <tag>html</tag>
+        <tag>javascript</tag>
          
          
            
@@ -618,15 +576,36 @@
         
         <tag>css</tag>
          
-        <tag>devicePixelRatio</tag>
-         
-        <tag>em</tag>
-         
         <tag>mobile</tag>
+         
+        <tag>devicePixelRatio</tag>
          
         <tag>webview</tag>
          
         <tag>viewport</tag>
+         
+        <tag>em</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://imys.net/20160413/one-element-can-do-much.html</loc>
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    <data>
+        <display>
+        <title>一个HTML元素可以做什么？</title>
+        <pubTime>2016-04-13T08:37:53.000Z</pubTime>
+        
+        <tag>css</tag>
+         
+        <tag>css3</tag>
+         
+        <tag>html</tag>
          
          
            
@@ -655,16 +634,41 @@
 
     
   <url>
-    <loc>http://imys.net/20160622/screen-rotation-case.html</loc>
+    <loc>http://imys.net/20150415/online-run-code.html</loc>
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
         <display>
-        <title>获取移动设备旋转方向的几个方案</title>
-        <pubTime>2016-06-22T01:02:03.000Z</pubTime>
+        <title>不链接页面在新窗口或标签页运行代码</title>
+        <pubTime>2015-04-15T01:58:21.000Z</pubTime>
         
-        <tag>html5</tag>
+        <tag>javascript</tag>
          
-        <tag>mobile</tag>
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://imys.net/20151107/mobile-page-size-and-layout.html</loc>
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    <data>
+        <display>
+        <title>移动端页面开发关键—尺寸和布局</title>
+        <pubTime>2015-11-07T15:02:29.000Z</pubTime>
+        
+        <tag>devicePixelRatio</tag>
+         
+        <tag>em</tag>
+         
+        <tag>移动端</tag>
+         
+        <tag>rem</tag>
+         
+        <tag>vw</tag>
+         
+        <tag>flex</tag>
          
          
            
@@ -697,18 +701,16 @@
 
     
   <url>
-    <loc>http://imys.net/20151222/eval-with-new-function.html</loc>
-    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
+    <loc>http://imys.net/20160622/screen-rotation-case.html</loc>
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     <data>
         <display>
-        <title>神奇的eval()与new Function()</title>
-        <pubTime>2015-12-22T05:07:00.000Z</pubTime>
+        <title>获取移动设备旋转方向的几个方案</title>
+        <pubTime>2016-06-22T01:02:03.000Z</pubTime>
         
-        <tag>Function</tag>
+        <tag>html5</tag>
          
-        <tag>eval</tag>
-         
-        <tag>javascript</tag>
+        <tag>mobile</tag>
          
          
            
@@ -718,18 +720,37 @@
 
     
   <url>
-    <loc>http://imys.net/20150731/canvas-chart-demo.html</loc>
+    <loc>http://imys.net/20150902/h5-upload-progress.html</loc>
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
     <data>
         <display>
-        <title>canvas实践--图表组件仪表盘、雷达图</title>
-        <pubTime>2015-07-31T01:14:34.000Z</pubTime>
+        <title>html5上传进度实现</title>
+        <pubTime>2015-09-02T08:26:13.000Z</pubTime>
         
         <tag>html5</tag>
          
+        <tag>文件上传</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://imys.net/20150722/canvas-annulus-process.html</loc>
+    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
+    <data>
+        <display>
+        <title>Canvas初试--环形进度条的实现</title>
+        <pubTime>2015-07-22T00:21:53.000Z</pubTime>
+        
         <tag>canvas</tag>
          
-        <tag>chart</tag>
+        <tag>html5</tag>
+         
+        <tag>process</tag>
          
          
            
@@ -756,14 +777,14 @@
 
     
   <url>
-    <loc>http://imys.net/20160511/hexo-search.html</loc>
+    <loc>http://imys.net/20150709/ie-nodisplay-iconfont.html</loc>
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
     <data>
         <display>
-        <title>Hexo添加站内搜索功能初步完成</title>
-        <pubTime>2016-05-11T08:08:50.000Z</pubTime>
+        <title>ie不显示iconfont字体图标</title>
+        <pubTime>2015-07-09T02:12:33.000Z</pubTime>
         
-        <tag>Hexo</tag>
+        <tag>html</tag>
          
          
            
@@ -773,14 +794,14 @@
 
     
   <url>
-    <loc>http://imys.net/20150709/ie-nodisplay-iconfont.html</loc>
+    <loc>http://imys.net/20160511/hexo-search.html</loc>
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
     <data>
         <display>
-        <title>ie不显示iconfont字体图标</title>
-        <pubTime>2015-07-09T02:12:33.000Z</pubTime>
+        <title>Hexo添加站内搜索功能初步完成</title>
+        <pubTime>2016-05-11T08:08:50.000Z</pubTime>
         
-        <tag>html</tag>
+        <tag>Hexo</tag>
          
          
            
@@ -830,14 +851,35 @@
 
     
   <url>
-    <loc>http://imys.net/20150629/css3-target-selector.html</loc>
+    <loc>http://imys.net/20160118/hexo-blog-update-log.html</loc>
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
     <data>
         <display>
-        <title>css3选择器(:target)用法</title>
-        <pubTime>2015-06-29T00:57:17.000Z</pubTime>
+        <title>Hexo博客改版记录</title>
+        <pubTime>2016-01-18T01:02:18.000Z</pubTime>
         
-        <tag>css3</tag>
+        <tag>Hexo</tag>
+         
+        <tag>material</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://imys.net/20160207/end-2015.html</loc>
+    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
+    <data>
+        <display>
+        <title>我为什么选择了前端？</title>
+        <pubTime>2016-02-07T05:43:14.000Z</pubTime>
+        
+        <tag>前端</tag>
+         
+        <tag>面试</tag>
          
          
            
@@ -859,23 +901,6 @@
         <tag>ejs</tag>
          
         <tag>模块化</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://imys.net/20150426/css3-selector-multiple-color.html</loc>
-    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
-    <data>
-        <display>
-        <title>使用css3后代选择器实现多背景色标签样式</title>
-        <pubTime>2015-04-25T19:09:06.000Z</pubTime>
-        
-        <tag>css3</tag>
          
          
            
@@ -925,16 +950,18 @@
 
     
   <url>
-    <loc>http://imys.net/20160118/hexo-blog-update-log.html</loc>
+    <loc>http://imys.net/20151222/eval-with-new-function.html</loc>
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
     <data>
         <display>
-        <title>Hexo博客改版记录</title>
-        <pubTime>2016-01-18T01:02:18.000Z</pubTime>
+        <title>神奇的eval()与new Function()</title>
+        <pubTime>2015-12-22T05:07:00.000Z</pubTime>
         
-        <tag>Hexo</tag>
+        <tag>Function</tag>
          
-        <tag>material</tag>
+        <tag>eval</tag>
+         
+        <tag>javascript</tag>
          
          
            
@@ -943,44 +970,6 @@
     </url>
 
     
-    
-  <url>
-    <loc>http://imys.net/20160207/end-2015.html</loc>
-    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
-    <data>
-        <display>
-        <title>我为什么选择了前端？</title>
-        <pubTime>2016-02-07T05:43:14.000Z</pubTime>
-        
-        <tag>前端</tag>
-         
-        <tag>面试</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://imys.net/20150902/h5-upload-progress.html</loc>
-    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
-    <data>
-        <display>
-        <title>html5上传进度实现</title>
-        <pubTime>2015-09-02T08:26:13.000Z</pubTime>
-        
-        <tag>html5</tag>
-         
-        <tag>文件上传</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
     
   <url>
     <loc>http://imys.net/20150420/css3-menu-style.html</loc>
@@ -1000,15 +989,30 @@
 
     
   <url>
-    <loc>http://imys.net/20160406/css-tips.html</loc>
+    <loc>http://imys.net/20150426/css3-selector-multiple-color.html</loc>
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
     <data>
         <display>
-        <title>CSS实用Tips</title>
-        <pubTime>2016-04-06T09:42:48.000Z</pubTime>
+        <title>使用css3后代选择器实现多背景色标签样式</title>
+        <pubTime>2015-04-25T19:09:06.000Z</pubTime>
         
-        <tag>css</tag>
+        <tag>css3</tag>
          
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://imys.net/20150629/css3-target-selector.html</loc>
+    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
+    <data>
+        <display>
+        <title>css3选择器(:target)用法</title>
+        <pubTime>2015-06-29T00:57:17.000Z</pubTime>
+        
         <tag>css3</tag>
          
          
@@ -1038,18 +1042,18 @@
 
     
   <url>
-    <loc>http://imys.net/20150722/canvas-annulus-process.html</loc>
+    <loc>http://imys.net/20160808/canvas-event.html</loc>
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
     <data>
         <display>
-        <title>Canvas初试--环形进度条的实现</title>
-        <pubTime>2015-07-22T00:21:53.000Z</pubTime>
+        <title>如何为Canvas中特定图形绑定事件？</title>
+        <pubTime>2016-08-08T06:43:38.000Z</pubTime>
         
-        <tag>html5</tag>
-         
         <tag>canvas</tag>
          
-        <tag>process</tag>
+        <tag>html5</tag>
+         
+        <tag>event</tag>
          
          
            
@@ -1059,18 +1063,37 @@
 
     
   <url>
-    <loc>http://imys.net/20160808/canvas-event.html</loc>
+    <loc>http://imys.net/20150731/canvas-chart-demo.html</loc>
     <lastmod>2016-08-15T13:28:56.401Z</lastmod>
     <data>
         <display>
-        <title>如何为Canvas中特定图形绑定事件？</title>
-        <pubTime>2016-08-08T06:43:38.000Z</pubTime>
+        <title>canvas实践--图表组件仪表盘、雷达图</title>
+        <pubTime>2015-07-31T01:14:34.000Z</pubTime>
         
-        <tag>html5</tag>
-         
         <tag>canvas</tag>
          
-        <tag>event</tag>
+        <tag>html5</tag>
+         
+        <tag>chart</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://imys.net/20160406/css-tips.html</loc>
+    <lastmod>2016-08-15T13:28:56.401Z</lastmod>
+    <data>
+        <display>
+        <title>CSS实用Tips</title>
+        <pubTime>2016-04-06T09:42:48.000Z</pubTime>
+        
+        <tag>css</tag>
+         
+        <tag>css3</tag>
          
          
            
