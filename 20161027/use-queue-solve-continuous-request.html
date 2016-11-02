@@ -32,7 +32,7 @@
   <meta name="summary" content="为了达到操作变化的实时性，在多选择项的业务场景中，往往点击一次就会发送一次 HTTP 请求。但同时又面临另外一个问题，在连续点击同一个选择项时，就会连续触发针对此项的删除或添加逻辑，进而连续发送 POST 或 DELETE 请求。理想的状态是上一个请求结束后才开始下一个请求，但是网络请求是异步的、请求耗时是不可控的，也就有可能在此项的添加请求未完成前，删除请求先完成了。
 我觉得用“插队”来描述这个场景真是再好不过了。">
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.1.6">
+  <link rel="stylesheet" href="/css/style.css?v=1.1.7">
 </head>
 
 <body>
@@ -276,7 +276,7 @@
 <div class="duoshuo">
 	<div class="ds-thread" data-thread-key="use-queue-solve-continuous-request" data-title="使用“队列”解决“插队”业务场景" data-url="http://imys.net/20161027/use-queue-solve-continuous-request.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.1.6"></script>
+<script src="/js/embed.min.js?v=1.1.7"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -362,7 +362,7 @@ url: "http://imys.net/20161027/use-queue-solve-continuous-request.html" }
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.1.6"></script>
+<script src="/js/main.min.js?v=1.1.7"></script>
 
 
 
@@ -371,7 +371,7 @@ url: "http://imys.net/20161027/use-queue-solve-continuous-request.html" }
 </div>
 <template id="search-tpl">
 <li class="item">
-    <a href="/{path}" class="waves-block waves-effect">
+    <a href="{path}" class="waves-block waves-effect">
         <div class="title ellipsis" title="{title}">{title}</div>
         <div class="flex-row flex-middle">
             <div class="tags ellipsis">
@@ -383,7 +383,7 @@ url: "http://imys.net/20161027/use-queue-solve-continuous-request.html" }
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.1.6"></script>
+<script src="/js/search.min.js?v=1.1.7"></script>
 
 
 
