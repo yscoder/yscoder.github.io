@@ -196,9 +196,9 @@
     </summary>
     
     
-      <category term="canvas" scheme="http://imys.net/tags/canvas/"/>
-    
       <category term="html5" scheme="http://imys.net/tags/html5/"/>
+    
+      <category term="canvas" scheme="http://imys.net/tags/canvas/"/>
     
       <category term="event" scheme="http://imys.net/tags/event/"/>
     
@@ -1697,9 +1697,9 @@ git push origin master
     </summary>
     
     
-      <category term="模块化" scheme="http://imys.net/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
-    
       <category term="javascript" scheme="http://imys.net/tags/javascript/"/>
+    
+      <category term="模块化" scheme="http://imys.net/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
     
   </entry>
   
@@ -2096,9 +2096,9 @@ package.json
     </summary>
     
     
-      <category term="模块化" scheme="http://imys.net/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
-    
       <category term="javascript" scheme="http://imys.net/tags/javascript/"/>
+    
+      <category term="模块化" scheme="http://imys.net/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
     
       <category term="require.js" scheme="http://imys.net/tags/require-js/"/>
     
@@ -2169,9 +2169,9 @@ package.json
     </summary>
     
     
-      <category term="canvas" scheme="http://imys.net/tags/canvas/"/>
-    
       <category term="html5" scheme="http://imys.net/tags/html5/"/>
+    
+      <category term="canvas" scheme="http://imys.net/tags/canvas/"/>
     
       <category term="chart" scheme="http://imys.net/tags/chart/"/>
     
@@ -2252,9 +2252,9 @@ package.json
     </summary>
     
     
-      <category term="canvas" scheme="http://imys.net/tags/canvas/"/>
-    
       <category term="html5" scheme="http://imys.net/tags/html5/"/>
+    
+      <category term="canvas" scheme="http://imys.net/tags/canvas/"/>
     
       <category term="process" scheme="http://imys.net/tags/process/"/>
     
