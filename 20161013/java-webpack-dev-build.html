@@ -22,7 +22,7 @@
 <meta property="og:url" content="http://imys.net/20161013/java-webpack-dev-build.html">
 <meta property="og:site_name" content="Yusen's Blog">
 <meta property="og:description" content="java项目下基于webpack的前端开发环境构建，实时刷新预览">
-<meta property="og:updated_time" content="2016-10-13T13:03:34.212Z">
+<meta property="og:updated_time" content="2016-11-04T14:35:21.431Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java项目下基于webpack的前端开发环境构建">
 <meta name="twitter:description" content="java项目下基于webpack的前端开发环境构建，实时刷新预览">
@@ -34,7 +34,7 @@
 项目入口是一个 jsp 页面，其中引用了一些 jsp 模版。我想是因为有一些内容需要后端直出到页面上。该页面上固定引用了 webpack 打包好的 css 及 js 文件路径，当然也加了动态参数用于刷新版本更新后的客户端缓存。
 可以使用 webpack 命令打包，或是用 webpack --progress --colors --watch 命令启动监听模式动态构建。">
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.1.7">
+  <link rel="stylesheet" href="/css/style.css?v=1.1.8">
 </head>
 
 <body>
@@ -96,7 +96,7 @@
 
       <footer class="footer">
   <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
-  <p>Yusen&#39;s Blog &copy; 2016</p>
+  <p>Yusen&#39;s Blog &copy; 2015 - 2016</p>
   <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
   <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
   <a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
@@ -183,8 +183,8 @@
 <p>但这样每次执行 <code>webpack</code> 命令，都相当于全新编译，所以速度很慢。以该项目而言，每次更改后需要等待 6s 才刷新浏览器。</p>
 <p>还实验了 gulp + webpack-stream，属于换汤不换药，每次还是全新编译。</p>
 <p>今天忽然想到，直接用 webpack 的监听模式启动，在每次编译后刷新浏览器就可以了。监听模式下，只有第一次是全新编译，之后会缓存未变化的模块，所以速度很快。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</div><div class="line"><span class="keyword">var</span> webpackDevServer = <span class="built_in">require</span>(<span class="string">'webpack-dev-server'</span>)</div><div class="line"><span class="keyword">var</span> config = <span class="built_in">require</span>(<span class="string">'./webpack.config'</span>)</div><div class="line"><span class="keyword">var</span> bs = <span class="built_in">require</span>(<span class="string">'browser-sync'</span>).create()</div><div class="line"></div><div class="line"><span class="keyword">var</span> compiler = webpack(config)</div><div class="line"></div><div class="line">bs.init(&#123;</div><div class="line">    proxy: <span class="string">'http://localhost:8080'</span></div><div class="line">&#125;)</div><div class="line"></div><div class="line">compiler.watch(&#123; </div><div class="line">    aggregateTimeout: <span class="number">300</span>,</div><div class="line">    poll: <span class="literal">true</span>  </div><div class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err, stats</span>) </span>&#123;</div><div class="line"></div><div class="line">    bs.reload()</div><div class="line"></div><div class="line">    <span class="built_in">console</span>.log(stats.toString(&#123;</div><div class="line">        chunks: <span class="literal">false</span>, </div><div class="line">        colors: <span class="literal">true</span></div><div class="line">    &#125;))</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>监听模式除了命令行启动外，也可以使用 <code>watch</code> 方法调用。<br>之后每次保存文件，只需要 100ms 左右就会刷新浏览器。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</div><div class="line"><span class="keyword">var</span> webpackDevServer = <span class="built_in">require</span>(<span class="string">'webpack-dev-server'</span>)</div><div class="line"><span class="keyword">var</span> config = <span class="built_in">require</span>(<span class="string">'./webpack.config'</span>)</div><div class="line"><span class="keyword">var</span> bs = <span class="built_in">require</span>(<span class="string">'browser-sync'</span>).create()</div><div class="line"></div><div class="line"><span class="keyword">var</span> compiler = webpack(config)</div><div class="line"></div><div class="line">bs.init(&#123;</div><div class="line">    proxy: <span class="string">'http://localhost:8080'</span></div><div class="line">&#125;)</div><div class="line"></div><div class="line">compiler.watch(&#123; </div><div class="line">    aggregateTimeout: <span class="number">300</span>,      <span class="comment">// 300ms 内的文件更改聚合到一次构建中</span></div><div class="line">    ignored: <span class="regexp">/node_modules/</span>,    <span class="comment">// 忽略大文件或基本不会变更的目录</span></div><div class="line">    poll: <span class="literal">true</span>                  </div><div class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err, stats</span>) </span>&#123;</div><div class="line"></div><div class="line">    bs.reload()</div><div class="line"></div><div class="line">    <span class="built_in">console</span>.log(stats.toString(&#123;</div><div class="line">        chunks: <span class="literal">false</span>, </div><div class="line">        colors: <span class="literal">true</span></div><div class="line">    &#125;))</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>监听模式除了命令行启动外，也可以使用 <code>watch</code> 方法调用，还可以通过 <code>ignored</code> 配置项忽略一些不会变更的目录。<br>之后每次保存文件，只需要 100ms 左右就会刷新浏览器。</p>
 <h2 id="感叹一句"><a href="#感叹一句" class="headerlink" title="感叹一句"></a>感叹一句</h2><blockquote>
 <p>如今的前端把多少时间都耗在环境搭建上了~</p>
 </blockquote>
@@ -288,7 +288,7 @@
 <div class="duoshuo">
 	<div class="ds-thread" data-thread-key="java-webpack-dev-build" data-title="java项目下基于webpack的前端开发环境构建" data-url="http://imys.net/20161013/java-webpack-dev-build.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.1.7"></script>
+<script src="/js/embed.min.js?v=1.1.8"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -374,7 +374,7 @@ url: "http://imys.net/20161013/java-webpack-dev-build.html" }
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.1.7"></script>
+<script src="/js/main.min.js?v=1.1.8"></script>
 
 
 
@@ -395,7 +395,7 @@ url: "http://imys.net/20161013/java-webpack-dev-build.html" }
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.1.7"></script>
+<script src="/js/search.min.js?v=1.1.8"></script>
 
 
 

@@ -118,7 +118,7 @@
     <link href="http://imys.net/20161013/java-webpack-dev-build.html"/>
     <id>http://imys.net/20161013/java-webpack-dev-build.html</id>
     <published>2016-10-13T06:05:56.000Z</published>
-    <updated>2016-10-13T13:03:34.212Z</updated>
+    <updated>2016-11-04T14:35:21.431Z</updated>
     
     <content type="html"><![CDATA[<p>标题可能不是很恰当，想不到一个合适的标题来概括我遇到以及解决的问题，暂且这样吧。</p>
 <h2 id="项目描述"><a href="#项目描述" class="headerlink" title="项目描述"></a>项目描述</h2><p>是一个不完全与后端分离的基于 webpack 构建的 Vue 项目。</p>
@@ -135,8 +135,8 @@
 <p>但这样每次执行 <code>webpack</code> 命令，都相当于全新编译，所以速度很慢。以该项目而言，每次更改后需要等待 6s 才刷新浏览器。</p>
 <p>还实验了 gulp + webpack-stream，属于换汤不换药，每次还是全新编译。</p>
 <p>今天忽然想到，直接用 webpack 的监听模式启动，在每次编译后刷新浏览器就可以了。监听模式下，只有第一次是全新编译，之后会缓存未变化的模块，所以速度很快。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</div><div class="line"><span class="keyword">var</span> webpackDevServer = <span class="built_in">require</span>(<span class="string">'webpack-dev-server'</span>)</div><div class="line"><span class="keyword">var</span> config = <span class="built_in">require</span>(<span class="string">'./webpack.config'</span>)</div><div class="line"><span class="keyword">var</span> bs = <span class="built_in">require</span>(<span class="string">'browser-sync'</span>).create()</div><div class="line"></div><div class="line"><span class="keyword">var</span> compiler = webpack(config)</div><div class="line"></div><div class="line">bs.init(&#123;</div><div class="line">    proxy: <span class="string">'http://localhost:8080'</span></div><div class="line">&#125;)</div><div class="line"></div><div class="line">compiler.watch(&#123; </div><div class="line">    aggregateTimeout: <span class="number">300</span>,</div><div class="line">    poll: <span class="literal">true</span>  </div><div class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err, stats</span>) </span>&#123;</div><div class="line"></div><div class="line">    bs.reload()</div><div class="line"></div><div class="line">    <span class="built_in">console</span>.log(stats.toString(&#123;</div><div class="line">        chunks: <span class="literal">false</span>, </div><div class="line">        colors: <span class="literal">true</span></div><div class="line">    &#125;))</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p>监听模式除了命令行启动外，也可以使用 <code>watch</code> 方法调用。<br>之后每次保存文件，只需要 100ms 左右就会刷新浏览器。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>)</div><div class="line"><span class="keyword">var</span> webpackDevServer = <span class="built_in">require</span>(<span class="string">'webpack-dev-server'</span>)</div><div class="line"><span class="keyword">var</span> config = <span class="built_in">require</span>(<span class="string">'./webpack.config'</span>)</div><div class="line"><span class="keyword">var</span> bs = <span class="built_in">require</span>(<span class="string">'browser-sync'</span>).create()</div><div class="line"></div><div class="line"><span class="keyword">var</span> compiler = webpack(config)</div><div class="line"></div><div class="line">bs.init(&#123;</div><div class="line">    proxy: <span class="string">'http://localhost:8080'</span></div><div class="line">&#125;)</div><div class="line"></div><div class="line">compiler.watch(&#123; </div><div class="line">    aggregateTimeout: <span class="number">300</span>,      <span class="comment">// 300ms 内的文件更改聚合到一次构建中</span></div><div class="line">    ignored: <span class="regexp">/node_modules/</span>,    <span class="comment">// 忽略大文件或基本不会变更的目录</span></div><div class="line">    poll: <span class="literal">true</span>                  </div><div class="line">&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err, stats</span>) </span>&#123;</div><div class="line"></div><div class="line">    bs.reload()</div><div class="line"></div><div class="line">    <span class="built_in">console</span>.log(stats.toString(&#123;</div><div class="line">        chunks: <span class="literal">false</span>, </div><div class="line">        colors: <span class="literal">true</span></div><div class="line">    &#125;))</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>监听模式除了命令行启动外，也可以使用 <code>watch</code> 方法调用，还可以通过 <code>ignored</code> 配置项忽略一些不会变更的目录。<br>之后每次保存文件，只需要 100ms 左右就会刷新浏览器。</p>
 <h2 id="感叹一句"><a href="#感叹一句" class="headerlink" title="感叹一句"></a>感叹一句</h2><blockquote>
 <p>如今的前端把多少时间都耗在环境搭建上了~</p>
 </blockquote>
@@ -196,9 +196,9 @@
     </summary>
     
     
-      <category term="html5" scheme="http://imys.net/tags/html5/"/>
-    
       <category term="canvas" scheme="http://imys.net/tags/canvas/"/>
+    
+      <category term="html5" scheme="http://imys.net/tags/html5/"/>
     
       <category term="event" scheme="http://imys.net/tags/event/"/>
     
@@ -2169,9 +2169,9 @@ package.json
     </summary>
     
     
-      <category term="html5" scheme="http://imys.net/tags/html5/"/>
-    
       <category term="canvas" scheme="http://imys.net/tags/canvas/"/>
+    
+      <category term="html5" scheme="http://imys.net/tags/html5/"/>
     
       <category term="chart" scheme="http://imys.net/tags/chart/"/>
     
@@ -2252,9 +2252,9 @@ package.json
     </summary>
     
     
-      <category term="html5" scheme="http://imys.net/tags/html5/"/>
-    
       <category term="canvas" scheme="http://imys.net/tags/canvas/"/>
+    
+      <category term="html5" scheme="http://imys.net/tags/html5/"/>
     
       <category term="process" scheme="http://imys.net/tags/process/"/>
     
