@@ -9,22 +9,22 @@
   <link rel="canonical" href="http://imys.net/20150807/js-module-requirejs.html">
   
   
-  <title>require.js入门--用面向对象语言来理解js模块化 | Yusen&#39;s Blog | 折腾不在乎成功与否。</title>
+  <title>Require.js入门--用面向对象语言来理解js模块化 | Yusen&#39;s Blog | 折腾不在乎成功与否。</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="javascript,模块化,require.js">
+  <meta name="keywords" content="JavaScript,模块化,Require.js">
   <meta name="description" content="require.js入门，用面向对象语言来理解js模块化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="require.js入门--用面向对象语言来理解js模块化">
+<meta property="og:title" content="Require.js入门--用面向对象语言来理解js模块化">
 <meta property="og:url" content="http://imys.net/20150807/js-module-requirejs.html">
 <meta property="og:site_name" content="Yusen's Blog">
 <meta property="og:description" content="require.js入门，用面向对象语言来理解js模块化">
-<meta property="og:updated_time" content="2016-08-15T13:28:56.417Z">
+<meta property="og:updated_time" content="2016-11-12T19:21:48.683Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="require.js入门--用面向对象语言来理解js模块化">
+<meta name="twitter:title" content="Require.js入门--用面向对象语言来理解js模块化">
 <meta name="twitter:description" content="require.js入门，用面向对象语言来理解js模块化">
   
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
@@ -108,7 +108,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">require.js入门--用面向对象语言来理解js模块化</div>
+        <div class="flex-col header-title ellipsis">Require.js入门--用面向对象语言来理解js模块化</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -130,7 +130,7 @@
 <header class="content-header post-header">
 
     <div class="container">
-        <h1 class="title">require.js入门--用面向对象语言来理解js模块化</h1>
+        <h1 class="title">Require.js入门--用面向对象语言来理解js模块化</h1>
         
         
     </div>
@@ -153,7 +153,7 @@
   class="post-article article-type-post" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">require.js入门--用面向对象语言来理解js模块化</h1>
+        <h1 class="post-card-title">Require.js入门--用面向对象语言来理解js模块化</h1>
         <div class="post-meta">
             <time datetime="2015-08-07T02:33:25.000Z" itemprop="datePublished" class="post-time">
   Aug 7, 2015
@@ -164,7 +164,7 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <p>作为一个曾经的后端开发者，当我第一眼看到一些javascript模块化的代码案例时，我就想到了java、c#这些天生的模块化语言。<br>今天就拿 require.js 来捋一捋这其中的异同。<br><a id="more"></a><br><!-- toc --></p>
+            <p>作为一个曾经的后端开发者，当我第一眼看到一些javascript模块化的代码案例时，我就想到了java、c#这些天生的模块化语言。<br>今天就拿 require.js 来捋一捋这其中的异同。<br><a id="more"></a></p>
 <h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><p>一个基本的javascript模块，应该是隐藏私有成员及方法，暴漏外部调用的所需的接口。<br>常见的写法有：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> <span class="built_in">module</span> = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> prop = <span class="string">''</span>;</div><div class="line">  <span class="keyword">var</span> tool = <span class="function"><span class="keyword">function</span>(<span class="params">p</span>)</span>&#123;</div><div class="line">  </div><div class="line">  &#125;;</div><div class="line">  </div><div class="line">  <span class="comment">//...</span></div><div class="line">  </div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    fn: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      tool(prop);</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
 <p>在以上代码中，外部环境无法读取和修改变量<code>prop</code>和方法<code>tool</code>，但是该模块返回了一个公开的对象，并有一个可执行的方法<code>fn</code>。</p>
@@ -222,7 +222,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/require-js/">require.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模块化/">模块化</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Require-js/">Require.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/模块化/">模块化</a></li></ul>
 
 
             
@@ -297,7 +297,7 @@
             
     
 <div class="duoshuo">
-	<div class="ds-thread" data-thread-key="js-module-requirejs" data-title="require.js入门--用面向对象语言来理解js模块化" data-url="http://imys.net/20150807/js-module-requirejs.html"></div>
+	<div class="ds-thread" data-thread-key="js-module-requirejs" data-title="Require.js入门--用面向对象语言来理解js模块化" data-url="http://imys.net/20150807/js-module-requirejs.html"></div>
 </div>
 <script src="/js/embed.min.js?v=1.1.9"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
@@ -342,7 +342,7 @@ var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
 
 <script>var BLOG = { ROOT: '/' };
 BLOG.SHARE = {
-title: "require.js入门--用面向对象语言来理解js模块化",
+title: "Require.js入门--用面向对象语言来理解js模块化",
 pic: "/img/face.jpg",
 summary: document.getElementsByName('summary')[0].content,
 url: "http://imys.net/20150807/js-module-requirejs.html" }

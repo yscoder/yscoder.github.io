@@ -15,14 +15,14 @@
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="jquery">
+  <meta name="keywords" content="jQuery,proxy">
   <meta name="description" content="jQuery.proxy方法原理与使用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jQuery.proxy方法原理与使用">
 <meta property="og:url" content="http://imys.net/20150510/jquery-proxy.html">
 <meta property="og:site_name" content="Yusen's Blog">
 <meta property="og:description" content="jQuery.proxy方法原理与使用">
-<meta property="og:updated_time" content="2016-08-15T13:28:56.417Z">
+<meta property="og:updated_time" content="2016-11-12T19:19:16.257Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jQuery.proxy方法原理与使用">
 <meta name="twitter:description" content="jQuery.proxy方法原理与使用">
@@ -178,6 +178,7 @@
 <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>不难猜出其底层实现应该是原生 js 中的 call 或 apply 方法。</p>
 <p><strong>jquery1.9 中的源码片段：</strong></p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">proxy: <span class="function"><span class="keyword">function</span>(<span class="params"> fn, context </span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> args, proxy, tmp;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> ( <span class="keyword">typeof</span> context === <span class="string">"string"</span> ) &#123;</div><div class="line">        tmp = fn[ context ];</div><div class="line">        context = fn;</div><div class="line">        fn = tmp;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Quick check to determine if target is callable, in the spec</span></div><div class="line">    <span class="comment">// this throws a TypeError, but we will just return undefined.</span></div><div class="line">    <span class="keyword">if</span> ( !jQuery.isFunction( fn ) ) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">undefined</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Simulated bind</span></div><div class="line">    args = core_slice.call( <span class="built_in">arguments</span>, <span class="number">2</span> );</div><div class="line">    proxy = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> fn.apply( context || <span class="keyword">this</span>, args.concat( core_slice.call( <span class="built_in">arguments</span> ) ) );</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="comment">// Set the guid of unique handler to the same of original handler, so it can be removed</span></div><div class="line">    proxy.guid = fn.guid = fn.guid || jQuery.guid++;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> proxy;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
         </div>
         
         <blockquote class="post-copyright">
@@ -199,7 +200,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jquery/">jquery</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jQuery/">jQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/proxy/">proxy</a></li></ul>
 
 
             

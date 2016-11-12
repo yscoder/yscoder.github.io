@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://imys.net/"/>
-  <updated>2016-11-01T16:45:20.551Z</updated>
+  <updated>2016-11-12T18:58:09.000Z</updated>
   <id>http://imys.net/</id>
   
   <author>
@@ -16,62 +16,90 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>关于 text-transform: capitalize 失效的场景与解决方案</title>
-    <link href="http://imys.net/20161031/text-transform-capitalize-not-working.html"/>
-    <id>http://imys.net/20161031/text-transform-capitalize-not-working.html</id>
-    <published>2016-10-31T05:39:02.000Z</published>
-    <updated>2016-11-01T16:45:20.551Z</updated>
+    <title>Vue单元测试起步</title>
+    <link href="http://imys.net/20161110/vue-unit-test-start.html"/>
+    <id>http://imys.net/20161110/vue-unit-test-start.html</id>
+    <published>2016-11-10T03:08:14.000Z</published>
+    <updated>2016-11-12T18:58:09.000Z</updated>
     
-    <content type="html"><![CDATA[<p><code>text-transform</code> 是一个可以将文字进行大小写转换或单词首字符大写的 CSS 属性。自从知道了它，我就开始偷懒不在 js 中去在调用相关的转换函数了。</p>
-<p>昨天在给多说扩展用户 UA 功能时遇到一个 <code>text-transform: capitalize</code> 失效的问题，经过一番测试，找到了问题的原因。<br><a id="more"></a></p>
-<h2 id="场景还原"><a href="#场景还原" class="headerlink" title="场景还原"></a>场景还原</h2><p>根据当时场景，抽取关键 css 属性：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-class">.capitalize</span> &#123;</div><div class="line">  <span class="attribute">text-transform</span>: capitalize</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.before</span><span class="selector-pseudo">:before</span> &#123;</div><div class="line">  <span class="attribute">content</span>: <span class="string">'hello'</span></div><div class="line">&#125;</div><div class="line"><span class="selector-class">.after</span><span class="selector-pseudo">:after</span> &#123;</div><div class="line">  <span class="attribute">content</span>: <span class="string">'world'</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>现有如下的 HTML，你们猜最终会是什么结果？</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"capitalize"</span>&gt;</span>hello world<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"capitalize"</span>&gt;</span>HELLO WORLD<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"capitalize before"</span>&gt;</span>world<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"capitalize after"</span>&gt;</span>hello<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>结果：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Hello World</div><div class="line">HELLO WORLD</div><div class="line">Helloworld</div><div class="line">Helloworld</div></pre></td></tr></table></figure>
-<p>问题DEMO链接：<a href="https://jsfiddle.net/imys/2mb9ykL3/" target="_blank" rel="external">text-transform: capitalize 失效demo</a></p>
-<h2 id="问题解析"><a href="#问题解析" class="headerlink" title="问题解析"></a>问题解析</h2><p>通过运行结果可以发现全小写单词组合时，转换没有任何问题，略过。</p>
-<h3 id="大写单词组合"><a href="#大写单词组合" class="headerlink" title="大写单词组合"></a>大写单词组合</h3><p>全大写单词组合，转换失效？真的是这样吗？</p>
-<p>通过查阅相关文档，关于 <code>capitalize</code> 的介绍为：<strong>将每个单词的第一个字母转换成大写</strong>。<br>看来是我们对它期望太高了，<code>text-transform: capitalize</code>并不能像 <code>lodash</code> 库中的转换函数那样，将全大写的的 <code>AAA</code> 转换成你期望的 <code>Aaa</code>。</p>
-<h3 id="含有伪元素"><a href="#含有伪元素" class="headerlink" title="含有伪元素"></a>含有伪元素</h3><p>这也是我面临到的问题，每个 UA 标签上的 tootip 都是我用伪类模拟的。<br>由于当时伪元素是绝对定位的，在视觉上真的是当作了另外的元素看待。</p>
-<p>而在问题 DEMO 中，我们还原了伪元素默认显示的位置：<code>:before</code> 就是在原始内容前追加内容，<code>:after</code> 就是在原始内容后追加内容。<br><strong>由于最后生成的内容之间没有间隙，导致 <code>text-transform</code> 转换时将其当作一个单词。</strong></p>
-<p>为了验证我的结论，我在含有伪元素的内容前或后加了个空格：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"capitalize before"</span>&gt;</span> world<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">class</span>=<span class="string">"capitalize after"</span>&gt;</span>hello <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>最后转换成功：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Hello World</div><div class="line">Hello World</div></pre></td></tr></table></figure>
-<p><a href="https://jsfiddle.net/imys/2mb9ykL3/1/" target="_blank" rel="external">DEMO</a></p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>虽然找到了问题的原因，但是实际场景中使用伪元素的初衷就是要将一个元素当作多个元素使用，HTML 中加空格会有半个中文字符宽度的空白，也就等于产生了不必要的边距。</p>
-<p>做到这里真是感觉不如直接写个 js 转换函数算了。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">capitalize</span>(<span class="params">string</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> string.charAt(<span class="number">0</span>).toUpperCase() + string.substr(<span class="number">1</span>).toLowerCase()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>写出来后忽然发现这段代码完全可以用 CSS 去“实现”。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-class">.capitalize</span> &#123;</div><div class="line">    <span class="attribute">text-transform</span>: lowercase;</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.capitalize</span><span class="selector-pseudo">:first-letter</span> &#123;</div><div class="line">    <span class="attribute">text-transform</span>: uppercase;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>上个月旭哥博客有篇很详细的 <code>:first-letter</code> 介绍：<a href="http://www.zhangxinxu.com/wordpress/2016/09/css-first-letter-pseudo-element/" target="_blank" rel="external">张鑫旭：深入CSS :first-letter伪元素及其实例等</a></p>
-<p>其中提到了 <code>:first-letter</code> 和 <code>:before</code> 之间的猫腻，就是说 <code>:first-letter</code> 也生效于 <code>:before</code> 伪元素。<br>不过我测试后发现，<strong>当 <code>:before</code> 伪元素设置为绝对定位时，<code>:first-letter</code>将只作用于原始内容</strong>。</p>
-<p><a href="https://jsfiddle.net/imys/x4ntopqr/" target="_blank" rel="external">:first-letter和:before示例demo</a></p>
-<p>利用这个机制，总算可以给自己一个完美的答复了。</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-class">.capitalize</span> &#123;</div><div class="line">  <span class="attribute">text-transform</span>: capitalize</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.before</span> &#123;</div><div class="line">  <span class="attribute">padding-left</span>: <span class="number">2.5em</span></div><div class="line">&#125;</div><div class="line"><span class="selector-class">.before</span><span class="selector-pseudo">:before</span> &#123;</div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</div><div class="line">  <span class="attribute">content</span>: <span class="string">'hello'</span></div><div class="line">&#125;</div><div class="line"><span class="selector-class">.before</span><span class="selector-pseudo">:first-letter</span> &#123;</div><div class="line">  <span class="attribute">text-transform</span>: uppercase</div><div class="line">&#125;</div><div class="line"><span class="selector-class">.after</span><span class="selector-pseudo">:after</span> &#123;</div><div class="line">  <span class="attribute">position</span>: absolute;</div><div class="line">  <span class="attribute">content</span>: <span class="string">'world'</span>;</div><div class="line">  <span class="attribute">text-transform</span>: capitalize</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+    <content type="html"><![CDATA[<p>最近在搭建一个项目的前端开发环境，准备趁此把一些没用过的东西尝试下，比如：单元测试。<br>使用<code>vue-cli</code>可以直接生成一个包含<code>unit</code>、<code>e2e</code>测试的开发环境，不过还是需要去了解其中的组织结构、配置和模块的使用等。</p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>没有一点相关经验，先把<code>vue-cli</code>生成后的<code>test/unit</code>目录拿到自己的项目中。<br><a id="more"></a></p>
+<p><code>test</code> 目录结构:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">|- test</div><div class="line">|--- unit</div><div class="line">|----- specs</div><div class="line">|----- .eslintrc</div><div class="line">|----- index.js</div><div class="line">|----- karma.conf.js</div></pre></td></tr></table></figure>
+<p>之后在<code>package.json</code>中找到<code>karma</code>相关的模块。</p>
 <ul>
-<li>附加内容在 <code>:before</code> 时，使用 <code>:first-letter</code> + <code>uppercase</code> 解决，如果原始内容有大写，需要再给原标签加 <code>lowercase</code>；</li>
-<li>附加内容在 <code>:after</code> 时，给 <code>:after</code> 再加 <code>capitalize</code>。</li>
+<li><a href="http://karma-runner.github.io/0.13/index.html" target="_blank" rel="external">karma</a> 一个 JavaScript 测试运行器，其在测试中的作用相当于开发构建中使用的<code>webpack</code>。</li>
+<li><a href="https://github.com/webpack/karma-webpack" target="_blank" rel="external">karma-webpack</a> 连接<code>karma</code>和<code>webpack</code>的桥梁。不经过<code>webpack</code>编译命令是文件是无法独立运行的，<code>karma</code>需要了解你的<code>webpack</code>配置，决定如何处理你的测试文件。</li>
+<li><a href="https://github.com/karma-runner/karma-phantomjs-launcher" target="_blank" rel="external">karma-phantomjs-launcher</a> 是<code>phantomjs</code>在<code>karma</code>中的启动器，由此引出了<code>phantomjs</code>。<a href="https://github.com/ariya/phantomjs" target="_blank" rel="external">PhantomJS</a> 是一个没有界面的 “浏览器” ，内置了 JavaScript API，支持各种Web标准：DOM 处理、CSS 选择器、JSON、Canvas 和 SVG 等。在查找相关资料时，也发现了其他的常规浏览器<code>launcher</code>，比如：Chrome、Firefox、Safari、IE 等，以应对不同浏览器或多浏览器的测试需求。见<a href="http://karma-runner.github.io/0.13/config/browsers.html" target="_blank" rel="external">Browsers</a></li>
+<li><a href="https://github.com/demerzel3/karma-sourcemap-loader" target="_blank" rel="external">karma-sourcemap-loader</a> <code>Karma</code>插件，生成文件的<code>sourcemap</code>。</li>
+<li><a href="https://github.com/karma-runner/karma-mocha" target="_blank" rel="external">karma-mocha</a> 让你在 karma 中使用 <a href="https://mochajs.org/" target="_blank" rel="external">Mocha</a> 测试框架的插件，使用时还需要安装前置依赖<code>mocha</code>。</li>
+<li><a href="https://github.com/domenic/sinon-chai" target="_blank" rel="external">karma-sinon-chai</a> 让你在<code>karma</code>中使用<code>sinon-chai</code>断言库的插件，前置依赖有<code>sinon-chai</code>、<code>sinon</code>、<code>chai</code>…😕</li>
+<li><a href="https://github.com/mlex/karma-spec-reporter" target="_blank" rel="external">karma-spec-reporter</a> 用于将测试结果显示到控制台。</li>
+<li><a href="https://github.com/karma-runner/karma-coverage" target="_blank" rel="external">karma-coverage</a> 生成代码覆盖率。</li>
 </ul>
-<p><a href="https://jsfiddle.net/imys/2mb9ykL3/2/" target="_blank" rel="external">DEMO</a></p>
-<h2 id="End"><a href="#End" class="headerlink" title="End"></a>End</h2>]]></content>
+<p>其中要使用<code>karma-phantomjs-launcher</code>，需要先安装<code>PhantomJS</code>，通过<code>phantomjs-prebuilt</code>安装。</p>
+<p>看到这一大堆依赖，感觉面前又是一个不亚于 Webpack 的技术栈。之所以去了解每个模块的用处，就是为了在学习的时候直插心脏，忽略那些不重要的模块。<br>以上来说，Karma 是基本的运行器，需要了解其配置和使用。测试框架 Mocha 和断言库 sinon-chai 类似于开发中使用的 Lodash，提供一系列用于测试的工具函数。剩下的按示例集成就好。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>整合一条命令。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">npm i -D karma karma-webpack phantomjs-prebuilt karma-phantomjs-launcher karma-sourcemap-loader mocha karma-mocha sinon chai sinon-chai karma-sinon-chai karma-spec-reporter karma-coverage</div></pre></td></tr></table></figure>
+<p>PhantomJS 安装比较慢，也可以去其<a href="http://phantomjs.org/download.html" target="_blank" rel="external">官网下载</a>，并手动<a href="http://phantomjs.org/build.html" target="_blank" rel="external">配置环境变量</a>。</p>
+<p>安装好了，先跑一下看看是否安装正确，到<code>package.json</code>的<code>scripts</code>中注册一个命令：<code>&quot;unit&quot;: &quot;karma start test/unit/karma.conf.js --single-run&quot;</code>，然后运行。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">npm run unit</div></pre></td></tr></table></figure>
+<p>然后不出意料的报错了，只是少装了一个模块<code>isparta-loader</code>，是一个代码覆盖工具，继续安装后运行OK。</p>
+<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-1.jpg" alt="vue-unit-1"></p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>karma.conf.js 文件内容分为两部分。<br><code>module.exports</code> 以上是对 Webpack 配置的处理，像<code>webpack.dev.conf</code>和<code>webpack.prod.conf</code>那样，在不同的环境里使用不同的配置。后一部分就是对 Karma 的配置了。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">config</span>) </span>&#123;</div><div class="line">    config.set(&#123;</div><div class="line">        <span class="comment">// 要启动的测试浏览器</span></div><div class="line">        browsers: [<span class="string">'PhantomJS'</span>],</div><div class="line">        <span class="comment">// 测试框架</span></div><div class="line">        frameworks: [<span class="string">'mocha'</span>, <span class="string">'sinon-chai'</span>],</div><div class="line">        <span class="comment">// 测试报告处理</span></div><div class="line">        reporters: [<span class="string">'spec'</span>, <span class="string">'coverage'</span>],</div><div class="line">        <span class="comment">// 要测试的目标文件</span></div><div class="line">        files: [<span class="string">'./index.js'</span>],</div><div class="line">        <span class="comment">// 忽略的文件</span></div><div class="line">        exclude: [],</div><div class="line">        <span class="comment">// 预处理文件</span></div><div class="line">        preprocessors: &#123;</div><div class="line">            <span class="string">'./index.js'</span>: [<span class="string">'webpack'</span>, <span class="string">'sourcemap'</span>]</div><div class="line">        &#125;,</div><div class="line">        <span class="comment">// webpack</span></div><div class="line">        webpack: webpackConfig,</div><div class="line">        webpackMiddleware: &#123;</div><div class="line">            noInfo: <span class="literal">true</span></div><div class="line">        &#125;,</div><div class="line">        <span class="comment">// Coverage options</span></div><div class="line">        coverageReporter: &#123;</div><div class="line">            dir: <span class="string">'./coverage'</span>,</div><div class="line">            reporters: [</div><div class="line">                &#123; type: <span class="string">'lcov'</span>, subdir: <span class="string">'.'</span> &#125;,</div><div class="line">                &#123; type: <span class="string">'text-summary'</span> &#125;</div><div class="line">            ]</div><div class="line">        &#125;,</div><div class="line">        <span class="comment">// true: 自动运行测试并退出</span></div><div class="line">        <span class="comment">// false: 监控文件持续测试</span></div><div class="line">        singleRun: <span class="literal">true</span>,</div><div class="line"></div><div class="line">        <span class="comment">// 以下是 vue-cli 没有生成的一些配置</span></div><div class="line"></div><div class="line">        <span class="comment">// 文件匹配的起始路径</span></div><div class="line">        <span class="comment">// basePath: '',</span></div><div class="line">        <span class="comment">// 服务器端口</span></div><div class="line">        <span class="comment">// port: 9876,</span></div><div class="line">        <span class="comment">// 输出着色</span></div><div class="line">        <span class="comment">// colors: true,</span></div><div class="line">        <span class="comment">// 日志级别</span></div><div class="line">        <span class="comment">// LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG</span></div><div class="line">        <span class="comment">// logLevel: config.LOG_INFO,</span></div><div class="line">        <span class="comment">// 监控文件更改</span></div><div class="line">        <span class="comment">// autoWatch: true,</span></div><div class="line">        <span class="comment">// 超时处理，6s内没有捕获浏览器将终止进程</span></div><div class="line">        <span class="comment">// captureTimeout: 6000</span></div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中对于测试文件入口有点难以理解，仅仅是一个脚本文件，而不是路径匹配，也就是配置文件同级的那个<code>index.js</code>，只有 5 行代码。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="built_in">Function</span>.prototype.bind = <span class="built_in">require</span>(<span class="string">'function-bind'</span>)</div><div class="line"></div><div class="line"><span class="keyword">const</span> testsContext = <span class="built_in">require</span>.context(<span class="string">'./specs'</span>, <span class="literal">true</span>, <span class="regexp">/\.spec$/</span>)</div><div class="line">testsContext.keys().forEach(testsContext)</div><div class="line"></div><div class="line"><span class="keyword">const</span> srcContext = <span class="built_in">require</span>.context(<span class="string">'../../src'</span>, <span class="literal">true</span>, <span class="regexp">/^\.\/(?!main(\.js)?$)/</span>)</div><div class="line">srcContext.keys().forEach(srcContext)</div></pre></td></tr></table></figure>
+<p>看起来如果使用了高版本的 NodeJs 第一行代码是可以去掉了。</p>
+<ul>
+<li><code>testsContext</code>匹配的是<code>specs</code>目录，里面是存放的是测试用例；</li>
+<li><code>srcContext</code>匹配的是<code>src</code>目录，从正则上看是除了<code>main.js</code>以外的所有文件。</li>
+</ul>
+<p>也就是说，也可以通过脚本文件这种方式设置匹配的目标文件。</p>
+<h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><p>现在看起来一切妥当了，可以开始写测试用例了。</p>
+<p>把以上步骤又重复了一遍，集成到了一个自己写的 Demo 项目中，然后运行测试。</p>
+<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-2.jpg" alt="vue-unit-2"></p>
+<p>什么鬼，找不到 <code>less</code> 变量。</p>
+<p>为了验证不是配置问题，我在 vue-cli 生成项目的组件中使用 less 写了个样式，运行测试出现了一样的问题。<br>最后找到了这条<a href="https://github.com/vuejs-templates/webpack/issues/163" target="_blank" rel="external">issue</a>。<br>翻译了半天，感觉是匹配文件的问题。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">const</span> srcContext = <span class="built_in">require</span>.context(<span class="string">'../../src'</span>, <span class="literal">true</span>, <span class="regexp">/^\.\/(?!main(\.js)?$)/</span>)</div></pre></td></tr></table></figure>
+<p>原来的正则会匹配除了<code>main.js</code>以外的所有文件，所以样式文件也会被匹配上。使用 less 时一般只有一个变量文件，然后从一个 less 出口文件中解析，而单元测试本身做的工作是单文件测试，单个 less 文件肯定是找不到变量的。<br>不过样式本身是不会对逻辑产生影响的，可以不参与测试，干脆直接锁定目标文件后缀，也就是 vue 组件。</p>
+<p>修改如下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">const</span> srcContext = <span class="built_in">require</span>.context(<span class="string">'../../src'</span>, <span class="literal">true</span>, <span class="regexp">/\.vue$/</span>)</div></pre></td></tr></table></figure>
+<p>刚翻过一座山，又遇到一条河。</p>
+<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-3.jpg" alt="vue-unit-3"></p>
+<p>看起来是因为 API 不兼容，PhantomJS 中还没有集成 Promise。</p>
+<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-4.jpg" alt="vue-unit-4"></p>
+<p>为了避免相似的问题，索性把 launcher 换掉了，用<code>karma-chrome-launcher</code>。<br>安装后，更改 Karma 配置中的<code>browsers</code>属性值为<code>[&#39;Chrome&#39;]</code>，测试运行成功。</p>
+<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-5.png" alt="vue-unit-5"></p>
+<p>有一些青色的 LOG，第一条使用 Vue 的应该都已经熟悉了，是浏览器控制台输出的 LOG，所以其他的也是浏览器的日志了。</p>
+<p>第 1、3、4 条 LOG 是有一个指令没有找到，第 2 条是关于路由的。指令和路由的引入是在项目入口的 js 文件内，可以预知如果我使用了其他类别的 Vue 插件也会报出 ERROR。<br>还是有问题要解决啊！😒</p>
+<h2 id="测试用例"><a href="#测试用例" class="headerlink" title="测试用例"></a>测试用例</h2><p>初次接触测试框架和断言，对于组件的测试用例也还在摸索中。<br>从例子上看，大概思路如下：</p>
+<ol>
+<li>引入一个组件；</li>
+<li>创建一个用于测试的 Vue 实例，然后组件挂上去；</li>
+<li>对实例进行模拟操作，然后断言期望值。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></div><div class="line"><span class="keyword">import</span> SearchView <span class="keyword">from</span> <span class="string">'src/components/SearchView'</span></div><div class="line"></div><div class="line">describe(<span class="string">'SearchView.vue'</span>, () =&gt; &#123;</div><div class="line">    it(<span class="string">'Input is normal'</span>, () =&gt; &#123;</div><div class="line">        <span class="keyword">const</span> vm = <span class="keyword">new</span> Vue(&#123;</div><div class="line">            el: <span class="built_in">document</span>.createElement(<span class="string">'div'</span>),</div><div class="line">            render: (h) =&gt; h(SearchView)</div><div class="line">        &#125;)</div><div class="line"></div><div class="line">        vm.key = <span class="string">'曾经的你'</span></div><div class="line"></div><div class="line">        vm.$nextTick(() =&gt; &#123;</div><div class="line">            expect(vm.$el.querySelector(<span class="string">'.m-key'</span>).textContent).to.equal(<span class="string">'曾经的你'</span>)</div><div class="line">        &#125;)</div><div class="line">    &#125;)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>实际的项目中，针对复杂的逻辑或者异步操作，测试一定不会这么简单。😅<br>下一步准备找一些 Vue 的开源项目，学习一下其中的测试用例写法。</p>
+<p>End!</p>
+]]></content>
     
     <summary type="html">
     
-      关于 text-transform: capitalize 失效的场景与解决方案
+      Vue单元测试配置，Vue unit test, Vue Karma 配置
     
     </summary>
     
     
-      <category term="css" scheme="http://imys.net/tags/css/"/>
+      <category term="Vue" scheme="http://imys.net/tags/Vue/"/>
     
-      <category term="css3" scheme="http://imys.net/tags/css3/"/>
+      <category term="Unit test" scheme="http://imys.net/tags/Unit-test/"/>
     
-      <category term="text-transform" scheme="http://imys.net/tags/text-transform/"/>
+      <category term="单元测试" scheme="http://imys.net/tags/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"/>
     
-      <category term="capitalize" scheme="http://imys.net/tags/capitalize/"/>
+      <category term="Karma" scheme="http://imys.net/tags/Karma/"/>
+    
+      <category term="Phantomjs" scheme="http://imys.net/tags/Phantomjs/"/>
     
   </entry>
   
@@ -80,7 +108,7 @@
     <link href="http://imys.net/20161027/use-queue-solve-continuous-request.html"/>
     <id>http://imys.net/20161027/use-queue-solve-continuous-request.html</id>
     <published>2016-10-27T09:21:23.000Z</published>
-    <updated>2016-10-27T15:12:05.291Z</updated>
+    <updated>2016-11-12T19:39:34.538Z</updated>
     
     <content type="html"><![CDATA[<p>为了达到操作变化的实时性，在多选择项的业务场景中，往往点击一次就会发送一次 HTTP 请求。<br>但同时又面临另外一个问题，在连续点击同一个选择项时，就会连续触发针对此项的删除或添加逻辑，进而连续发送 POST 或 DELETE 请求。<br>理想的状态是上一个请求结束后才开始下一个请求，但是网络请求是异步的、请求耗时是不可控的，也就有可能在此项的添加请求未完成前，删除请求先完成了。</p>
 <p>我觉得用“插队”来描述这个场景真是再好不过了。<br><a id="more"></a></p>
@@ -92,7 +120,8 @@
 <p>点击操作的入口函数，先创建请求进队。<br>因为第二次请求必须要在第一次请求完成之后，所以只有队列中仅存在一个请求时才去触发更新。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myClick</span>(<span class="params">method, url, param</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> len = requestQueue.push(XHR(method, url, param))</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(len === <span class="number">1</span>) &#123;</div><div class="line">        update()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>执行的永远是队列中的第一个请求。<br>当一个请求完成后，就出队，队列中剩余的请求依次前进一个位置。<br>如果存在未完成的请求，继续调用更新操作。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">update</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    requestQueue[<span class="number">0</span>].then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</div><div class="line">        <span class="comment">// request success</span></div><div class="line">        requestQueue.shift()</div><div class="line">        requestQueue.length &amp;&amp; update()</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">update</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    requestQueue[<span class="number">0</span>].then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</div><div class="line">        <span class="comment">// request success</span></div><div class="line">        requestQueue.shift()</div><div class="line">        requestQueue.length &amp;&amp; update()</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
     
     <summary type="html">
     
@@ -101,13 +130,13 @@
     </summary>
     
     
-      <category term="promise" scheme="http://imys.net/tags/promise/"/>
+      <category term="Promise" scheme="http://imys.net/tags/Promise/"/>
     
-      <category term="request" scheme="http://imys.net/tags/request/"/>
+      <category term="Request" scheme="http://imys.net/tags/Request/"/>
     
       <category term="HTTP" scheme="http://imys.net/tags/HTTP/"/>
     
-      <category term="queue" scheme="http://imys.net/tags/queue/"/>
+      <category term="Queue" scheme="http://imys.net/tags/Queue/"/>
     
       <category term="数据结构" scheme="http://imys.net/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
@@ -118,7 +147,7 @@
     <link href="http://imys.net/20161013/java-webpack-dev-build.html"/>
     <id>http://imys.net/20161013/java-webpack-dev-build.html</id>
     <published>2016-10-13T06:05:56.000Z</published>
-    <updated>2016-11-04T14:35:21.431Z</updated>
+    <updated>2016-11-12T19:20:21.641Z</updated>
     
     <content type="html"><![CDATA[<p>标题可能不是很恰当，想不到一个合适的标题来概括我遇到以及解决的问题，暂且这样吧。</p>
 <h2 id="项目描述"><a href="#项目描述" class="headerlink" title="项目描述"></a>项目描述</h2><p>是一个不完全与后端分离的基于 webpack 构建的 Vue 项目。</p>
@@ -149,13 +178,13 @@
     </summary>
     
     
-      <category term="java" scheme="http://imys.net/tags/java/"/>
+      <category term="Java" scheme="http://imys.net/tags/Java/"/>
     
       <category term="jsp" scheme="http://imys.net/tags/jsp/"/>
     
-      <category term="webpack" scheme="http://imys.net/tags/webpack/"/>
+      <category term="Webpack" scheme="http://imys.net/tags/Webpack/"/>
     
-      <category term="browsersync" scheme="http://imys.net/tags/browsersync/"/>
+      <category term="BrowserSync" scheme="http://imys.net/tags/BrowserSync/"/>
     
   </entry>
   
@@ -164,7 +193,7 @@
     <link href="http://imys.net/20160808/canvas-event.html"/>
     <id>http://imys.net/20160808/canvas-event.html</id>
     <published>2016-08-08T06:43:38.000Z</published>
-    <updated>2016-08-15T13:28:56.401Z</updated>
+    <updated>2016-11-12T19:10:45.626Z</updated>
     
     <content type="html"><![CDATA[<p>Canvas 本身也属于 HTMLElement，自然也是支持各种事件绑定的。<br>但绘制在其中的图形并不作为其子元素存在，这就不能方便的为 Canvas 中的某个特定图形去绑定事件。</p>
 <p>我们都知道 js 中的事件委托，将事件绑定到父节点上，待到父节点响应事件时，动态判断当前响应元素为目标子节点时再执行对应的操作。</p>
@@ -196,11 +225,11 @@
     </summary>
     
     
-      <category term="canvas" scheme="http://imys.net/tags/canvas/"/>
+      <category term="Canvas" scheme="http://imys.net/tags/Canvas/"/>
     
-      <category term="html5" scheme="http://imys.net/tags/html5/"/>
+      <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
     
-      <category term="event" scheme="http://imys.net/tags/event/"/>
+      <category term="Event" scheme="http://imys.net/tags/Event/"/>
     
   </entry>
   
@@ -209,7 +238,7 @@
     <link href="http://imys.net/20160726/vscode-extension-qiniu-upload.html"/>
     <id>http://imys.net/20160726/vscode-extension-qiniu-upload.html</id>
     <published>2016-07-26T01:53:52.000Z</published>
-    <updated>2016-11-01T16:45:20.551Z</updated>
+    <updated>2016-11-12T19:31:03.402Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>一直以来，我都很少在文章中加插图。因为每加一张插图，我都需要先把图片上传到七牛，然后才能获取外链插入文章。</p>
 <p>之前写 Markdown 一直是用的 Sublime，直到 Vscode 最近一次更新有了 Tabs 之后，便开始尝试在工作中使用。与最初的预览版相比进步蛮大的，能看到很多 VS 的影子。之前也用过一段时间 Atom，虽然界面挺喜欢，但始终没有原生客户端的流畅感。到底客户端还是微软的强项，Vscode 这方面舒服多了，启动与大文件编辑都不比 Sublime 差。</p>
@@ -279,9 +308,9 @@
     
       <category term="VsCode" scheme="http://imys.net/tags/VsCode/"/>
     
-      <category term="qiniu" scheme="http://imys.net/tags/qiniu/"/>
+      <category term="Qiniu" scheme="http://imys.net/tags/Qiniu/"/>
     
-      <category term="markdown" scheme="http://imys.net/tags/markdown/"/>
+      <category term="Markdown" scheme="http://imys.net/tags/Markdown/"/>
     
   </entry>
   
@@ -290,7 +319,7 @@
     <link href="http://imys.net/20160715/clever-use-of-elements-feature.html"/>
     <id>http://imys.net/20160715/clever-use-of-elements-feature.html</id>
     <published>2016-07-15T01:10:40.000Z</published>
-    <updated>2016-08-17T11:10:56.662Z</updated>
+    <updated>2016-11-12T19:11:10.123Z</updated>
     
     <content type="html"><![CDATA[<p>在一些框架和库中都可见到一些创建一个空元素，通过对该元素特性测试来判定当前运行环境是否支持某种特性的运用。<code>jQuery</code> 也是以此来 support 各种环境，与其通过可被随意修改的 UA 测试环境倒不如直接创建元素测试来的准确。</p>
 <p>我们可利用元素本身特性去做的事并不止于 <strong>特性测试</strong>。细心一点，你会发现一些元素独一无二的特性可以被巧妙利用来做一些工作。<br><a id="more"></a></p>
@@ -322,11 +351,13 @@
     </summary>
     
     
-      <category term="html" scheme="http://imys.net/tags/html/"/>
+      <category term="Html" scheme="http://imys.net/tags/Html/"/>
+    
+      <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
     
       <category term="技巧" scheme="http://imys.net/tags/%E6%8A%80%E5%B7%A7/"/>
     
-      <category term="element" scheme="http://imys.net/tags/element/"/>
+      <category term="Element" scheme="http://imys.net/tags/Element/"/>
     
   </entry>
   
@@ -335,7 +366,7 @@
     <link href="http://imys.net/20160622/screen-rotation-case.html"/>
     <id>http://imys.net/20160622/screen-rotation-case.html</id>
     <published>2016-06-22T01:02:03.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:25:48.755Z</updated>
     
     <content type="html"><![CDATA[<p>某些偏门的 API 真是没有需求一辈子都不知道啊。</p>
 <p>分享一下最近对于获取移动设备旋转方向的探索。</p>
@@ -378,9 +409,13 @@
     </summary>
     
     
-      <category term="html5" scheme="http://imys.net/tags/html5/"/>
+      <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
     
-      <category term="mobile" scheme="http://imys.net/tags/mobile/"/>
+      <category term="Mobile" scheme="http://imys.net/tags/Mobile/"/>
+    
+      <category term="deviceorientation" scheme="http://imys.net/tags/deviceorientation/"/>
+    
+      <category term="orientation" scheme="http://imys.net/tags/orientation/"/>
     
   </entry>
   
@@ -389,7 +424,7 @@
     <link href="http://imys.net/20160530/javascript-advanced-functions.html"/>
     <id>http://imys.net/20160530/javascript-advanced-functions.html</id>
     <published>2016-05-30T15:02:08.000Z</published>
-    <updated>2016-08-15T13:28:56.401Z</updated>
+    <updated>2016-11-12T19:20:15.898Z</updated>
     
     <content type="html"><![CDATA[<p>javascript 语言的特色之一便是函数即对象，因此便满足了高级函数的条件。</p>
 <h2 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h2><p>在《javascript设计模式和开发实践》中是这样定义的。</p>
@@ -467,9 +502,9 @@
     </summary>
     
     
-      <category term="Function" scheme="http://imys.net/tags/Function/"/>
+      <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
     
-      <category term="javascript" scheme="http://imys.net/tags/javascript/"/>
+      <category term="Function" scheme="http://imys.net/tags/Function/"/>
     
   </entry>
   
@@ -478,7 +513,7 @@
     <link href="http://imys.net/20160511/hexo-search.html"/>
     <id>http://imys.net/20160511/hexo-search.html</id>
     <published>2016-05-11T08:08:50.000Z</published>
-    <updated>2016-08-15T13:28:56.401Z</updated>
+    <updated>2016-11-12T19:07:36.170Z</updated>
     
     <content type="html"><![CDATA[<p>不止一次有同学在 <a href="https://github.com/yscoder/hexo-theme-indigo/issues" target="_blank" rel="external">Issues</a>、邮件等渠道中向我反馈<strong>增加站内搜索功能</strong>。本来准备什么时候搞个 2.0 版的主题再加上这些新功能，可一直没什么太好的想法，反正也是折腾，就把搜索功能做了一下。</p>
 <h2 id="搜索方案"><a href="#搜索方案" class="headerlink" title="搜索方案"></a>搜索方案</h2><p>针对无数据库的静态博客搜索方案一般有两种：</p>
@@ -551,7 +586,7 @@
     <link href="http://imys.net/20160503/vue-data-interaction.html"/>
     <id>http://imys.net/20160503/vue-data-interaction.html</id>
     <published>2016-05-03T09:39:44.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:31:18.041Z</updated>
     
     <content type="html"><![CDATA[<p>在 Vue 中通常以一个 Vue 实例来表示一个应用，一个应用由若干个组件拼装而成。<br>没错，就像“装机”一样。当你把主板、CPU、显卡、内存、散热器、SSD、电源等摆放到机箱的各个位置后，很明显产生了一个明确的需求：我怎么让这些东西协同工作？<br>回到 Vue 中，处理不同组件之间的数据或状态是一件经常遇到的事。<br><a id="more"></a></p>
 <p>好在 <a href="http://cn.vuejs.org/guide/" target="_blank" rel="external">Vue的文档</a> 足够详细。关于组件交互的部分，如果没有实际需求，我表示难以明白<code>props</code>以及自定义事件等使用场景是什么。</p>
@@ -604,9 +639,9 @@
     </summary>
     
     
-      <category term="vue" scheme="http://imys.net/tags/vue/"/>
+      <category term="Vue" scheme="http://imys.net/tags/Vue/"/>
     
-      <category term="vuex" scheme="http://imys.net/tags/vuex/"/>
+      <category term="Vuex" scheme="http://imys.net/tags/Vuex/"/>
     
   </entry>
   
@@ -615,7 +650,7 @@
     <link href="http://imys.net/20160413/one-element-can-do-much.html"/>
     <id>http://imys.net/20160413/one-element-can-do-much.html</id>
     <published>2016-04-13T08:37:53.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:24:25.423Z</updated>
     
     <content type="html"><![CDATA[<p>自 CSS3 问世以来，在广大开发者的智慧下诞生了很多创造性的设计，如：<a href="http://www.html5cn.org/article-8663-1.html" target="_blank" rel="external">18个你可能不相信是用CSS制作出来的东西</a>。个人平时也喜欢收藏这些有趣的东西，其中一些设计对单个 HTML 元素的极限利用，很值得我们去学习。</p>
 <p>以下就来说一说这些神奇的<strong>黑科技</strong>。</p>
@@ -687,11 +722,11 @@
     </summary>
     
     
-      <category term="html" scheme="http://imys.net/tags/html/"/>
+      <category term="CSS" scheme="http://imys.net/tags/CSS/"/>
     
-      <category term="css" scheme="http://imys.net/tags/css/"/>
+      <category term="CSS3" scheme="http://imys.net/tags/CSS3/"/>
     
-      <category term="css3" scheme="http://imys.net/tags/css3/"/>
+      <category term="Html" scheme="http://imys.net/tags/Html/"/>
     
   </entry>
   
@@ -700,7 +735,7 @@
     <link href="http://imys.net/20160406/css-tips.html"/>
     <id>http://imys.net/20160406/css-tips.html</id>
     <published>2016-04-06T09:42:48.000Z</published>
-    <updated>2016-08-15T13:28:56.401Z</updated>
+    <updated>2016-11-12T19:11:43.513Z</updated>
     
     <content type="html"><![CDATA[<p>作为自己做前端开发以来的CSS爬坑总结，内容偏向PC端，不定期补充。<br>只作提示，不深谈。</p>
 <h2 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h2><p>1、区分<code>content-box</code>和<code>border-box</code>的尺寸计算。</p>
@@ -739,9 +774,9 @@
     </summary>
     
     
-      <category term="css" scheme="http://imys.net/tags/css/"/>
+      <category term="CSS" scheme="http://imys.net/tags/CSS/"/>
     
-      <category term="css3" scheme="http://imys.net/tags/css3/"/>
+      <category term="CSS3" scheme="http://imys.net/tags/CSS3/"/>
     
   </entry>
   
@@ -750,7 +785,7 @@
     <link href="http://imys.net/20160316/use-history-pushState.html"/>
     <id>http://imys.net/20160316/use-history-pushState.html</id>
     <published>2016-03-16T06:42:51.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:30:03.195Z</updated>
     
     <content type="html"><![CDATA[<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>最近做的一个图片浏览功能，请自行脑补手机图库、微博查看图片等场景。<br>功能做好之后，马上有同学反应：<strong>进入图片浏览层时，如果用户触摸手机后退按钮，整个页面都会返回，能否在触摸返回时只关闭浏览层？</strong></p>
 <p>一般移动端会对 WebView 做一些默认的设置，比如 Hook 用户触摸后退按钮，调用 WebView 后退方法。既然如此，就可以利用这一点，通过操纵浏览记录使用户触摸后退关闭浏览层。</p>
@@ -777,11 +812,11 @@
     </summary>
     
     
-      <category term="html5" scheme="http://imys.net/tags/html5/"/>
+      <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
     
       <category term="用户体验" scheme="http://imys.net/tags/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C/"/>
     
-      <category term="history" scheme="http://imys.net/tags/history/"/>
+      <category term="History" scheme="http://imys.net/tags/History/"/>
     
   </entry>
   
@@ -790,7 +825,7 @@
     <link href="http://imys.net/20160303/hexo-nginx-auto-deploy.html"/>
     <id>http://imys.net/20160303/hexo-nginx-auto-deploy.html</id>
     <published>2016-03-03T08:33:19.000Z</published>
-    <updated>2016-08-15T13:28:56.401Z</updated>
+    <updated>2016-11-12T19:07:27.842Z</updated>
     
     <content type="html"><![CDATA[<p>使用 gitcafe pages 更新博客只需要敲几条命令，如果因为博客搬到了阿里云，却没有原来操作方便，那便得不偿失了。<br>所以就准备在服务器上建个 Git 远程仓库，用 Git Hooks 实现自动部署。</p>
 <h2 id="Git-Hooks"><a href="#Git-Hooks" class="headerlink" title="Git Hooks"></a>Git Hooks</h2><p>Git Hooks 就是一些触发特定事件的脚本。比如 commit、push、merge 等等，也区分本地 Hooks 和服务端 Hooks。<br>我这次使用的是<code>post-receive</code>。</p>
@@ -918,7 +953,7 @@ git push origin master
     <link href="http://imys.net/20160220/start-linux-on-aliyun.html"/>
     <id>http://imys.net/20160220/start-linux-on-aliyun.html</id>
     <published>2016-02-20T08:25:34.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:27:58.353Z</updated>
     
     <content type="html"><![CDATA[<p>观望阿里云很久了，终于在这个春节来了后，一咬牙、一狠心、一跺脚就买下了一台 ECS。不分昼夜的折腾了几天后，终于在几天前配置好了自己期望的使用环境。<br>由于本人初次接触 Linux，配置期间三度初始化磁盘（等价于手机恢复出厂设置），可以说是一步一个坑的走下来的。现趁热打铁对最后一次正确的安装配置做一下总结，给后人乘凉吧。</p>
 <h2 id="选择配置"><a href="#选择配置" class="headerlink" title="选择配置"></a>选择配置</h2><p>作为开发者，选择 Linux 是毋庸置疑的。</p>
@@ -1070,7 +1105,7 @@ git push origin master
     <link href="http://imys.net/20160215/download-music-by-nodejs.html"/>
     <id>http://imys.net/20160215/download-music-by-nodejs.html</id>
     <published>2016-02-15T08:33:31.000Z</published>
-    <updated>2016-08-15T13:28:56.401Z</updated>
+    <updated>2016-11-12T19:04:38.947Z</updated>
     
     <content type="html"><![CDATA[<p>最近有朋友找我帮他下载歌曲，果然在其他人眼里，程序员简直是“无所不能”的存在啊。<br>不过，这个需求对于程序员来讲，还算是比较正常的，比那些找你“刷QB”、“盗号”什么的强多了。</p>
 <p>要是放到以前下载歌曲，直接回一句“搜百度”完事，近年来歌曲版权逐渐被重视了，一些歌曲逐渐变为会员下载或者收费下载。不过好歹还是可以在线播放的，只要能播放，那想找到歌曲文件就很简单了。</p>
@@ -1133,9 +1168,9 @@ git push origin master
     
       <category term="Nodejs" scheme="http://imys.net/tags/Nodejs/"/>
     
-      <category term="express" scheme="http://imys.net/tags/express/"/>
+      <category term="Express" scheme="http://imys.net/tags/Express/"/>
     
-      <category term="cheerio" scheme="http://imys.net/tags/cheerio/"/>
+      <category term="Cheerio" scheme="http://imys.net/tags/Cheerio/"/>
     
   </entry>
   
@@ -1144,7 +1179,7 @@ git push origin master
     <link href="http://imys.net/20160207/end-2015.html"/>
     <id>http://imys.net/20160207/end-2015.html</id>
     <published>2016-02-07T05:43:14.000Z</published>
-    <updated>2016-08-15T13:28:56.401Z</updated>
+    <updated>2016-11-12T19:06:15.387Z</updated>
     
     <content type="html"><![CDATA[<h2 id="初出茅庐"><a href="#初出茅庐" class="headerlink" title="初出茅庐"></a>初出茅庐</h2><p>前年的腊月二十九我接到了上传简历后的第一个面试通知，于是去年初六没到，我就收拾好东西来郑州了。</p>
 <p>我当时的求职意向写的是：.NET/JAVA/前端。<br>不知道哪儿来的自信，我就是感觉自己干什么都可以。我从来都觉得一个程序员不应该被语言和技术所标记。在这个行业，学习能力决定了你能走多远。</p>
@@ -1200,7 +1235,7 @@ git push origin master
     <link href="http://imys.net/20160203/js-promise.html"/>
     <id>http://imys.net/20160203/js-promise.html</id>
     <published>2016-02-03T03:19:47.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:22:43.242Z</updated>
     
     <content type="html"><![CDATA[<p>有时候，你会发现满世界都是某个字眼。</p>
 <p><strong>Promise</strong>，就是这个家伙。简直阴魂不散，走到哪儿都能看到它。<code>fetch</code>、<code>koa</code>中都有TA的身影，而我却对TA一无所知。<br>搜索TA的文章介绍，第一页中最早的一篇文章已经是2011年了。那是个我还不会<code>HelloWorld</code>的年代啊！</p>
@@ -1249,11 +1284,11 @@ git push origin master
     </summary>
     
     
-      <category term="javascript" scheme="http://imys.net/tags/javascript/"/>
+      <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
     
-      <category term="es6" scheme="http://imys.net/tags/es6/"/>
+      <category term="ES6" scheme="http://imys.net/tags/ES6/"/>
     
-      <category term="promise" scheme="http://imys.net/tags/promise/"/>
+      <category term="Promise" scheme="http://imys.net/tags/Promise/"/>
     
       <category term="async" scheme="http://imys.net/tags/async/"/>
     
@@ -1264,7 +1299,7 @@ git push origin master
     <link href="http://imys.net/20160127/mobile-1px.html"/>
     <id>http://imys.net/20160127/mobile-1px.html</id>
     <published>2016-01-27T14:33:05.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:23:37.434Z</updated>
     
     <content type="html"><![CDATA[<p>“这一行的分割线高了一点。”<br>好的，减小行高, 加点上下内边距。</p>
 <p>“这几个元素要两端对齐。”<br>好的，flex没有解决不了的布局，<code>justify-content: space-between;</code>搞定。</p>
@@ -1307,15 +1342,15 @@ git push origin master
     </summary>
     
     
-      <category term="css" scheme="http://imys.net/tags/css/"/>
+      <category term="CSS" scheme="http://imys.net/tags/CSS/"/>
     
-      <category term="mobile" scheme="http://imys.net/tags/mobile/"/>
+      <category term="Mobile" scheme="http://imys.net/tags/Mobile/"/>
     
       <category term="devicePixelRatio" scheme="http://imys.net/tags/devicePixelRatio/"/>
     
-      <category term="webview" scheme="http://imys.net/tags/webview/"/>
+      <category term="Webview" scheme="http://imys.net/tags/Webview/"/>
     
-      <category term="viewport" scheme="http://imys.net/tags/viewport/"/>
+      <category term="Viewport" scheme="http://imys.net/tags/Viewport/"/>
     
       <category term="em" scheme="http://imys.net/tags/em/"/>
     
@@ -1326,7 +1361,7 @@ git push origin master
     <link href="http://imys.net/20160118/hexo-blog-update-log.html"/>
     <id>http://imys.net/20160118/hexo-blog-update-log.html</id>
     <published>2016-01-18T01:02:18.000Z</published>
-    <updated>2016-08-15T13:28:56.401Z</updated>
+    <updated>2016-11-12T19:07:13.187Z</updated>
     
     <content type="html"><![CDATA[<p>每当我把之前立下的 flag 执行的时候，都感觉是一件很骄傲的事，太多的计划被我用各种接口扼杀在摇篮中了。</p>
 <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>在 Android 更新到 5.0 后，我就对触摸反馈这一点很感兴趣。也尝试模拟过，但是最后的效果都不太满意。<br>偶然的一次在 github上 看到了 Materialize 这个项目，才知道了谷歌的<code>Material Design(原质化设计)</code> 设计规范。而后在公司听到设计师提到这个东西时，突然有种跟上了潮流的感觉。</p>
@@ -1360,7 +1395,7 @@ git push origin master
     
       <category term="Hexo" scheme="http://imys.net/tags/Hexo/"/>
     
-      <category term="material" scheme="http://imys.net/tags/material/"/>
+      <category term="Material Design" scheme="http://imys.net/tags/Material-Design/"/>
     
   </entry>
   
@@ -1369,7 +1404,7 @@ git push origin master
     <link href="http://imys.net/20151231/simulation-of-wheelview-selector.html"/>
     <id>http://imys.net/20151231/simulation-of-wheelview-selector.html</id>
     <published>2015-12-31T01:59:48.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:27:45.513Z</updated>
     
     <content type="html"><![CDATA[<p>公司进入APP改版阶段了，会基于原生安卓开发，感觉没自己什么事了。只能看看原型图，想想前端技术如何实现某某功能。。。</p>
 <p>滑动选择器在APP上是很常见的组件了，最初是 IOS 上的组件，之后就出现 Android 版的自定义实现，称为 WheelView。对于前端技术来讲，实现也并不困难。</p>
@@ -1393,7 +1428,7 @@ git push origin master
     </summary>
     
     
-      <category term="mobile" scheme="http://imys.net/tags/mobile/"/>
+      <category term="Mobile" scheme="http://imys.net/tags/Mobile/"/>
     
       <category term="wheelview" scheme="http://imys.net/tags/wheelview/"/>
     
@@ -1408,11 +1443,10 @@ git push origin master
     <link href="http://imys.net/20151223/iconfont-maintained.html"/>
     <id>http://imys.net/20151223/iconfont-maintained.html</id>
     <published>2015-12-23T05:47:34.000Z</published>
-    <updated>2016-08-15T13:28:56.401Z</updated>
+    <updated>2016-11-12T19:13:47.620Z</updated>
     
     <content type="html"><![CDATA[<p>在扁平化网页设计中，字体图标有着很好的易用性。结合一年的实际运用，来做一下总结。</p>
 <a id="more"></a>
-<!-- toc -->
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>可以直接引用开源的第三方字体样式文件，如<code>Font Awesome</code>等。<br>或者你想要构建一套产品专属的图标，可以注册一个字体图标库，添加一个图标项目，进行创作和使用。</p>
 <p>我司使用的字体库是<a href="http://www.iconfont.cn/" target="_blank" rel="external">阿里的iconfont</a>。</p>
 <p>设计图标我不懂，都是设计师负责产出的。<br>产出后，可以看到图标的<code>Unicode</code>和<code>font class</code>。</p>
@@ -1439,7 +1473,7 @@ git push origin master
 <figure class="highlight"><table><tr><td class="code"><pre><div class="line">.icon-file &#123;</div><div class="line">    *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&amp;#xf016;' )</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>expression 是 ie 特有的 css 属性，可以在其中写 js 脚本。这样又把图标的维护权交还 css 了。</p>
 <p>在 css 中写 js 这种做法肯定是不提倡的，而且一个页面上存在很多的图标，在 ie7 这么恶劣的环境中，渲染速度也是个大问题。我用 IE7 打开 Font Awesome 的页面，速度在30s左右。</p>
-<p>这是个问题，又不算问题。<br>但凡是可以让客户反感 ie 浏览器的问题，都是好问题。</p>
+<p>这是个问题，又不算问题。😏</p>
 ]]></content>
     
     <summary type="html">
@@ -1448,6 +1482,8 @@ git push origin master
     
     </summary>
     
+    
+      <category term="CSS" scheme="http://imys.net/tags/CSS/"/>
     
       <category term="iconfont" scheme="http://imys.net/tags/iconfont/"/>
     
@@ -1458,11 +1494,10 @@ git push origin master
     <link href="http://imys.net/20151222/eval-with-new-function.html"/>
     <id>http://imys.net/20151222/eval-with-new-function.html</id>
     <published>2015-12-22T05:07:00.000Z</published>
-    <updated>2016-08-15T13:28:56.401Z</updated>
+    <updated>2016-11-12T19:12:47.640Z</updated>
     
     <content type="html"><![CDATA[<p>在需要兼容IE8以下的日子里，往往需要使用<code>eval()</code>来把后端传过来的JSON串转成可操作的JSON对象。直到昨天在翻看jQuery源码时，才发现<code>jQuery.parseJSON</code>的兼容实现用的是<code>new Function()</code>。马上Google了相关资料，寻找两者的区别。</p>
 <a id="more"></a>
-<!-- toc -->
 <h2 id="eval"><a href="#eval" class="headerlink" title="eval"></a>eval</h2><p>eval接受字符串参数，解析其中的js代码。如果编译失败，会抛出异常，否则执行其中的代码，计算返回值。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="built_in">eval</span>(<span class="string">'2+2'</span>);  <span class="comment">// 4</span></div><div class="line"></div><div class="line"><span class="built_in">eval</span>(<span class="string">'console.log("ok")'</span>);  <span class="comment">// ok</span></div></pre></td></tr></table></figure>
 <p>在实际应用中，通常这样转换JSON。</p>
@@ -1496,11 +1531,11 @@ git push origin master
     </summary>
     
     
+      <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
+    
       <category term="Function" scheme="http://imys.net/tags/Function/"/>
     
       <category term="eval" scheme="http://imys.net/tags/eval/"/>
-    
-      <category term="javascript" scheme="http://imys.net/tags/javascript/"/>
     
   </entry>
   
@@ -1509,7 +1544,7 @@ git push origin master
     <link href="http://imys.net/20151113/simulation-of-native-radio-checkbox.html"/>
     <id>http://imys.net/20151113/simulation-of-native-radio-checkbox.html</id>
     <published>2015-11-13T00:51:49.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:26:37.075Z</updated>
     
     <content type="html"><![CDATA[<p>公司内部管理系统准备改版，最近几天把前端架子搭起来了。在规划底层元素时参考了<code>Bootstrap</code>和<code>Amaze UI</code>，一些组件的实现确实很优雅。<br>比如<code>Amaze UI</code> 的单/复选框。</p>
 <a id="more"></a>
@@ -1553,7 +1588,7 @@ git push origin master
     </summary>
     
     
-      <category term="css" scheme="http://imys.net/tags/css/"/>
+      <category term="CSS" scheme="http://imys.net/tags/CSS/"/>
     
       <category term="iconfont" scheme="http://imys.net/tags/iconfont/"/>
     
@@ -1568,10 +1603,10 @@ git push origin master
     <link href="http://imys.net/20151107/mobile-page-size-and-layout.html"/>
     <id>http://imys.net/20151107/mobile-page-size-and-layout.html</id>
     <published>2015-11-07T15:02:29.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:23:58.138Z</updated>
     
     <content type="html"><![CDATA[<p>早上去公司加了半天班（带薪的），为APP上线做了个专题介绍页。当然现在的主题不是介绍在这个专题中我用了哪些技术、实现了何种酷炫的特效。实际上我为了赶时间，我破天荒的没有贯彻自己的一贯作风—<em>造轮子</em>，而是直接引了一个第三方库。<br>在这个APP开发中，我负责内嵌网页的开发，这也是我第一次涉足一个完整的移动端开发项目，以往只写过一些活动分享页、专题页。</p>
-<p>对于页面兼容性影响最大的两个因素就是“尺寸”和“布局”。好在之前通过社区、博客等看过此类文章，已有了足够的认识，这次项目“实践”的成分更多。<br><a id="more"></a><br><!-- toc --></p>
+<p>对于页面兼容性影响最大的两个因素就是“尺寸”和“布局”。好在之前通过社区、博客等看过此类文章，已有了足够的认识，这次项目“实践”的成分更多。<br><a id="more"></a></p>
 <h2 id="尺寸"><a href="#尺寸" class="headerlink" title="尺寸"></a>尺寸</h2><p>在移动端页面，我用到的尺寸单位有<code>em</code>、<code>rem</code>、<code>vw</code>。<code>px</code>基本不用，但我会设置Dom根元素<code>html</code>字体大小为<code>14px</code>，一来方便<code>em</code>和<code>rem</code>的尺寸计算，二来<code>14px</code>是最常用的字体大小。</p>
 <blockquote>
 <p>常规浏览器默认字体大小为<code>16px</code>，最小字体为<code>12px</code>。</p>
@@ -1661,7 +1696,7 @@ git push origin master
     <link href="http://imys.net/20151023/simple-module-loader.html"/>
     <id>http://imys.net/20151023/simple-module-loader.html</id>
     <published>2015-10-23T12:41:39.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:26:10.274Z</updated>
     
     <content type="html"><![CDATA[<p>最近大半年也写了不少通用模块，却从来没使用过一种通过书写格式。<br>目前公司的前端通用库还是<code>jQuery</code>, 但也不是所有的模块都适合以<code>jQuery 插件</code>的形式开发。平时写的时候一般以立即执行函数或 OO 形式开发，以目前项目情况来看也不是很需要用<code>require.js</code>或<code>sea.js</code>之类的加载器。</p>
 <p>其实我的需求很简单，就是抹去模块在全局作用域的定义，以通用的形式定义和引用。</p>
@@ -1697,7 +1732,7 @@ git push origin master
     </summary>
     
     
-      <category term="javascript" scheme="http://imys.net/tags/javascript/"/>
+      <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
     
       <category term="模块化" scheme="http://imys.net/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
     
@@ -1708,11 +1743,10 @@ git push origin master
     <link href="http://imys.net/20151022/use-gulp-front-building-exp.html"/>
     <id>http://imys.net/20151022/use-gulp-front-building-exp.html</id>
     <published>2015-10-22T02:37:53.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:29:42.994Z</updated>
     
     <content type="html"><![CDATA[<p>上个月向领导提出的<a href="../20150908/gulp-ejs-module.html">使用gulp+ejs模块化html</a>最近得到了实施，大概记录下此次改造工作。</p>
 <a id="more"></a>
-<!-- toc -->
 <h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><pre><code>html
   -dest
     --Folder
@@ -1738,20 +1772,8 @@ static
 node_modules
 gulpfile.js
 package.json
-</code></pre><h2 id="gulp模块"><a href="#gulp模块" class="headerlink" title="gulp模块"></a>gulp模块</h2><pre><code>var gulp = require(&apos;gulp&apos;),  
-    less = require(&apos;gulp-less&apos;),  
-    minifycss = require(&apos;gulp-minify-css&apos;),    
-    jshint = require(&apos;gulp-jshint&apos;),   
-    uglify = require(&apos;gulp-uglify&apos;),   
-    imagemin = require(&apos;gulp-imagemin&apos;),   
-    pngquant = require(&apos;imagemin-pngquant&apos;),    
-    rename = require(&apos;gulp-rename&apos;),    
-    notify = require(&apos;gulp-notify&apos;),    
-    browserSync = require(&apos;browser-sync&apos;), 
-    ejs = require(&apos;gulp-ejs&apos;),          
-    changed = require(&apos;gulp-changed&apos;),  
-    replace = require(&apos;gulp-replace&apos;);  
-</code></pre><p><code>html</code>选择了<code>ejs</code>来管理，<code>css</code>预处理选择了<code>less</code>。<br>简单、实用！</p>
+</code></pre><h2 id="gulp模块"><a href="#gulp模块" class="headerlink" title="gulp模块"></a>gulp模块</h2><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),  </div><div class="line">    less = <span class="built_in">require</span>(<span class="string">'gulp-less'</span>),  </div><div class="line">    minifycss = <span class="built_in">require</span>(<span class="string">'gulp-minify-css'</span>),    </div><div class="line">    jshint = <span class="built_in">require</span>(<span class="string">'gulp-jshint'</span>),   </div><div class="line">    uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>),   </div><div class="line">    imagemin = <span class="built_in">require</span>(<span class="string">'gulp-imagemin'</span>),   </div><div class="line">    pngquant = <span class="built_in">require</span>(<span class="string">'imagemin-pngquant'</span>),    </div><div class="line">    rename = <span class="built_in">require</span>(<span class="string">'gulp-rename'</span>),    </div><div class="line">    notify = <span class="built_in">require</span>(<span class="string">'gulp-notify'</span>),    </div><div class="line">    browserSync = <span class="built_in">require</span>(<span class="string">'browser-sync'</span>), </div><div class="line">    ejs = <span class="built_in">require</span>(<span class="string">'gulp-ejs'</span>),          </div><div class="line">    changed = <span class="built_in">require</span>(<span class="string">'gulp-changed'</span>),  </div><div class="line">    replace = <span class="built_in">require</span>(<span class="string">'gulp-replace'</span>);</div></pre></td></tr></table></figure>
+<p><code>html</code>选择了<code>ejs</code>来管理，<code>css</code>预处理选择了<code>less</code>。<br>简单、实用！</p>
 <p>对于浏览器同步工具，本来使用的是<code>live-reload</code>，在初次使用中感觉不是很顺畅，之后换成了<code>browserSync</code>。<br>browserSync 除了文件更改实时刷新浏览器外，还有多设备同步功能，通过可视化控制台可以实时测试移动端代码。<br>对比而言，live-reload 依赖 Chrome 及 LiveReload 插件，应该是借助 Chrome 的某种开放接口实现的。<br>而 browserSync 是基于虚拟服务器的，所有可以实现多设备的控制。</p>
 <h2 id="工作流"><a href="#工作流" class="headerlink" title="工作流"></a>工作流</h2><p>编写html、less、js =&gt; 浏览器访问（URL对应html文件目录） =&gt; 浏览器显示编译后的html、css、js =&gt; html已经过模板合并，<code>include</code>等关键字是没有的 =&gt; css是less编译生成的，页面从始至终引用的都是 css 文件，不过会有一个对应的同名 less 文件。</p>
 <p>改造进行阶段也没遇到什么太大问题，能遇到的问题也都能在github中找到答案。<br>不过还是要根据各自团队的项目情况因地制宜，合理配置。</p>
@@ -1764,7 +1786,7 @@ package.json
     </summary>
     
     
-      <category term="gulp" scheme="http://imys.net/tags/gulp/"/>
+      <category term="Gulp" scheme="http://imys.net/tags/Gulp/"/>
     
       <category term="前端构建" scheme="http://imys.net/tags/%E5%89%8D%E7%AB%AF%E6%9E%84%E5%BB%BA/"/>
     
@@ -1775,7 +1797,7 @@ package.json
     <link href="http://imys.net/20150919/nodejs-shell.html"/>
     <id>http://imys.net/20150919/nodejs-shell.html</id>
     <published>2015-09-19T12:20:13.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:24:07.330Z</updated>
     
     <content type="html"><![CDATA[<p><strong>Node.js</strong> 的热门之处就在于其命令行开发能力。<br>一个在 <code>shell</code> 下编码的程序员绝对要比在常规编辑器上编码的程序员酷！</p>
 <a id="more"></a>
@@ -1823,11 +1845,11 @@ package.json
   </entry>
   
   <entry>
-    <title>html5调用手机相机并压缩、上传</title>
+    <title>Html5调用手机相机并压缩、上传</title>
     <link href="http://imys.net/20150916/webapp-input-use-camera.html"/>
     <id>http://imys.net/20150916/webapp-input-use-camera.html</id>
     <published>2015-09-16T08:21:28.000Z</published>
-    <updated>2016-08-31T12:36:32.997Z</updated>
+    <updated>2016-11-12T19:38:12.506Z</updated>
     
     <content type="html"><![CDATA[<p>近日刚做的一个功能，要在app里使用内嵌页面进行图像的上传。<br>从功能上看，原生的实现应该是最好的。毕竟页面上所有的东西都隔着一个浏览器，所有的实现都要依赖浏览器提供的接口，不同的浏览器对接口的实现又有差异……到最后又会陷入兼容性的大坑!<br>吐槽归吐槽，但是折腾的劲头不能丢！</p>
 <a id="more"></a>
@@ -1842,7 +1864,7 @@ package.json
 <li>自带浏览器打开均为文件管理器。</li>
 </ul>
 <p>由此说明此属性兼容性还是个问题。不过这并不能阻止我继续折腾下去！</p>
-<h2 id="图片压缩"><a href="#图片压缩" class="headerlink" title="图片压缩"></a>图片压缩</h2><p>在如今这个手机普遍千万像素的时代，一张照片动辄5M的大小。作为一个良心的开发者，我们是要为用户的流量负责的。<br>该怎么做？我也不知道。大家都在用<code>canvas</code>实现，我也就用了。</p>
+<h2 id="图片压缩"><a href="#图片压缩" class="headerlink" title="图片压缩"></a>图片压缩</h2><p>在如今这个手机普遍千万像素的时代，一张照片动辄5M的大小。作为一个良心的开发者，我们是要为用户的流量负责的。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'file'</span>).addEventListener(<span class="string">'change'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> reader = <span class="keyword">new</span> FileReader();</div><div class="line"></div><div class="line">    reader.onload = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">        compress(<span class="keyword">this</span>.result);</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    reader.readAsDataURL(<span class="keyword">this</span>.files[<span class="number">0</span>]);</div><div class="line"></div><div class="line">&#125;, <span class="literal">false</span>);</div></pre></td></tr></table></figure>
 <p>不管文件域是用何种方式打开的，都可以在 <code>change</code> 事件中获取到选择的文件或拍摄的照片。</p>
 <p>创建一个<code>FileReader</code>对象，我们需要调用<code>readAsDataURL</code>把文件转换为<code>base64</code>图像编码，如<code>data:image/jpeg;base64……</code>这种格式。<br><code>onload</code>是一个异步回调，当文件读取完执行该方法内代码。<code>this.result</code>记录读取结果，如果读取失败，该值为<code>null</code>。在这里进行图片压缩的具体操作。</p>
@@ -1863,11 +1885,11 @@ package.json
     </summary>
     
     
-      <category term="html5" scheme="http://imys.net/tags/html5/"/>
+      <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
     
-      <category term="webapp" scheme="http://imys.net/tags/webapp/"/>
+      <category term="Webapp" scheme="http://imys.net/tags/Webapp/"/>
     
-      <category term="file" scheme="http://imys.net/tags/file/"/>
+      <category term="File" scheme="http://imys.net/tags/File/"/>
     
   </entry>
   
@@ -1876,7 +1898,7 @@ package.json
     <link href="http://imys.net/20150908/gulp-ejs-module.html"/>
     <id>http://imys.net/20150908/gulp-ejs-module.html</id>
     <published>2015-09-08T10:04:47.000Z</published>
-    <updated>2016-08-15T13:28:56.401Z</updated>
+    <updated>2016-11-12T19:13:01.627Z</updated>
     
     <content type="html"><![CDATA[<p>在静态页面目录中，同子目录下的页面往往有很多通用的模块。<br>平常的编码一般是通用的代码直接复制到各个页面，样式写成公用，然后在各个需要的页面引用。<br>而一个产品在实地运行中往往要经历无数次的迭代，于是页面文档结构和样式也在不断的变化。<br>独立性的页面比较轻松，一个页面修改就好了，而一些公用的页面模块往往需要在各个页面逐个修改。<br>这显然是一种极其枯燥的重复性动作！</p>
 <p>在此之前我用 <code>C#</code> 写了一个文件批量替换的工具，用于批量替换某个目录下的某个模块代码。<br>虽然效率提高了一些，但是从方法学角度看绝对不是最好的。</p>
@@ -1948,9 +1970,9 @@ package.json
     </summary>
     
     
-      <category term="gulp" scheme="http://imys.net/tags/gulp/"/>
+      <category term="Gulp" scheme="http://imys.net/tags/Gulp/"/>
     
-      <category term="ejs" scheme="http://imys.net/tags/ejs/"/>
+      <category term="Ejs" scheme="http://imys.net/tags/Ejs/"/>
     
       <category term="模块化" scheme="http://imys.net/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
     
@@ -1961,7 +1983,7 @@ package.json
     <link href="http://imys.net/20150906/text-truncation.html"/>
     <id>http://imys.net/20150906/text-truncation.html</id>
     <published>2015-09-06T09:37:32.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:28:52.082Z</updated>
     
     <content type="html"><![CDATA[<p>关于前端页面的文字溢出截断的招数已经很常见了。<br>通常的实现有，前端css控制、后端字数输出控制或者前端js字数处理等。</p>
 <a id="more"></a>
@@ -1990,11 +2012,11 @@ package.json
     </summary>
     
     
-      <category term="html" scheme="http://imys.net/tags/html/"/>
+      <category term="CSS" scheme="http://imys.net/tags/CSS/"/>
     
-      <category term="css" scheme="http://imys.net/tags/css/"/>
+      <category term="Html" scheme="http://imys.net/tags/Html/"/>
     
-      <category term="ellipsis" scheme="http://imys.net/tags/ellipsis/"/>
+      <category term="Ellipsis" scheme="http://imys.net/tags/Ellipsis/"/>
     
   </entry>
   
@@ -2003,7 +2025,7 @@ package.json
     <link href="http://imys.net/20150902/h5-upload-progress.html"/>
     <id>http://imys.net/20150902/h5-upload-progress.html</id>
     <published>2015-09-02T08:26:13.000Z</published>
-    <updated>2016-08-15T13:28:56.401Z</updated>
+    <updated>2016-11-12T19:13:08.458Z</updated>
     
     <content type="html"><![CDATA[<p>博客一个月没更新了，着实是有点忙。<br>目前公司新版上线也到最后一波了，部分人员转战了一个新的APP产品的开发。<br>主体还是原生APP，也会有部分页面需要嵌入WEB页面，我也有幸作为唯一的前端人员加入了。</p>
 <p>不过这次讲的内容跟这个APP没有半毛钱关系，是公司内部工作系统的一个扫码上传功能。<br>好吧，我参与的确实有点多！</p>
@@ -2014,7 +2036,6 @@ package.json
 <li>文件已上传大小</li>
 </ol>
 <a id="more"></a>
-<!-- toc -->
 <h2 id="基本HTML结构"><a href="#基本HTML结构" class="headerlink" title="基本HTML结构"></a>基本HTML结构</h2><figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">id</span>=<span class="string">"upload"</span> <span class="attr">accept</span>=<span class="string">"image/*"</span> &gt;</span></div></pre></td></tr></table></figure>
 <h2 id="异步上传"><a href="#异步上传" class="headerlink" title="异步上传"></a>异步上传</h2><p>XHR是必须的，此外还需要一个<code>FormData</code>对象。</p>
 <p>FormData，译为表单数据，也就是一个保存表单数据的容器。<br>可以利用这个对象写入键值对的数据项，再用xhr发送到处理接口。</p>
@@ -2038,20 +2059,20 @@ package.json
     </summary>
     
     
-      <category term="html5" scheme="http://imys.net/tags/html5/"/>
+      <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
     
       <category term="文件上传" scheme="http://imys.net/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"/>
     
   </entry>
   
   <entry>
-    <title>require.js入门--用面向对象语言来理解js模块化</title>
+    <title>Require.js入门--用面向对象语言来理解js模块化</title>
     <link href="http://imys.net/20150807/js-module-requirejs.html"/>
     <id>http://imys.net/20150807/js-module-requirejs.html</id>
     <published>2015-08-07T02:33:25.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:21:48.683Z</updated>
     
-    <content type="html"><![CDATA[<p>作为一个曾经的后端开发者，当我第一眼看到一些javascript模块化的代码案例时，我就想到了java、c#这些天生的模块化语言。<br>今天就拿 require.js 来捋一捋这其中的异同。<br><a id="more"></a><br><!-- toc --></p>
+    <content type="html"><![CDATA[<p>作为一个曾经的后端开发者，当我第一眼看到一些javascript模块化的代码案例时，我就想到了java、c#这些天生的模块化语言。<br>今天就拿 require.js 来捋一捋这其中的异同。<br><a id="more"></a></p>
 <h2 id="模块化"><a href="#模块化" class="headerlink" title="模块化"></a>模块化</h2><p>一个基本的javascript模块，应该是隐藏私有成员及方法，暴漏外部调用的所需的接口。<br>常见的写法有：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> <span class="built_in">module</span> = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">var</span> prop = <span class="string">''</span>;</div><div class="line">  <span class="keyword">var</span> tool = <span class="function"><span class="keyword">function</span>(<span class="params">p</span>)</span>&#123;</div><div class="line">  </div><div class="line">  &#125;;</div><div class="line">  </div><div class="line">  <span class="comment">//...</span></div><div class="line">  </div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    fn: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      tool(prop);</div><div class="line">    &#125;</div><div class="line">  &#125;;</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
 <p>在以上代码中，外部环境无法读取和修改变量<code>prop</code>和方法<code>tool</code>，但是该模块返回了一个公开的对象，并有一个可执行的方法<code>fn</code>。</p>
@@ -2096,11 +2117,11 @@ package.json
     </summary>
     
     
-      <category term="javascript" scheme="http://imys.net/tags/javascript/"/>
+      <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
     
       <category term="模块化" scheme="http://imys.net/tags/%E6%A8%A1%E5%9D%97%E5%8C%96/"/>
     
-      <category term="require.js" scheme="http://imys.net/tags/require-js/"/>
+      <category term="Require.js" scheme="http://imys.net/tags/Require-js/"/>
     
   </entry>
   
@@ -2109,7 +2130,7 @@ package.json
     <link href="http://imys.net/20150731/canvas-chart-demo.html"/>
     <id>http://imys.net/20150731/canvas-chart-demo.html</id>
     <published>2015-07-31T01:14:34.000Z</published>
-    <updated>2016-08-15T13:28:56.401Z</updated>
+    <updated>2016-11-12T19:10:36.746Z</updated>
     
     <content type="html"><![CDATA[<p>大数据概念的到来，图表的运用越来越广泛，不搞搞数据，都不好意思说是互联网公司。</p>
 <p>最近公司又有一块图表展示的栏目要做，由于之前的图表栏目都是我完成的，这次不出意料又落在我身上。<br>之前的图表展示我用的是<code>echarts</code>，按格式封装数据调用就行了。<br>这次领导突然对图表样式有了一些要求，虽然<code>echarts</code>的配置够OP，也不可能完完全全跟设计图搞成一样的。</p>
@@ -2169,11 +2190,11 @@ package.json
     </summary>
     
     
-      <category term="canvas" scheme="http://imys.net/tags/canvas/"/>
+      <category term="Canvas" scheme="http://imys.net/tags/Canvas/"/>
     
-      <category term="html5" scheme="http://imys.net/tags/html5/"/>
+      <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
     
-      <category term="chart" scheme="http://imys.net/tags/chart/"/>
+      <category term="Chart" scheme="http://imys.net/tags/Chart/"/>
     
   </entry>
   
@@ -2182,7 +2203,7 @@ package.json
     <link href="http://imys.net/20150722/canvas-annulus-process.html"/>
     <id>http://imys.net/20150722/canvas-annulus-process.html</id>
     <published>2015-07-22T00:21:53.000Z</published>
-    <updated>2016-08-15T13:28:56.401Z</updated>
+    <updated>2016-11-12T19:10:24.931Z</updated>
     
     <content type="html"><![CDATA[<p>起初想这么做既是<code>css3</code>不易实现圆环，而且也有低版本兼容问题，也想借此机会学习下<code>canvas</code>(虽然最后还是难逃兼容性 &gt;_&lt; )。<br>做的过程中发现<code>canvas</code>跟<code>C#</code>中<code>gdi</code>绘图的步骤其实是差不多的。</p>
 <p>先大概看了下<code>canvas</code>的相关API，有个可以画弧的方法<code>arc</code>。</p>
@@ -2252,11 +2273,11 @@ package.json
     </summary>
     
     
-      <category term="canvas" scheme="http://imys.net/tags/canvas/"/>
+      <category term="Canvas" scheme="http://imys.net/tags/Canvas/"/>
     
-      <category term="html5" scheme="http://imys.net/tags/html5/"/>
+      <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
     
-      <category term="process" scheme="http://imys.net/tags/process/"/>
+      <category term="Process" scheme="http://imys.net/tags/Process/"/>
     
   </entry>
   
@@ -2265,7 +2286,7 @@ package.json
     <link href="http://imys.net/20150716/ue-shortcut-key.html"/>
     <id>http://imys.net/20150716/ue-shortcut-key.html</id>
     <published>2015-07-16T07:06:58.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:29:03.905Z</updated>
     
     <content type="html"><![CDATA[<p>今天一大早就被头儿派了任务，让我整理一份可用快捷键操作的可行性方案。<br>不敢懈怠，遂出此文。</p>
 <a id="more"></a>
@@ -2321,12 +2342,11 @@ package.json
     <link href="http://imys.net/20150715/jqplugin-jtip.html"/>
     <id>http://imys.net/20150715/jqplugin-jtip.html</id>
     <published>2015-07-15T07:21:58.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:19:53.929Z</updated>
     
     <content type="html"><![CDATA[<p>最近工作不是很忙，看到站里一些纯图标的按钮还是使用的默认的<code>title</code>属性作文字提示，就造了这个轮子。</p>
 <p><img src="http://7ximpj.com1.z0.glb.clouddn.com/jtip.jpg" alt="jtip"></p>
 <a id="more"></a>
-<!-- toc -->
 <h2 id="jtip介绍"><a href="#jtip介绍" class="headerlink" title="jtip介绍"></a>jtip介绍</h2><h3 id="目前功能"><a href="#目前功能" class="headerlink" title="目前功能"></a>目前功能</h3><ol>
 <li>位置自动居中对齐；</li>
 <li>支持上下两个方向的的显示；</li>
@@ -2364,7 +2384,7 @@ package.json
     </summary>
     
     
-      <category term="jquery插件" scheme="http://imys.net/tags/jquery%E6%8F%92%E4%BB%B6/"/>
+      <category term="jQuery插件" scheme="http://imys.net/tags/jQuery%E6%8F%92%E4%BB%B6/"/>
     
   </entry>
   
@@ -2373,7 +2393,7 @@ package.json
     <link href="http://imys.net/20150709/ie-nodisplay-iconfont.html"/>
     <id>http://imys.net/20150709/ie-nodisplay-iconfont.html</id>
     <published>2015-07-09T02:12:33.000Z</published>
-    <updated>2016-08-15T13:28:56.401Z</updated>
+    <updated>2016-11-12T19:20:26.977Z</updated>
     
     <content type="html"><![CDATA[<p>昨天助理妹子收到客户的反馈，说浏览器不显示按钮了。经过远程查看，发现是iconfont(字体图标)不显示了。新版网站上线后整站使用iconfont替代了图片图标，一些小按钮都是直接使用的iconfont。<br>查看过后一时半会也是找不到原因，只是在脑海中一遍一遍的咒骂万恶的IE(客户使用的是IE8)！<br>因为接触不到真实客户环境的关系，暂时先让客户使用其他浏览器登陆。直到今天公司销售部门也反馈了类似的问题，可以去实地排查原因了。</p>
 <a id="more"></a>
@@ -2403,7 +2423,9 @@ package.json
     </summary>
     
     
-      <category term="html" scheme="http://imys.net/tags/html/"/>
+      <category term="Html" scheme="http://imys.net/tags/Html/"/>
+    
+      <category term="iconfont" scheme="http://imys.net/tags/iconfont/"/>
     
   </entry>
   
@@ -2412,7 +2434,7 @@ package.json
     <link href="http://imys.net/20150629/css3-target-selector.html"/>
     <id>http://imys.net/20150629/css3-target-selector.html</id>
     <published>2015-06-29T00:57:17.000Z</published>
-    <updated>2016-08-15T13:28:56.401Z</updated>
+    <updated>2016-11-12T19:12:26.500Z</updated>
     
     <content type="html"><![CDATA[<p><strong>target</strong>译为“目标”，加冒号即为伪类选择器。<br>此选择器便是用于给目标元素添加额外样式，类似于<code>hover</code>。</p>
 <a id="more"></a>
@@ -2429,7 +2451,11 @@ package.json
     </summary>
     
     
-      <category term="css3" scheme="http://imys.net/tags/css3/"/>
+      <category term="CSS3" scheme="http://imys.net/tags/CSS3/"/>
+    
+      <category term="selector" scheme="http://imys.net/tags/selector/"/>
+    
+      <category term="target" scheme="http://imys.net/tags/target/"/>
     
   </entry>
   
@@ -2438,7 +2464,7 @@ package.json
     <link href="http://imys.net/20150615/js-page-visible.html"/>
     <id>http://imys.net/20150615/js-page-visible.html</id>
     <published>2015-06-15T03:01:53.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:22:20.235Z</updated>
     
     <content type="html"><![CDATA[<p>通过该事件可以判断当前页面对于用户的可见性，即返回用户当前浏览的页面或标签的状态变化。<br><a id="more"></a></p>
 <h2 id="visibilitychange（页面可见性改变事件）"><a href="#visibilitychange（页面可见性改变事件）" class="headerlink" title="visibilitychange（页面可见性改变事件）"></a>visibilitychange（页面可见性改变事件）</h2><p>该事件属于HTML5新API，兼容性IE10+，以及其他现代浏览器等。</p>
@@ -2459,9 +2485,9 @@ package.json
     </summary>
     
     
-      <category term="html5" scheme="http://imys.net/tags/html5/"/>
+      <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
     
-      <category term="javascript" scheme="http://imys.net/tags/javascript/"/>
+      <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
     
   </entry>
   
@@ -2470,7 +2496,7 @@ package.json
     <link href="http://imys.net/20150527/js-cancel-event.html"/>
     <id>http://imys.net/20150527/js-cancel-event.html</id>
     <published>2015-05-27T12:44:34.000Z</published>
-    <updated>2016-08-16T11:05:04.850Z</updated>
+    <updated>2016-11-12T19:19:21.842Z</updated>
     
     <content type="html"><![CDATA[<p>今天同事遇到这样一个问题，找我解决。<br>他希望点击整个DIV都可以响应点击事件，但是有些交互元素需要排除掉。如：点击链接页面跳转、点击按钮响应事件等）。<br>这是一个关于<strong>事件冒泡</strong>的问题，那便从事件冒泡写起。<br><a id="more"></a></p>
 <h2 id="事件冒泡"><a href="#事件冒泡" class="headerlink" title="事件冒泡"></a>事件冒泡</h2><p>在一个元素上触发事件，如果此元素定义了处理程序，那么此次事件就会被捕获，根据程序进行该事件的处理。否则这个事件会根据DOM树向父节点逐级传播，如果从始至终都没有被处理，那么最终会到达document或window根元素。</p>
@@ -2500,7 +2526,9 @@ package.json
     </summary>
     
     
-      <category term="javascript" scheme="http://imys.net/tags/javascript/"/>
+      <category term="Event" scheme="http://imys.net/tags/Event/"/>
+    
+      <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
     
   </entry>
   
@@ -2509,7 +2537,7 @@ package.json
     <link href="http://imys.net/20150514/hexo-toc.html"/>
     <id>http://imys.net/20150514/hexo-toc.html</id>
     <published>2015-05-14T07:25:47.000Z</published>
-    <updated>2016-08-15T13:28:56.401Z</updated>
+    <updated>2016-11-12T19:07:53.675Z</updated>
     
     <content type="html"><![CDATA[<p>Hexo提供了诸多插件来增强博客体验，地址<code>http://hexo.io/plugins/</code>。<br>在博客搬迁的时发现一个生成文章目录的插件，<a href="https://github.com/bubkoo/hexo-toc" target="_blank" rel="external">hexo-toc</a>。<br><a id="more"></a></p>
 <h2 id="hexo-toc"><a href="#hexo-toc" class="headerlink" title="hexo-toc"></a>hexo-toc</h2><blockquote>
@@ -2569,6 +2597,8 @@ package.json
     
       <category term="Hexo" scheme="http://imys.net/tags/Hexo/"/>
     
+      <category term="TOC" scheme="http://imys.net/tags/TOC/"/>
+    
   </entry>
   
   <entry>
@@ -2576,7 +2606,7 @@ package.json
     <link href="http://imys.net/20150513/wordpress-to-hexo.html"/>
     <id>http://imys.net/20150513/wordpress-to-hexo.html</id>
     <published>2015-05-13T01:50:02.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:37:41.737Z</updated>
     
     <content type="html"><![CDATA[<p>今天早上打开电脑第一件事就是把pages绑定了域名，从此便可以使用<code>http://imys.net</code>进行访问了。</p>
 <p>至此已经折腾的差不多了，在此记录下搬迁过程中遇到的一些问题及解决办法。<br><a id="more"></a></p>
@@ -2587,44 +2617,31 @@ package.json
 </ul>
 <p>以上两篇文章应该能使你顺利的在<code>http://localhost:4000/</code>看到自己的新博客，并且你也熟悉了Hexo的常用命令。</p>
 <h3 id="Hexo无法解析模板文件"><a href="#Hexo无法解析模板文件" class="headerlink" title="Hexo无法解析模板文件"></a>Hexo无法解析模板文件</h3><p>本地预览页面显示：</p>
-<pre><code>&lt;%- partial(&apos;_partial/head&apos;) %&gt;
-&lt;%- partial(&apos;_partial/header&apos;) %&gt;
-&lt;%- body %&gt;
-&lt;% if (theme.sidebar &amp;&amp; theme.sidebar !== &apos;bottom&apos;){ %&gt; &lt;%- partial(&apos;_partial/sidebar&apos;) %&gt; &lt;% } %&gt;
-&lt;%- partial(&apos;_partial/footer&apos;) %&gt;
-&lt;%- partial(&apos;_partial/mobile-nav&apos;) %&gt; &lt;%- partial(&apos;_partial/after-footer&apos;) %&gt;
-</code></pre><p>在工程目录执行下面3个命令，高版本的hexo移除默认的ejs。</p>
-<pre><code>$ npm install hexo-renderer-ejs --save
-$ npm install hexo-renderer-stylus --save
-$ npm install hexo-renderer-marked --save
-</code></pre><h2 id="上传到GitCafe"><a href="#上传到GitCafe" class="headerlink" title="上传到GitCafe"></a>上传到GitCafe</h2><ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;%- partial(&apos;_partial/head&apos;) %&gt;</div><div class="line">&lt;%- partial(&apos;_partial/header&apos;) %&gt;</div><div class="line">&lt;%- body %&gt;</div><div class="line">&lt;% if (theme.sidebar &amp;&amp; theme.sidebar !== &apos;bottom&apos;)&#123; %&gt; &lt;%- partial(&apos;_partial/sidebar&apos;) %&gt; &lt;% &#125; %&gt;</div><div class="line">&lt;%- partial(&apos;_partial/footer&apos;) %&gt;</div><div class="line">&lt;%- partial(&apos;_partial/mobile-nav&apos;) %&gt; &lt;%- partial(&apos;_partial/after-footer&apos;) %&gt;</div></pre></td></tr></table></figure>
+<p>在工程目录执行下面3个命令，高版本的hexo移除默认的ejs。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ npm install hexo-renderer-ejs --save</div><div class="line">$ npm install hexo-renderer-stylus --save</div><div class="line">$ npm install hexo-renderer-marked --save</div></pre></td></tr></table></figure>
+<h2 id="上传到GitCafe"><a href="#上传到GitCafe" class="headerlink" title="上传到GitCafe"></a>上传到GitCafe</h2><ul>
 <li><a href="http://www.sumrday.com/2014/09-18-Hello-Hexo.html" target="_blank" rel="external">注册GitCafe创建Page项目</a></li>
 <li><a href="https://gitcafe.com/GitCafe/Help/wiki/%E5%A6%82%E4%BD%95%E5%AE%89%E8%A3%85%E5%92%8C%E8%AE%BE%E7%BD%AE%20Git" target="_blank" rel="external">安装和设置 Git</a></li>
 </ul>
 <p>以上两篇内容结合着看，不过对第一次操作这些的人来说可能会遇到一些问题。</p>
 <h3 id="生成SSH"><a href="#生成SSH" class="headerlink" title="生成SSH"></a>生成SSH</h3><p>当命令窗口出现以下信息时，需要你输入<code>passphrase</code>口令。不过在我操作时输入口令的话是无法生成成功的，直接按<code>enter</code>即可。</p>
-<pre><code>Enter passphrase (empty for no passphrase):
-</code></pre><h3 id="设置git"><a href="#设置git" class="headerlink" title="设置git"></a>设置git</h3><p>第一次在本地设置git时，需设置用户标识。</p>
-<pre><code>$ git config --global user.name &quot;yourname&quot;                   //gitcafe上的用户名
-$ git config --global user.email &quot;yourmaill@yourmaili.com&quot;   //填写自己的邮箱
-</code></pre><h3 id="设置本地gitcafe-pages版本库"><a href="#设置本地gitcafe-pages版本库" class="headerlink" title="设置本地gitcafe-pages版本库"></a>设置本地gitcafe-pages版本库</h3><ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Enter passphrase (empty for no passphrase):</div></pre></td></tr></table></figure>
+<h3 id="设置git"><a href="#设置git" class="headerlink" title="设置git"></a>设置git</h3><p>第一次在本地设置git时，需设置用户标识。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ git config --global user.name <span class="string">"yourname"</span>                   <span class="comment"># gitcafe上的用户名</span></div><div class="line">$ git config --global user.email <span class="string">"yourmaill@yourmaili.com"</span>   <span class="comment"># 填写自己的邮箱</span></div></pre></td></tr></table></figure>
+<h3 id="设置本地gitcafe-pages版本库"><a href="#设置本地gitcafe-pages版本库" class="headerlink" title="设置本地gitcafe-pages版本库"></a>设置本地gitcafe-pages版本库</h3><ol>
 <li>GitBash进入本地Hexo目录</li>
 <li><code>git checkout -b gitcafe-pages</code> 创建Gitcafe-Pages分支，并切换到该分支。</li>
 <li><code>git add .</code> （.）点表示当前目录下的所有内容，交给git管理，也就是提交到了git的本地仓库。</li>
 </ol>
 <h3 id="上传到gitcafe"><a href="#上传到gitcafe" class="headerlink" title="上传到gitcafe"></a>上传到gitcafe</h3><p><strong>修改hexo配置文件，即config.yml，如下配置：</strong></p>
-<pre><code>deploy:
-  type: git
-  repository: git@gitcafe.com:yourname/yourname.git
-  branch: gitcafe-pages
-</code></pre><p>yourname 修改成你的用户名，如我的是：<code>git@gitcafe.com:justgo/justgo.git</code></p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><div class="line"><span class="attr">deploy:</span></div><div class="line"><span class="attr">    type:</span> git</div><div class="line"><span class="attr">    repository:</span> git@gitcafe.com:yourname/yourname.git</div><div class="line"><span class="attr">    branch:</span> gitcafe-pages</div></pre></td></tr></table></figure>
+<p>yourname 修改成你的用户名，如我的是：<code>git@gitcafe.com:justgo/justgo.git</code></p>
 <p>保存后直接在<strong>GitBash</strong>中<code>hexo g &amp;&amp; hexo d</code>上传即可（我在这一步折腾了很久，在cmd下运行<code>hexo d</code>命令会出错）。</p>
 <p>稍等片刻，打开 <code>http://youname/gitcafe.io</code> 便可以看到自己的博客了。</p>
 <h2 id="WordPress文章迁移"><a href="#WordPress文章迁移" class="headerlink" title="WordPress文章迁移"></a>WordPress文章迁移</h2><p>WordPress 后台可以直接导出wordpress.xml文件，把这个文件放入你的本地Hexo目录下，然后安装一个插件可以直接生成每篇文章的Markdown文件。</p>
-<pre><code>npm install hexo-migrator-wordpress --save    //安装插件
-
-hexo migrate wordpress wordpress.xml          //生成Markdown
-</code></pre><p>生成后的文件稍微修改一下格式就可以上传了。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">npm install hexo-migrator-wordpress --save    <span class="comment"># 安装插件</span></div><div class="line"></div><div class="line">hexo migrate wordpress wordpress.xml          <span class="comment"># 生成Markdown</span></div></pre></td></tr></table></figure>
+<p>生成后的文件稍微修改一下格式就可以上传了。</p>
 <p>庆幸的是我博客里的图片不多，不需要太多的链接修改。</p>
 <p>不过以后我也开始使用七牛存储了，免得以后搬迁麻烦。</p>
 <h2 id="Hexo配置优化"><a href="#Hexo配置优化" class="headerlink" title="Hexo配置优化"></a>Hexo配置优化</h2><h3 id="参考-1"><a href="#参考-1" class="headerlink" title="参考"></a>参考</h3><ul>
@@ -2638,31 +2655,8 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
 <p>这个问题困扰了我很长的时间，因为我的插件安装和配置都是照着<a href="http://hexo.io/plugins/" target="_blank" rel="external">示例</a>分毫不差的进行的，可是google了几个小时都没解决！</p>
 <p>插件也重装更新了几次，想过重新初始化Hexo，怕会丢失原来的一些配置，最后在 <code>hexo/package.json</code> 中找到了原因。</p>
 <p>package.json：</p>
-<pre><code>{
-  &quot;name&quot;: &quot;hexo-site&quot;,
-  &quot;version&quot;: &quot;0.0.0&quot;,
-  &quot;private&quot;: true,
-  &quot;hexo&quot;: {
-    &quot;version&quot;: &quot;3.0.1&quot;
-  },
-  &quot;dependencies&quot;: {
-    &quot;hexo&quot;: &quot;^3.0.0&quot;,
-    &quot;hexo-admin&quot;: &quot;^0.3.0&quot;,
-    &quot;hexo-deployer-git&quot;: &quot;0.0.4&quot;,
-    &quot;hexo-generator-archive&quot;: &quot;^0.1.0&quot;,
-    &quot;hexo-generator-category&quot;: &quot;^0.1.0&quot;,
-    &quot;hexo-generator-index&quot;: &quot;^0.1.0&quot;,
-    &quot;hexo-generator-tag&quot;: &quot;^0.1.0&quot;,
-    &quot;hexo-generator-feed&quot;: &quot;^1.0.1&quot;,
-    &quot;hexo-generator-sitemap&quot;: &quot;^1.0.1&quot;,
-    &quot;hexo-migrator-wordpress&quot;: &quot;^0.1.2&quot;,
-    &quot;hexo-renderer-ejs&quot;: &quot;^0.1.0&quot;,
-    &quot;hexo-renderer-marked&quot;: &quot;^0.2.4&quot;,
-    &quot;hexo-renderer-stylus&quot;: &quot;^0.2.0&quot;,
-    &quot;hexo-server&quot;: &quot;^0.1.2&quot;
-  }
-}
-</code></pre><p>检查此文件中是否包括了<code>hexo-generator-tag</code>和<code>hexo-generator-sitemap</code>，没有的话添加一下。<br>插件版本号查看对应插件下的<code>package.json</code>文件，其他插件的类似问题应该也可以尝试这样解决。</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"hexo-site"</span>,</div><div class="line">    <span class="attr">"version"</span>: <span class="string">"0.0.0"</span>,</div><div class="line">    <span class="attr">"private"</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">"hexo"</span>: &#123;</div><div class="line">    <span class="attr">"version"</span>: <span class="string">"3.0.1"</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">"dependencies"</span>: &#123;</div><div class="line">    <span class="attr">"hexo"</span>: <span class="string">"^3.0.0"</span>,</div><div class="line">    <span class="attr">"hexo-admin"</span>: <span class="string">"^0.3.0"</span>,</div><div class="line">    <span class="attr">"hexo-deployer-git"</span>: <span class="string">"0.0.4"</span>,</div><div class="line">    <span class="attr">"hexo-generator-archive"</span>: <span class="string">"^0.1.0"</span>,</div><div class="line">    <span class="attr">"hexo-generator-category"</span>: <span class="string">"^0.1.0"</span>,</div><div class="line">    <span class="attr">"hexo-generator-index"</span>: <span class="string">"^0.1.0"</span>,</div><div class="line">    <span class="attr">"hexo-generator-tag"</span>: <span class="string">"^0.1.0"</span>,</div><div class="line">    <span class="attr">"hexo-generator-feed"</span>: <span class="string">"^1.0.1"</span>,</div><div class="line">    <span class="attr">"hexo-generator-sitemap"</span>: <span class="string">"^1.0.1"</span>,</div><div class="line">    <span class="attr">"hexo-migrator-wordpress"</span>: <span class="string">"^0.1.2"</span>,</div><div class="line">    <span class="attr">"hexo-renderer-ejs"</span>: <span class="string">"^0.1.0"</span>,</div><div class="line">    <span class="attr">"hexo-renderer-marked"</span>: <span class="string">"^0.2.4"</span>,</div><div class="line">    <span class="attr">"hexo-renderer-stylus"</span>: <span class="string">"^0.2.0"</span>,</div><div class="line">    <span class="attr">"hexo-server"</span>: <span class="string">"^0.1.2"</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>检查此文件中是否包括了<code>hexo-generator-tag</code>和<code>hexo-generator-sitemap</code>，没有的话添加一下。<br>插件版本号查看对应插件下的<code>package.json</code>文件，其他插件的类似问题应该也可以尝试这样解决。</p>
 ]]></content>
     
     <summary type="html">
@@ -2676,7 +2670,7 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     
       <category term="WordPress" scheme="http://imys.net/tags/WordPress/"/>
     
-      <category term="gitcafe" scheme="http://imys.net/tags/gitcafe/"/>
+      <category term="Gitcafe" scheme="http://imys.net/tags/Gitcafe/"/>
     
   </entry>
   
@@ -2685,7 +2679,7 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     <link href="http://imys.net/20150510/jquery-proxy.html"/>
     <id>http://imys.net/20150510/jquery-proxy.html</id>
     <published>2015-05-09T16:25:13.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:19:16.257Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>在写一些jq插件时，往往需要在回调函数上下文中注入调用者对象，也就是改变函数上下文中 this 的引用。<br>  从jQuery 1.4 开始便可以使用 jQuery.proxy 方法解决这个问题。</p>
@@ -2698,7 +2692,8 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
 <p><em>未使用 jQuery.proxy 方法时，click 方法中 this 指向为执行 click 方法的 jQuery 对象；</em><br><em>使用 jQuery.proxy 方法时，click 方法中 this 指向为你所期望的对象。</em></p>
 <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>不难猜出其底层实现应该是原生 js 中的 call 或 apply 方法。</p>
 <p><strong>jquery1.9 中的源码片段：</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">proxy: <span class="function"><span class="keyword">function</span>(<span class="params"> fn, context </span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> args, proxy, tmp;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> ( <span class="keyword">typeof</span> context === <span class="string">"string"</span> ) &#123;</div><div class="line">        tmp = fn[ context ];</div><div class="line">        context = fn;</div><div class="line">        fn = tmp;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Quick check to determine if target is callable, in the spec</span></div><div class="line">    <span class="comment">// this throws a TypeError, but we will just return undefined.</span></div><div class="line">    <span class="keyword">if</span> ( !jQuery.isFunction( fn ) ) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">undefined</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Simulated bind</span></div><div class="line">    args = core_slice.call( <span class="built_in">arguments</span>, <span class="number">2</span> );</div><div class="line">    proxy = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> fn.apply( context || <span class="keyword">this</span>, args.concat( core_slice.call( <span class="built_in">arguments</span> ) ) );</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="comment">// Set the guid of unique handler to the same of original handler, so it can be removed</span></div><div class="line">    proxy.guid = fn.guid = fn.guid || jQuery.guid++;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> proxy;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">proxy: <span class="function"><span class="keyword">function</span>(<span class="params"> fn, context </span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> args, proxy, tmp;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> ( <span class="keyword">typeof</span> context === <span class="string">"string"</span> ) &#123;</div><div class="line">        tmp = fn[ context ];</div><div class="line">        context = fn;</div><div class="line">        fn = tmp;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Quick check to determine if target is callable, in the spec</span></div><div class="line">    <span class="comment">// this throws a TypeError, but we will just return undefined.</span></div><div class="line">    <span class="keyword">if</span> ( !jQuery.isFunction( fn ) ) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">undefined</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Simulated bind</span></div><div class="line">    args = core_slice.call( <span class="built_in">arguments</span>, <span class="number">2</span> );</div><div class="line">    proxy = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> fn.apply( context || <span class="keyword">this</span>, args.concat( core_slice.call( <span class="built_in">arguments</span> ) ) );</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="comment">// Set the guid of unique handler to the same of original handler, so it can be removed</span></div><div class="line">    proxy.guid = fn.guid = fn.guid || jQuery.guid++;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> proxy;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
     
     <summary type="html">
     
@@ -2707,7 +2702,9 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     </summary>
     
     
-      <category term="jquery" scheme="http://imys.net/tags/jquery/"/>
+      <category term="jQuery" scheme="http://imys.net/tags/jQuery/"/>
+    
+      <category term="proxy" scheme="http://imys.net/tags/proxy/"/>
     
   </entry>
   
@@ -2716,7 +2713,7 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     <link href="http://imys.net/20150508/javascript-with.html"/>
     <id>http://imys.net/20150508/javascript-with.html</id>
     <published>2015-05-08T03:16:52.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:19:59.058Z</updated>
     
     <content type="html"><![CDATA[<p><strong>with</strong> 语句可以方便地用来引用某个特定对象中已有的属性或方法，但是不能用来给对象添加新的属性或方法。要给对象创建新的属性，必须明确地引用该对象。<br><a id="more"></a></p>
 <h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">function Student()&#123;</div><div class="line">    this.name = &apos;jeck&apos;;</div><div class="line">    this.age = 20;</div><div class="line">    this.gender = &apos;men&apos;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var stu = new Student();</div><div class="line"></div><div class="line">with(stu) &#123;</div><div class="line">    console.log(&apos;姓名：&apos; + name + &apos;，性别：&apos; + gender + &apos;，年龄：&apos; + age);  // 姓名：jeck，性别：men，年龄：20</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -2732,7 +2729,9 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     </summary>
     
     
-      <category term="javascript" scheme="http://imys.net/tags/javascript/"/>
+      <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
+    
+      <category term="with" scheme="http://imys.net/tags/with/"/>
     
   </entry>
   
@@ -2741,146 +2740,13 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     <link href="http://imys.net/20150507/jqplugin-uploadpreview.html"/>
     <id>http://imys.net/20150507/jqplugin-uploadpreview.html</id>
     <published>2015-05-07T10:11:00.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:19:41.771Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>网上找到的一段代码，经过一番测试修改，兼容了IE7+、火狐、谷歌。<br>  并且扩展了多尺寸预览功能，可完美搭配 <a href="http://code.ciaoca.com/jquery/jcrop/" target="_blank" rel="external">jquery.Jcrop</a> 插件进行图像裁剪。<br><a id="more"></a></p>
 </blockquote>
-<h3 id="插件代码"><a href="#插件代码" class="headerlink" title="插件代码"></a>插件代码</h3><pre><code>(function($) {
-    jQuery.fn.extend({
-        uploadPreview: function(opts) {
-            opts = jQuery.extend({
-                width: null,    
-                height: null,
-                imgDiv: &quot;#imgDiv&quot;,  
-                anyTarget: null,    
-                maxSize: 300,       
-                imgType: [&quot;gif&quot;, &quot;jpeg&quot;, &quot;jpg&quot;, &quot;bmp&quot;, &quot;png&quot;],  
-                callback: function() { return false; }  
-            }, opts || {});
-
-            var _this = $(this);
-            var imgDiv = $(opts.imgDiv);
-            opts.width &amp;amp;&amp;amp; imgDiv.width(opts.width);
-            opts.height &amp;amp;&amp;amp; imgDiv.height(opts.height);
-
-            var isIE = navigator.appName == &apos;Microsoft Internet Explorer&apos;, 
-                brVersion = navigator.appVersion, version;
-            isIE &amp;amp;&amp;amp; (version = brVersion.split(&apos;;&apos;)[1].replace(/MSIE[ ]/g,&apos;&apos;).replace(&apos;.0&apos;,&apos;&apos;));
-
-            handle = function() {
-                var img = imgDiv.find(&apos;img&apos;);
-                opts.anyTarget &amp;amp;&amp;amp; $.each(opts.anyTarget.split(&apos;,&apos;), function(index, val) {
-                    $(val).html(img.clone());
-                });
-                img.width(opts.width).height(opts.height);
-                opts.callback(img);
-            },
-
-            createImg = function(){
-                imgDiv.html(&apos;&apos;);
-
-                var img = $(&quot;&lt;img /&gt;&quot;);
-                imgDiv.append(img);
-                return img;
-            },
-
-            _this.change(function() {
-
-                if (this.value) {
-                    if (!RegExp(&quot;\.(&quot; + opts.imgType.join(&quot;|&quot;) + &quot;)$&quot;, &quot;i&quot;).test(this.value.toLowerCase())) {
-                        alert(&quot;图片类型必须是&quot; + opts.imgType.join(&quot;，&quot;) + &quot;中的一种&quot;);
-                        this.value = &quot;&quot;;
-                        return false;
-                    }
-
-                    if (isIE &amp;amp;&amp;amp; version &lt; 10) {
-
-                        if (version == 6) {
-
-                            var image = new Image();
-                            image.onload = function(){
-                                if( (image.fileSize/1024) &gt; opts.maxSize) {
-                                    alert(&apos;图片大小不能超过&apos;+opts.maxSize+&apos;K&apos;);
-                                    return false;
-                                }
-                            }
-                            image.src = &apos;file:///&apos; + this.value;
-
-                            createImg().attr(&apos;src&apos;, image.src);
-                            handle();
-                        }  else {
-
-                            var img = document.selection.createRange().text || $(this).val();
-                            var image = $(&apos;&lt;img /&gt;&apos;)
-                            image.load(function(){
-                                if( (image.fileSize/1024) &gt; opts.maxSize) {
-                                    alert(&apos;图片大小不能超过&apos;+opts.maxSize+&apos;K&apos;);
-                                    return false;
-                                }
-                            });
-                            image.attr(&apos;src&apos;, img);                           
-                            imgDiv.html(&apos;&apos;);           
-
-                            image.css({ filter: &quot;progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=&apos;scale&apos;,src=&apos;&quot;+img+&quot;&apos;)&quot; });
-                            imgDiv.append(image);
-                            setTimeout(handle, 100);                            
-                        }
-                    }
-                    else {
-                        var img;
-                        try{   
-                            var file = null;
-                            var size = 0;
-                            if(this.files &amp;amp;&amp;amp; this.files[0] ){
-                                file = this.files[0]; 
-                                size = file.size;
-                            }else if(this.files &amp;amp;&amp;amp; this.files.item(0)) {                                
-                                file = this.files.item(0);   
-                                size = file.fileSize;
-                            } 
-
-                            if((size/1024) &gt; opts.maxSize){
-                                alert(&apos;图片大小不能超过&apos;+opts.maxSize+&apos;K&apos;);
-                                return false;
-                            }
-
-                            img = createImg();
-
-                            //Firefox 因安全性问题已无法直接通过input[file].value 获取完整的文件路径
-                            try{
-                                //Firefox7.0 以下                             
-                                img.attr(&apos;src&apos;, file.getAsDataURL());
-                            }catch(e){
-                                //Firefox8.0以上                              
-                                img.attr(&apos;src&apos;, window.URL.createObjectURL(file));
-                            }
-
-                            img.css({ &quot;vertical-align&quot;: &quot;middle&quot; });
-                            setTimeout(handle, 100);
-                        }catch(e){                          
-                            //支持html5的浏览器,比如高版本的firefox、chrome、ie10
-                            if (this.files &amp;amp;&amp;amp; this.files[0]) {                          
-                                if((this.files[0].size/1024) &gt; opts.maxSize){
-                                    alert(&apos;图片大小不能超过&apos;+opts.maxSize+&apos;K&apos;);
-                                    return false;
-                                }
-
-                                var reader = new FileReader(); 
-                                reader.onload = function (e) {                                      
-                                    imgDiv.attr(&apos;src&apos;, e.target.result);  
-                                };
-                                reader.readAsDataURL(this.files[0]); 
-                                setTimeout(handle, 100);
-                            }  
-                        };
-                    }
-                }
-            });
-        }
-    });
-})(jQuery);
-</code></pre><h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><ul>
+<h3 id="插件代码"><a href="#插件代码" class="headerlink" title="插件代码"></a>插件代码</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>) </span>&#123;</div><div class="line">    jQuery.fn.extend(&#123;</div><div class="line">        uploadPreview: <span class="function"><span class="keyword">function</span>(<span class="params">opts</span>) </span>&#123;</div><div class="line">            opts = jQuery.extend(&#123;</div><div class="line">                width: <span class="literal">null</span>,    </div><div class="line">                height: <span class="literal">null</span>,</div><div class="line">                imgDiv: <span class="string">"#imgDiv"</span>,  </div><div class="line">                anyTarget: <span class="literal">null</span>,    </div><div class="line">                maxSize: <span class="number">300</span>,       </div><div class="line">                imgType: [<span class="string">"gif"</span>, <span class="string">"jpeg"</span>, <span class="string">"jpg"</span>, <span class="string">"bmp"</span>, <span class="string">"png"</span>],  </div><div class="line">                callback: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="literal">false</span>; &#125;  </div><div class="line">            &#125;, opts || &#123;&#125;);</div><div class="line"></div><div class="line">            <span class="keyword">var</span> _this = $(<span class="keyword">this</span>);</div><div class="line">            <span class="keyword">var</span> imgDiv = $(opts.imgDiv);</div><div class="line">            opts.width &amp;amp;&amp;amp; imgDiv.width(opts.width);</div><div class="line">            opts.height &amp;amp;&amp;amp; imgDiv.height(opts.height);</div><div class="line"></div><div class="line">            <span class="keyword">var</span> isIE = navigator.appName == <span class="string">'Microsoft Internet Explorer'</span>, </div><div class="line">                brVersion = navigator.appVersion, version;</div><div class="line">            isIE &amp;amp;&amp;amp; (version = brVersion.split(<span class="string">';'</span>)[<span class="number">1</span>].replace(<span class="regexp">/MSIE[ ]/g</span>,<span class="string">''</span>).replace(<span class="string">'.0'</span>,<span class="string">''</span>));</div><div class="line"></div><div class="line">            handle = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                <span class="keyword">var</span> img = imgDiv.find(<span class="string">'img'</span>);</div><div class="line">                opts.anyTarget &amp;amp;&amp;amp; $.each(opts.anyTarget.split(<span class="string">','</span>), <span class="function"><span class="keyword">function</span>(<span class="params">index, val</span>) </span>&#123;</div><div class="line">                    $(val).html(img.clone());</div><div class="line">                &#125;);</div><div class="line">                img.width(opts.width).height(opts.height);</div><div class="line">                opts.callback(img);</div><div class="line">            &#125;,</div><div class="line"></div><div class="line">            createImg = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                imgDiv.html(<span class="string">''</span>);</div><div class="line"></div><div class="line">                <span class="keyword">var</span> img = $(<span class="string">"&lt;img /&gt;"</span>);</div><div class="line">                imgDiv.append(img);</div><div class="line">                <span class="keyword">return</span> img;</div><div class="line">            &#125;,</div><div class="line"></div><div class="line">            _this.change(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">                <span class="keyword">if</span> (<span class="keyword">this</span>.value) &#123;</div><div class="line">                    <span class="keyword">if</span> (!<span class="built_in">RegExp</span>(<span class="string">"\.("</span> + opts.imgType.join(<span class="string">"|"</span>) + <span class="string">")$"</span>, <span class="string">"i"</span>).test(<span class="keyword">this</span>.value.toLowerCase())) &#123;</div><div class="line">                        alert(<span class="string">"图片类型必须是"</span> + opts.imgType.join(<span class="string">"，"</span>) + <span class="string">"中的一种"</span>);</div><div class="line">                        <span class="keyword">this</span>.value = <span class="string">""</span>;</div><div class="line">                        <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">                    &#125;</div><div class="line"></div><div class="line">                    <span class="keyword">if</span> (isIE &amp;amp;&amp;amp; version &lt; <span class="number">10</span>) &#123;</div><div class="line"></div><div class="line">                        <span class="keyword">if</span> (version == <span class="number">6</span>) &#123;</div><div class="line"></div><div class="line">                            <span class="keyword">var</span> image = <span class="keyword">new</span> Image();</div><div class="line">                            image.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                                <span class="keyword">if</span>( (image.fileSize/<span class="number">1024</span>) &gt; opts.maxSize) &#123;</div><div class="line">                                    alert(<span class="string">'图片大小不能超过'</span>+opts.maxSize+<span class="string">'K'</span>);</div><div class="line">                                    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">                                &#125;</div><div class="line">                            &#125;</div><div class="line">                            image.src = <span class="string">'file:///'</span> + <span class="keyword">this</span>.value;</div><div class="line"></div><div class="line">                            createImg().attr(<span class="string">'src'</span>, image.src);</div><div class="line">                            handle();</div><div class="line">                        &#125;  <span class="keyword">else</span> &#123;</div><div class="line"></div><div class="line">                            <span class="keyword">var</span> img = <span class="built_in">document</span>.selection.createRange().text || $(<span class="keyword">this</span>).val();</div><div class="line">                            <span class="keyword">var</span> image = $(<span class="string">'&lt;img /&gt;'</span>)</div><div class="line">                            image.load(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                                <span class="keyword">if</span>( (image.fileSize/<span class="number">1024</span>) &gt; opts.maxSize) &#123;</div><div class="line">                                    alert(<span class="string">'图片大小不能超过'</span>+opts.maxSize+<span class="string">'K'</span>);</div><div class="line">                                    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">                                &#125;</div><div class="line">                            &#125;);</div><div class="line">                            image.attr(<span class="string">'src'</span>, img);                           </div><div class="line">                            imgDiv.html(<span class="string">''</span>);           </div><div class="line"></div><div class="line">                            image.css(&#123; filter: <span class="string">"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale',src='"</span>+img+<span class="string">"')"</span> &#125;);</div><div class="line">                            imgDiv.append(image);</div><div class="line">                            setTimeout(handle, <span class="number">100</span>);                            </div><div class="line">                        &#125;</div><div class="line">                    &#125;</div><div class="line">                    <span class="keyword">else</span> &#123;</div><div class="line">                        <span class="keyword">var</span> img;</div><div class="line">                        <span class="keyword">try</span>&#123;   </div><div class="line">                            <span class="keyword">var</span> file = <span class="literal">null</span>;</div><div class="line">                            <span class="keyword">var</span> size = <span class="number">0</span>;</div><div class="line">                            <span class="keyword">if</span>(<span class="keyword">this</span>.files &amp;amp;&amp;amp; <span class="keyword">this</span>.files[<span class="number">0</span>] )&#123;</div><div class="line">                                file = <span class="keyword">this</span>.files[<span class="number">0</span>]; </div><div class="line">                                size = file.size;</div><div class="line">                            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">this</span>.files &amp;amp;&amp;amp; <span class="keyword">this</span>.files.item(<span class="number">0</span>)) &#123;                                </div><div class="line">                                file = <span class="keyword">this</span>.files.item(<span class="number">0</span>);   </div><div class="line">                                size = file.fileSize;</div><div class="line">                            &#125; </div><div class="line"></div><div class="line">                            <span class="keyword">if</span>((size/<span class="number">1024</span>) &gt; opts.maxSize)&#123;</div><div class="line">                                alert(<span class="string">'图片大小不能超过'</span>+opts.maxSize+<span class="string">'K'</span>);</div><div class="line">                                <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">                            &#125;</div><div class="line"></div><div class="line">                            img = createImg();</div><div class="line"></div><div class="line">                            <span class="comment">//Firefox 因安全性问题已无法直接通过input[file].value 获取完整的文件路径</span></div><div class="line">                            <span class="keyword">try</span>&#123;</div><div class="line">                                <span class="comment">//Firefox7.0 以下                             </span></div><div class="line">                                img.attr(<span class="string">'src'</span>, file.getAsDataURL());</div><div class="line">                            &#125;<span class="keyword">catch</span>(e)&#123;</div><div class="line">                                <span class="comment">//Firefox8.0以上                              </span></div><div class="line">                                img.attr(<span class="string">'src'</span>, <span class="built_in">window</span>.URL.createObjectURL(file));</div><div class="line">                            &#125;</div><div class="line"></div><div class="line">                            img.css(&#123; <span class="string">"vertical-align"</span>: <span class="string">"middle"</span> &#125;);</div><div class="line">                            setTimeout(handle, <span class="number">100</span>);</div><div class="line">                        &#125;<span class="keyword">catch</span>(e)&#123;                          </div><div class="line">                            <span class="comment">//支持html5的浏览器,比如高版本的firefox、chrome、ie10</span></div><div class="line">                            <span class="keyword">if</span> (<span class="keyword">this</span>.files &amp;amp;&amp;amp; <span class="keyword">this</span>.files[<span class="number">0</span>]) &#123;                          </div><div class="line">                                <span class="keyword">if</span>((<span class="keyword">this</span>.files[<span class="number">0</span>].size/<span class="number">1024</span>) &gt; opts.maxSize)&#123;</div><div class="line">                                    alert(<span class="string">'图片大小不能超过'</span>+opts.maxSize+<span class="string">'K'</span>);</div><div class="line">                                    <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">                                &#125;</div><div class="line"></div><div class="line">                                <span class="keyword">var</span> reader = <span class="keyword">new</span> FileReader(); </div><div class="line">                                reader.onload = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;                                      </div><div class="line">                                    imgDiv.attr(<span class="string">'src'</span>, e.target.result);  </div><div class="line">                                &#125;;</div><div class="line">                                reader.readAsDataURL(<span class="keyword">this</span>.files[<span class="number">0</span>]); </div><div class="line">                                setTimeout(handle, <span class="number">100</span>);</div><div class="line">                            &#125;  </div><div class="line">                        &#125;;</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;)(jQuery);</div></pre></td></tr></table></figure>
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><ul>
 <li>width: 图片容器宽度；</li>
 <li>height: 图片容器高度；</li>
 <li>imgDiv: 图片预览容器；</li>
@@ -2889,125 +2755,8 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
 <li>imgType: 图片类型限制；</li>
 <li>callback: 预览成功后的回调，参数 img(预览的图片节点，jquery类型)。</li>
 </ul>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><pre><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;meta charset=&quot;utf-8&quot;&gt;
-&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;&gt;
-&lt;title&gt;图片上传预览&lt;/title&gt;
-&lt;link href=&quot;http://cdn.bootcss.com/jquery-jcrop/0.9.12/css/jquery.Jcrop.css&quot; rel=&quot;stylesheet&quot;&gt;
-&lt;style type=&quot;text/css&quot;&gt;
-    .fl {
-        float: left;
-    }
-    .fr {
-        float: right;
-    }
-    .logo-wrap {
-        overflow: hidden;
-        margin: 30px 0;
-    }
-    .logo-350, .logo-350 img {
-        width: 350px;
-        height: 350px;
-    }
-    .logo-350 {
-        margin-right: 30px;
-    }
-    .logo-200, .logo-200 img {
-        width: 200px;
-        height: 200px;
-    }
-    .logo-200 {
-        margin-bottom: 30px;
-    }
-    .logo-200-wrap {
-        width: 200px;
-    }
-    .logo-100, .logo-100 img {
-        width: 100px;
-        height: 100px;
-    }
-
-    .logo-60, .logo-60 img {
-        width: 60px;
-        height: 60px;
-    }
-
-    .logo-350, .logo-200, .logo-100, .logo-60, .qrcode {
-        border: 1px solid #ddd;
-        overflow: hidden;
-    }
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;input type=&quot;file&quot; value=&quot;上传文件&quot; id=&quot;file&quot;&gt;  
-    &lt;div class=&quot;logo-wrap&quot;&gt;
-        &lt;div class=&quot;fl logo-350&quot;&gt;&lt;/div&gt;
-        &lt;div class=&quot;fl logo-200-wrap&quot;&gt;
-          &lt;div class=&quot;logo-200&quot;&gt;&lt;div class=&quot;content&quot;&gt;&lt;/div&gt;&lt;/div&gt;
-          &lt;div&gt;
-            &lt;div class=&quot;fl logo-100&quot;&gt;&lt;div class=&quot;content&quot;&gt;&lt;/div&gt;&lt;/div&gt;
-            &lt;div class=&quot;fr logo-60&quot;&gt;&lt;div class=&quot;content&quot;&gt;&lt;/div&gt;&lt;/div&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/body&gt;
-&lt;script src=&quot;http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;http://ysdn-wordpress.stor.sinaapp.com/js/jquery.uploadPreview.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;http://cdn.bootcss.com/jquery-jcrop/0.9.12/js/jquery.Jcrop.min.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;  
-//&lt;![CDATA[
-    $(&quot;#file&quot;).uploadPreview({ 
-        width: 350,     
-        height: 350, 
-        imgDiv: &apos;.logo-350&apos;,    
-        anyTarget: &apos;.logo-200 .content, .logo-100 .content, .logo-60 .content&apos;,
-        maxSize: 1024 * 2,
-        callback: function(el) {
-            var jOption = {
-                setSelect: [75, 75, 275, 275],
-                minSize: [200, 200],
-                onChange: updatePreview,
-                onSelect: updatePreview,
-                aspectRatio: 1
-            };
-
-            var isIE = navigator.appName == &apos;Microsoft Internet Explorer&apos;, 
-                brVersion = navigator.appVersion, version;
-            isIE &amp;amp;&amp;amp; (version = brVersion.split(&apos;;&apos;)[1].replace(/MSIE[ ]/g,&apos;&apos;).replace(&apos;.0&apos;,&apos;&apos;));
-
-            if (isIE &amp;amp;&amp;amp; version &lt; 10) {
-                var api = $.Jcrop(el.selector, jOption); 
-            } else {
-                el.Jcrop(jOption);
-            }
-
-        }
-    });
-
-    function updatePreview(c) {
-        if (parseInt(c.w) &gt; 0) {
-            $(&apos;.logo-200, .logo-100, .logo-60&apos;).each(function(index, el) {
-                var box = $(el), content = box.find(&apos;.content&apos;), img = content.find(&apos;img&apos;);
-                content.width($(&apos;.logo-350&apos;).outerWidth()).height($(&apos;.logo-350&apos;).outerHeight());
-
-                var rx = box.width() / c.w;
-                var ry = box.height() / c.h;
-
-                img.css({
-                    width: Math.round(rx * 350) + &apos;px&apos;,
-                    height: Math.round(ry * 350) + &apos;px&apos;,
-                    marginLeft: &apos;-&apos; + Math.round(rx * c.x) + &apos;px&apos;,
-                    marginTop: &apos;-&apos; + Math.round(ry * c.y) + &apos;px&apos;
-                });
-            });
-        }
-    }
-//]]&gt;
-&lt;/script&gt;  
-&lt;/html&gt;
-</code></pre>]]></content>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge,chrome=1"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>图片上传预览<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"http://cdn.bootcss.com/jquery-jcrop/0.9.12/css/jquery.Jcrop.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="css"></span></div><div class="line">    <span class="selector-class">.fl</span> &#123;</div><div class="line">        <span class="attribute">float</span>: left;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.fr</span> &#123;</div><div class="line">        <span class="attribute">float</span>: right;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.logo-wrap</span> &#123;</div><div class="line">        <span class="attribute">overflow</span>: hidden;</div><div class="line">        <span class="attribute">margin</span>: <span class="number">30px</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.logo-350</span>, <span class="selector-class">.logo-350</span> <span class="selector-tag">img</span> &#123;</div><div class="line">        <span class="attribute">width</span>: <span class="number">350px</span>;</div><div class="line">        <span class="attribute">height</span>: <span class="number">350px</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.logo-350</span> &#123;</div><div class="line">        <span class="attribute">margin-right</span>: <span class="number">30px</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.logo-200</span>, <span class="selector-class">.logo-200</span> <span class="selector-tag">img</span> &#123;</div><div class="line">        <span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">        <span class="attribute">height</span>: <span class="number">200px</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.logo-200</span> &#123;</div><div class="line">        <span class="attribute">margin-bottom</span>: <span class="number">30px</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.logo-200-wrap</span> &#123;</div><div class="line">        <span class="attribute">width</span>: <span class="number">200px</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.logo-100</span>, <span class="selector-class">.logo-100</span> <span class="selector-tag">img</span> &#123;</div><div class="line">        <span class="attribute">width</span>: <span class="number">100px</span>;</div><div class="line">        <span class="attribute">height</span>: <span class="number">100px</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="selector-class">.logo-60</span>, <span class="selector-class">.logo-60</span> <span class="selector-tag">img</span> &#123;</div><div class="line">        <span class="attribute">width</span>: <span class="number">60px</span>;</div><div class="line">        <span class="attribute">height</span>: <span class="number">60px</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="selector-class">.logo-350</span>, <span class="selector-class">.logo-200</span>, <span class="selector-class">.logo-100</span>, <span class="selector-class">.logo-60</span>, <span class="selector-class">.qrcode</span> &#123;</div><div class="line">        <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ddd</span>;</div><div class="line">        <span class="attribute">overflow</span>: hidden;</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">value</span>=<span class="string">"上传文件"</span> <span class="attr">id</span>=<span class="string">"file"</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"logo-wrap"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"fl logo-350"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"fl logo-200-wrap"</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"logo-200"</span>&gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"fl logo-100"</span>&gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"fr logo-60"</span>&gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://ysdn-wordpress.stor.sinaapp.com/js/jquery.uploadPreview.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://cdn.bootcss.com/jquery-jcrop/0.9.12/js/jquery.Jcrop.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript">  </span></div><div class="line"><span class="comment">//&lt;![CDATA[</span></div><div class="line">    $(<span class="string">"#file"</span>).uploadPreview(&#123; </div><div class="line">        width: <span class="number">350</span>,     </div><div class="line">        height: <span class="number">350</span>, </div><div class="line">        imgDiv: <span class="string">'.logo-350'</span>,    </div><div class="line">        anyTarget: <span class="string">'.logo-200 .content, .logo-100 .content, .logo-60 .content'</span>,</div><div class="line">        maxSize: <span class="number">1024</span> * <span class="number">2</span>,</div><div class="line">        callback: <span class="function"><span class="keyword">function</span>(<span class="params">el</span>) </span>&#123;</div><div class="line">            <span class="keyword">var</span> jOption = &#123;</div><div class="line">                setSelect: [<span class="number">75</span>, <span class="number">75</span>, <span class="number">275</span>, <span class="number">275</span>],</div><div class="line">                minSize: [<span class="number">200</span>, <span class="number">200</span>],</div><div class="line">                onChange: updatePreview,</div><div class="line">                onSelect: updatePreview,</div><div class="line">                aspectRatio: <span class="number">1</span></div><div class="line">            &#125;;</div><div class="line"></div><div class="line">            <span class="keyword">var</span> isIE = navigator.appName == <span class="string">'Microsoft Internet Explorer'</span>, </div><div class="line">                brVersion = navigator.appVersion, version;</div><div class="line">            isIE &amp;amp;&amp;amp; (version = brVersion.split(<span class="string">';'</span>)[<span class="number">1</span>].replace(<span class="regexp">/MSIE[ ]/g</span>,<span class="string">''</span>).replace(<span class="string">'.0'</span>,<span class="string">''</span>));</div><div class="line"></div><div class="line">            <span class="keyword">if</span> (isIE &amp;amp;&amp;amp; version &lt; <span class="number">10</span>) &#123;</div><div class="line">                <span class="keyword">var</span> api = $.Jcrop(el.selector, jOption); </div><div class="line">            &#125; <span class="keyword">else</span> &#123;</div><div class="line">                el.Jcrop(jOption);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">updatePreview</span>(<span class="params">c</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (<span class="built_in">parseInt</span>(c.w) &gt; <span class="number">0</span>) &#123;</div><div class="line">            $(<span class="string">'.logo-200, .logo-100, .logo-60'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params">index, el</span>) </span>&#123;</div><div class="line">                <span class="keyword">var</span> box = $(el), content = box.find(<span class="string">'.content'</span>), img = content.find(<span class="string">'img'</span>);</div><div class="line">                content.width($(<span class="string">'.logo-350'</span>).outerWidth()).height($(<span class="string">'.logo-350'</span>).outerHeight());</div><div class="line"></div><div class="line">                <span class="keyword">var</span> rx = box.width() / c.w;</div><div class="line">                <span class="keyword">var</span> ry = box.height() / c.h;</div><div class="line"></div><div class="line">                img.css(&#123;</div><div class="line">                    width: <span class="built_in">Math</span>.round(rx * <span class="number">350</span>) + <span class="string">'px'</span>,</div><div class="line">                    height: <span class="built_in">Math</span>.round(ry * <span class="number">350</span>) + <span class="string">'px'</span>,</div><div class="line">                    marginLeft: <span class="string">'-'</span> + <span class="built_in">Math</span>.round(rx * c.x) + <span class="string">'px'</span>,</div><div class="line">                    marginTop: <span class="string">'-'</span> + <span class="built_in">Math</span>.round(ry * c.y) + <span class="string">'px'</span></div><div class="line">                &#125;);</div><div class="line">            &#125;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"><span class="comment">//]]&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+]]></content>
     
     <summary type="html">
     
@@ -3016,9 +2765,9 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     </summary>
     
     
-      <category term="jquery插件" scheme="http://imys.net/tags/jquery%E6%8F%92%E4%BB%B6/"/>
+      <category term="jQuery插件" scheme="http://imys.net/tags/jQuery%E6%8F%92%E4%BB%B6/"/>
     
-      <category term="jquery" scheme="http://imys.net/tags/jquery/"/>
+      <category term="jQuery" scheme="http://imys.net/tags/jQuery/"/>
     
   </entry>
   
@@ -3027,7 +2776,7 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     <link href="http://imys.net/20150429/javascript-arguments.html"/>
     <id>http://imys.net/20150429/javascript-arguments.html</id>
     <published>2015-04-29T03:55:20.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:20:07.394Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>在javascript中函数调用时，会自动在函数内产生一个arguments的隐藏对象。arguments类似于数组，但又不是数组。可以使用[]操作符获取函数调用时传递的实参。</p>
@@ -3039,7 +2788,8 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
 <p><strong>callee</strong>：引用当前正在执行的函数。<br>适用场景：递归。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 求1到n的自然数之和</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">n</span>)</span>&#123;</div><div class="line">    <span class="keyword">if</span>(n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">return</span> n + <span class="built_in">arguments</span>.callee(n<span class="number">-1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="转换成真正的数组"><a href="#转换成真正的数组" class="headerlink" title="转换成真正的数组"></a>转换成真正的数组</h3><p><code>Array.prototype.slice.call(arguments)</code></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 任意数量的一组数字排序</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">mySort</span>(<span class="params">a,b,v</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> tags = <span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line">    tags = tags.concat(tags.slice.call(<span class="built_in">arguments</span>)).sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> a - b;</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> tags;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> result = mySort(<span class="number">50</span>,<span class="number">11</span>,<span class="number">16</span>,<span class="number">32</span>,<span class="number">24</span>,<span class="number">99</span>,<span class="number">57</span>,<span class="number">100</span>);</div><div class="line"><span class="built_in">console</span>.log(result);   <span class="comment">// [11, 16, 24, 32, 50, 57, 99, 100]</span></div></pre></td></tr></table></figure>]]></content>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 任意数量的一组数字排序</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">mySort</span>(<span class="params">a,b,v</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> tags = <span class="keyword">new</span> <span class="built_in">Array</span>();</div><div class="line">    tags = tags.concat(tags.slice.call(<span class="built_in">arguments</span>)).sort(<span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>)</span>&#123;</div><div class="line">        <span class="keyword">return</span> a - b;</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> tags;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> result = mySort(<span class="number">50</span>,<span class="number">11</span>,<span class="number">16</span>,<span class="number">32</span>,<span class="number">24</span>,<span class="number">99</span>,<span class="number">57</span>,<span class="number">100</span>);</div><div class="line"><span class="built_in">console</span>.log(result);   <span class="comment">// [11, 16, 24, 32, 50, 57, 99, 100]</span></div></pre></td></tr></table></figure>
+]]></content>
     
     <summary type="html">
     
@@ -3048,7 +2798,9 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     </summary>
     
     
-      <category term="javascript" scheme="http://imys.net/tags/javascript/"/>
+      <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
+    
+      <category term="arguments" scheme="http://imys.net/tags/arguments/"/>
     
   </entry>
   
@@ -3057,13 +2809,14 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     <link href="http://imys.net/20150428/jquery-delayHover.html"/>
     <id>http://imys.net/20150428/jquery-delayHover.html</id>
     <published>2015-04-28T09:15:57.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:19:11.619Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>适用场景如：鼠标随便一滑，无数个下拉菜单出来了，用户可能只是鼠标“打个酱油”罢了。</p>
 </blockquote>
 <p>实现很简单，就是使用<code>setTimeout</code>延迟事件代码的执行。<br><a id="more"></a></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">DelayHover</span>(<span class="params">options</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> defaults = &#123;</div><div class="line">            speed : <span class="number">400</span>,                <span class="comment">// 延迟时间(毫秒)</span></div><div class="line">            onHover : <span class="function"><span class="keyword">function</span>(<span class="params">el</span>) </span>&#123;&#125;,  <span class="comment">// 鼠标悬浮</span></div><div class="line">            onOut : <span class="function"><span class="keyword">function</span>(<span class="params">el</span>)</span>&#123;&#125;      <span class="comment">// 鼠标离开</span></div><div class="line">        &#125;;</div><div class="line"></div><div class="line">        <span class="keyword">this</span>.settings = $.extend(&#123;&#125;, defaults, options);</div><div class="line">        <span class="keyword">var</span> _this = <span class="keyword">this</span>, hoverTimer;</div><div class="line"></div><div class="line">        _this.bind = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            $(_this).hover(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                hoverTimer = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                    _this.settings.onHover(_this);</div><div class="line">                &#125;, _this.settings.speed);</div><div class="line">            &#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                clearTimeout(hoverTimer);</div><div class="line">                _this.settings.onOut(_this);</div><div class="line">            &#125;);</div><div class="line"></div><div class="line">        &#125;;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    $.fn.delayHover = <span class="function"><span class="keyword">function</span>(<span class="params">options</span>) </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">            DelayHover.call(<span class="keyword">this</span>,options);</div><div class="line">            <span class="keyword">this</span>.bind();</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;)(jQuery);</div></pre></td></tr></table></figure>]]></content>
+<figure class="highlight js"><table><tr><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">DelayHover</span>(<span class="params">options</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> defaults = &#123;</div><div class="line">            speed : <span class="number">400</span>,                <span class="comment">// 延迟时间(毫秒)</span></div><div class="line">            onHover : <span class="function"><span class="keyword">function</span>(<span class="params">el</span>) </span>&#123;&#125;,  <span class="comment">// 鼠标悬浮</span></div><div class="line">            onOut : <span class="function"><span class="keyword">function</span>(<span class="params">el</span>)</span>&#123;&#125;      <span class="comment">// 鼠标离开</span></div><div class="line">        &#125;;</div><div class="line"></div><div class="line">        <span class="keyword">this</span>.settings = $.extend(&#123;&#125;, defaults, options);</div><div class="line">        <span class="keyword">var</span> _this = <span class="keyword">this</span>, hoverTimer;</div><div class="line"></div><div class="line">        _this.bind = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            $(_this).hover(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                hoverTimer = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                    _this.settings.onHover(_this);</div><div class="line">                &#125;, _this.settings.speed);</div><div class="line">            &#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                clearTimeout(hoverTimer);</div><div class="line">                _this.settings.onOut(_this);</div><div class="line">            &#125;);</div><div class="line"></div><div class="line">        &#125;;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    $.fn.delayHover = <span class="function"><span class="keyword">function</span>(<span class="params">options</span>) </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">            DelayHover.call(<span class="keyword">this</span>,options);</div><div class="line">            <span class="keyword">this</span>.bind();</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;)(jQuery);</div></pre></td></tr></table></figure>
+]]></content>
     
     <summary type="html">
     
@@ -3072,9 +2825,9 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     </summary>
     
     
-      <category term="jquery插件" scheme="http://imys.net/tags/jquery%E6%8F%92%E4%BB%B6/"/>
+      <category term="jQuery插件" scheme="http://imys.net/tags/jQuery%E6%8F%92%E4%BB%B6/"/>
     
-      <category term="jquery" scheme="http://imys.net/tags/jquery/"/>
+      <category term="jQuery" scheme="http://imys.net/tags/jQuery/"/>
     
   </entry>
   
@@ -3083,7 +2836,7 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     <link href="http://imys.net/20150426/css3-selector-multiple-color.html"/>
     <id>http://imys.net/20150426/css3-selector-multiple-color.html</id>
     <published>2015-04-25T19:09:06.000Z</published>
-    <updated>2016-08-15T13:28:56.401Z</updated>
+    <updated>2016-11-12T19:12:17.203Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/css3-selector-multiple-color.jpg" alt="使用css3后代选择器实现多背景色标签样式"></p>
 <blockquote>
@@ -3103,7 +2856,9 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     </summary>
     
     
-      <category term="css3" scheme="http://imys.net/tags/css3/"/>
+      <category term="CSS3" scheme="http://imys.net/tags/CSS3/"/>
+    
+      <category term="selector" scheme="http://imys.net/tags/selector/"/>
     
   </entry>
   
@@ -3112,7 +2867,7 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     <link href="http://imys.net/20150424/js-simple-condition.html"/>
     <id>http://imys.net/20150424/js-simple-condition.html</id>
     <published>2015-04-24T03:49:30.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:23:12.154Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>|| 和 &amp;&amp; 通常使用在条件表达式中，但是由于javascript语言的特殊性，这两个符号又被开发出了特别的使用技巧。</p>
@@ -3129,7 +2884,8 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="string">'真值'</span>||<span class="string">''</span>); <span class="comment">// 真值</span></div><div class="line"><span class="built_in">console</span>.log(<span class="literal">undefined</span>||object); <span class="comment">// object</span></div></pre></td></tr></table></figure>
 <p><em>‘&amp;&amp;’在javascript中的规则：如果&amp;&amp;左侧表达式的值为真值，则返回右侧表达式的值；否则返回左侧表达式的值。</em></p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(<span class="number">1</span> === <span class="number">1</span> &amp;amp;&amp;amp; <span class="number">2</span>) <span class="comment">// 2</span></div><div class="line"><span class="built_in">console</span>.log(<span class="number">0</span> === <span class="number">1</span> &amp;amp;&amp;amp; <span class="number">2</span>) <span class="comment">// false</span></div></pre></td></tr></table></figure>
-<h3 id="于是有了高逼格的javascript代码"><a href="#于是有了高逼格的javascript代码" class="headerlink" title="于是有了高逼格的javascript代码"></a>于是有了高逼格的javascript代码</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> n=<span class="number">1</span>;</div><div class="line">((n === <span class="number">1</span>) &amp;amp;&amp;amp; (n = <span class="number">3</span>)) || ((n === <span class="number">3</span>) &amp;amp;&amp;amp; (n = <span class="number">6</span>)) || (n = <span class="number">2</span>);  <span class="comment">// 3</span></div><div class="line">((n === <span class="number">1</span>) &amp;amp;&amp;amp; (n = <span class="number">3</span>)) || ((n === <span class="number">3</span>) &amp;amp;&amp;amp; (n = <span class="number">6</span>)) || (n = <span class="number">2</span>);  <span class="comment">// 6</span></div><div class="line">((n === <span class="number">1</span>) &amp;amp;&amp;amp; (n = <span class="number">3</span>)) || ((n === <span class="number">3</span>) &amp;amp;&amp;amp; (n = <span class="number">6</span>)) || (n = <span class="number">2</span>);  <span class="comment">// 2</span></div><div class="line"></div><div class="line"><span class="comment">//以上代码等价于</span></div><div class="line"><span class="keyword">if</span>(n === <span class="number">1</span>) &#123;</div><div class="line">    n = <span class="number">3</span>;</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span>(n === <span class="number">3</span>) &#123;</div><div class="line">    n = <span class="number">6</span>;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    n = <span class="number">2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+<h3 id="于是有了高逼格的javascript代码"><a href="#于是有了高逼格的javascript代码" class="headerlink" title="于是有了高逼格的javascript代码"></a>于是有了高逼格的javascript代码</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> n=<span class="number">1</span>;</div><div class="line">((n === <span class="number">1</span>) &amp;amp;&amp;amp; (n = <span class="number">3</span>)) || ((n === <span class="number">3</span>) &amp;amp;&amp;amp; (n = <span class="number">6</span>)) || (n = <span class="number">2</span>);  <span class="comment">// 3</span></div><div class="line">((n === <span class="number">1</span>) &amp;amp;&amp;amp; (n = <span class="number">3</span>)) || ((n === <span class="number">3</span>) &amp;amp;&amp;amp; (n = <span class="number">6</span>)) || (n = <span class="number">2</span>);  <span class="comment">// 6</span></div><div class="line">((n === <span class="number">1</span>) &amp;amp;&amp;amp; (n = <span class="number">3</span>)) || ((n === <span class="number">3</span>) &amp;amp;&amp;amp; (n = <span class="number">6</span>)) || (n = <span class="number">2</span>);  <span class="comment">// 2</span></div><div class="line"></div><div class="line"><span class="comment">//以上代码等价于</span></div><div class="line"><span class="keyword">if</span>(n === <span class="number">1</span>) &#123;</div><div class="line">    n = <span class="number">3</span>;</div><div class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span>(n === <span class="number">3</span>) &#123;</div><div class="line">    n = <span class="number">6</span>;</div><div class="line">&#125; <span class="keyword">else</span> &#123;</div><div class="line">    n = <span class="number">2</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
     
     <summary type="html">
     
@@ -3138,7 +2894,7 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     </summary>
     
     
-      <category term="javascript" scheme="http://imys.net/tags/javascript/"/>
+      <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
     
   </entry>
   
@@ -3147,12 +2903,13 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     <link href="http://imys.net/20150420/css3-menu-style.html"/>
     <id>http://imys.net/20150420/css3-menu-style.html</id>
     <published>2015-04-20T05:29:44.000Z</published>
-    <updated>2016-08-15T13:28:56.401Z</updated>
+    <updated>2016-11-12T19:12:06.042Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>纯css实现的导航按钮图标样式切换效果，图标样式是css画出来的，再辅以css3动画效果。<br><a id="more"></a></p>
 </blockquote>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>css3效果切换的导航按钮<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></div><div class="line">  *&#123; </div><div class="line">    margin: 0; </div><div class="line">    padding: 0;</div><div class="line">  &#125;</div><div class="line">  body &#123;</div><div class="line">    background: #3B9DFF;</div><div class="line">  &#125;</div><div class="line">  .menuCtrl &#123;</div><div class="line">    display: block;</div><div class="line">    position: relative;</div><div class="line">    border: 5px solid #fff;</div><div class="line">    border-radius: 50%;</div><div class="line">    width: 30px;</div><div class="line">    height: 40px;</div><div class="line">    padding: 20px 25px;</div><div class="line">    margin: 150px auto;</div><div class="line">    transition: all 0.25s ease-in-out;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  .menuCtrl .line &#123;</div><div class="line">    width: 35px;</div><div class="line">    height: 0;</div><div class="line">    border-bottom: 5px solid #fff;</div><div class="line">    position: relative;</div><div class="line">    margin-left: -2px;</div><div class="line">    transition: all 0.25s ease-in-out;</div><div class="line">  &#125;</div><div class="line">  .menuCtrl .line:nth-child(1) &#123;</div><div class="line">    top: 10px;</div><div class="line">  &#125;</div><div class="line">  .menuCtrl .line:nth-child(2) &#123;</div><div class="line">    top: 13px;</div><div class="line">  &#125;</div><div class="line">  .menuCtrl .line:nth-child(3) &#123;</div><div class="line">    top: 16px;</div><div class="line">  &#125;</div><div class="line">  .menuCtrl:hover &#123;</div><div class="line">    padding: 25px 30px;</div><div class="line">  &#125;</div><div class="line">  .menuCtrl:hover .line:nth-child(1) &#123;</div><div class="line">    width: 20px;</div><div class="line">    transform: rotateZ(-45deg) translateX(-3px) translateY(0px);</div><div class="line">  &#125;</div><div class="line">  .menuCtrl:hover .line:nth-child(2) &#123;</div><div class="line">    width: 40px;</div><div class="line"></div><div class="line">  &#125;</div><div class="line">  .menuCtrl:hover .line:nth-child(3) &#123;</div><div class="line">    width: 20px;</div><div class="line">    transform: rotateZ(45deg) translateX(-3px) translateY(0px);</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:;"</span> <span class="attr">class</span>=<span class="string">"menuCtrl"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"line"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"line"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"line"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>]]></content>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>css3效果切换的导航按钮<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></div><div class="line">  *&#123; </div><div class="line">    margin: 0; </div><div class="line">    padding: 0;</div><div class="line">  &#125;</div><div class="line">  body &#123;</div><div class="line">    background: #3B9DFF;</div><div class="line">  &#125;</div><div class="line">  .menuCtrl &#123;</div><div class="line">    display: block;</div><div class="line">    position: relative;</div><div class="line">    border: 5px solid #fff;</div><div class="line">    border-radius: 50%;</div><div class="line">    width: 30px;</div><div class="line">    height: 40px;</div><div class="line">    padding: 20px 25px;</div><div class="line">    margin: 150px auto;</div><div class="line">    transition: all 0.25s ease-in-out;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  .menuCtrl .line &#123;</div><div class="line">    width: 35px;</div><div class="line">    height: 0;</div><div class="line">    border-bottom: 5px solid #fff;</div><div class="line">    position: relative;</div><div class="line">    margin-left: -2px;</div><div class="line">    transition: all 0.25s ease-in-out;</div><div class="line">  &#125;</div><div class="line">  .menuCtrl .line:nth-child(1) &#123;</div><div class="line">    top: 10px;</div><div class="line">  &#125;</div><div class="line">  .menuCtrl .line:nth-child(2) &#123;</div><div class="line">    top: 13px;</div><div class="line">  &#125;</div><div class="line">  .menuCtrl .line:nth-child(3) &#123;</div><div class="line">    top: 16px;</div><div class="line">  &#125;</div><div class="line">  .menuCtrl:hover &#123;</div><div class="line">    padding: 25px 30px;</div><div class="line">  &#125;</div><div class="line">  .menuCtrl:hover .line:nth-child(1) &#123;</div><div class="line">    width: 20px;</div><div class="line">    transform: rotateZ(-45deg) translateX(-3px) translateY(0px);</div><div class="line">  &#125;</div><div class="line">  .menuCtrl:hover .line:nth-child(2) &#123;</div><div class="line">    width: 40px;</div><div class="line"></div><div class="line">  &#125;</div><div class="line">  .menuCtrl:hover .line:nth-child(3) &#123;</div><div class="line">    width: 20px;</div><div class="line">    transform: rotateZ(45deg) translateX(-3px) translateY(0px);</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:;"</span> <span class="attr">class</span>=<span class="string">"menuCtrl"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"line"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"line"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"line"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+]]></content>
     
     <summary type="html">
     
@@ -3161,7 +2918,7 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     </summary>
     
     
-      <category term="css3" scheme="http://imys.net/tags/css3/"/>
+      <category term="CSS3" scheme="http://imys.net/tags/CSS3/"/>
     
   </entry>
   
@@ -3170,7 +2927,7 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     <link href="http://imys.net/20150415/online-run-code.html"/>
     <id>http://imys.net/20150415/online-run-code.html</id>
     <published>2015-04-15T01:58:21.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:24:50.930Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>在一些IT博客或者论坛都有在新窗口或标签页直接运行当前页面内代码的功能，但却不是像一些资源网站里的直接预览资源页面。这样动态的运行代码，无疑是节省了很大服务器空间。</p>
@@ -3186,7 +2943,8 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
 </ul>
 <p>参数1<code>URL</code>省略会打开一个空白页，也就是<code>about:blank</code>页。不过<code>window.open()</code>方法居然是有返回值的，可以返回新页面的<code>window</code>对象。</p>
 <p>如此的话，我们就能访问新页面的<code>DOM</code>，自然就可以写入代码了。</p>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>新窗口或标签页运行代码<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">style</span>=<span class="string">"width:600px;height:150px;"</span> <span class="attr">id</span>=<span class="string">"code"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">        <span class="built_in">document</span>.write(<span class="string">"&lt;h1&gt;我是运行在新窗口或标签页的代码。&lt;/h1&gt;"</span>);</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"runCode()"</span>&gt;</span>运行代码<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">runCode</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> example = <span class="built_in">window</span>.open(<span class="string">''</span>,<span class="string">''</span>,<span class="string">''</span>);</div><div class="line">        <span class="keyword">var</span> code = <span class="built_in">document</span>.getElementById(<span class="string">'code'</span>).value;</div><div class="line">        example.document.write(code)</div><div class="line">        example.focus();</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>]]></content>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>新窗口或标签页运行代码<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">style</span>=<span class="string">"width:600px;height:150px;"</span> <span class="attr">id</span>=<span class="string">"code"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">        <span class="built_in">document</span>.write(<span class="string">"&lt;h1&gt;我是运行在新窗口或标签页的代码。&lt;/h1&gt;"</span>);</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"runCode()"</span>&gt;</span>运行代码<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">runCode</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> example = <span class="built_in">window</span>.open(<span class="string">''</span>,<span class="string">''</span>,<span class="string">''</span>);</div><div class="line">        <span class="keyword">var</span> code = <span class="built_in">document</span>.getElementById(<span class="string">'code'</span>).value;</div><div class="line">        example.document.write(code)</div><div class="line">        example.focus();</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+]]></content>
     
     <summary type="html">
     
@@ -3195,7 +2953,7 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     </summary>
     
     
-      <category term="javascript" scheme="http://imys.net/tags/javascript/"/>
+      <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
     
   </entry>
   
@@ -3204,7 +2962,7 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     <link href="http://imys.net/20150414/js-copytext.html"/>
     <id>http://imys.net/20150414/js-copytext.html</id>
     <published>2015-04-14T06:00:45.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:20:58.698Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>对于文本复制本来就是<code>右键-&gt;复制</code>，或者<code>Ctrl+C</code>，很简单的事情。不过为了提升用户体验，就让我们找一个兼容性强的万全之策吧。</p>
@@ -3226,7 +2984,7 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     </summary>
     
     
-      <category term="javascript" scheme="http://imys.net/tags/javascript/"/>
+      <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
     
   </entry>
   
@@ -3235,7 +2993,7 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     <link href="http://imys.net/20150409/css-borde-shape.html"/>
     <id>http://imys.net/20150409/css-borde-shape.html</id>
     <published>2015-04-09T13:26:50.000Z</published>
-    <updated>2016-08-15T13:28:56.401Z</updated>
+    <updated>2016-11-12T19:11:34.203Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/css-borde-shape.jpg" alt="CSS巧用border画小图形"></p>
 <p>css画三角形样式相信很多人都用过，比如 border-bottom设置宽度、颜色、实线，其他方向设置宽度和透明色就出现一个朝上的正三角形。 </p>
@@ -3251,9 +3009,9 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     </summary>
     
     
-      <category term="css" scheme="http://imys.net/tags/css/"/>
+      <category term="CSS" scheme="http://imys.net/tags/CSS/"/>
     
-      <category term="boder" scheme="http://imys.net/tags/boder/"/>
+      <category term="border" scheme="http://imys.net/tags/border/"/>
     
   </entry>
   
@@ -3262,12 +3020,13 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     <link href="http://imys.net/20150407/jquery-anchor-scroll.html"/>
     <id>http://imys.net/20150407/jquery-anchor-scroll.html</id>
     <published>2015-04-07T05:45:03.000Z</published>
-    <updated>2016-08-15T13:28:56.417Z</updated>
+    <updated>2016-11-12T19:19:36.378Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>很多商品展示页，专题页等都会用到。<br><a id="more"></a></p>
 </blockquote>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>锚链接平滑滚动<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"description"</span> <span class="attr">content</span>=<span class="string">""</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"keywords"</span> <span class="attr">content</span>=<span class="string">""</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="css"></span></div><div class="line">    * &#123;</div><div class="line">        <span class="attribute">margin</span>: <span class="number">0</span>;</div><div class="line">        <span class="attribute">padding</span>: <span class="number">0</span></div><div class="line">    &#125;</div><div class="line">    <span class="selector-tag">html</span>,<span class="selector-tag">body</span> &#123;</div><div class="line">        <span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">        <span class="attribute">min-height</span>: <span class="number">100%</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.top</span> &#123;</div><div class="line">        <span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">        <span class="attribute">height</span>: <span class="number">40px</span>;</div><div class="line">        <span class="attribute">line-height</span>: <span class="number">40px</span>;</div><div class="line">        <span class="attribute">background</span>: <span class="built_in">rgba</span>(0, 0, 0, .6);</div><div class="line">        <span class="attribute">position</span>: fixed;</div><div class="line">        <span class="attribute">z-index</span>: <span class="number">9</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-tag">a</span> &#123;</div><div class="line">        <span class="attribute">color</span>: <span class="number">#fff</span>;</div><div class="line">        <span class="attribute">text-align</span>: center;</div><div class="line">        <span class="attribute">text-decoration</span>: none;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.top</span> <span class="selector-tag">a</span> &#123;</div><div class="line">        <span class="attribute">display</span>: inline-block;</div><div class="line">        <span class="attribute">width</span>: <span class="number">20%</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.top</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</div><div class="line">        <span class="attribute">background</span>: <span class="built_in">rgba</span>(0, 0, 0, .4);</div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.page</span> &#123;</div><div class="line">        <span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">        <span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">        <span class="attribute">min-height</span>: <span class="number">100%</span>;</div><div class="line">        <span class="attribute">background</span>: <span class="number">#3C98FF</span>;</div><div class="line">        <span class="attribute">text-align</span>: center;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-tag">h1</span> &#123;</div><div class="line">        <span class="attribute">color</span>: <span class="number">#fff</span>;</div><div class="line">        <span class="attribute">padding-top</span>: <span class="number">20%</span>;</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"top"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#div-1"</span>&gt;</span>div-1<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#div-2"</span>&gt;</span>div-2<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#div-3"</span>&gt;</span>div-3<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#div-4"</span>&gt;</span>div-4<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div-1"</span> <span class="attr">class</span>=<span class="string">"page"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>第一页<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div-2"</span> <span class="attr">class</span>=<span class="string">"page"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>第二页<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div-3"</span> <span class="attr">class</span>=<span class="string">"page"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>第三页<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div-4"</span> <span class="attr">class</span>=<span class="string">"page"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>第四页<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://libs.baidu.com/jquery/2.0.0/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">    $(<span class="string">'a[href*=#]'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">        <span class="comment">// 此处正则用于转换带页面URL的锚点，如 http://abc.html#div,具体正则格式据实际情况而定</span></div><div class="line">        <span class="keyword">var</span> targetId = $(<span class="keyword">this</span>).attr(<span class="string">'href'</span>).replace(<span class="regexp">/\w+.html/</span>,<span class="string">''</span>);</div><div class="line">        $(<span class="string">"html,body"</span>).animate(&#123;scrollTop: $(targetId).offset().top&#125;, <span class="number">1000</span>);</div><div class="line">    &#125;);</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>]]></content>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>锚链接平滑滚动<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"description"</span> <span class="attr">content</span>=<span class="string">""</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"keywords"</span> <span class="attr">content</span>=<span class="string">""</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="css"></span></div><div class="line">    * &#123;</div><div class="line">        <span class="attribute">margin</span>: <span class="number">0</span>;</div><div class="line">        <span class="attribute">padding</span>: <span class="number">0</span></div><div class="line">    &#125;</div><div class="line">    <span class="selector-tag">html</span>,<span class="selector-tag">body</span> &#123;</div><div class="line">        <span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">        <span class="attribute">min-height</span>: <span class="number">100%</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.top</span> &#123;</div><div class="line">        <span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">        <span class="attribute">height</span>: <span class="number">40px</span>;</div><div class="line">        <span class="attribute">line-height</span>: <span class="number">40px</span>;</div><div class="line">        <span class="attribute">background</span>: <span class="built_in">rgba</span>(0, 0, 0, .6);</div><div class="line">        <span class="attribute">position</span>: fixed;</div><div class="line">        <span class="attribute">z-index</span>: <span class="number">9</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-tag">a</span> &#123;</div><div class="line">        <span class="attribute">color</span>: <span class="number">#fff</span>;</div><div class="line">        <span class="attribute">text-align</span>: center;</div><div class="line">        <span class="attribute">text-decoration</span>: none;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.top</span> <span class="selector-tag">a</span> &#123;</div><div class="line">        <span class="attribute">display</span>: inline-block;</div><div class="line">        <span class="attribute">width</span>: <span class="number">20%</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.top</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</div><div class="line">        <span class="attribute">background</span>: <span class="built_in">rgba</span>(0, 0, 0, .4);</div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.page</span> &#123;</div><div class="line">        <span class="attribute">width</span>: <span class="number">100%</span>;</div><div class="line">        <span class="attribute">height</span>: <span class="number">100%</span>;</div><div class="line">        <span class="attribute">min-height</span>: <span class="number">100%</span>;</div><div class="line">        <span class="attribute">background</span>: <span class="number">#3C98FF</span>;</div><div class="line">        <span class="attribute">text-align</span>: center;</div><div class="line">    &#125;</div><div class="line">    <span class="selector-tag">h1</span> &#123;</div><div class="line">        <span class="attribute">color</span>: <span class="number">#fff</span>;</div><div class="line">        <span class="attribute">padding-top</span>: <span class="number">20%</span>;</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"top"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#div-1"</span>&gt;</span>div-1<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#div-2"</span>&gt;</span>div-2<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#div-3"</span>&gt;</span>div-3<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#div-4"</span>&gt;</span>div-4<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div-1"</span> <span class="attr">class</span>=<span class="string">"page"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>第一页<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div-2"</span> <span class="attr">class</span>=<span class="string">"page"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>第二页<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div-3"</span> <span class="attr">class</span>=<span class="string">"page"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>第三页<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"div-4"</span> <span class="attr">class</span>=<span class="string">"page"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>第四页<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://libs.baidu.com/jquery/2.0.0/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line">    $(<span class="string">'a[href*=#]'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</div><div class="line">        <span class="comment">// 此处正则用于转换带页面URL的锚点，如 http://abc.html#div,具体正则格式据实际情况而定</span></div><div class="line">        <span class="keyword">var</span> targetId = $(<span class="keyword">this</span>).attr(<span class="string">'href'</span>).replace(<span class="regexp">/\w+.html/</span>,<span class="string">''</span>);</div><div class="line">        $(<span class="string">"html,body"</span>).animate(&#123;scrollTop: $(targetId).offset().top&#125;, <span class="number">1000</span>);</div><div class="line">    &#125;);</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+]]></content>
     
     <summary type="html">
     
@@ -3276,7 +3035,7 @@ hexo migrate wordpress wordpress.xml          //生成Markdown
     </summary>
     
     
-      <category term="jquery" scheme="http://imys.net/tags/jquery/"/>
+      <category term="jQuery" scheme="http://imys.net/tags/jQuery/"/>
     
   </entry>
   

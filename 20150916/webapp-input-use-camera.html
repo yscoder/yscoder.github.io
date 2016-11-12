@@ -9,22 +9,22 @@
   <link rel="canonical" href="http://imys.net/20150916/webapp-input-use-camera.html">
   
   
-  <title>html5调用手机相机并压缩、上传 | Yusen&#39;s Blog | 折腾不在乎成功与否。</title>
+  <title>Html5调用手机相机并压缩、上传 | Yusen&#39;s Blog | 折腾不在乎成功与否。</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="html5,webapp,file">
+  <meta name="keywords" content="Html5,Webapp,File">
   <meta name="description" content="webapp,html5,input,file调用相机，摄像头，压缩，上传">
 <meta property="og:type" content="article">
-<meta property="og:title" content="html5调用手机相机并压缩、上传">
+<meta property="og:title" content="Html5调用手机相机并压缩、上传">
 <meta property="og:url" content="http://imys.net/20150916/webapp-input-use-camera.html">
 <meta property="og:site_name" content="Yusen's Blog">
 <meta property="og:description" content="webapp,html5,input,file调用相机，摄像头，压缩，上传">
-<meta property="og:updated_time" content="2016-08-31T12:36:32.997Z">
+<meta property="og:updated_time" content="2016-11-12T19:38:12.506Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="html5调用手机相机并压缩、上传">
+<meta name="twitter:title" content="Html5调用手机相机并压缩、上传">
 <meta name="twitter:description" content="webapp,html5,input,file调用相机，摄像头，压缩，上传">
   
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
@@ -108,7 +108,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">html5调用手机相机并压缩、上传</div>
+        <div class="flex-col header-title ellipsis">Html5调用手机相机并压缩、上传</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -130,7 +130,7 @@
 <header class="content-header post-header">
 
     <div class="container">
-        <h1 class="title">html5调用手机相机并压缩、上传</h1>
+        <h1 class="title">Html5调用手机相机并压缩、上传</h1>
         
         
     </div>
@@ -153,7 +153,7 @@
   class="post-article article-type-post" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">html5调用手机相机并压缩、上传</h1>
+        <h1 class="post-card-title">Html5调用手机相机并压缩、上传</h1>
         <div class="post-meta">
             <time datetime="2015-09-16T08:21:28.000Z" itemprop="datePublished" class="post-time">
   Sep 16, 2015
@@ -177,7 +177,7 @@
 <li>自带浏览器打开均为文件管理器。</li>
 </ul>
 <p>由此说明此属性兼容性还是个问题。不过这并不能阻止我继续折腾下去！</p>
-<h2 id="图片压缩"><a href="#图片压缩" class="headerlink" title="图片压缩"></a>图片压缩</h2><p>在如今这个手机普遍千万像素的时代，一张照片动辄5M的大小。作为一个良心的开发者，我们是要为用户的流量负责的。<br>该怎么做？我也不知道。大家都在用<code>canvas</code>实现，我也就用了。</p>
+<h2 id="图片压缩"><a href="#图片压缩" class="headerlink" title="图片压缩"></a>图片压缩</h2><p>在如今这个手机普遍千万像素的时代，一张照片动辄5M的大小。作为一个良心的开发者，我们是要为用户的流量负责的。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'file'</span>).addEventListener(<span class="string">'change'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> reader = <span class="keyword">new</span> FileReader();</div><div class="line"></div><div class="line">    reader.onload = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</div><div class="line">        compress(<span class="keyword">this</span>.result);</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    reader.readAsDataURL(<span class="keyword">this</span>.files[<span class="number">0</span>]);</div><div class="line"></div><div class="line">&#125;, <span class="literal">false</span>);</div></pre></td></tr></table></figure>
 <p>不管文件域是用何种方式打开的，都可以在 <code>change</code> 事件中获取到选择的文件或拍摄的照片。</p>
 <p>创建一个<code>FileReader</code>对象，我们需要调用<code>readAsDataURL</code>把文件转换为<code>base64</code>图像编码，如<code>data:image/jpeg;base64……</code>这种格式。<br><code>onload</code>是一个异步回调，当文件读取完执行该方法内代码。<code>this.result</code>记录读取结果，如果读取失败，该值为<code>null</code>。在这里进行图片压缩的具体操作。</p>
@@ -211,7 +211,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/file/">file</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html5/">html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webapp/">webapp</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/File/">File</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Html5/">Html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Webapp/">Webapp</a></li></ul>
 
 
             
@@ -286,7 +286,7 @@
             
     
 <div class="duoshuo">
-	<div class="ds-thread" data-thread-key="webapp-input-use-camera" data-title="html5调用手机相机并压缩、上传" data-url="http://imys.net/20150916/webapp-input-use-camera.html"></div>
+	<div class="ds-thread" data-thread-key="webapp-input-use-camera" data-title="Html5调用手机相机并压缩、上传" data-url="http://imys.net/20150916/webapp-input-use-camera.html"></div>
 </div>
 <script src="/js/embed.min.js?v=1.1.9"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
@@ -331,7 +331,7 @@ var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
 
 <script>var BLOG = { ROOT: '/' };
 BLOG.SHARE = {
-title: "html5调用手机相机并压缩、上传",
+title: "Html5调用手机相机并压缩、上传",
 pic: "/img/face.jpg",
 summary: document.getElementsByName('summary')[0].content,
 url: "http://imys.net/20150916/webapp-input-use-camera.html" }

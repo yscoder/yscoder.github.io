@@ -15,14 +15,14 @@
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="Function,eval,javascript">
+  <meta name="keywords" content="JavaScript,Function,eval">
   <meta name="description" content="eval与new Function比较,性能比较,json转换">
 <meta property="og:type" content="article">
 <meta property="og:title" content="神奇的eval()与new Function()">
 <meta property="og:url" content="http://imys.net/20151222/eval-with-new-function.html">
 <meta property="og:site_name" content="Yusen's Blog">
 <meta property="og:description" content="eval与new Function比较,性能比较,json转换">
-<meta property="og:updated_time" content="2016-08-15T13:28:56.401Z">
+<meta property="og:updated_time" content="2016-11-12T19:12:47.640Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="神奇的eval()与new Function()">
 <meta name="twitter:description" content="eval与new Function比较,性能比较,json转换">
@@ -166,7 +166,6 @@
         <div class="post-content" id="post-content" itemprop="postContent">
             <p>在需要兼容IE8以下的日子里，往往需要使用<code>eval()</code>来把后端传过来的JSON串转成可操作的JSON对象。直到昨天在翻看jQuery源码时，才发现<code>jQuery.parseJSON</code>的兼容实现用的是<code>new Function()</code>。马上Google了相关资料，寻找两者的区别。</p>
 <a id="more"></a>
-<!-- toc -->
 <h2 id="eval"><a href="#eval" class="headerlink" title="eval"></a>eval</h2><p>eval接受字符串参数，解析其中的js代码。如果编译失败，会抛出异常，否则执行其中的代码，计算返回值。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="built_in">eval</span>(<span class="string">'2+2'</span>);  <span class="comment">// 4</span></div><div class="line"></div><div class="line"><span class="built_in">eval</span>(<span class="string">'console.log("ok")'</span>);  <span class="comment">// ok</span></div></pre></td></tr></table></figure>
 <p>在实际应用中，通常这样转换JSON。</p>
@@ -213,7 +212,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Function/">Function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eval/">eval</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Function/">Function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eval/">eval</a></li></ul>
 
 
             

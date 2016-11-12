@@ -15,14 +15,14 @@
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="javascript">
+  <meta name="keywords" content="JavaScript">
   <meta name="description" content="不链接页面在新窗口或标签页运行代码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="不链接页面在新窗口或标签页运行代码">
 <meta property="og:url" content="http://imys.net/20150415/online-run-code.html">
 <meta property="og:site_name" content="Yusen's Blog">
 <meta property="og:description" content="不链接页面在新窗口或标签页运行代码">
-<meta property="og:updated_time" content="2016-08-15T13:28:56.417Z">
+<meta property="og:updated_time" content="2016-11-12T19:24:50.930Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="不链接页面在新窗口或标签页运行代码">
 <meta name="twitter:description" content="不链接页面在新窗口或标签页运行代码">
@@ -183,6 +183,7 @@
 <p>参数1<code>URL</code>省略会打开一个空白页，也就是<code>about:blank</code>页。不过<code>window.open()</code>方法居然是有返回值的，可以返回新页面的<code>window</code>对象。</p>
 <p>如此的话，我们就能访问新页面的<code>DOM</code>，自然就可以写入代码了。</p>
 <h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>新窗口或标签页运行代码<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">style</span>=<span class="string">"width:600px;height:150px;"</span> <span class="attr">id</span>=<span class="string">"code"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">        <span class="built_in">document</span>.write(<span class="string">"&lt;h1&gt;我是运行在新窗口或标签页的代码。&lt;/h1&gt;"</span>);</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"runCode()"</span>&gt;</span>运行代码<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">runCode</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> example = <span class="built_in">window</span>.open(<span class="string">''</span>,<span class="string">''</span>,<span class="string">''</span>);</div><div class="line">        <span class="keyword">var</span> code = <span class="built_in">document</span>.getElementById(<span class="string">'code'</span>).value;</div><div class="line">        example.document.write(code)</div><div class="line">        example.focus();</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+
         </div>
         
         <blockquote class="post-copyright">
@@ -204,7 +205,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
 
 
             

@@ -15,14 +15,14 @@
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="iconfont">
+  <meta name="keywords" content="CSS,iconfont">
   <meta name="description" content="iconfont字体图标兼容与维护,使用经验,ie7兼容">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iconfont兼容与维护">
 <meta property="og:url" content="http://imys.net/20151223/iconfont-maintained.html">
 <meta property="og:site_name" content="Yusen's Blog">
 <meta property="og:description" content="iconfont字体图标兼容与维护,使用经验,ie7兼容">
-<meta property="og:updated_time" content="2016-08-15T13:28:56.401Z">
+<meta property="og:updated_time" content="2016-11-12T19:13:47.620Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iconfont兼容与维护">
 <meta name="twitter:description" content="iconfont字体图标兼容与维护,使用经验,ie7兼容">
@@ -166,7 +166,6 @@
         <div class="post-content" id="post-content" itemprop="postContent">
             <p>在扁平化网页设计中，字体图标有着很好的易用性。结合一年的实际运用，来做一下总结。</p>
 <a id="more"></a>
-<!-- toc -->
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>可以直接引用开源的第三方字体样式文件，如<code>Font Awesome</code>等。<br>或者你想要构建一套产品专属的图标，可以注册一个字体图标库，添加一个图标项目，进行创作和使用。</p>
 <p>我司使用的字体库是<a href="http://www.iconfont.cn/" target="_blank" rel="external">阿里的iconfont</a>。</p>
 <p>设计图标我不懂，都是设计师负责产出的。<br>产出后，可以看到图标的<code>Unicode</code>和<code>font class</code>。</p>
@@ -193,7 +192,7 @@
 <figure class="highlight"><table><tr><td class="code"><pre><div class="line">.icon-file &#123;</div><div class="line">    *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&amp;#xf016;' )</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>expression 是 ie 特有的 css 属性，可以在其中写 js 脚本。这样又把图标的维护权交还 css 了。</p>
 <p>在 css 中写 js 这种做法肯定是不提倡的，而且一个页面上存在很多的图标，在 ie7 这么恶劣的环境中，渲染速度也是个大问题。我用 IE7 打开 Font Awesome 的页面，速度在30s左右。</p>
-<p>这是个问题，又不算问题。<br>但凡是可以让客户反感 ie 浏览器的问题，都是好问题。</p>
+<p>这是个问题，又不算问题。😏</p>
 
         </div>
         
@@ -216,7 +215,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iconfont/">iconfont</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iconfont/">iconfont</a></li></ul>
 
 
             

@@ -15,14 +15,14 @@
   <meta name="theme-color" content="#3F51B5">
   
   
-  <meta name="keywords" content="promise,request,HTTP,queue,数据结构">
+  <meta name="keywords" content="Promise,Request,HTTP,Queue,数据结构">
   <meta name="description" content="开发实践中数据结构的应用，使用“队列”解决需要连续请求的业务场景">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用“队列”解决“插队”业务场景">
 <meta property="og:url" content="http://imys.net/20161027/use-queue-solve-continuous-request.html">
 <meta property="og:site_name" content="Yusen's Blog">
 <meta property="og:description" content="开发实践中数据结构的应用，使用“队列”解决需要连续请求的业务场景">
-<meta property="og:updated_time" content="2016-10-27T15:12:05.291Z">
+<meta property="og:updated_time" content="2016-11-12T19:39:34.538Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用“队列”解决“插队”业务场景">
 <meta name="twitter:description" content="开发实践中数据结构的应用，使用“队列”解决需要连续请求的业务场景">
@@ -176,6 +176,7 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myClick</span>(<span class="params">method, url, param</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> len = requestQueue.push(XHR(method, url, param))</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(len === <span class="number">1</span>) &#123;</div><div class="line">        update()</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>执行的永远是队列中的第一个请求。<br>当一个请求完成后，就出队，队列中剩余的请求依次前进一个位置。<br>如果存在未完成的请求，继续调用更新操作。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">update</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    requestQueue[<span class="number">0</span>].then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</div><div class="line">        <span class="comment">// request success</span></div><div class="line">        requestQueue.shift()</div><div class="line">        requestQueue.length &amp;&amp; update()</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
         </div>
         
         <blockquote class="post-copyright">
@@ -197,7 +198,7 @@
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/promise/">promise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/queue/">queue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/request/">request</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/">HTTP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Promise/">Promise</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Queue/">Queue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Request/">Request</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据结构/">数据结构</a></li></ul>
 
 
             
@@ -251,9 +252,9 @@
 <nav class="post-nav flex-row flex-justify-between">
   
     <div class="waves-block waves-effect prev">
-      <a href="/20161031/text-transform-capitalize-not-working.html" id="post-prev" class="post-nav-link">
+      <a href="/20161110/vue-unit-test-start.html" id="post-prev" class="post-nav-link">
         <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">关于 text-transform: capitalize 失效的场景与解决方案</h4>
+        <h4 class="title">Vue单元测试起步</h4>
       </a>
     </div>
   
