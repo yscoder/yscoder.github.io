@@ -29,16 +29,8 @@
   
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
-  <meta name="summary" content="在静态页面目录中，同子目录下的页面往往有很多通用的模块。平常的编码一般是通用的代码直接复制到各个页面，样式写成公用，然后在各个需要的页面引用。而一个产品在实地运行中往往要经历无数次的迭代，于是页面文档结构和样式也在不断的变化。独立性的页面比较轻松，一个页面修改就好了，而一些公用的页面模块往往需要在各个页面逐个修改。这显然是一种极其枯燥的重复性动作！
-在此之前我用 C# 写了一个文件批量替换的工具，用于批量替换某个目录下的某个模块代码。虽然效率提高了一些，但是从方法学角度看绝对不是最好的。
-很久之前就想过使用前端模块拼装 html。以 ejs 为例，则需要在页面中引入模版解析文件 ejs.js，页面中还需要写一些 ejs 相关的配置代码。而这些东西对于后端套用页面来说是无用的，可能还会造成一些混乱。还有一种引用方式是使用 nodeJs 调用 ejs 去解析模版文件，这样在预览静态页面时则需要建立 node 服务器。而当前团队中并不是每个人都装有 node 环境。
-最近工作闲暇了又想到这个问题，其实要解决的最根本问题就是：
-
-模块化开发页面，开发完成后可以一条指令合并成可直接预览的静态页面。
-
-我早该想到 gulp 了，既然 gulp 是一个基于流的前端构建工具，那么对于这个问题应该是可以解决的。">
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.1.9">
+  <link rel="stylesheet" href="/css/style.css?v=1.2">
 </head>
 
 <body>
@@ -51,7 +43,9 @@
     </a>
     <div class="brand-wrap">
       <div class="brand">
-        <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="/img/face.jpg"></a>
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/face.jpg">
+        </a>
         <hgroup class="introduce">
           <h5 class="nickname">王昱森</h5>
           <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
@@ -109,6 +103,7 @@
     </div>
   </div>
 </aside>
+
   <main id="main">
     <header class="top-header" id="header">
     <div class="flex-row">
@@ -128,7 +123,7 @@
         </div>
         
         
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
             <i class="icon icon-lg icon-share-alt"></i>
         </a>
         
@@ -138,8 +133,15 @@
 
     <div class="container">
         <h1 class="title">使用gulp+ejs模块化html</h1>
-        
-        
+        <h5 class="subtitle">
+            
+                <time datetime="2015-09-08T10:04:47.000Z" itemprop="datePublished" class="page-time">
+  Sep 8, 2015
+</time>
+
+
+            
+        </h5>
     </div>
 
     
@@ -247,9 +249,10 @@
     </footer>
 </blockquote>
         
-<div class="post-reward">
-    <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
 </div>
+
 
 
         <div class="post-footer">
@@ -258,47 +261,52 @@
 
 
             
-<div class="post-share-wrap">
-    <div class="post-share" id="post-share">
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
     <div class="tit">分享到：</div>
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://imys.net/20150908/gulp-ejs-module.html&title=《使用gulp+ejs模块化html》 — Yusen's Blog&pic=/img/face.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
       <li>
-        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
           <i class="icon icon-weixin"></i>
         </a>
       </li>
       <li>
-        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://imys.net/20150908/gulp-ejs-module.html&title=《使用gulp+ejs模块化html》 — Yusen's Blog&source=在静态页面目录中，同子目录下的页面往往有很多通用的模块。平常的编码一般是通用的代码直接复制到各个页面，样式写成公用，然后在各个需要的页面引用。而一个产品在..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://imys.net/20150908/gulp-ejs-module.html" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用gulp+ejs模块化html》 — Yusen's Blog&url=http://imys.net/20150908/gulp-ejs-module.html&via=http://imys.net" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
-          豆
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://imys.net/20150908/gulp-ejs-module.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
         </a>
       </li>
     </ul>
  </div>
 
-    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
         <i class="icon icon-share-alt icon-lg"></i>
     </a>
 </div>
+
 
 
         </div>
@@ -328,10 +336,10 @@
 
             
     
-<div class="duoshuo">
+<div class="duoshuo" id="comments">
 	<div class="ds-thread" data-thread-key="gulp-ejs-module" data-title="使用gulp+ejs模块化html" data-url="http://imys.net/20150908/gulp-ejs-module.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.1.9"></script>
+<script src="/js/embed.min.js?v=1.2"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -340,10 +348,11 @@ var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
 
 
 
+
 </article>
 
-<div id="reward" class="reward-lay">
-    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <h3 class="reward-title">
         <i class="icon icon-quote-left"></i>
         请我吃辣条~
@@ -367,57 +376,65 @@ var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
 </div>
 
 
+
 </div>
+
   </main>
   <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 
-<script>var BLOG = { ROOT: '/' };
-BLOG.SHARE = {
-title: "使用gulp+ejs模块化html",
-pic: "/img/face.jpg",
-summary: document.getElementsByName('summary')[0].content,
-url: "http://imys.net/20150908/gulp-ejs-module.html" }
-</script>
-<div class="global-share" id="global-share">
+
+
+<div class="global-share" id="globalShare">
     <div class="tit">分享到：</div>
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://imys.net/20150908/gulp-ejs-module.html&title=《使用gulp+ejs模块化html》 — Yusen's Blog&pic=/img/face.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
       <li>
-        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
           <i class="icon icon-weixin"></i>
         </a>
       </li>
       <li>
-        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://imys.net/20150908/gulp-ejs-module.html&title=《使用gulp+ejs模块化html》 — Yusen's Blog&source=在静态页面目录中，同子目录下的页面往往有很多通用的模块。平常的编码一般是通用的代码直接复制到各个页面，样式写成公用，然后在各个需要的页面引用。而一个产品在..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://imys.net/20150908/gulp-ejs-module.html" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用gulp+ejs模块化html》 — Yusen's Blog&url=http://imys.net/20150908/gulp-ejs-module.html&via=http://imys.net" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
-          豆
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://imys.net/20150908/gulp-ejs-module.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
         </a>
       </li>
     </ul>
  </div>
 
 
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="http://s.jiathis.com/qrcode.php?url=http://imys.net/20150908/gulp-ejs-module.html" alt="微信分享二维码"/>
+</div>
+
+
+
+
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.1.9"></script>
+<script src="/js/main.min.js?v=1.2"></script>
 
 
 
@@ -438,7 +455,7 @@ url: "http://imys.net/20150908/gulp-ejs-module.html" }
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.1.9"></script>
+<script src="/js/search.min.js?v=1.2"></script>
 
 
 

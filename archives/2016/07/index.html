@@ -28,9 +28,8 @@
   
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
-  <meta name="summary" content="王昱森的博客。无所谓做什么，只要是当前最感兴趣的事！随心、随性、随缘！">
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.1.9">
+  <link rel="stylesheet" href="/css/style.css?v=1.2">
 </head>
 
 <body>
@@ -43,7 +42,9 @@
     </a>
     <div class="brand-wrap">
       <div class="brand">
-        <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="/img/face.jpg"></a>
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/face.jpg">
+        </a>
         <hgroup class="introduce">
           <h5 class="nickname">王昱森</h5>
           <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
@@ -101,6 +102,7 @@
     </div>
   </div>
 </aside>
+
   <main id="main">
     <header class="top-header" id="header">
     <div class="flex-row">
@@ -120,7 +122,7 @@
         </div>
         
         
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
             <i class="icon icon-lg icon-share-alt"></i>
         </a>
         
@@ -130,8 +132,9 @@
 
     <div class="container">
         <h1 class="title">Archives</h1>
-        
-        
+        <h5 class="subtitle">
+            
+        </h5>
     </div>
 
     
@@ -140,7 +143,7 @@
 
 <div class="container body-wrap">
     
-    
+
     
             
             <h3 class="archive-separator">July, 2016</h3>
@@ -178,7 +181,7 @@
     
   </article>
 </div>
-            
+
     
 
         <div class="waterfall-item">
@@ -212,7 +215,7 @@
     
   </article>
 </div>
-            
+
     
     </div>
 
@@ -222,53 +225,59 @@
   </main>
   <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false }</script>
 
-<script>var BLOG = { ROOT: '/' };
-BLOG.SHARE = {
-title: "Yusen's Blog",
-pic: "/img/face.jpg",
-summary: document.getElementsByName('summary')[0].content,
-url: "http://imys.net/archives/2016/07/" }
-</script>
-<div class="global-share" id="global-share">
+
+
+<div class="global-share" id="globalShare">
     <div class="tit">分享到：</div>
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://imys.net/archives/2016/07/&title=Yusen's Blog&pic=/img/face.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
       <li>
-        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
           <i class="icon icon-weixin"></i>
         </a>
       </li>
       <li>
-        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://imys.net/archives/2016/07/&title=Yusen's Blog&source=王昱森的博客。无所谓做什么，只要是当前最感兴趣的事！随心、随性、随缘！" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://imys.net/archives/2016/07/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=Yusen's Blog&url=http://imys.net/archives/2016/07/&via=http://imys.net" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
-          豆
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://imys.net/archives/2016/07/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
         </a>
       </li>
     </ul>
  </div>
 
 
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="http://s.jiathis.com/qrcode.php?url=http://imys.net/archives/2016/07/" alt="微信分享二维码"/>
+</div>
+
+
+
+
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.1.9"></script>
+<script src="/js/main.min.js?v=1.2"></script>
 
 
 
@@ -289,7 +298,7 @@ url: "http://imys.net/archives/2016/07/" }
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.1.9"></script>
+<script src="/js/search.min.js?v=1.2"></script>
 
 
 

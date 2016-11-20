@@ -29,16 +29,8 @@
   
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
-  <meta name="summary" content="博客一个月没更新了，着实是有点忙。目前公司新版上线也到最后一波了，部分人员转战了一个新的APP产品的开发。主体还是原生APP，也会有部分页面需要嵌入WEB页面，我也有幸作为唯一的前端人员加入了。
-不过这次讲的内容跟这个APP没有半毛钱关系，是公司内部工作系统的一个扫码上传功能。好吧，我参与的确实有点多！
-要实现实时的进度展示，需要以下几个关键：
-
-异步上传
-文件总大小
-文件已上传大小
-">
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.1.9">
+  <link rel="stylesheet" href="/css/style.css?v=1.2">
 </head>
 
 <body>
@@ -51,7 +43,9 @@
     </a>
     <div class="brand-wrap">
       <div class="brand">
-        <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="/img/face.jpg"></a>
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/face.jpg">
+        </a>
         <hgroup class="introduce">
           <h5 class="nickname">王昱森</h5>
           <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
@@ -109,6 +103,7 @@
     </div>
   </div>
 </aside>
+
   <main id="main">
     <header class="top-header" id="header">
     <div class="flex-row">
@@ -128,7 +123,7 @@
         </div>
         
         
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
             <i class="icon icon-lg icon-share-alt"></i>
         </a>
         
@@ -138,8 +133,15 @@
 
     <div class="container">
         <h1 class="title">html5上传进度实现</h1>
-        
-        
+        <h5 class="subtitle">
+            
+                <time datetime="2015-09-02T08:26:13.000Z" itemprop="datePublished" class="page-time">
+  Sep 2, 2015
+</time>
+
+
+            
+        </h5>
     </div>
 
     
@@ -209,9 +211,10 @@
     </footer>
 </blockquote>
         
-<div class="post-reward">
-    <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
 </div>
+
 
 
         <div class="post-footer">
@@ -220,47 +223,52 @@
 
 
             
-<div class="post-share-wrap">
-    <div class="post-share" id="post-share">
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
     <div class="tit">分享到：</div>
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://imys.net/20150902/h5-upload-progress.html&title=《html5上传进度实现》 — Yusen's Blog&pic=/img/face.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
       <li>
-        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
           <i class="icon icon-weixin"></i>
         </a>
       </li>
       <li>
-        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://imys.net/20150902/h5-upload-progress.html&title=《html5上传进度实现》 — Yusen's Blog&source=博客一个月没更新了，着实是有点忙。目前公司新版上线也到最后一波了，部分人员转战了一个新的APP产品的开发。主体还是原生APP，也会有部分页面需要嵌入WEB..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://imys.net/20150902/h5-upload-progress.html" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《html5上传进度实现》 — Yusen's Blog&url=http://imys.net/20150902/h5-upload-progress.html&via=http://imys.net" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
-          豆
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://imys.net/20150902/h5-upload-progress.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
         </a>
       </li>
     </ul>
  </div>
 
-    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
         <i class="icon icon-share-alt icon-lg"></i>
     </a>
 </div>
+
 
 
         </div>
@@ -290,10 +298,10 @@
 
             
     
-<div class="duoshuo">
+<div class="duoshuo" id="comments">
 	<div class="ds-thread" data-thread-key="h5-upload-progress" data-title="html5上传进度实现" data-url="http://imys.net/20150902/h5-upload-progress.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.1.9"></script>
+<script src="/js/embed.min.js?v=1.2"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -302,10 +310,11 @@ var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
 
 
 
+
 </article>
 
-<div id="reward" class="reward-lay">
-    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <h3 class="reward-title">
         <i class="icon icon-quote-left"></i>
         请我吃辣条~
@@ -329,57 +338,65 @@ var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
 </div>
 
 
+
 </div>
+
   </main>
   <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 
-<script>var BLOG = { ROOT: '/' };
-BLOG.SHARE = {
-title: "html5上传进度实现",
-pic: "/img/face.jpg",
-summary: document.getElementsByName('summary')[0].content,
-url: "http://imys.net/20150902/h5-upload-progress.html" }
-</script>
-<div class="global-share" id="global-share">
+
+
+<div class="global-share" id="globalShare">
     <div class="tit">分享到：</div>
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://imys.net/20150902/h5-upload-progress.html&title=《html5上传进度实现》 — Yusen's Blog&pic=/img/face.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
       <li>
-        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
           <i class="icon icon-weixin"></i>
         </a>
       </li>
       <li>
-        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://imys.net/20150902/h5-upload-progress.html&title=《html5上传进度实现》 — Yusen's Blog&source=博客一个月没更新了，着实是有点忙。目前公司新版上线也到最后一波了，部分人员转战了一个新的APP产品的开发。主体还是原生APP，也会有部分页面需要嵌入WEB..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://imys.net/20150902/h5-upload-progress.html" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《html5上传进度实现》 — Yusen's Blog&url=http://imys.net/20150902/h5-upload-progress.html&via=http://imys.net" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
-          豆
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://imys.net/20150902/h5-upload-progress.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
         </a>
       </li>
     </ul>
  </div>
 
 
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="http://s.jiathis.com/qrcode.php?url=http://imys.net/20150902/h5-upload-progress.html" alt="微信分享二维码"/>
+</div>
+
+
+
+
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.1.9"></script>
+<script src="/js/main.min.js?v=1.2"></script>
 
 
 
@@ -400,7 +417,7 @@ url: "http://imys.net/20150902/h5-upload-progress.html" }
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.1.9"></script>
+<script src="/js/search.min.js?v=1.2"></script>
 
 
 

@@ -31,15 +31,8 @@
   
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
-  <meta name="summary" content="某些偏门的 API 真是没有需求一辈子都不知道啊。
-分享一下最近对于获取移动设备旋转方向的探索。
-deviceorientationwindow.addEventListener(&#39;deviceorientation&#39;, function(e)&amp;#123;   console.log(&#39;absolute: &#39; + e.absolute)   console.log(&#39;alpha: &#39; + e.alpha)   console.log(&#39;beta: &#39; + e.beta)   console.log(&#39;gamma: &#39; + e.gamma)&amp;#125;);
-之前在 segmentfault 回答过相关问题，当时是从 MDN 翻出了这个事件。
-原贴：h5 页面如何获取手机陀螺仪的参数
-该事件在移动端兼容较好：Android Webview 4.3+、Chrome for Android 5.0、iOS 8.4+，据我测试微信也是支持的。没有在低端机上测试过，可能该事件会依赖设备传感器，可以加个 &amp;#39;ondeviceorientation&amp;#39; in window 判断一下。
-该事件触发频率高，适合对设备旋转精度要求较高的场景或是 3d 场景等，比如上面问题中的平衡球。">
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.1.9">
+  <link rel="stylesheet" href="/css/style.css?v=1.2">
 </head>
 
 <body>
@@ -52,7 +45,9 @@ deviceorientationwindow.addEventListener(&#39;deviceorientation&#39;, function(e
     </a>
     <div class="brand-wrap">
       <div class="brand">
-        <a href="/" class="avatar waves-effect waves-circle waves-light"><img src="/img/face.jpg"></a>
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/face.jpg">
+        </a>
         <hgroup class="introduce">
           <h5 class="nickname">王昱森</h5>
           <a href="mailto:634206017@qq.com" title="634206017@qq.com" class="mail">634206017@qq.com</a>
@@ -110,6 +105,7 @@ deviceorientationwindow.addEventListener(&#39;deviceorientation&#39;, function(e
     </div>
   </div>
 </aside>
+
   <main id="main">
     <header class="top-header" id="header">
     <div class="flex-row">
@@ -129,7 +125,7 @@ deviceorientationwindow.addEventListener(&#39;deviceorientation&#39;, function(e
         </div>
         
         
-        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-share">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
             <i class="icon icon-lg icon-share-alt"></i>
         </a>
         
@@ -139,8 +135,15 @@ deviceorientationwindow.addEventListener(&#39;deviceorientation&#39;, function(e
 
     <div class="container">
         <h1 class="title">获取移动设备旋转方向的几个方案</h1>
-        
-        
+        <h5 class="subtitle">
+            
+                <time datetime="2016-06-22T01:02:03.000Z" itemprop="datePublished" class="page-time">
+  Jun 22, 2016
+</time>
+
+
+            
+        </h5>
     </div>
 
     
@@ -219,9 +222,10 @@ deviceorientationwindow.addEventListener(&#39;deviceorientation&#39;, function(e
     </footer>
 </blockquote>
         
-<div class="post-reward">
-    <a id="rewardBtn" href="javascript:;" class="post-reward-btn waves-effect waves-circle waves-light">赏</a>
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
 </div>
+
 
 
         <div class="post-footer">
@@ -230,47 +234,54 @@ deviceorientationwindow.addEventListener(&#39;deviceorientation&#39;, function(e
 
 
             
-<div class="post-share-wrap">
-    <div class="post-share" id="post-share">
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
     <div class="tit">分享到：</div>
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://imys.net/20160622/screen-rotation-case.html&title=《获取移动设备旋转方向的几个方案》 — Yusen's Blog&pic=/img/face.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
       <li>
-        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
           <i class="icon icon-weixin"></i>
         </a>
       </li>
       <li>
-        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://imys.net/20160622/screen-rotation-case.html&title=《获取移动设备旋转方向的几个方案》 — Yusen's Blog&source=某些偏门的 API 真是没有需求一辈子都不知道啊。
+分享一下最近对于获取移动设备旋转方向的探索。
+deviceorientationwindow.addE..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://imys.net/20160622/screen-rotation-case.html" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《获取移动设备旋转方向的几个方案》 — Yusen's Blog&url=http://imys.net/20160622/screen-rotation-case.html&via=http://imys.net" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
-          豆
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://imys.net/20160622/screen-rotation-case.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
         </a>
       </li>
     </ul>
  </div>
 
-    <a href="javascript:;" id="share-fab" class="post-share-fab waves-effect waves-circle">
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
         <i class="icon icon-share-alt icon-lg"></i>
     </a>
 </div>
+
 
 
         </div>
@@ -300,10 +311,10 @@ deviceorientationwindow.addEventListener(&#39;deviceorientation&#39;, function(e
 
             
     
-<div class="duoshuo">
+<div class="duoshuo" id="comments">
 	<div class="ds-thread" data-thread-key="screen-rotation-case" data-title="获取移动设备旋转方向的几个方案" data-url="http://imys.net/20160622/screen-rotation-case.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.1.9"></script>
+<script src="/js/embed.min.js?v=1.2"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -312,10 +323,11 @@ var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
 
 
 
+
 </article>
 
-<div id="reward" class="reward-lay">
-    <a class="reward-off" id="rewardOff" href="javascript:;"><i class="icon icon-close"></i></a>
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <h3 class="reward-title">
         <i class="icon icon-quote-left"></i>
         请我吃辣条~
@@ -339,57 +351,67 @@ var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
 </div>
 
 
+
 </div>
+
   </main>
   <div class="mask" id="mask"></div>
 <a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 
-<script>var BLOG = { ROOT: '/' };
-BLOG.SHARE = {
-title: "获取移动设备旋转方向的几个方案",
-pic: "/img/face.jpg",
-summary: document.getElementsByName('summary')[0].content,
-url: "http://imys.net/20160622/screen-rotation-case.html" }
-</script>
-<div class="global-share" id="global-share">
+
+
+<div class="global-share" id="globalShare">
     <div class="tit">分享到：</div>
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" href="javascript:;" data-title="微博" data-service="tsina">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://imys.net/20160622/screen-rotation-case.html&title=《获取移动设备旋转方向的几个方案》 — Yusen's Blog&pic=/img/face.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
       <li>
-        <a class="weixin share-sns" href="javascript:;" data-title="微信" data-service="weixin">
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
           <i class="icon icon-weixin"></i>
         </a>
       </li>
       <li>
-        <a class="qq share-sns" href="javascript:;" data-title=" QQ" data-service="cqq">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://imys.net/20160622/screen-rotation-case.html&title=《获取移动设备旋转方向的几个方案》 — Yusen's Blog&source=某些偏门的 API 真是没有需求一辈子都不知道啊。
+分享一下最近对于获取移动设备旋转方向的探索。
+deviceorientationwindow.addE..." data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" href="javascript:;" data-title=" Facebook" data-service="fb">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://imys.net/20160622/screen-rotation-case.html" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" href="javascript:;" data-title=" Twitter" data-service="twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《获取移动设备旋转方向的几个方案》 — Yusen's Blog&url=http://imys.net/20160622/screen-rotation-case.html&via=http://imys.net" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="douban share-sns" href="javascript:;" data-title="豆瓣" data-service="douban">
-          豆
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://imys.net/20160622/screen-rotation-case.html" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
         </a>
       </li>
     </ul>
  </div>
 
 
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="http://s.jiathis.com/qrcode.php?url=http://imys.net/20160622/screen-rotation-case.html" alt="微信分享二维码"/>
+</div>
+
+
+
+
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.1.9"></script>
+<script src="/js/main.min.js?v=1.2"></script>
 
 
 
@@ -410,7 +432,7 @@ url: "http://imys.net/20160622/screen-rotation-case.html" }
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.1.9"></script>
+<script src="/js/search.min.js?v=1.2"></script>
 
 
 
