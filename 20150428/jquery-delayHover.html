@@ -30,7 +30,7 @@
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.2">
+  <link rel="stylesheet" href="/css/style.css?v=1.2.2">
 </head>
 
 <body>
@@ -131,7 +131,7 @@
 </header>
 <header class="content-header post-header">
 
-    <div class="container">
+    <div class="container fade-scale">
         <h1 class="title">jQuery扩展 - 延迟执行hover事件</h1>
         <h5 class="subtitle">
             
@@ -151,8 +151,8 @@
 
 <div class="container body-wrap">
     
-<article id="post-jquery-delayHover" 
-  class="post-article article-type-post" itemprop="blogPost">
+<article id="post-jquery-delayHover"
+  class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
         <h1 class="post-card-title">jQuery扩展 - 延迟执行hover事件</h1>
@@ -173,7 +173,7 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">DelayHover</span>(<span class="params">options</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> defaults = &#123;</div><div class="line">            speed : <span class="number">400</span>,                <span class="comment">// 延迟时间(毫秒)</span></div><div class="line">            onHover : <span class="function"><span class="keyword">function</span>(<span class="params">el</span>) </span>&#123;&#125;,  <span class="comment">// 鼠标悬浮</span></div><div class="line">            onOut : <span class="function"><span class="keyword">function</span>(<span class="params">el</span>)</span>&#123;&#125;      <span class="comment">// 鼠标离开</span></div><div class="line">        &#125;;</div><div class="line"></div><div class="line">        <span class="keyword">this</span>.settings = $.extend(&#123;&#125;, defaults, options);</div><div class="line">        <span class="keyword">var</span> _this = <span class="keyword">this</span>, hoverTimer;</div><div class="line"></div><div class="line">        _this.bind = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">            $(_this).hover(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                hoverTimer = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">                    _this.settings.onHover(_this);</div><div class="line">                &#125;, _this.settings.speed);</div><div class="line">            &#125;, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">                clearTimeout(hoverTimer);</div><div class="line">                _this.settings.onOut(_this);</div><div class="line">            &#125;);</div><div class="line"></div><div class="line">        &#125;;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    $.fn.delayHover = <span class="function"><span class="keyword">function</span>(<span class="params">options</span>) </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">            DelayHover.call(<span class="keyword">this</span>,options);</div><div class="line">            <span class="keyword">this</span>.bind();</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;)(jQuery);</div></pre></td></tr></table></figure>
 
         </div>
-        
+
         <blockquote class="post-copyright">
     <div class="content">
         转载请注明出处：<a href="/20150428/jquery-delayHover.html" target="_blank" rel="external">http://imys.net/20150428/jquery-delayHover.html</a>
@@ -250,7 +250,7 @@
 
 
         </div>
-    </div>   
+    </div>
 
     
 <nav class="post-nav flex-row flex-justify-between">
@@ -274,12 +274,12 @@
 </nav>
 
 
-            
+
     
 <div class="duoshuo" id="comments">
 	<div class="ds-thread" data-thread-key="jquery-delayHover" data-title="jQuery扩展 - 延迟执行hover事件" data-url="http://imys.net/20150428/jquery-delayHover.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.2"></script>
+<script src="/js/embed.min.js?v=1.2.2"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -377,7 +377,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.2"></script>
+<script src="/js/main.min.js?v=1.2.2"></script>
 
 
 
@@ -398,7 +398,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.2"></script>
+<script src="/js/search.min.js?v=1.2.2"></script>
 
 
 

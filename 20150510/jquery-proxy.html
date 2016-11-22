@@ -30,7 +30,7 @@
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.2">
+  <link rel="stylesheet" href="/css/style.css?v=1.2.2">
 </head>
 
 <body>
@@ -131,7 +131,7 @@
 </header>
 <header class="content-header post-header">
 
-    <div class="container">
+    <div class="container fade-scale">
         <h1 class="title">jQuery.proxy方法原理与使用</h1>
         <h5 class="subtitle">
             
@@ -158,8 +158,8 @@
         </nav>
     </aside>
     
-<article id="post-jquery-proxy" 
-  class="post-article article-type-post" itemprop="blogPost">
+<article id="post-jquery-proxy"
+  class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
         <h1 class="post-card-title">jQuery.proxy方法原理与使用</h1>
@@ -187,7 +187,7 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">proxy: <span class="function"><span class="keyword">function</span>(<span class="params"> fn, context </span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> args, proxy, tmp;</div><div class="line"></div><div class="line">    <span class="keyword">if</span> ( <span class="keyword">typeof</span> context === <span class="string">"string"</span> ) &#123;</div><div class="line">        tmp = fn[ context ];</div><div class="line">        context = fn;</div><div class="line">        fn = tmp;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Quick check to determine if target is callable, in the spec</span></div><div class="line">    <span class="comment">// this throws a TypeError, but we will just return undefined.</span></div><div class="line">    <span class="keyword">if</span> ( !jQuery.isFunction( fn ) ) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="literal">undefined</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Simulated bind</span></div><div class="line">    args = core_slice.call( <span class="built_in">arguments</span>, <span class="number">2</span> );</div><div class="line">    proxy = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> fn.apply( context || <span class="keyword">this</span>, args.concat( core_slice.call( <span class="built_in">arguments</span> ) ) );</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="comment">// Set the guid of unique handler to the same of original handler, so it can be removed</span></div><div class="line">    proxy.guid = fn.guid = fn.guid || jQuery.guid++;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> proxy;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
         </div>
-        
+
         <blockquote class="post-copyright">
     <div class="content">
         转载请注明出处：<a href="/20150510/jquery-proxy.html" target="_blank" rel="external">http://imys.net/20150510/jquery-proxy.html</a>
@@ -262,7 +262,7 @@
 
 
         </div>
-    </div>   
+    </div>
 
     
 <nav class="post-nav flex-row flex-justify-between">
@@ -286,12 +286,12 @@
 </nav>
 
 
-            
+
     
 <div class="duoshuo" id="comments">
 	<div class="ds-thread" data-thread-key="jquery-proxy" data-title="jQuery.proxy方法原理与使用" data-url="http://imys.net/20150510/jquery-proxy.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.2"></script>
+<script src="/js/embed.min.js?v=1.2.2"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -387,7 +387,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.2"></script>
+<script src="/js/main.min.js?v=1.2.2"></script>
 
 
 
@@ -408,7 +408,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.2"></script>
+<script src="/js/search.min.js?v=1.2.2"></script>
 
 
 

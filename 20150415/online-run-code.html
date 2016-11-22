@@ -30,7 +30,7 @@
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.2">
+  <link rel="stylesheet" href="/css/style.css?v=1.2.2">
 </head>
 
 <body>
@@ -131,7 +131,7 @@
 </header>
 <header class="content-header post-header">
 
-    <div class="container">
+    <div class="container fade-scale">
         <h1 class="title">不链接页面在新窗口或标签页运行代码</h1>
         <h5 class="subtitle">
             
@@ -158,8 +158,8 @@
         </nav>
     </aside>
     
-<article id="post-online-run-code" 
-  class="post-article article-type-post" itemprop="blogPost">
+<article id="post-online-run-code"
+  class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
         <h1 class="post-card-title">不链接页面在新窗口或标签页运行代码</h1>
@@ -190,7 +190,7 @@
 <h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>新窗口或标签页运行代码<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">textarea</span> <span class="attr">style</span>=<span class="string">"width:600px;height:150px;"</span> <span class="attr">id</span>=<span class="string">"code"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">        <span class="built_in">document</span>.write(<span class="string">"&lt;h1&gt;我是运行在新窗口或标签页的代码。&lt;/h1&gt;"</span>);</div><div class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"runCode()"</span>&gt;</span>运行代码<span class="tag">&lt;/<span class="name">button</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="javascript"></span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">runCode</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> example = <span class="built_in">window</span>.open(<span class="string">''</span>,<span class="string">''</span>,<span class="string">''</span>);</div><div class="line">        <span class="keyword">var</span> code = <span class="built_in">document</span>.getElementById(<span class="string">'code'</span>).value;</div><div class="line">        example.document.write(code)</div><div class="line">        example.focus();</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
 
         </div>
-        
+
         <blockquote class="post-copyright">
     <div class="content">
         转载请注明出处：<a href="/20150415/online-run-code.html" target="_blank" rel="external">http://imys.net/20150415/online-run-code.html</a>
@@ -265,7 +265,7 @@
 
 
         </div>
-    </div>   
+    </div>
 
     
 <nav class="post-nav flex-row flex-justify-between">
@@ -289,12 +289,12 @@
 </nav>
 
 
-            
+
     
 <div class="duoshuo" id="comments">
 	<div class="ds-thread" data-thread-key="online-run-code" data-title="不链接页面在新窗口或标签页运行代码" data-url="http://imys.net/20150415/online-run-code.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.2"></script>
+<script src="/js/embed.min.js?v=1.2.2"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -390,7 +390,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.2"></script>
+<script src="/js/main.min.js?v=1.2.2"></script>
 
 
 
@@ -411,7 +411,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.2"></script>
+<script src="/js/search.min.js?v=1.2.2"></script>
 
 
 

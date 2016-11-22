@@ -32,7 +32,7 @@
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.2">
+  <link rel="stylesheet" href="/css/style.css?v=1.2.2">
 </head>
 
 <body>
@@ -133,7 +133,7 @@
 </header>
 <header class="content-header post-header">
 
-    <div class="container">
+    <div class="container fade-scale">
         <h1 class="title">CSS巧用border画小图形</h1>
         <h5 class="subtitle">
             
@@ -160,8 +160,8 @@
         </nav>
     </aside>
     
-<article id="post-css-borde-shape" 
-  class="post-article article-type-post" itemprop="blogPost">
+<article id="post-css-borde-shape"
+  class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
         <h1 class="post-card-title">CSS巧用border画小图形</h1>
@@ -182,7 +182,7 @@
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>triangle<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">type</span>=<span class="string">"text/css"</span>&gt;</span><span class="undefined"></span></div><div class="line">    .shape &#123;</div><div class="line">        float: left;</div><div class="line">        margin-left: 50px;</div><div class="line">        width:0;</div><div class="line">        height:0;</div><div class="line">        border-width: 30px;</div><div class="line">        border-style: dashed dashed dashed dashed ;</div><div class="line">        border-color: transparent transparent transparent transparent ;</div><div class="line">    &#125;</div><div class="line">    /*三角形*/</div><div class="line">    .triangle &#123;</div><div class="line">        border-bottom: 30px solid #e66161;</div><div class="line">    &#125;</div><div class="line">    /*标签*/</div><div class="line">    .mark &#123;</div><div class="line">        border-left: 30px solid #e66161;</div><div class="line">        border-top: 30px solid #e66161;</div><div class="line">        border-right: 30px solid #e66161;</div><div class="line">    &#125;</div><div class="line">    /*直角三角形*/</div><div class="line">    .right-triangle &#123;</div><div class="line">        border-left: 30px solid #e66161;</div><div class="line">        border-bottom: 30px solid #e66161;</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shape triangle"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shape mark"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"shape right-triangle"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
 
         </div>
-        
+
         <blockquote class="post-copyright">
     <div class="content">
         转载请注明出处：<a href="/20150409/css-borde-shape.html" target="_blank" rel="external">http://imys.net/20150409/css-borde-shape.html</a>
@@ -258,7 +258,7 @@ css画三角形样式相信很多人都用过，比如 border-bottom设置宽度
 
 
         </div>
-    </div>   
+    </div>
 
     
 <nav class="post-nav flex-row flex-justify-between">
@@ -282,12 +282,12 @@ css画三角形样式相信很多人都用过，比如 border-bottom设置宽度
 </nav>
 
 
-            
+
     
 <div class="duoshuo" id="comments">
 	<div class="ds-thread" data-thread-key="css-borde-shape" data-title="CSS巧用border画小图形" data-url="http://imys.net/20150409/css-borde-shape.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.2"></script>
+<script src="/js/embed.min.js?v=1.2.2"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -384,7 +384,7 @@ css画三角形样式相信很多人都用过，比如 border-bottom设置宽度
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.2"></script>
+<script src="/js/main.min.js?v=1.2.2"></script>
 
 
 
@@ -405,7 +405,7 @@ css画三角形样式相信很多人都用过，比如 border-bottom设置宽度
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.2"></script>
+<script src="/js/search.min.js?v=1.2.2"></script>
 
 
 
