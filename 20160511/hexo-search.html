@@ -39,7 +39,7 @@
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.2.3">
+  <link rel="stylesheet" href="/css/style.css?v=1.3">
 </head>
 
 <body>
@@ -195,19 +195,75 @@
 <h3 id="Swiftype"><a href="#Swiftype" class="headerlink" title="Swiftype"></a>Swiftype</h3><p><a href="https://swiftype.com/" target="_blank" rel="external">Swiftype</a> 安装很简单，关于其在 Hexo 中使用的文章介绍也很多，我只说下使用体验。</p>
 <p>配合我自定义的搜索框样式，外观展现还算过关。</p>
 <p>可以对色调进行修改，由于是在单页面展示搜索结果，就算不提供外观修改也可以自己重写 css ，类似多说。</p>
-<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-colors.jpg" alt="Swiftype-colors"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="aspect-ratio">
+                        <div class="placeholder"></div>
+                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-colors.jpg" alt="Swiftype-colors">
+                    </div>
+                </div>
+                <div class="image-caption">Swiftype-colors</div>
+            </figure>
 <p>搜索结果的展示可以自定义，包括内容布局、字段排列、分页等。</p>
-<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-results.jpg" alt="Swiftype-results"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="aspect-ratio">
+                        <div class="placeholder"></div>
+                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-results.jpg" alt="Swiftype-results">
+                    </div>
+                </div>
+                <div class="image-caption">Swiftype-results</div>
+            </figure>
 <p>搜索结果容器可完全自定义，可设置单页或新页面显示搜索结果，对外观的控制力更强。</p>
-<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-container.jpg" alt="Swiftype-container"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="aspect-ratio">
+                        <div class="placeholder"></div>
+                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-container.jpg" alt="Swiftype-container">
+                    </div>
+                </div>
+                <div class="image-caption">Swiftype-container</div>
+            </figure>
 <p>可以设置字段权重，比如优先展示文章标题的匹配结果。</p>
-<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-sort.jpg" alt="Swiftype-sort"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="aspect-ratio">
+                        <div class="placeholder"></div>
+                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-sort.jpg" alt="Swiftype-sort">
+                    </div>
+                </div>
+                <div class="image-caption">Swiftype-sort</div>
+            </figure>
 <p>可以单独为某个关键字搜索结果进行管理，比如排序、置顶、删除等等，话说某度推广不就是这样吗。</p>
-<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-rank.jpg" alt="Swiftype-rank"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="aspect-ratio">
+                        <div class="placeholder"></div>
+                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-rank.jpg" alt="Swiftype-rank">
+                    </div>
+                </div>
+                <div class="image-caption">Swiftype-rank</div>
+            </figure>
 <p>可以设置抓取规则，比如只抓取文章页。</p>
-<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-rules.jpg" alt="Swiftype-rules"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="aspect-ratio">
+                        <div class="placeholder"></div>
+                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-rules.jpg" alt="Swiftype-rules">
+                    </div>
+                </div>
+                <div class="image-caption">Swiftype-rules</div>
+            </figure>
 <p>默认的字段匹配不满意，下图是对<code>hexo</code>的搜索结果。Swiftype 的<code>body</code>字段默认抓取整个页面，我每个页面的左侧 footer 都有<code>hexo</code>这个单词，在我设置了只抓取文章页后，博客一共 46 篇文章也就匹配了 46 个结果。我期望它只对文章内容检索，这样更精准。</p>
-<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-show.jpg" alt="Swiftype-show"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="aspect-ratio">
+                        <div class="placeholder"></div>
+                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-show.jpg" alt="Swiftype-show">
+                    </div>
+                </div>
+                <div class="image-caption">Swiftype-show</div>
+            </figure>
 <p>如果能自定义抓取字段，指定抓取内容当然是极好的。Swiftype 文档中也提供了这方面内容，<a href="https://swiftype.com/documentation/crawler_quick_start" target="_blank" rel="external">Crawler</a>。</p>
 <p>大概看了一下，感觉 <strong>Content Inclusion/Exclusion</strong> 和 <strong>Meta Tags</strong> 方式应该能满足需求。我也尝试了一下，发现没效果，不知道是不是要重新抓取才生效。</p>
 <p>设置重新抓取后等了 1 个小时还没什么效果，我只好先进行下一步了。</p>
@@ -222,7 +278,15 @@
 <p><a href="https://github.com/alexbruno/hexo-generator-json-content" target="_blank" rel="external">hexo-generator-json-content</a> 生成的<code>json</code>数据内容挺全的，不过并不是我都需要的。可以通过添加站点配置设置你需要生成的字段。</p>
 <p><code>meta</code>是站点信息，<code>pages</code>是除文章页以外的页面信息，这都是我不需要的，我只要求搜索文章页。</p>
 <p>此外，文章页的字段也可以根据需求减少，以减小数据文件大小。下图可以直观看出每个字段表示的内容。</p>
-<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/hexo-generator-json-content.jpg" alt="hexo-generator-json-content"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="aspect-ratio">
+                        <div class="placeholder"></div>
+                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/hexo-generator-json-content.jpg" alt="hexo-generator-json-content">
+                    </div>
+                </div>
+                <div class="image-caption">hexo-generator-json-content</div>
+            </figure>
 <ul>
 <li><code>slug</code>、<code>comments</code>、<code>link</code>、<code>keywords</code>、<code>categories</code>都是无内容或不需要的字段；</li>
 <li><code>date</code>和<code>updated</code>、<code>path</code>和<code>permalink</code>留其一即可；</li>
@@ -340,7 +404,7 @@
 <div class="duoshuo" id="comments">
 	<div class="ds-thread" data-thread-key="hexo-search" data-title="Hexo添加站内搜索功能初步完成" data-url="http://imys.net/20160511/hexo-search.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.2.3"></script>
+<script src="/js/embed.min.js?v=1.3"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -435,7 +499,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.2.3"></script>
+<script src="/js/main.min.js?v=1.3"></script>
 
 
 
@@ -456,7 +520,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.2.3"></script>
+<script src="/js/search.min.js?v=1.3"></script>
 
 
 
@@ -465,7 +529,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 
 
 <!-- Google Analytics -->
-<script type="text/javascript">
+<script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

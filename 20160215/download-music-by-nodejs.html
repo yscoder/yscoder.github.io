@@ -34,7 +34,7 @@
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.2.3">
+  <link rel="stylesheet" href="/css/style.css?v=1.3">
 </head>
 
 <body>
@@ -201,7 +201,15 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">    list: [],</div><div class="line">    page: <span class="string">''</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>开始封装对应格式的数据。</p>
 <p>通过开发者工具 - Elements 可以找到酷我搜索结果页面的列表和分页的 Dom。可以使用 http 模块去请求这个页面，拿到整个页面文档，使用 cheerio 选取对应的 Dom 来组装成我们需要的数据。</p>
-<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/dmn-1.jpg" alt="相关Dom"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="aspect-ratio">
+                        <div class="placeholder"></div>
+                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/dmn-1.jpg" alt="相关Dom">
+                    </div>
+                </div>
+                <div class="image-caption">相关Dom</div>
+            </figure>
 <p>歌曲列表的选择器为<code>.m_list ul</code>，分页的选择器为<code>.page</code>。<br>当然，使用类选择器时要确定该类在页面内是唯一的。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 搜索</span></div><div class="line">app.get(<span class="string">'/search/:key/:pn'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</div><div class="line"></div><div class="line">    <span class="comment">// http://sou.kuwo.cn/ws/NSearch?type=music&amp;key=曾经的你&amp;pn=1</span></div><div class="line"></div><div class="line">    <span class="keyword">var</span> key = req.params.key,</div><div class="line">        pn = req.params.pn,</div><div class="line">        option = &#123;</div><div class="line">            host: <span class="string">'sou.kuwo.cn'</span>,</div><div class="line">            port: <span class="number">80</span>,</div><div class="line">            path: <span class="string">'/ws/NSearch?'</span> + querystring.stringify(&#123;</div><div class="line">                type: <span class="string">'music'</span>,</div><div class="line">                key: key,</div><div class="line">                pn: pn</div><div class="line">            &#125;),</div><div class="line">            method: <span class="string">'GET'</span></div><div class="line">        &#125;;</div><div class="line"></div><div class="line">    <span class="keyword">var</span> req2 = http.request(option, <span class="function"><span class="keyword">function</span>(<span class="params">res2</span>) </span>&#123;</div><div class="line"></div><div class="line">        <span class="keyword">var</span> body = <span class="string">''</span>;</div><div class="line"></div><div class="line">        res2.setEncoding(<span class="string">'utf8'</span>);</div><div class="line">        res2.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">            body += data;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">        res2.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"></div><div class="line">            <span class="comment">// 解析 html</span></div><div class="line">            <span class="keyword">var</span> $ = cheerio.load(body),</div><div class="line">                $list = $(<span class="string">'.m_list ul li'</span>),</div><div class="line">                $page = $(<span class="string">'.page'</span>),</div><div class="line">                list = [];</div><div class="line"></div><div class="line">            $list.each(<span class="function"><span class="keyword">function</span>(<span class="params">i, el</span>) </span>&#123;</div><div class="line">                <span class="keyword">var</span> $<span class="keyword">this</span> = $(el);</div><div class="line"></div><div class="line">                list.push(&#123;</div><div class="line">                    id: <span class="built_in">parseInt</span>($<span class="keyword">this</span>.find(<span class="string">'input[name="musicNum"]'</span>).val()),</div><div class="line">                    name: $<span class="keyword">this</span>.find(<span class="string">'.m_name a'</span>).attr(<span class="string">'title'</span>),</div><div class="line">                    album: $<span class="keyword">this</span>.find(<span class="string">'.a_name a'</span>).attr(<span class="string">'title'</span>),</div><div class="line">                    singer: $<span class="keyword">this</span>.find(<span class="string">'.s_name a'</span>).attr(<span class="string">'title'</span>)</div><div class="line">                &#125;);</div><div class="line">            &#125;);</div><div class="line"></div><div class="line">            $page.find(<span class="string">'a'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params">i, el</span>) </span>&#123;</div><div class="line">                <span class="keyword">var</span> $<span class="keyword">this</span> = $(el),</div><div class="line">                    href = $<span class="keyword">this</span>.attr(<span class="string">'href'</span>);</div><div class="line"></div><div class="line">                <span class="keyword">if</span> (href !== <span class="string">'#@'</span>) &#123;</div><div class="line">                    <span class="keyword">var</span> num = href.split(<span class="string">'='</span>).reverse()[<span class="number">0</span>];</div><div class="line">                    $<span class="keyword">this</span>.attr(<span class="string">'data-option'</span>, <span class="built_in">JSON</span>.stringify(&#123;</div><div class="line">                        key: key,</div><div class="line">                        pn: num</div><div class="line">                    &#125;));</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                $<span class="keyword">this</span>.attr(<span class="string">'href'</span>, <span class="string">'javascript:;'</span>);</div><div class="line">            &#125;);</div><div class="line"></div><div class="line">            res.send(&#123;</div><div class="line">                page: $page.html(),</div><div class="line">                list: list</div><div class="line">            &#125;);</div><div class="line"></div><div class="line">        &#125;);</div><div class="line"></div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    req2.on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(e);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    req2.end();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>歌曲的数据项取了 id、歌名、专辑、歌手。<br>分页的 Dom 结构比较简单，我直接把分页内的<code>a:href</code>属性替换了，添加自定义数据用于前端点击重渲染，直接返回整个分页的 HTML。</p>
@@ -218,14 +226,30 @@
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">$page.on(<span class="string">'click'</span>, <span class="string">'a[data-option]'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> option = $(<span class="keyword">this</span>).data(<span class="string">'option'</span>);</div><div class="line">    getData(option.key, option.pn);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>至此，搜索加分页就全部完成了。</p>
 <h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>在酷我的页面中点击歌曲名可以跳转到一个歌曲播放页，该页面 URL 格式为<code>http://www.kuwo.cn/yinyue/100062/</code>，其中的 100062 就是歌曲ID了。<br>对于资源文件，直接分析 Network，找到资源文件请求和歌曲ID之间的关系，期望可以直接获取到资源文件的链接。</p>
-<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/dmn-2.jpg" alt="酷我Network"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="aspect-ratio">
+                        <div class="placeholder"></div>
+                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/dmn-2.jpg" alt="酷我Network">
+                    </div>
+                </div>
+                <div class="image-caption">酷我Network</div>
+            </figure>
 <p>最终分析结果：</p>
 <p>ID100062 的资源文件名是 1058000744.aac。<br>有一个请求 <a href="http://antiserver.kuwo.cn/anti.s?rid=MUSIC_100062&amp;format=aac|mp3&amp;type=convert_url&amp;response=url" target="_blank" rel="external">http://antiserver.kuwo.cn/anti.s?rid=MUSIC_100062&amp;format=aac|mp3&amp;type=convert_url&amp;response=url</a> 的结果为 <a href="http://win.web.ra03.sycdn.kuwo.cn/07baab80f0a6dd9b3a091879b308ae68/56c2840e/resource/a1/48/63/96/1058000744.aac" target="_blank" rel="external">http://win.web.ra03.sycdn.kuwo.cn/07baab80f0a6dd9b3a091879b308ae68/56c2840e/resource/a1/48/63/96/1058000744.aac</a>。</p>
 <p>这样我们直接用歌曲ID去请求<code>http://antiserver.kuwo.cn/anti.s</code>就能获得歌曲链接了。</p>
 <p>酷我的默认请求为<code>.aac</code>格式，应该是和参数<code>format=aac|mp3</code>有关，可以改成<code>format=mp3|aac</code>。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line">app.get(<span class="string">'/download/:id'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res</span>) </span>&#123;</div><div class="line">    <span class="comment">// http://antiserver.kuwo.cn/anti.s?rid=MUSIC_100062&amp;format=aac|mp3&amp;type=convert_url&amp;response=url</span></div><div class="line"></div><div class="line">    <span class="keyword">var</span> option = &#123;</div><div class="line">        host: <span class="string">'antiserver.kuwo.cn'</span>,</div><div class="line">        port: <span class="number">80</span>,</div><div class="line">        path: <span class="string">'/anti.s?rid=MUSIC_'</span> + req.params.id + <span class="string">'&amp;format=mp3|aac&amp;type=convert_url&amp;response=url'</span>,</div><div class="line">        method: <span class="string">'GET'</span></div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    request(option).then(<span class="function"><span class="keyword">function</span>(<span class="params">body</span>) </span>&#123;</div><div class="line">        res.redirect(body);</div><div class="line">    &#125;, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(e);</div><div class="line">    &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>request 模块又派上用场了，由于该请求直接返回了歌曲链接，我就直接重定向到该链接了。<br>为了使歌曲在新窗口打开，前端页面列表项中的 a 链接要添加<code>target=&quot;_blank&quot;</code>。</p>
-<h2 id="成果展示"><a href="#成果展示" class="headerlink" title="成果展示"></a>成果展示</h2><h3 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h3><p><img src="http://7ximpj.com1.z0.glb.clouddn.com/dmn-3.jpg" alt="DownloadMusic"></p>
+<h2 id="成果展示"><a href="#成果展示" class="headerlink" title="成果展示"></a>成果展示</h2><h3 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="aspect-ratio">
+                        <div class="placeholder"></div>
+                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/dmn-3.jpg" alt="DownloadMusic">
+                    </div>
+                </div>
+                <div class="image-caption">DownloadMusic</div>
+            </figure>
 <h3 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h3><p><a href="https://github.com/yscoder/DownloadMusic" target="_blank" rel="external">Github - DownloadMusic</a></p>
 
         </div>
@@ -332,7 +356,7 @@
 <div class="duoshuo" id="comments">
 	<div class="ds-thread" data-thread-key="download-music-by-nodejs" data-title="写一个歌曲下载工具" data-url="http://imys.net/20160215/download-music-by-nodejs.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.2.3"></script>
+<script src="/js/embed.min.js?v=1.3"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -427,7 +451,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.2.3"></script>
+<script src="/js/main.min.js?v=1.3"></script>
 
 
 
@@ -448,7 +472,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.2.3"></script>
+<script src="/js/search.min.js?v=1.3"></script>
 
 
 
@@ -457,7 +481,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 
 
 <!-- Google Analytics -->
-<script type="text/javascript">
+<script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

@@ -36,7 +36,7 @@
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.2.3">
+  <link rel="stylesheet" href="/css/style.css?v=1.3">
 </head>
 
 <body>
@@ -202,7 +202,15 @@
 <p>安装好了，先跑一下看看是否安装正确，到<code>package.json</code>的<code>scripts</code>中注册一个命令：<code>&quot;unit&quot;: &quot;karma start test/unit/karma.conf.js --single-run&quot;</code>，然后运行。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">npm run unit</div></pre></td></tr></table></figure>
 <p>然后不出意料的报错了，只是少装了一个模块<code>isparta-loader</code>，是一个代码覆盖工具，继续安装后运行OK。</p>
-<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-1.jpg" alt="vue-unit-1"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="aspect-ratio">
+                        <div class="placeholder"></div>
+                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-1.jpg" alt="vue-unit-1">
+                    </div>
+                </div>
+                <div class="image-caption">vue-unit-1</div>
+            </figure>
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>karma.conf.js 文件内容分为两部分。<br><code>module.exports</code> 以上是对 Webpack 配置的处理，像<code>webpack.dev.conf</code>和<code>webpack.prod.conf</code>那样，在不同的环境里使用不同的配置。后一部分就是对 Karma 的配置了。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">config</span>) </span>&#123;</div><div class="line">    config.set(&#123;</div><div class="line">        <span class="comment">// 要启动的测试浏览器</span></div><div class="line">        browsers: [<span class="string">'PhantomJS'</span>],</div><div class="line">        <span class="comment">// 测试框架</span></div><div class="line">        frameworks: [<span class="string">'mocha'</span>, <span class="string">'sinon-chai'</span>],</div><div class="line">        <span class="comment">// 测试报告处理</span></div><div class="line">        reporters: [<span class="string">'spec'</span>, <span class="string">'coverage'</span>],</div><div class="line">        <span class="comment">// 要测试的目标文件</span></div><div class="line">        files: [<span class="string">'./index.js'</span>],</div><div class="line">        <span class="comment">// 忽略的文件</span></div><div class="line">        exclude: [],</div><div class="line">        <span class="comment">// 预处理文件</span></div><div class="line">        preprocessors: &#123;</div><div class="line">            <span class="string">'./index.js'</span>: [<span class="string">'webpack'</span>, <span class="string">'sourcemap'</span>]</div><div class="line">        &#125;,</div><div class="line">        <span class="comment">// webpack</span></div><div class="line">        webpack: webpackConfig,</div><div class="line">        webpackMiddleware: &#123;</div><div class="line">            noInfo: <span class="literal">true</span></div><div class="line">        &#125;,</div><div class="line">        <span class="comment">// Coverage options</span></div><div class="line">        coverageReporter: &#123;</div><div class="line">            dir: <span class="string">'./coverage'</span>,</div><div class="line">            reporters: [</div><div class="line">                &#123; type: <span class="string">'lcov'</span>, subdir: <span class="string">'.'</span> &#125;,</div><div class="line">                &#123; type: <span class="string">'text-summary'</span> &#125;</div><div class="line">            ]</div><div class="line">        &#125;,</div><div class="line">        <span class="comment">// true: 自动运行测试并退出</span></div><div class="line">        <span class="comment">// false: 监控文件持续测试</span></div><div class="line">        singleRun: <span class="literal">true</span>,</div><div class="line"></div><div class="line">        <span class="comment">// 以下是 vue-cli 没有生成的一些配置</span></div><div class="line"></div><div class="line">        <span class="comment">// 文件匹配的起始路径</span></div><div class="line">        <span class="comment">// basePath: '',</span></div><div class="line">        <span class="comment">// 服务器端口</span></div><div class="line">        <span class="comment">// port: 9876,</span></div><div class="line">        <span class="comment">// 输出着色</span></div><div class="line">        <span class="comment">// colors: true,</span></div><div class="line">        <span class="comment">// 日志级别</span></div><div class="line">        <span class="comment">// LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG</span></div><div class="line">        <span class="comment">// logLevel: config.LOG_INFO,</span></div><div class="line">        <span class="comment">// 监控文件更改</span></div><div class="line">        <span class="comment">// autoWatch: true,</span></div><div class="line">        <span class="comment">// 超时处理，6s内没有捕获浏览器将终止进程</span></div><div class="line">        <span class="comment">// captureTimeout: 6000</span></div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>其中对于测试文件入口有点难以理解，仅仅是一个脚本文件，而不是路径匹配，也就是配置文件同级的那个<code>index.js</code>，只有 5 行代码。</p>
@@ -215,7 +223,15 @@
 <p>也就是说，也可以通过脚本文件这种方式设置匹配的目标文件。</p>
 <h2 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h2><p>现在看起来一切妥当了，可以开始写测试用例了。</p>
 <p>把以上步骤又重复了一遍，集成到了一个自己写的 Demo 项目中，然后运行测试。</p>
-<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-2.jpg" alt="vue-unit-2"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="aspect-ratio">
+                        <div class="placeholder"></div>
+                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-2.jpg" alt="vue-unit-2">
+                    </div>
+                </div>
+                <div class="image-caption">vue-unit-2</div>
+            </figure>
 <p>什么鬼，找不到 <code>less</code> 变量。</p>
 <p>为了验证不是配置问题，我在 vue-cli 生成项目的组件中使用 less 写了个样式，运行测试出现了一样的问题。<br>最后找到了这条<a href="https://github.com/vuejs-templates/webpack/issues/163" target="_blank" rel="external">issue</a>。<br>翻译了半天，感觉是匹配文件的问题。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">const</span> srcContext = <span class="built_in">require</span>.context(<span class="string">'../../src'</span>, <span class="literal">true</span>, <span class="regexp">/^\.\/(?!main(\.js)?$)/</span>)</div></pre></td></tr></table></figure>
@@ -223,11 +239,35 @@
 <p>修改如下：</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">const</span> srcContext = <span class="built_in">require</span>.context(<span class="string">'../../src'</span>, <span class="literal">true</span>, <span class="regexp">/\.vue$/</span>)</div></pre></td></tr></table></figure>
 <p>刚翻过一座山，又遇到一条河。</p>
-<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-3.jpg" alt="vue-unit-3"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="aspect-ratio">
+                        <div class="placeholder"></div>
+                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-3.jpg" alt="vue-unit-3">
+                    </div>
+                </div>
+                <div class="image-caption">vue-unit-3</div>
+            </figure>
 <p>看起来是因为 API 不兼容，PhantomJS 中还没有集成 Promise。</p>
-<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-4.jpg" alt="vue-unit-4"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="aspect-ratio">
+                        <div class="placeholder"></div>
+                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-4.jpg" alt="vue-unit-4">
+                    </div>
+                </div>
+                <div class="image-caption">vue-unit-4</div>
+            </figure>
 <p>为了避免相似的问题，索性把 launcher 换掉了，用<code>karma-chrome-launcher</code>。<br>安装后，更改 Karma 配置中的<code>browsers</code>属性值为<code>[&#39;Chrome&#39;]</code>，测试运行成功。</p>
-<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-5.png" alt="vue-unit-5"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="aspect-ratio">
+                        <div class="placeholder"></div>
+                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-5.png" alt="vue-unit-5">
+                    </div>
+                </div>
+                <div class="image-caption">vue-unit-5</div>
+            </figure>
 <p>有一些青色的 LOG，第一条使用 Vue 的应该都已经熟悉了，是浏览器控制台输出的 LOG，所以其他的也是浏览器的日志了。</p>
 <p>第 1、3、4 条 LOG 是有一个指令没有找到，第 2 条是关于路由的。指令和路由的引入是在项目入口的 js 文件内，可以预知如果我使用了其他类别的 Vue 插件也会报出 ERROR。<br>还是有问题要解决啊！😒</p>
 <h2 id="测试用例"><a href="#测试用例" class="headerlink" title="测试用例"></a>测试用例</h2><p>初次接触测试框架和断言，对于组件的测试用例也还在摸索中。<br>从例子上看，大概思路如下：</p>
@@ -337,7 +377,7 @@
 <div class="duoshuo" id="comments">
 	<div class="ds-thread" data-thread-key="vue-unit-test-start" data-title="Vue单元测试起步" data-url="http://imys.net/20161110/vue-unit-test-start.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.2.3"></script>
+<script src="/js/embed.min.js?v=1.3"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -432,7 +472,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.2.3"></script>
+<script src="/js/main.min.js?v=1.3"></script>
 
 
 
@@ -453,7 +493,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.2.3"></script>
+<script src="/js/search.min.js?v=1.3"></script>
 
 
 
@@ -462,7 +502,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 
 
 <!-- Google Analytics -->
-<script type="text/javascript">
+<script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

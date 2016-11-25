@@ -32,7 +32,7 @@
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.2.3">
+  <link rel="stylesheet" href="/css/style.css?v=1.3">
 </head>
 
 <body>
@@ -178,7 +178,16 @@
             <p>大数据概念的到来，图表的运用越来越广泛，不搞搞数据，都不好意思说是互联网公司。</p>
 <p>最近公司又有一块图表展示的栏目要做，由于之前的图表栏目都是我完成的，这次不出意料又落在我身上。<br>之前的图表展示我用的是<code>echarts</code>，按格式封装数据调用就行了。<br>这次领导突然对图表样式有了一些要求，虽然<code>echarts</code>的配置够OP，也不可能完完全全跟设计图搞成一样的。</p>
 <p>暨于上次的<code>canvas</code>的使用，我决定自己动手实现所需要的图表组件。<br>这是最终的完成样式：</p>
-<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/canvas-chart.jpg" alt="canvas实践--图表组件仪表盘、雷达图"><br><a id="more"></a></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="aspect-ratio">
+                        <div class="placeholder"></div>
+                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/canvas-chart.jpg" alt="canvas实践--图表组件仪表盘、雷达图">
+                    </div>
+                </div>
+                <div class="image-caption">canvas实践--图表组件仪表盘、雷达图</div>
+            </figure>
+<a id="more"></a>
 <p>首先根据效果图来划分出各个图层，以及图层层级位置。<br>然后按照层级关系由下向上依次绘制。</p>
 <p>整个编码过程还是很顺利的，一些问题都得到了很好的解决。</p>
 <p><a href="https://github.com/yscoder/canvas-chart" target="_blank" rel="external">查看github</a></p>
@@ -330,7 +339,7 @@
 <div class="duoshuo" id="comments">
 	<div class="ds-thread" data-thread-key="canvas-chart-demo" data-title="canvas实践--图表组件仪表盘、雷达图" data-url="http://imys.net/20150731/canvas-chart-demo.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.2.3"></script>
+<script src="/js/embed.min.js?v=1.3"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -426,7 +435,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.2.3"></script>
+<script src="/js/main.min.js?v=1.3"></script>
 
 
 
@@ -447,7 +456,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.2.3"></script>
+<script src="/js/search.min.js?v=1.3"></script>
 
 
 
@@ -456,7 +465,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 
 
 <!-- Google Analytics -->
-<script type="text/javascript">
+<script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

@@ -32,7 +32,7 @@
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.2.3">
+  <link rel="stylesheet" href="/css/style.css?v=1.3">
 </head>
 
 <body>
@@ -150,7 +150,15 @@
 <div class="container body-wrap">
     <article class="page-article fade" itemprop="blogPage">
         <div class="post-content page-content" id="page-content" itemprop="pageContent">
-            <h2 id="Image"><a href="#Image" class="headerlink" title="Image"></a>Image</h2><p><img src="//placekitten.com/1000/500" alt="image"></p>
+            <h2 id="Image"><a href="#Image" class="headerlink" title="Image"></a>Image</h2><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="aspect-ratio">
+                        <div class="placeholder"></div>
+                        <img src="//placekitten.com/1000/500" alt="image">
+                    </div>
+                </div>
+                <div class="image-caption">image</div>
+            </figure>
 <h2 id="Blockquote"><a href="#Blockquote" class="headerlink" title="Blockquote"></a>Blockquote</h2><blockquote>
 <p>当<code>blockquote</code>、<code>img</code>、<code>pre</code>、<code>figure</code>为第一级内容时，在<code>page</code>布局中拥有<code>card</code>阴影，所有标题居中展示。</p>
 </blockquote>
@@ -293,7 +301,7 @@
 <div class="duoshuo" id="comments">
 	<div class="ds-thread" data-thread-key="hexo-page-custom" data-title="Indigo" data-url="http://imys.net/custom/"></div>
 </div>
-<script src="/js/embed.min.js?v=1.2.3"></script>
+<script src="/js/embed.min.js?v=1.3"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -387,7 +395,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.2.3"></script>
+<script src="/js/main.min.js?v=1.3"></script>
 
 
 
@@ -408,7 +416,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.2.3"></script>
+<script src="/js/search.min.js?v=1.3"></script>
 
 
 
@@ -417,7 +425,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 
 
 <!-- Google Analytics -->
-<script type="text/javascript">
+<script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

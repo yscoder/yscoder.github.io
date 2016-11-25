@@ -15,6 +15,7 @@
         scrollSpeed = 200 / (1000 / 60),
         forEach = Array.prototype.forEach,
         even = ('ontouchstart' in w && /Mobile|Android|iOS|iPhone|iPad|iPod|Windows Phone|KFAPWI/i.test(navigator.userAgent)) ? 'touchstart' : 'click',
+        isWX = /micromessenger/i.test(navigator.userAgent),
         noop = function () { },
         offset = function (el) {
             var x = el.offsetLeft,
@@ -56,20 +57,34 @@
             }
         },
         toggleMenu: function (flag) {
-
+            var main = $('#main');
             if (flag) {
                 menu.classList.remove('hide');
 
                 if (w.innerWidth < 1241) {
                     mask.classList.add('in');
                     menu.classList.add('show');
-                    root.classList.add('lock');
+
+                    if (isWX) {
+                        var top = docEl.scrollTop;
+                        main.classList.add('lock');
+                        main.scrollTop = top;
+                    } else {
+                        root.classList.add('lock');
+                    }
                 }
 
             } else {
                 menu.classList.remove('show');
                 mask.classList.remove('in');
-                root.classList.remove('lock');
+                if (isWX) {
+                    var top = main.scrollTop;
+                    main.classList.remove('lock');
+                    docEl.scrollTop = top;
+                } else {
+                    root.classList.remove('lock');
+                }
+
             }
         },
         fixedHeader: function (top) {
@@ -130,33 +145,29 @@
                 }
             }
         })(),
+        hideOnMask: [],
         modal: function (target) {
             this.$modal = $(target);
             this.$off = this.$modal.querySelector('.close');
 
             var _this = this;
 
-            function hideByBody(e) {
-                if (!_this.$modal.contains(e.target)) {
-                    _this.hide();
-                }
-            }
-
             this.show = function () {
                 mask.classList.add('in');
                 _this.$modal.classList.add('ready');
                 setTimeout(function () {
                     _this.$modal.classList.add('in');
-                    d.addEventListener(even, hideByBody);
                 }, 0)
             }
 
+            this.onHide = noop;
+
             this.hide = function () {
+                _this.onHide();
                 mask.classList.remove('in');
                 _this.$modal.classList.remove('in');
                 setTimeout(function () {
                     _this.$modal.classList.remove('ready');
-                    d.removeEventListener(even, hideByBody);
                 }, 300)
             }
 
@@ -164,6 +175,7 @@
                 return _this.$modal.classList.contains('in') ? _this.hide() : _this.show();
             }
 
+            Blog.hideOnMask.push(this.hide);
             this.$off && this.$off.addEventListener(even, this.hide);
         },
         share: function () {
@@ -186,6 +198,7 @@
             }
 
             var wxModal = new this.modal('#wxShare');
+            wxModal.onHide = shareModal.hide;
 
             forEach.call($$('.wxFab'), function (el) {
                 el.addEventListener(even, wxModal.toggle)
@@ -253,8 +266,132 @@
                 }
             }
 
-        })()
+        })(),
+        lightbox: function () {
+            var zoomedImg;
+            var screenSize = {};
+            var margin = 0;
+            var scrollbarWidth = w.innerWidth - docEl.offsetWidth;
+
+            function updateScreenSize() {
+                screenSize.x = w.innerWidth || docEl.clientWidth || body.clientWidth;
+                screenSize.y = w.innerHeight || docEl.clientHeight || body.clientHeight;
+            }
+            updateScreenSize();
+
+            function zoom() {
+                if (!this.isZoomed) {
+                    this.isZoomed = !this.isZoomed;
+                    zoomedImg = this;
+
+                    if (!this.img)
+                        this.img = this.querySelector('img');
+
+                    var imgH = this.img.getBoundingClientRect().height;
+                    var imgW = this.img.getBoundingClientRect().width;
+                    var imgL = this.img.getBoundingClientRect().left;
+                    var imgT = this.img.getBoundingClientRect().top;
+
+                    var realW = this.img.naturalWidth || imgW,
+                        realH = this.img.naturalHeight || imgH;
+
+                    this.placeholder = this.querySelector('.placeholder');
+                    this.placeholder.style.cssText = 'height: ' + imgH + 'px';
+
+                    var top = (screenSize.y - this.img.offsetHeight) / 2;
+                    var left = (screenSize.x - this.offsetWidth) / 2;
+
+                    this.img.classList.add('zoom-img');
+                    this.overlay = d.createElement('div');
+                    this.overlay.id = 'the-overlay';
+                    this.overlay.className = 'zoom-overlay';
+                    this.overlay.style.cssText = 'height:' + screenSize.y + 'px; width: ' + screenSize.x + 'px; top: -' + top + 'px; left: -' + left + 'px';
+
+                    this.wrapper = d.createElement('div');
+                    this.wrapper.id = 'the-wrapper';
+                    this.wrapper.className = 'zoom-img-wrap abs';
+                    this.wrapper.appendChild(this.img);
+                    this.wrapper.appendChild(this.overlay);
+                    this.children[0].appendChild(this.wrapper);
+
+                    var title = this.img.title || this.img.alt;
+                    if (title) {
+                        this.caption = d.createElement('div');
+                        this.caption.className = 'zoom-img-title';
+                        this.caption.innerHTML = title;
+                        this.caption.style.cssText = 'width: ' + screenSize.x + 'px; top: ' + (screenSize.y - top - 30) + 'px; left: -' + left + 'px';
+                        this.wrapper.appendChild(this.caption);
+                    }
+
+                    var wrapX = ((screenSize.x - scrollbarWidth) / 2) - imgL - (imgW / 2);
+                    var wrapY = imgT * (-1) + (screenSize.y - imgH) / 2;
+                    var scale = 1;
+
+                    if (realH > imgH) {
+                        if (imgH === imgW && screenSize.y > screenSize.x) {
+                            scale = screenSize.x / imgW;
+                        } else if (imgH === imgW && screenSize.y < screenSize.x) {
+                            scale = (screenSize.y - margin) / imgH;
+                        } else if (imgH > imgW) {
+                            scale = (screenSize.y - margin) / imgH;
+                            if (scale * imgW > screenSize.x) {
+                                scale = screenSize.x / imgW;
+                            }
+                        } else if (imgH < imgW) {
+                            scale = screenSize.x / imgW;
+                            if (scale * imgH > screenSize.y) {
+                                scale = (screenSize.y - margin) / imgH;
+                            }
+                        }
+                    }
+
+                    if (scale * imgW > realW) {
+                        scale = realW / imgW;
+                    }
+
+                    var that = this;
+                    setTimeout(function () {
+                        var wrapTrf = 'translate3d(' + wrapX + 'px, ' + wrapY + 'px, 0)';
+                        var imgTrf = 'scale(' + scale + ')';
+
+                        that.wrapper.style.cssText = 'transform: ' + wrapTrf + ';-webkit-transform: ' + wrapTrf;
+                        that.img.style.cssText = 'transform: ' + imgTrf + ';-webkit-transform: ' + imgTrf;
+                        that.overlay.className = 'zoom-overlay show';
+                    }, 0);
+
+                } else {
+                    this.isZoomed = !this.isZoomed;
+                    zoomedImg = null
+                    this.img.style.cssText = '';
+                    this.wrapper.style.cssText = '';
+                    this.overlay.className = 'zoom-overlay';
+
+                    var that = this;
+                    setTimeout(function () {
+                        that.placeholder.style.cssText = '';
+                        that.children[0].appendChild(that.img);
+                        that.children[0].removeChild(that.wrapper);
+                        that.img.classList.remove('zoom-img');
+                    }, 300)
+                }
+            }
+
+            forEach.call($$('.post-content .img-lightbox'), function (el) {
+                el.addEventListener(even, zoom);
+            });
+
+            return {
+                updateScreenSize: updateScreenSize,
+                zoomOut: function () {
+                    if (zoomedImg) {
+                        zoomedImg[even]();
+                    }
+                }
+            }
+        }
     };
+
+    var lightbox = Blog.lightbox();
 
     w.addEventListener('load', function () {
         Blog.fixNavMinH();
@@ -275,6 +412,7 @@
         Blog.fixNavMinH();
         Blog.toggleMenu();
         Blog.waterfall();
+        lightbox.updateScreenSize();
     });
 
     gotop.addEventListener(even, function () {
@@ -290,8 +428,12 @@
         menu.classList.add('hide');
     }, false);
 
-    mask.addEventListener(even, function () {
+    mask.addEventListener(even, function (e) {
         Blog.toggleMenu();
+        Blog.hideOnMask.forEach(function (hide) {
+            hide()
+        });
+        e.preventDefault();
     }, false);
 
     d.addEventListener('scroll', function () {
@@ -300,6 +442,7 @@
         Blog.fixedHeader(top);
         Blog.toc.fixed(top);
         Blog.toc.actived(top);
+        lightbox.zoomOut();
     }, false);
 
     if (w.BLOG.SHARE) {

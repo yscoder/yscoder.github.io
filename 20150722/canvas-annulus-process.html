@@ -33,7 +33,7 @@
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.2.3">
+  <link rel="stylesheet" href="/css/style.css?v=1.3">
 </head>
 
 <body>
@@ -179,7 +179,15 @@
             <p>起初想这么做既是<code>css3</code>不易实现圆环，而且也有低版本兼容问题，也想借此机会学习下<code>canvas</code>(虽然最后还是难逃兼容性 &gt;_&lt; )。<br>做的过程中发现<code>canvas</code>跟<code>C#</code>中<code>gdi</code>绘图的步骤其实是差不多的。</p>
 <p>先大概看了下<code>canvas</code>的相关API，有个可以画弧的方法<code>arc</code>。</p>
 <p>通过合理的参数设置就能实现各种角度的圆弧，或者满圆。</p>
-<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/process.jpg" alt="Canvas初试--环形进度条的实现"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="aspect-ratio">
+                        <div class="placeholder"></div>
+                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/process.jpg" alt="Canvas初试--环形进度条的实现">
+                    </div>
+                </div>
+                <div class="image-caption">Canvas初试--环形进度条的实现</div>
+            </figure>
 <a id="more"></a>
 <h3 id="定义canvas"><a href="#定义canvas" class="headerlink" title="定义canvas"></a>定义canvas</h3><figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"process"</span> <span class="attr">width</span>=<span class="string">"200"</span> <span class="attr">height</span>=<span class="string">"200"</span> <span class="attr">data-process</span>=<span class="string">"85"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>在基本的HTML5文档中添加一个<code>canvas</code>，定义了id宽高以及一个自定义属性表示要显示的进度值。</p>
@@ -223,7 +231,15 @@
 <p>以上代码中设置了圆心为<code>100,100</code>，正好的画布中心，圆半径为<code>80</code>，起始角度<code>0</code>表示<code>3</code>点钟方向，结束角度<code>Math.PI*2</code>其实是个满圆。<br>下一步会说明起始角度和结束角度具体算法。</p>
 <h3 id="画进度环（橙色）"><a href="#画进度环（橙色）" class="headerlink" title="画进度环（橙色）"></a>画进度环（橙色）</h3><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 画进度环</span></div><div class="line">ctx.beginPath();</div><div class="line">ctx.moveTo(<span class="number">100</span>, <span class="number">100</span>);  </div><div class="line">ctx.arc(<span class="number">100</span>, <span class="number">100</span>, <span class="number">80</span>, <span class="built_in">Math</span>.PI*<span class="number">1.5</span>, <span class="built_in">Math</span>.PI*(<span class="number">1.5</span>+<span class="number">2</span>*process/<span class="number">100</span>));</div><div class="line">ctx.closePath();</div><div class="line">ctx.fillStyle = <span class="string">'#FF9600'</span>;</div><div class="line">ctx.fill();</div></pre></td></tr></table></figure>
 <p>与上一步比较，多了一句<code>ctx.moveTo(x,y);</code>，意为把路径移动到画布中的指定点，如果没有这一步画出来的就不是弧了。<br>起始角度和结束角度也发生了变化，要想真正理解这两个角度，看下图。</p>
-<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/img_arc.gif" alt="Canvas初试--环形进度条的实现"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="aspect-ratio">
+                        <div class="placeholder"></div>
+                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/img_arc.gif" alt="Canvas初试--环形进度条的实现">
+                    </div>
+                </div>
+                <div class="image-caption">Canvas初试--环形进度条的实现</div>
+            </figure>
 <p>3点钟方向用<code>0(0PI)</code>表示，6点钟是<code>0.5PI</code>，9点钟<code>1PI</code>，12点钟<code>1.5PI</code>，这样转一周回到3点钟即为<code>2PI</code>。<br>所以满圆可以用起始角度<code>0(0PI)</code>和结束角度<code>2PI</code>表示。</p>
 <p>我们要画的圆环是需要从12点钟方向开始的，所以设置起始角度<code>1.5PI</code>。<br><code>process</code>在第一步中获取了要显示的进度<code>85</code>，即为<code>85/100</code>的圆，按原来<code>3</code>点钟开始，那么结束角度可以计算为<code>Math.PI*2*85/100</code>。<br>因为起始角度的变更，结束角度也要进行相应的变化，各在原来的基础上加了<code>1.5</code>的基数。</p>
 <p><strong>起始角度</strong></p>
@@ -340,7 +356,7 @@
 <div class="duoshuo" id="comments">
 	<div class="ds-thread" data-thread-key="canvas-annulus-process" data-title="Canvas初试--环形进度条的实现" data-url="http://imys.net/20150722/canvas-annulus-process.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.2.3"></script>
+<script src="/js/embed.min.js?v=1.3"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -435,7 +451,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.2.3"></script>
+<script src="/js/main.min.js?v=1.3"></script>
 
 
 
@@ -456,7 +472,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.2.3"></script>
+<script src="/js/search.min.js?v=1.3"></script>
 
 
 
@@ -465,7 +481,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 
 
 <!-- Google Analytics -->
-<script type="text/javascript">
+<script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

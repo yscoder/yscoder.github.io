@@ -33,7 +33,7 @@
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.2.3">
+  <link rel="stylesheet" href="/css/style.css?v=1.3">
 </head>
 
 <body>
@@ -188,9 +188,25 @@
 <p><code>maxDepth</code> 表示目录深度为3，即最多生成三级目录。</p>
 </blockquote>
 <p>好了，现在重启Hexo预览下效果吧。</p>
-<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/hexo-toc-1.jpg" alt="Toc文章目录"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="aspect-ratio">
+                        <div class="placeholder"></div>
+                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/hexo-toc-1.jpg" alt="Toc文章目录">
+                    </div>
+                </div>
+                <div class="image-caption">Toc文章目录</div>
+            </figure>
 <p>然后你会发现点击目录链接，没反应！<br>F12查看生成的HTML代码：</p>
-<p><img src="http://7ximpj.com1.z0.glb.clouddn.com/hexo-toc-2.jpg" alt="Toc生成代码"></p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="aspect-ratio">
+                        <div class="placeholder"></div>
+                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/hexo-toc-2.jpg" alt="Toc生成代码">
+                    </div>
+                </div>
+                <div class="image-caption">Toc生成代码</div>
+            </figure>
 <p>标题id生成没问题，锚链接中的中文都被转义为 <code>-</code> 了。</p>
 <p>看了该插件的issues中已经提到了这个问题，不过好像是没解决。<br>也没用搜索到其他人有关该插件的使用经验。<br>没办法，自己动手丰衣足食！</p>
 <h3 id="解决锚链接中文被转义"><a href="#解决锚链接中文被转义" class="headerlink" title="解决锚链接中文被转义"></a>解决锚链接中文被转义</h3><p>也没什么好的办法，只凭着入门级的Node水平，顺藤摸瓜！<br>从插件下的<code>index.js</code>开始，一路跟踪代码调试，在感觉可能出现问题的地方console输出内容，最终让我给找到了。</p>
@@ -328,7 +344,7 @@
 <div class="duoshuo" id="comments">
 	<div class="ds-thread" data-thread-key="hexo-toc" data-title="Hexo添加Toc支持，生成文章目录" data-url="http://imys.net/20150514/hexo-toc.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.2.3"></script>
+<script src="/js/embed.min.js?v=1.3"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -423,7 +439,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.2.3"></script>
+<script src="/js/main.min.js?v=1.3"></script>
 
 
 
@@ -444,7 +460,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.2.3"></script>
+<script src="/js/search.min.js?v=1.3"></script>
 
 
 
@@ -453,7 +469,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 
 
 <!-- Google Analytics -->
-<script type="text/javascript">
+<script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
