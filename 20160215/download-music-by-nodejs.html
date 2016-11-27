@@ -34,7 +34,7 @@
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.3">
+  <link rel="stylesheet" href="/css/style.css?v=1.3.1">
 </head>
 
 <body>
@@ -203,10 +203,8 @@
 <p>通过开发者工具 - Elements 可以找到酷我搜索结果页面的列表和分页的 Dom。可以使用 http 模块去请求这个页面，拿到整个页面文档，使用 cheerio 选取对应的 Dom 来组装成我们需要的数据。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/dmn-1.jpg" alt="相关Dom">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/dmn-1.jpg" alt="相关Dom" title="">
                 </div>
                 <div class="image-caption">相关Dom</div>
             </figure>
@@ -228,10 +226,8 @@
 <h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>在酷我的页面中点击歌曲名可以跳转到一个歌曲播放页，该页面 URL 格式为<code>http://www.kuwo.cn/yinyue/100062/</code>，其中的 100062 就是歌曲ID了。<br>对于资源文件，直接分析 Network，找到资源文件请求和歌曲ID之间的关系，期望可以直接获取到资源文件的链接。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/dmn-2.jpg" alt="酷我Network">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/dmn-2.jpg" alt="酷我Network" title="">
                 </div>
                 <div class="image-caption">酷我Network</div>
             </figure>
@@ -243,10 +239,8 @@
 <p>request 模块又派上用场了，由于该请求直接返回了歌曲链接，我就直接重定向到该链接了。<br>为了使歌曲在新窗口打开，前端页面列表项中的 a 链接要添加<code>target=&quot;_blank&quot;</code>。</p>
 <h2 id="成果展示"><a href="#成果展示" class="headerlink" title="成果展示"></a>成果展示</h2><h3 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h3><figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/dmn-3.jpg" alt="DownloadMusic">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/dmn-3.jpg" alt="DownloadMusic" title="">
                 </div>
                 <div class="image-caption">DownloadMusic</div>
             </figure>
@@ -356,7 +350,7 @@
 <div class="duoshuo" id="comments">
 	<div class="ds-thread" data-thread-key="download-music-by-nodejs" data-title="写一个歌曲下载工具" data-url="http://imys.net/20160215/download-music-by-nodejs.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.3"></script>
+<script src="/js/embed.min.js?v=1.3.1"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -451,7 +445,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.3"></script>
+<script src="/js/main.min.js?v=1.3.1"></script>
 
 
 
@@ -472,7 +466,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.3"></script>
+<script src="/js/search.min.js?v=1.3.1"></script>
 
 
 

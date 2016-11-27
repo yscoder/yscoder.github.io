@@ -110,10 +110,8 @@
 <p>然后不出意料的报错了，只是少装了一个模块<code>isparta-loader</code>，是一个代码覆盖工具，继续安装后运行OK。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-1.jpg" alt="vue-unit-1">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-1.jpg" alt="vue-unit-1" title="">
                 </div>
                 <div class="image-caption">vue-unit-1</div>
             </figure>
@@ -131,10 +129,8 @@
 <p>把以上步骤又重复了一遍，集成到了一个自己写的 Demo 项目中，然后运行测试。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-2.jpg" alt="vue-unit-2">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-2.jpg" alt="vue-unit-2" title="">
                 </div>
                 <div class="image-caption">vue-unit-2</div>
             </figure>
@@ -147,30 +143,24 @@
 <p>刚翻过一座山，又遇到一条河。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-3.jpg" alt="vue-unit-3">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-3.jpg" alt="vue-unit-3" title="">
                 </div>
                 <div class="image-caption">vue-unit-3</div>
             </figure>
 <p>看起来是因为 API 不兼容，PhantomJS 中还没有集成 Promise。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-4.jpg" alt="vue-unit-4">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-4.jpg" alt="vue-unit-4" title="">
                 </div>
                 <div class="image-caption">vue-unit-4</div>
             </figure>
 <p>为了避免相似的问题，索性把 launcher 换掉了，用<code>karma-chrome-launcher</code>。<br>安装后，更改 Karma 配置中的<code>browsers</code>属性值为<code>[&#39;Chrome&#39;]</code>，测试运行成功。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-5.png" alt="vue-unit-5">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-unit-5.png" alt="vue-unit-5" title="">
                 </div>
                 <div class="image-caption">vue-unit-5</div>
             </figure>
@@ -409,10 +399,8 @@
 <p>所以这个<a href="https://github.com/yscoder/vscode-qiniu-upload-image" target="_blank" rel="external">七牛图床工具</a>就诞生了。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/vscode-qiniu-pv.gif" alt="vscode-qiniu-pv">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/vscode-qiniu-pv.gif" alt="vscode-qiniu-pv" title="">
                 </div>
                 <div class="image-caption">vscode-qiniu-pv</div>
             </figure>
@@ -573,10 +561,8 @@
 <h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p><a href="/demo/screenRotation.html">Demo</a></p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/1466565951.png" alt="测试Demo">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/1466565951.png" alt="测试Demo" title="">
                 </div>
                 <div class="image-caption">测试Demo</div>
             </figure>
@@ -710,70 +696,56 @@
 <p>可以对色调进行修改，由于是在单页面展示搜索结果，就算不提供外观修改也可以自己重写 css ，类似多说。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-colors.jpg" alt="Swiftype-colors">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-colors.jpg" alt="Swiftype-colors" title="">
                 </div>
                 <div class="image-caption">Swiftype-colors</div>
             </figure>
 <p>搜索结果的展示可以自定义，包括内容布局、字段排列、分页等。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-results.jpg" alt="Swiftype-results">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-results.jpg" alt="Swiftype-results" title="">
                 </div>
                 <div class="image-caption">Swiftype-results</div>
             </figure>
 <p>搜索结果容器可完全自定义，可设置单页或新页面显示搜索结果，对外观的控制力更强。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-container.jpg" alt="Swiftype-container">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-container.jpg" alt="Swiftype-container" title="">
                 </div>
                 <div class="image-caption">Swiftype-container</div>
             </figure>
 <p>可以设置字段权重，比如优先展示文章标题的匹配结果。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-sort.jpg" alt="Swiftype-sort">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-sort.jpg" alt="Swiftype-sort" title="">
                 </div>
                 <div class="image-caption">Swiftype-sort</div>
             </figure>
 <p>可以单独为某个关键字搜索结果进行管理，比如排序、置顶、删除等等，话说某度推广不就是这样吗。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-rank.jpg" alt="Swiftype-rank">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-rank.jpg" alt="Swiftype-rank" title="">
                 </div>
                 <div class="image-caption">Swiftype-rank</div>
             </figure>
 <p>可以设置抓取规则，比如只抓取文章页。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-rules.jpg" alt="Swiftype-rules">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-rules.jpg" alt="Swiftype-rules" title="">
                 </div>
                 <div class="image-caption">Swiftype-rules</div>
             </figure>
 <p>默认的字段匹配不满意，下图是对<code>hexo</code>的搜索结果。Swiftype 的<code>body</code>字段默认抓取整个页面，我每个页面的左侧 footer 都有<code>hexo</code>这个单词，在我设置了只抓取文章页后，博客一共 46 篇文章也就匹配了 46 个结果。我期望它只对文章内容检索，这样更精准。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-show.jpg" alt="Swiftype-show">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-show.jpg" alt="Swiftype-show" title="">
                 </div>
                 <div class="image-caption">Swiftype-show</div>
             </figure>
@@ -793,10 +765,8 @@
 <p>此外，文章页的字段也可以根据需求减少，以减小数据文件大小。下图可以直观看出每个字段表示的内容。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/hexo-generator-json-content.jpg" alt="hexo-generator-json-content">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/hexo-generator-json-content.jpg" alt="hexo-generator-json-content" title="">
                 </div>
                 <div class="image-caption">hexo-generator-json-content</div>
             </figure>
@@ -1058,9 +1028,9 @@
     
       <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
     
-      <category term="用户体验" scheme="http://imys.net/tags/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C/"/>
-    
       <category term="History" scheme="http://imys.net/tags/History/"/>
+    
+      <category term="用户体验" scheme="http://imys.net/tags/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C/"/>
     
   </entry>
   
@@ -1377,10 +1347,8 @@ git push origin master
 <p>通过开发者工具 - Elements 可以找到酷我搜索结果页面的列表和分页的 Dom。可以使用 http 模块去请求这个页面，拿到整个页面文档，使用 cheerio 选取对应的 Dom 来组装成我们需要的数据。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/dmn-1.jpg" alt="相关Dom">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/dmn-1.jpg" alt="相关Dom" title="">
                 </div>
                 <div class="image-caption">相关Dom</div>
             </figure>
@@ -1402,10 +1370,8 @@ git push origin master
 <h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>在酷我的页面中点击歌曲名可以跳转到一个歌曲播放页，该页面 URL 格式为<code>http://www.kuwo.cn/yinyue/100062/</code>，其中的 100062 就是歌曲ID了。<br>对于资源文件，直接分析 Network，找到资源文件请求和歌曲ID之间的关系，期望可以直接获取到资源文件的链接。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/dmn-2.jpg" alt="酷我Network">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/dmn-2.jpg" alt="酷我Network" title="">
                 </div>
                 <div class="image-caption">酷我Network</div>
             </figure>
@@ -1417,10 +1383,8 @@ git push origin master
 <p>request 模块又派上用场了，由于该请求直接返回了歌曲链接，我就直接重定向到该链接了。<br>为了使歌曲在新窗口打开，前端页面列表项中的 a 链接要添加<code>target=&quot;_blank&quot;</code>。</p>
 <h2 id="成果展示"><a href="#成果展示" class="headerlink" title="成果展示"></a>成果展示</h2><h3 id="截图"><a href="#截图" class="headerlink" title="截图"></a>截图</h3><figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/dmn-3.jpg" alt="DownloadMusic">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/dmn-3.jpg" alt="DownloadMusic" title="">
                 </div>
                 <div class="image-caption">DownloadMusic</div>
             </figure>
@@ -1678,10 +1642,8 @@ git push origin master
 <p>滑动选择器在APP上是很常见的组件了，最初是 IOS 上的组件，之后就出现 Android 版的自定义实现，称为 WheelView。对于前端技术来讲，实现也并不困难。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/wheelview.gif" alt="wheelview">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/wheelview.gif" alt="wheelview" title="">
                 </div>
                 <div class="image-caption">wheelview</div>
             </figure>
@@ -2415,10 +2377,8 @@ package.json
 <p>暨于上次的<code>canvas</code>的使用，我决定自己动手实现所需要的图表组件。<br>这是最终的完成样式：</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/canvas-chart.jpg" alt="canvas实践--图表组件仪表盘、雷达图">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/canvas-chart.jpg" alt="canvas实践--图表组件仪表盘、雷达图" title="">
                 </div>
                 <div class="image-caption">canvas实践--图表组件仪表盘、雷达图</div>
             </figure>
@@ -2497,10 +2457,8 @@ package.json
 <p>通过合理的参数设置就能实现各种角度的圆弧，或者满圆。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/process.jpg" alt="Canvas初试--环形进度条的实现">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/process.jpg" alt="Canvas初试--环形进度条的实现" title="">
                 </div>
                 <div class="image-caption">Canvas初试--环形进度条的实现</div>
             </figure>
@@ -2549,10 +2507,8 @@ package.json
 <p>与上一步比较，多了一句<code>ctx.moveTo(x,y);</code>，意为把路径移动到画布中的指定点，如果没有这一步画出来的就不是弧了。<br>起始角度和结束角度也发生了变化，要想真正理解这两个角度，看下图。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/img_arc.gif" alt="Canvas初试--环形进度条的实现">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/img_arc.gif" alt="Canvas初试--环形进度条的实现" title="">
                 </div>
                 <div class="image-caption">Canvas初试--环形进度条的实现</div>
             </figure>
@@ -2632,9 +2588,9 @@ package.json
     </summary>
     
     
-      <category term="WEB" scheme="http://imys.net/tags/WEB/"/>
-    
       <category term="用户体验" scheme="http://imys.net/tags/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C/"/>
+    
+      <category term="WEB" scheme="http://imys.net/tags/WEB/"/>
     
       <category term="快捷键" scheme="http://imys.net/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
     
@@ -2650,10 +2606,8 @@ package.json
     <content type="html"><![CDATA[<p>最近工作不是很忙，看到站里一些纯图标的按钮还是使用的默认的<code>title</code>属性作文字提示，就造了这个轮子。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/jtip.jpg" alt="jtip">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/jtip.jpg" alt="jtip" title="">
                 </div>
                 <div class="image-caption">jtip</div>
             </figure>
@@ -2725,10 +2679,8 @@ package.json
 <p>不经意间 Internet选项 -&gt; 外观 -&gt; 辅助功能…我滴个神！我看到什么了？</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/ie-nodisplay-iconfont.jpg" alt="ie不显示iconfont字体图标">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/ie-nodisplay-iconfont.jpg" alt="ie不显示iconfont字体图标" title="">
                 </div>
                 <div class="image-caption">ie不显示iconfont字体图标</div>
             </figure>
@@ -2872,20 +2824,16 @@ package.json
 <p>好了，现在重启Hexo预览下效果吧。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/hexo-toc-1.jpg" alt="Toc文章目录">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/hexo-toc-1.jpg" alt="Toc文章目录" title="">
                 </div>
                 <div class="image-caption">Toc文章目录</div>
             </figure>
 <p>然后你会发现点击目录链接，没反应！<br>F12查看生成的HTML代码：</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/hexo-toc-2.jpg" alt="Toc生成代码">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/hexo-toc-2.jpg" alt="Toc生成代码" title="">
                 </div>
                 <div class="image-caption">Toc生成代码</div>
             </figure>
@@ -3100,9 +3048,9 @@ package.json
     </summary>
     
     
-      <category term="jQuery" scheme="http://imys.net/tags/jQuery/"/>
-    
       <category term="jQuery插件" scheme="http://imys.net/tags/jQuery%E6%8F%92%E4%BB%B6/"/>
+    
+      <category term="jQuery" scheme="http://imys.net/tags/jQuery/"/>
     
   </entry>
   
@@ -3160,9 +3108,9 @@ package.json
     </summary>
     
     
-      <category term="jQuery" scheme="http://imys.net/tags/jQuery/"/>
-    
       <category term="jQuery插件" scheme="http://imys.net/tags/jQuery%E6%8F%92%E4%BB%B6/"/>
+    
+      <category term="jQuery" scheme="http://imys.net/tags/jQuery/"/>
     
   </entry>
   
@@ -3175,10 +3123,8 @@ package.json
     
     <content type="html"><![CDATA[<figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/css3-selector-multiple-color.jpg" alt="使用css3后代选择器实现多背景色标签样式">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/css3-selector-multiple-color.jpg" alt="使用css3后代选择器实现多背景色标签样式" title="">
                 </div>
                 <div class="image-caption">使用css3后代选择器实现多背景色标签样式</div>
             </figure>
@@ -3340,10 +3286,8 @@ package.json
     
     <content type="html"><![CDATA[<figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/css-borde-shape.jpg" alt="CSS巧用border画小图形">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/css-borde-shape.jpg" alt="CSS巧用border画小图形" title="">
                 </div>
                 <div class="image-caption">CSS巧用border画小图形</div>
             </figure>

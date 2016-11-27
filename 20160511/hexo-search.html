@@ -39,7 +39,7 @@
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.3">
+  <link rel="stylesheet" href="/css/style.css?v=1.3.1">
 </head>
 
 <body>
@@ -197,70 +197,56 @@
 <p>可以对色调进行修改，由于是在单页面展示搜索结果，就算不提供外观修改也可以自己重写 css ，类似多说。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-colors.jpg" alt="Swiftype-colors">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-colors.jpg" alt="Swiftype-colors" title="">
                 </div>
                 <div class="image-caption">Swiftype-colors</div>
             </figure>
 <p>搜索结果的展示可以自定义，包括内容布局、字段排列、分页等。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-results.jpg" alt="Swiftype-results">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-results.jpg" alt="Swiftype-results" title="">
                 </div>
                 <div class="image-caption">Swiftype-results</div>
             </figure>
 <p>搜索结果容器可完全自定义，可设置单页或新页面显示搜索结果，对外观的控制力更强。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-container.jpg" alt="Swiftype-container">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-container.jpg" alt="Swiftype-container" title="">
                 </div>
                 <div class="image-caption">Swiftype-container</div>
             </figure>
 <p>可以设置字段权重，比如优先展示文章标题的匹配结果。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-sort.jpg" alt="Swiftype-sort">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-sort.jpg" alt="Swiftype-sort" title="">
                 </div>
                 <div class="image-caption">Swiftype-sort</div>
             </figure>
 <p>可以单独为某个关键字搜索结果进行管理，比如排序、置顶、删除等等，话说某度推广不就是这样吗。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-rank.jpg" alt="Swiftype-rank">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-rank.jpg" alt="Swiftype-rank" title="">
                 </div>
                 <div class="image-caption">Swiftype-rank</div>
             </figure>
 <p>可以设置抓取规则，比如只抓取文章页。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-rules.jpg" alt="Swiftype-rules">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-rules.jpg" alt="Swiftype-rules" title="">
                 </div>
                 <div class="image-caption">Swiftype-rules</div>
             </figure>
 <p>默认的字段匹配不满意，下图是对<code>hexo</code>的搜索结果。Swiftype 的<code>body</code>字段默认抓取整个页面，我每个页面的左侧 footer 都有<code>hexo</code>这个单词，在我设置了只抓取文章页后，博客一共 46 篇文章也就匹配了 46 个结果。我期望它只对文章内容检索，这样更精准。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-show.jpg" alt="Swiftype-show">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/Swiftype-show.jpg" alt="Swiftype-show" title="">
                 </div>
                 <div class="image-caption">Swiftype-show</div>
             </figure>
@@ -280,10 +266,8 @@
 <p>此外，文章页的字段也可以根据需求减少，以减小数据文件大小。下图可以直观看出每个字段表示的内容。</p>
 <figure class="image-bubble">
                 <div class="img-lightbox">
-                    <div class="aspect-ratio">
-                        <div class="placeholder"></div>
-                        <img src="http://7ximpj.com1.z0.glb.clouddn.com/hexo-generator-json-content.jpg" alt="hexo-generator-json-content">
-                    </div>
+                    <div class="overlay"></div>
+                    <img src="http://7ximpj.com1.z0.glb.clouddn.com/hexo-generator-json-content.jpg" alt="hexo-generator-json-content" title="">
                 </div>
                 <div class="image-caption">hexo-generator-json-content</div>
             </figure>
@@ -404,7 +388,7 @@
 <div class="duoshuo" id="comments">
 	<div class="ds-thread" data-thread-key="hexo-search" data-title="Hexo添加站内搜索功能初步完成" data-url="http://imys.net/20160511/hexo-search.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.3"></script>
+<script src="/js/embed.min.js?v=1.3.1"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -499,7 +483,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.3"></script>
+<script src="/js/main.min.js?v=1.3.1"></script>
 
 
 
@@ -520,7 +504,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.3"></script>
+<script src="/js/search.min.js?v=1.3.1"></script>
 
 
 
