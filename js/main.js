@@ -299,7 +299,7 @@
                         w: w,
                         h: h,
                         t: (docH - h) / 2 - imgRect.top,
-                        l: (docW - w) / 2 - imgRect.left
+                        l: (docW - w) / 2 - imgRect.left + this.$img.offsetLeft
                     }
                 }
 
