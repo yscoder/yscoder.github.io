@@ -22,7 +22,7 @@
 <meta property="og:url" content="http://imys.net/20161125/cursor-offset-at-input.html">
 <meta property="og:site_name" content="Yusen's Blog">
 <meta property="og:description" content="Javascript 如何获取输入时的光标位置，在光标处插入或替换内容">
-<meta property="og:updated_time" content="2016-11-26T23:02:32.606Z">
+<meta property="og:updated_time" content="2016-11-29T14:47:32.479Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Javascript 获取输入时的光标位置及场景问题">
 <meta name="twitter:description" content="Javascript 如何获取输入时的光标位置，在光标处插入或替换内容">
@@ -30,7 +30,7 @@
     <link rel="alternative" href="/atom.xml" title="Yusen&#39;s Blog" type="application/atom+xml">
   
   <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="stylesheet" href="/css/style.css?v=1.3.1">
+  <link rel="stylesheet" href="/css/style.css?v=1.3.2">
 </head>
 
 <body>
@@ -179,9 +179,9 @@
 <h3 id="相对于内容"><a href="#相对于内容" class="headerlink" title="相对于内容"></a>相对于内容</h3><p>相对于内容，光标位于第几个字符之后，姑且称之为<strong>字符位置</strong>吧。</p>
 <h3 id="相对于UI"><a href="#相对于UI" class="headerlink" title="相对于UI"></a>相对于UI</h3><p>相对于UI，也就是跟普通页面元素一样的<strong>像素位置</strong>了。</p>
 <h2 id="插入或替换内容"><a href="#插入或替换内容" class="headerlink" title="插入或替换内容"></a>插入或替换内容</h2><p>在前言提到的场景中，也有在光标位置处插入内容的需求，比如对选取文字加粗<code>text =&gt; &lt;strong&gt;text&lt;/strong&gt;</code>等。</p>
-<h3 id="textarea"><a href="#textarea" class="headerlink" title="textarea"></a>textarea</h3><p>对于<code>textarea</code>元素，可以很容易获取到选择的一段文字的起止位置。如果当前没有选择文字，则两个位置值都为光标右侧字符的索引，从 0 开始。</p>
+<h3 id="textarea"><a href="#textarea" class="headerlink" title="textarea"></a>textarea</h3><p><code>textarea</code>元素可以很容易获取到选择的一段文字的起止位置。如果当前没有选择文字，则两个位置值都为光标右侧字符的索引，从 0 开始。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 开始位置</span></div><div class="line">textarea.selectionStart</div><div class="line"><span class="comment">// 结束位置</span></div><div class="line">textarea.selectionEnd</div></pre></td></tr></table></figure>
-<p>对于加粗功能，有了起始位置，就能获取到选择的文字内容，然后对内容进行替换。<br>由于<code>textarea</code>不能包含子元素，只有纯文本，所以基于<code>textarea</code>实现加粗只能像用 Markdown 标记语法实现。</p>
+<p>对于加粗功能，有了起止位置，就能获取到选择的文字内容，然后对内容进行替换。<br>由于<code>textarea</code>不能包含子元素，只有纯文本，所以基于<code>textarea</code>实现加粗只能像用 Markdown 标记语法实现。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> selectedText = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd)</div><div class="line">textarea.setRangeText(<span class="string">'**'</span>+ selectedText +<span class="string">'**'</span>)</div></pre></td></tr></table></figure>
 <blockquote>
 <p><code>textarea.setRangeText(text: String)</code> 把选中的文字替换为其他内容。</p>
@@ -190,7 +190,7 @@
 <p>还是以加粗功能为例。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 获取文档中选中区域</span></div><div class="line"><span class="keyword">var</span> range = <span class="built_in">window</span>.getSelection().getRangeAt(<span class="number">0</span>)</div><div class="line"><span class="keyword">var</span> strongNode = <span class="built_in">document</span>.createElement(<span class="string">'strong'</span>)</div><div class="line"><span class="comment">// 选中区域文本</span></div><div class="line">strongNode.innerHTML = range.toString()</div><div class="line"><span class="comment">// 删除选中区</span></div><div class="line">range.deleteContents()</div><div class="line"><span class="comment">// 在光标处插入新节点                    </span></div><div class="line">range.insertNode(strongNode)</div></pre></td></tr></table></figure>
 <p>基于<code>contenteditable</code>的可编辑元素，其中的内容均为子元素，文本为<code>textNode</code>，加粗使用 HTML 元素，插入或替换是对元素的操作。</p>
-<p>如果想使用操作内容的思路实现会比较麻烦，因为可以获取到的起始位置是基于子元素的。</p>
+<p>如果想使用操作内容的思路实现会比较麻烦，因为可以获取到的起止位置是基于子元素的。</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">contenteditable</span>&gt;</span>hello<span class="tag">&lt;<span class="name">strong</span>&gt;</span>你好<span class="tag">&lt;/<span class="name">strong</span>&gt;</span><span class="tag">&lt;<span class="name">big</span>&gt;</span>w<span class="tag">&lt;/<span class="name">big</span>&gt;</span>orld<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>假如选中的文字是<code>你好wor</code>，调用相关 API 的输出如下。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 当前在文档中选择的文本，document 和 window 都有这个函数</span></div><div class="line"><span class="comment">// var selection = document.getSelection()</span></div><div class="line"><span class="keyword">var</span> selection = <span class="built_in">window</span>.getSelection()</div><div class="line">selection.anchorNode    <span class="comment">// 你好</span></div><div class="line">selection.anchorOffset  <span class="comment">// 0</span></div><div class="line">selection.focusNode     <span class="comment">// orld</span></div><div class="line">selection.focusOffset   <span class="comment">// 2</span></div><div class="line"></div><div class="line"><span class="comment">// 或者使用 Range</span></div><div class="line"><span class="keyword">var</span> range = selection.getRangeAt(<span class="number">0</span>)</div><div class="line">range.startContainer    <span class="comment">// 你好</span></div><div class="line">range.startOffset       <span class="comment">// 0</span></div><div class="line">range.endContainer      <span class="comment">// orld</span></div><div class="line">range.endOffset         <span class="comment">// 2</span></div></pre></td></tr></table></figure>
@@ -211,7 +211,7 @@
 </blockquote>
 <h4 id="镜像元素"><a href="#镜像元素" class="headerlink" title="镜像元素"></a>镜像元素</h4><p>文本不支持定位？那我创建 DOM 好了。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 光标位置</span></div><div class="line"><span class="keyword">var</span> end = textarea.selectionEnd</div><div class="line"><span class="comment">// 光标前的内容</span></div><div class="line"><span class="keyword">var</span> beforeText = textarea.value.slice(<span class="number">0</span>, end)</div><div class="line"><span class="comment">// 光标后的内容</span></div><div class="line"><span class="keyword">var</span> afterText = textarea.value.slice(end)</div><div class="line"><span class="comment">// 对影响 UI 的特殊元素编码</span></div><div class="line"><span class="keyword">var</span> <span class="built_in">escape</span> = <span class="function"><span class="keyword">function</span>(<span class="params">text</span>) </span>&#123; </div><div class="line">    <span class="keyword">return</span> text.replace(<span class="regexp">/&lt;|&gt;|`|"|&amp;/g</span>, <span class="string">'?'</span>).replace(<span class="regexp">/\r\n|\r|\n/g</span>, <span class="string">'&lt;br&gt;'</span>)</div><div class="line">&#125;</div><div class="line"><span class="comment">// 创建镜像内容，复制样式</span></div><div class="line"><span class="keyword">var</span> mirror = <span class="string">'&lt;div class="'</span>+ textarea.className +<span class="string">'"&gt;'</span> </div><div class="line">                + <span class="built_in">escape</span>(beforeText) </div><div class="line">                + <span class="string">'&lt;span id="cursor"&gt;|&lt;/span&gt;'</span> </div><div class="line">                + <span class="built_in">escape</span>(afterText) </div><div class="line">            + <span class="string">'&lt;/div&gt;'</span></div><div class="line"><span class="comment">// 添加到 textarea 同级，注意设置定位及 zIndex，使两个元素重合</span></div><div class="line">textarea.insertAdjacentHTML(<span class="string">'afterend'</span>, mirror)</div><div class="line"><span class="comment">// 通过镜像元素中的假光标占位元素获取像素位置</span></div><div class="line"><span class="keyword">var</span> cursor = <span class="built_in">document</span>.getElementById(<span class="string">'cursor'</span>)</div><div class="line">cursor.getBoundingClientRect()  <span class="comment">// &#123; width, height, top, right, bottom, right &#125;</span></div></pre></td></tr></table></figure>
-<h2 id="End"><a href="#End" class="headerlink" title="End"></a>End</h2><p>最后悄悄说一句，以上内容不兼容低版本 IE，但是 IE 毕竟主场运行，有些 API 反而是其他浏览器所没有的。就上面提到的案例来说，低版本 IE 实现也很容易。<br>真是不想在 IE 上去浪费精力了，索性不提。</p>
+<h2 id="End"><a href="#End" class="headerlink" title="End"></a>End</h2><p>最后悄悄说一句，以上内容不兼容低版本 IE，但是 IE 毕竟主场运行，有些 API 反而是其他浏览器所没有的。就上面提到的案例来说，低版本 IE 也有对应的 API 可用。<br>真是不想在 IE 上去浪费精力了，索性不提。</p>
 
         </div>
 
@@ -310,7 +310,7 @@
 <div class="duoshuo" id="comments">
 	<div class="ds-thread" data-thread-key="cursor-offset-at-input" data-title="Javascript 获取输入时的光标位置及场景问题" data-url="http://imys.net/20161125/cursor-offset-at-input.html"></div>
 </div>
-<script src="/js/embed.min.js?v=1.3.1"></script>
+<script src="/js/embed.min.js?v=1.3.2"></script>
 <script src="//cdn.bootcss.com/marked/0.3.6/marked.min.js" async="async"></script>
 <script>
 var duoshuoQuery = {short_name:'ysblog', theme: 'none'}
@@ -405,7 +405,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 
 
   <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
-<script src="/js/main.min.js?v=1.3.1"></script>
+<script src="/js/main.min.js?v=1.3.2"></script>
 
 
 
@@ -426,7 +426,7 @@ var BLOG = { ROOT: '/', SHARE: true, REWARD: true }</script>
 </li>
 </template>
 
-<script src="/js/search.min.js?v=1.3.1"></script>
+<script src="/js/search.min.js?v=1.3.2"></script>
 
 
 

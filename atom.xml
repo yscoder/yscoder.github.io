@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://imys.net/"/>
-  <updated>2016-11-26T23:02:32.606Z</updated>
+  <updated>2016-11-29T14:47:32.479Z</updated>
   <id>http://imys.net/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://imys.net/20161125/cursor-offset-at-input.html"/>
     <id>http://imys.net/20161125/cursor-offset-at-input.html</id>
     <published>2016-11-25T02:02:01.000Z</published>
-    <updated>2016-11-26T23:02:32.606Z</updated>
+    <updated>2016-11-29T14:47:32.479Z</updated>
     
     <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在输入编辑的业务场景中，可能会需要在光标当前的位置或附近显示提示选项。<br>比如社交评论中的<code>@user</code>功能，要确保提示的用户列表总是出现在<code>@</code>字符右下方，又或者是在自定义编辑器中 autocomplete 语法提示，都需要获取光标当前的位置作为参照点。</p>
 <a id="more"></a>
@@ -28,9 +28,9 @@
 <h3 id="相对于内容"><a href="#相对于内容" class="headerlink" title="相对于内容"></a>相对于内容</h3><p>相对于内容，光标位于第几个字符之后，姑且称之为<strong>字符位置</strong>吧。</p>
 <h3 id="相对于UI"><a href="#相对于UI" class="headerlink" title="相对于UI"></a>相对于UI</h3><p>相对于UI，也就是跟普通页面元素一样的<strong>像素位置</strong>了。</p>
 <h2 id="插入或替换内容"><a href="#插入或替换内容" class="headerlink" title="插入或替换内容"></a>插入或替换内容</h2><p>在前言提到的场景中，也有在光标位置处插入内容的需求，比如对选取文字加粗<code>text =&gt; &lt;strong&gt;text&lt;/strong&gt;</code>等。</p>
-<h3 id="textarea"><a href="#textarea" class="headerlink" title="textarea"></a>textarea</h3><p>对于<code>textarea</code>元素，可以很容易获取到选择的一段文字的起止位置。如果当前没有选择文字，则两个位置值都为光标右侧字符的索引，从 0 开始。</p>
+<h3 id="textarea"><a href="#textarea" class="headerlink" title="textarea"></a>textarea</h3><p><code>textarea</code>元素可以很容易获取到选择的一段文字的起止位置。如果当前没有选择文字，则两个位置值都为光标右侧字符的索引，从 0 开始。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 开始位置</span></div><div class="line">textarea.selectionStart</div><div class="line"><span class="comment">// 结束位置</span></div><div class="line">textarea.selectionEnd</div></pre></td></tr></table></figure>
-<p>对于加粗功能，有了起始位置，就能获取到选择的文字内容，然后对内容进行替换。<br>由于<code>textarea</code>不能包含子元素，只有纯文本，所以基于<code>textarea</code>实现加粗只能像用 Markdown 标记语法实现。</p>
+<p>对于加粗功能，有了起止位置，就能获取到选择的文字内容，然后对内容进行替换。<br>由于<code>textarea</code>不能包含子元素，只有纯文本，所以基于<code>textarea</code>实现加粗只能像用 Markdown 标记语法实现。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> selectedText = textarea.value.substring(textarea.selectionStart, textarea.selectionEnd)</div><div class="line">textarea.setRangeText(<span class="string">'**'</span>+ selectedText +<span class="string">'**'</span>)</div></pre></td></tr></table></figure>
 <blockquote>
 <p><code>textarea.setRangeText(text: String)</code> 把选中的文字替换为其他内容。</p>
@@ -39,7 +39,7 @@
 <p>还是以加粗功能为例。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 获取文档中选中区域</span></div><div class="line"><span class="keyword">var</span> range = <span class="built_in">window</span>.getSelection().getRangeAt(<span class="number">0</span>)</div><div class="line"><span class="keyword">var</span> strongNode = <span class="built_in">document</span>.createElement(<span class="string">'strong'</span>)</div><div class="line"><span class="comment">// 选中区域文本</span></div><div class="line">strongNode.innerHTML = range.toString()</div><div class="line"><span class="comment">// 删除选中区</span></div><div class="line">range.deleteContents()</div><div class="line"><span class="comment">// 在光标处插入新节点                    </span></div><div class="line">range.insertNode(strongNode)</div></pre></td></tr></table></figure>
 <p>基于<code>contenteditable</code>的可编辑元素，其中的内容均为子元素，文本为<code>textNode</code>，加粗使用 HTML 元素，插入或替换是对元素的操作。</p>
-<p>如果想使用操作内容的思路实现会比较麻烦，因为可以获取到的起始位置是基于子元素的。</p>
+<p>如果想使用操作内容的思路实现会比较麻烦，因为可以获取到的起止位置是基于子元素的。</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">contenteditable</span>&gt;</span>hello<span class="tag">&lt;<span class="name">strong</span>&gt;</span>你好<span class="tag">&lt;/<span class="name">strong</span>&gt;</span><span class="tag">&lt;<span class="name">big</span>&gt;</span>w<span class="tag">&lt;/<span class="name">big</span>&gt;</span>orld<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
 <p>假如选中的文字是<code>你好wor</code>，调用相关 API 的输出如下。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 当前在文档中选择的文本，document 和 window 都有这个函数</span></div><div class="line"><span class="comment">// var selection = document.getSelection()</span></div><div class="line"><span class="keyword">var</span> selection = <span class="built_in">window</span>.getSelection()</div><div class="line">selection.anchorNode    <span class="comment">// 你好</span></div><div class="line">selection.anchorOffset  <span class="comment">// 0</span></div><div class="line">selection.focusNode     <span class="comment">// orld</span></div><div class="line">selection.focusOffset   <span class="comment">// 2</span></div><div class="line"></div><div class="line"><span class="comment">// 或者使用 Range</span></div><div class="line"><span class="keyword">var</span> range = selection.getRangeAt(<span class="number">0</span>)</div><div class="line">range.startContainer    <span class="comment">// 你好</span></div><div class="line">range.startOffset       <span class="comment">// 0</span></div><div class="line">range.endContainer      <span class="comment">// orld</span></div><div class="line">range.endOffset         <span class="comment">// 2</span></div></pre></td></tr></table></figure>
@@ -60,7 +60,7 @@
 </blockquote>
 <h4 id="镜像元素"><a href="#镜像元素" class="headerlink" title="镜像元素"></a>镜像元素</h4><p>文本不支持定位？那我创建 DOM 好了。</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 光标位置</span></div><div class="line"><span class="keyword">var</span> end = textarea.selectionEnd</div><div class="line"><span class="comment">// 光标前的内容</span></div><div class="line"><span class="keyword">var</span> beforeText = textarea.value.slice(<span class="number">0</span>, end)</div><div class="line"><span class="comment">// 光标后的内容</span></div><div class="line"><span class="keyword">var</span> afterText = textarea.value.slice(end)</div><div class="line"><span class="comment">// 对影响 UI 的特殊元素编码</span></div><div class="line"><span class="keyword">var</span> <span class="built_in">escape</span> = <span class="function"><span class="keyword">function</span>(<span class="params">text</span>) </span>&#123; </div><div class="line">    <span class="keyword">return</span> text.replace(<span class="regexp">/&lt;|&gt;|`|"|&amp;/g</span>, <span class="string">'?'</span>).replace(<span class="regexp">/\r\n|\r|\n/g</span>, <span class="string">'&lt;br&gt;'</span>)</div><div class="line">&#125;</div><div class="line"><span class="comment">// 创建镜像内容，复制样式</span></div><div class="line"><span class="keyword">var</span> mirror = <span class="string">'&lt;div class="'</span>+ textarea.className +<span class="string">'"&gt;'</span> </div><div class="line">                + <span class="built_in">escape</span>(beforeText) </div><div class="line">                + <span class="string">'&lt;span id="cursor"&gt;|&lt;/span&gt;'</span> </div><div class="line">                + <span class="built_in">escape</span>(afterText) </div><div class="line">            + <span class="string">'&lt;/div&gt;'</span></div><div class="line"><span class="comment">// 添加到 textarea 同级，注意设置定位及 zIndex，使两个元素重合</span></div><div class="line">textarea.insertAdjacentHTML(<span class="string">'afterend'</span>, mirror)</div><div class="line"><span class="comment">// 通过镜像元素中的假光标占位元素获取像素位置</span></div><div class="line"><span class="keyword">var</span> cursor = <span class="built_in">document</span>.getElementById(<span class="string">'cursor'</span>)</div><div class="line">cursor.getBoundingClientRect()  <span class="comment">// &#123; width, height, top, right, bottom, right &#125;</span></div></pre></td></tr></table></figure>
-<h2 id="End"><a href="#End" class="headerlink" title="End"></a>End</h2><p>最后悄悄说一句，以上内容不兼容低版本 IE，但是 IE 毕竟主场运行，有些 API 反而是其他浏览器所没有的。就上面提到的案例来说，低版本 IE 实现也很容易。<br>真是不想在 IE 上去浪费精力了，索性不提。</p>
+<h2 id="End"><a href="#End" class="headerlink" title="End"></a>End</h2><p>最后悄悄说一句，以上内容不兼容低版本 IE，但是 IE 毕竟主场运行，有些 API 反而是其他浏览器所没有的。就上面提到的案例来说，低版本 IE 也有对应的 API 可用。<br>真是不想在 IE 上去浪费精力了，索性不提。</p>
 ]]></content>
     
     <summary type="html">
@@ -83,12 +83,12 @@
     <link href="http://imys.net/20161110/vue-unit-test-start.html"/>
     <id>http://imys.net/20161110/vue-unit-test-start.html</id>
     <published>2016-11-10T03:08:14.000Z</published>
-    <updated>2016-11-12T18:58:09.000Z</updated>
+    <updated>2016-11-29T14:51:55.493Z</updated>
     
     <content type="html"><![CDATA[<p>最近在搭建一个项目的前端开发环境，准备趁此把一些没用过的东西尝试下，比如：单元测试。<br>使用<code>vue-cli</code>可以直接生成一个包含<code>unit</code>、<code>e2e</code>测试的开发环境，不过还是需要去了解其中的组织结构、配置和模块的使用等。</p>
 <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>没有一点相关经验，先把<code>vue-cli</code>生成后的<code>test/unit</code>目录拿到自己的项目中。<br><a id="more"></a></p>
 <p><code>test</code> 目录结构:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">|- test</div><div class="line">|--- unit</div><div class="line">|----- specs</div><div class="line">|----- .eslintrc</div><div class="line">|----- index.js</div><div class="line">|----- karma.conf.js</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">└─ test</div><div class="line">    └─ unit</div><div class="line">        ├─ specs</div><div class="line">        ├─ .eslintrc</div><div class="line">        ├─ index.js</div><div class="line">        └─ karma.conf.js</div></pre></td></tr></table></figure>
 <p>之后在<code>package.json</code>中找到<code>karma</code>相关的模块。</p>
 <ul>
 <li><a href="http://karma-runner.github.io/0.13/index.html" target="_blank" rel="external">karma</a> 一个 JavaScript 测试运行器，其在测试中的作用相当于开发构建中使用的<code>webpack</code>。</li>
@@ -1028,9 +1028,9 @@
     
       <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
     
-      <category term="用户体验" scheme="http://imys.net/tags/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C/"/>
-    
       <category term="History" scheme="http://imys.net/tags/History/"/>
+    
+      <category term="用户体验" scheme="http://imys.net/tags/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C/"/>
     
   </entry>
   
@@ -2588,9 +2588,9 @@ package.json
     </summary>
     
     
-      <category term="WEB" scheme="http://imys.net/tags/WEB/"/>
-    
       <category term="用户体验" scheme="http://imys.net/tags/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C/"/>
+    
+      <category term="WEB" scheme="http://imys.net/tags/WEB/"/>
     
       <category term="快捷键" scheme="http://imys.net/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
     
@@ -2710,7 +2710,7 @@ package.json
     <content type="html"><![CDATA[<p><strong>target</strong>译为“目标”，加冒号即为伪类选择器。<br>此选择器便是用于给目标元素添加额外样式，类似于<code>hover</code>。</p>
 <a id="more"></a>
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>该选择对应的目标元素为锚点触发。<br>以下代码定义了两个<code>a</code>元素，其中一个为链接元素，另一个使用样式定义为块元素。<br>块元素设置了透明度为<code>0</code>，并设置其被链接时透明度为<code>1</code>和过度效果。<br>最终的效果为点击链接元素时，<code>div1</code>从透明到不透明过度。</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>target选择器<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"renderer"</span> <span class="attr">content</span>=<span class="string">"webkit"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">    .link &#123;</div><div class="line">        display: block;</div><div class="line">        text-decoration: none;</div><div class="line">        text-align: center;</div><div class="line">        color: #fff;</div><div class="line">        background: #ff0000;</div><div class="line">        line-height: 30px;  </div><div class="line">    &#125;</div><div class="line">    .a-block &#123;</div><div class="line">        display: block;</div><div class="line">        opacity: 0;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    .a-block:target &#123;</div><div class="line">        opacity: 1;</div><div class="line">        transition: all .3s;</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#div1"</span> <span class="attr">class</span>=<span class="string">"link"</span>&gt;</span>显示<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">id</span>=<span class="string">"div1"</span> <span class="attr">class</span>=<span class="string">"a-block"</span>&gt;</span></div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>target选择器<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"renderer"</span> <span class="attr">content</span>=<span class="string">"webkit"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line">    <span class="selector-class">.link</span> &#123;</div><div class="line">        <span class="attribute">display</span>: block;</div><div class="line">        <span class="attribute">text-decoration</span>: none;</div><div class="line">        <span class="attribute">text-align</span>: center;</div><div class="line">        <span class="attribute">color</span>: <span class="number">#fff</span>;</div><div class="line">        <span class="attribute">background</span>: <span class="number">#ff0000</span>;</div><div class="line">        <span class="attribute">line-height</span>: <span class="number">30px</span>;  </div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.a-block</span> &#123;</div><div class="line">        <span class="attribute">display</span>: block;</div><div class="line">        <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="selector-class">.a-block</span><span class="selector-pseudo">:target</span> &#123;</div><div class="line">        <span class="attribute">opacity</span>: <span class="number">1</span>;</div><div class="line">        <span class="attribute">transition</span>: all .<span class="number">3s</span>;</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#div1"</span> <span class="attr">class</span>=<span class="string">"link"</span>&gt;</span>显示<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">id</span>=<span class="string">"div1"</span> <span class="attr">class</span>=<span class="string">"a-block"</span>&gt;</span></div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
 <h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>起初我写下这段Demo时目标元素是用的<code>div</code>，后来发现该选择器不能像<code>:hover</code>一样作用于<code>a</code>以外的元素。<br>另外该选择器的兼容性为IE8以上（不包括IE8）。</p>
 <h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h2><p>结合这个Demo可以发现该选择器又一次实现之前需要JS才能实现的功能，比如点击链接显示元素。<br>另外在全屏滚动动画页面时也可以用在导航之上，比如点击导航给对应的块添加动画效果。<br>更多使用方法也待慢慢摸索了！</p>
 ]]></content>
@@ -2756,9 +2756,9 @@ package.json
     </summary>
     
     
-      <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
-    
       <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
+    
+      <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
     
   </entry>
   
@@ -2797,9 +2797,9 @@ package.json
     </summary>
     
     
-      <category term="Event" scheme="http://imys.net/tags/Event/"/>
-    
       <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
+    
+      <category term="Event" scheme="http://imys.net/tags/Event/"/>
     
   </entry>
   

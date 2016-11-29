@@ -32,7 +32,7 @@
                 y: y
             };
         },
-        docEl = navigator.userAgent.indexOf('Firefox') !== -1 ? d.documentElement : body;
+        docEl = !!navigator.userAgent.match(/firefox/i) || navigator.msPointerEnabled ? d.documentElement : body;
 
     var Blog = {
         goTop: function (end) {
@@ -104,8 +104,7 @@
                 }
             }
 
-            var tocOfs = offset(toc),
-                tocTop = tocOfs.y,
+            var bannerH = $('.post-header').clientHeight,
                 headerH = header.clientHeight,
                 titles = $('#post-content').querySelectorAll('h1, h2, h3, h4, h5, h6');
 
@@ -116,17 +115,14 @@
                 el.addEventListener('click', function (e) {
                     e.preventDefault();
                     var top = offset($('[id="' + decodeURIComponent(this.hash).substr(1) + '"]')).y - headerH;
-                    animate(Blog.goTop.bind(Blog, top));
+                    // animate(Blog.goTop.bind(Blog, top));
+                    docEl.scrollTop = top;
                 })
             });
 
             return {
                 fixed: function (top) {
-                    if (top > tocTop - headerH) {
-                        toc.classList.add('fixed');
-                    } else {
-                        toc.classList.remove('fixed');
-                    }
+                    top >= bannerH - headerH ? toc.classList.add('fixed') : toc.classList.remove('fixed')
                 },
                 actived: function (top) {
                     for (i = 0, len = titles.length; i < len; i++) {
@@ -276,13 +272,11 @@
                 this.title = this.$img.title || this.$img.alt || '';
                 this.isZoom = false;
 
-                var naturalW = this.$img.naturalWidth || this.$img.width;
-                var naturalH = this.$img.naturalHeight || this.$img.height;
-                var imgRect, docW, docH;
+                var naturalW, naturalH, imgRect, docW, docH;
 
                 this.calcRect = function () {
-                    docW = docEl.clientWidth;
-                    docH = docEl.clientHeight;
+                    docW = body.clientWidth;
+                    docH = body.clientHeight;
                     var inH = docH - this.margin * 2;
                     var w = naturalW;
                     var h = naturalH;
@@ -322,16 +316,16 @@
 
                 // this.updateSize = function () {
                 //     var sw = sh = 1;
-                //     if (docW !== docEl.clientWidth) {
-                //         sw = docEl.clientWidth / docW;
+                //     if (docW !== body.clientWidth) {
+                //         sw = body.clientWidth / docW;
                 //     }
 
-                //     if (docH !== docEl.clientHeight) {
-                //         sh = docEl.clientHeight / docH;
+                //     if (docH !== body.clientHeight) {
+                //         sh = body.clientHeight / docH;
                 //     }
 
-                //     docW = docEl.clientWidth;
-                //     docH = docEl.clientHeight;
+                //     docW = body.clientWidth;
+                //     docH = body.clientHeight;
                 //     var rect = this.$img.getBoundingClientRect();
                 //     var w = rect.width * sw;
                 //     var h = rect.height * sh;
@@ -362,6 +356,8 @@
                 var _this = this;
 
                 this.zoomIn = function () {
+                    naturalW = this.$img.naturalWidth || this.$img.width;
+                    naturalH = this.$img.naturalHeight || this.$img.height;
                     imgRect = this.$img.getBoundingClientRect();
                     element.style.height = imgRect.height + 'px';
                     element.classList.add('ready');
@@ -405,7 +401,7 @@
             }
 
             forEach.call($$('.img-lightbox'), function (el) {
-                var lightbox = new LightBox(el);
+                new LightBox(el)
             })
         })()
     };
@@ -420,8 +416,16 @@
         Blog.page.loaded();
     });
 
-    w.addEventListener('beforeunload', function () {
-        Blog.page.unload();
+    var ignoreUnload = false;
+    $('a[href^="mailto"]').addEventListener(even, function () {
+        ignoreUnload = true;
+    });
+    w.addEventListener('beforeunload', function (e) {
+        if (!ignoreUnload) {
+            Blog.page.unload();
+        } else {
+            ignoreUnload = false;
+        }
     });
 
     w.addEventListener('resize', function () {
@@ -468,7 +472,6 @@
         Blog.reward()
     }
 
-    Blog.docEl = docEl;
     Blog.noop = noop;
     Blog.even = even;
     Blog.$ = $;
