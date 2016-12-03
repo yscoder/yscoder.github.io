@@ -936,9 +936,9 @@
     </summary>
     
     
-      <category term="CSS" scheme="http://imys.net/tags/CSS/"/>
-    
       <category term="Html" scheme="http://imys.net/tags/Html/"/>
+    
+      <category term="CSS" scheme="http://imys.net/tags/CSS/"/>
     
       <category term="CSS3" scheme="http://imys.net/tags/CSS3/"/>
     
@@ -1576,15 +1576,15 @@ git push origin master
     
       <category term="CSS" scheme="http://imys.net/tags/CSS/"/>
     
-      <category term="Mobile" scheme="http://imys.net/tags/Mobile/"/>
-    
       <category term="devicePixelRatio" scheme="http://imys.net/tags/devicePixelRatio/"/>
+    
+      <category term="em" scheme="http://imys.net/tags/em/"/>
+    
+      <category term="Mobile" scheme="http://imys.net/tags/Mobile/"/>
     
       <category term="Webview" scheme="http://imys.net/tags/Webview/"/>
     
       <category term="Viewport" scheme="http://imys.net/tags/Viewport/"/>
-    
-      <category term="em" scheme="http://imys.net/tags/em/"/>
     
   </entry>
   
@@ -1668,11 +1668,11 @@ git push origin master
     </summary>
     
     
-      <category term="Mobile" scheme="http://imys.net/tags/Mobile/"/>
-    
       <category term="wheelview" scheme="http://imys.net/tags/wheelview/"/>
     
       <category term="component" scheme="http://imys.net/tags/component/"/>
+    
+      <category term="Mobile" scheme="http://imys.net/tags/Mobile/"/>
     
       <category term="iscroll" scheme="http://imys.net/tags/iscroll/"/>
     
@@ -1917,11 +1917,11 @@ git push origin master
     </summary>
     
     
+      <category term="移动端" scheme="http://imys.net/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
+    
       <category term="devicePixelRatio" scheme="http://imys.net/tags/devicePixelRatio/"/>
     
       <category term="em" scheme="http://imys.net/tags/em/"/>
-    
-      <category term="移动端" scheme="http://imys.net/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
     
       <category term="rem" scheme="http://imys.net/tags/rem/"/>
     
@@ -2252,9 +2252,9 @@ package.json
     </summary>
     
     
-      <category term="CSS" scheme="http://imys.net/tags/CSS/"/>
-    
       <category term="Html" scheme="http://imys.net/tags/Html/"/>
+    
+      <category term="CSS" scheme="http://imys.net/tags/CSS/"/>
     
       <category term="Ellipsis" scheme="http://imys.net/tags/Ellipsis/"/>
     
