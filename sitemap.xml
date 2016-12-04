@@ -415,20 +415,6 @@
   </url>
   
   <url>
-    <loc>http://imys.net/demo/border-1px/index.html</loc>
-    
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://imys.net/tags/index.html</loc>
-    
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://imys.net/demo/flex.html</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
@@ -436,7 +422,21 @@
   </url>
   
   <url>
+    <loc>http://imys.net/demo/border-1px/index.html</loc>
+    
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://imys.net/demo/screenRotation.html</loc>
+    
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://imys.net/tags/index.html</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     
