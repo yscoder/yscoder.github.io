@@ -1167,9 +1167,9 @@ package.json
     </summary>
     
     
-      <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
-    
       <category term="Event" scheme="http://imys.net/tags/Event/"/>
+    
+      <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
     
   </entry>
   
