@@ -4,6 +4,27 @@
 
     
   <url>
+    <loc>http://imys.net/20150906/text-truncation.html</loc>
+    <lastmod>2016-12-27T12:42:37.061Z</lastmod>
+    <data>
+        <display>
+        <title>前端文字的截断处理</title>
+        <pubTime>2015-09-06T09:37:32.000Z</pubTime>
+        
+        <tag>Html</tag>
+         
+        <tag>CSS</tag>
+         
+        <tag>Ellipsis</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://imys.net/20161217/webpack-use-lodash.html</loc>
     <lastmod>2016-12-16T19:21:34.670Z</lastmod>
     <data>
@@ -252,9 +273,9 @@
         
         <tag>Html5</tag>
          
-        <tag>用户体验</tag>
-         
         <tag>History</tag>
+         
+        <tag>用户体验</tag>
          
          
            
@@ -290,32 +311,11 @@
         <title>用户体验--WEB站点快捷键实现方案</title>
         <pubTime>2015-07-16T07:06:58.000Z</pubTime>
         
-        <tag>WEB</tag>
-         
         <tag>用户体验</tag>
          
+        <tag>WEB</tag>
+         
         <tag>快捷键</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://imys.net/20150906/text-truncation.html</loc>
-    <lastmod>2016-11-12T19:28:52.082Z</lastmod>
-    <data>
-        <display>
-        <title>前端文字的截断处理</title>
-        <pubTime>2015-09-06T09:37:32.000Z</pubTime>
-        
-        <tag>Html</tag>
-         
-        <tag>CSS</tag>
-         
-        <tag>Ellipsis</tag>
          
          
            
@@ -1056,9 +1056,9 @@
         <title>如何为Canvas中特定图形绑定事件？</title>
         <pubTime>2016-08-08T06:43:38.000Z</pubTime>
         
-        <tag>Canvas</tag>
-         
         <tag>Html5</tag>
+         
+        <tag>Canvas</tag>
          
         <tag>Event</tag>
          
@@ -1077,9 +1077,9 @@
         <title>canvas实践--图表组件仪表盘、雷达图</title>
         <pubTime>2015-07-31T01:14:34.000Z</pubTime>
         
-        <tag>Canvas</tag>
-         
         <tag>Html5</tag>
+         
+        <tag>Canvas</tag>
          
         <tag>Chart</tag>
          
@@ -1098,9 +1098,9 @@
         <title>Canvas初试--环形进度条的实现</title>
         <pubTime>2015-07-22T00:21:53.000Z</pubTime>
         
-        <tag>Canvas</tag>
-         
         <tag>Html5</tag>
+         
+        <tag>Canvas</tag>
          
         <tag>Process</tag>
          

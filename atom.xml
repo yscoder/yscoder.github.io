@@ -235,9 +235,9 @@
     </summary>
     
     
-      <category term="Canvas" scheme="http://imys.net/tags/Canvas/"/>
-    
       <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
+    
+      <category term="Canvas" scheme="http://imys.net/tags/Canvas/"/>
     
       <category term="Event" scheme="http://imys.net/tags/Event/"/>
     
@@ -449,9 +449,9 @@
     
       <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
     
-      <category term="用户体验" scheme="http://imys.net/tags/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C/"/>
-    
       <category term="History" scheme="http://imys.net/tags/History/"/>
+    
+      <category term="用户体验" scheme="http://imys.net/tags/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C/"/>
     
   </entry>
   
@@ -989,9 +989,9 @@ package.json
     <link href="http://imys.net/20150906/text-truncation.html"/>
     <id>http://imys.net/20150906/text-truncation.html</id>
     <published>2015-09-06T09:37:32.000Z</published>
-    <updated>2016-11-12T19:28:52.082Z</updated>
+    <updated>2016-12-27T12:42:37.061Z</updated>
     
-    <content type="html"><![CDATA[<p>关于前端页面的文字溢出截断的招数已经很常见了。<br>通常的实现有，前端css控制、后端字数输出控制或者前端js字数处理等。</p><a id="more"></a><h2 id="单行文字"><a href="#单行文字" class="headerlink" title="单行文字"></a>单行文字</h2><p>单行文字的溢出处理很简单，我通常是使用css来控制，在文字末尾加上<code>...</code>。</p><figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-class">.ellipsis</span> &#123;</div><div class="line">  <span class="attribute">overflow</span>: hidden;</div><div class="line">  <span class="attribute">text-overflow</span>: ellipsis;</div><div class="line">  <span class="attribute">white-space</span>: nowrap;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>给需要文字截断的节点增加一个这样的基础类，然后设置该节点的宽。<br>同时注意给未来可能会出现溢出的节点也加上此类，再设置最大宽度<code>max-width</code>，因为很多奇葩用户的输入是你无法掌控的。 - -！</p><h2 id="多行文字"><a href="#多行文字" class="headerlink" title="多行文字"></a>多行文字</h2><p>我希望在一个的固定高度的容器中，内容超出后，最后一个文字显示<code>...</code>。</p><p>如法炮制给多行文字的容器添加<code>ellipsis</code>类后，你会发现的确是显示<code>...</code>，不过此时文字是一行的。<br>因为在该类中添加了属性<code>white-space</code>，用来定义一个段落如何换行。属性值<code>nowrap</code>：禁止文本换行，除非遇到<code>&lt;br&gt;</code>。</p><p>一番思考后，确定了一个方案。</p><ol><li>给固定高度的容器添加<code>overflow: hidden</code>；</li><li>给容器添加相对定位；</li><li>添加伪元素样式，<code>content:&#39;...&#39;</code>，绝对定位，然后位置定位在容器末尾。</li></ol><p>伪元素的兼容性为IE8，如果需要兼容IE7的可以使用标签代替。</p><h2 id="带显示全部的多行文字"><a href="#带显示全部的多行文字" class="headerlink" title="带显示全部的多行文字"></a>带显示全部的多行文字</h2><p>类似 QQ 空间、微信、微博那种。</p><iframe scrolling="no" width="100%" height="300" src="http://jsfiddle.net/imys/wymxhaek/1/embedded/html,css,result/light" frameborder="0" allowfullscreen></iframe><p>使用 2 个伪元素加 1 个 a 链接实现。<br>精妙之处在于使用伪元素遮挡一行文字，让 a 链接位于伪元素之上显示。</p><p>更新于 2016-6-27。</p>]]></content>
+    <content type="html"><![CDATA[<p>关于前端页面的文字溢出截断的招数已经很常见了。<br>通常的实现有，前端css控制、后端字数输出控制或者前端js字数处理等。</p><a id="more"></a><h2 id="单行文字"><a href="#单行文字" class="headerlink" title="单行文字"></a>单行文字</h2><p>单行文字的溢出处理很简单，我通常是使用css来控制，在文字末尾加上<code>...</code>。</p><figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-class">.ellipsis</span> &#123;</div><div class="line">  <span class="attribute">overflow</span>: hidden;</div><div class="line">  <span class="attribute">text-overflow</span>: ellipsis;</div><div class="line">  <span class="attribute">white-space</span>: nowrap;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>给需要文字截断的节点增加一个这样的基础类，然后设置该节点的宽。<br>同时注意给未来可能会出现溢出的节点也加上此类，再设置最大宽度<code>max-width</code>，因为很多奇葩用户的输入是你无法掌控的。 - -！</p><h2 id="多行文字"><a href="#多行文字" class="headerlink" title="多行文字"></a>多行文字</h2><p>我希望在一个的固定高度的容器中，内容超出后，最后一个文字显示<code>...</code>。</p><p>如法炮制给多行文字的容器添加<code>ellipsis</code>类后，你会发现的确是显示<code>...</code>，不过此时文字是一行的。<br>因为在该类中添加了属性<code>white-space</code>，用来定义一个段落如何换行。属性值<code>nowrap</code>：禁止文本换行，除非遇到<code>&lt;br&gt;</code>。</p><p>一番思考后，确定了一个方案。</p><ol><li>给固定高度的容器添加<code>overflow: hidden</code>；</li><li>给容器添加相对定位；</li><li>添加伪元素样式，<code>content:&#39;...&#39;</code>，绝对定位，然后位置定位在容器末尾。</li></ol><p>伪元素的兼容性为IE8，如果需要兼容IE7的可以使用标签代替。</p><h2 id="带显示全部的多行文字"><a href="#带显示全部的多行文字" class="headerlink" title="带显示全部的多行文字"></a>带显示全部的多行文字</h2><p>类似 QQ 空间、微信、微博那种。</p><iframe scrolling="no" width="100%" height="300" src="http://jsfiddle.net/imys/wymxhaek/3/embedded/html,css,result/light" frameborder="0" allowfullscreen></iframe><p>使用 2 个伪元素加 1 个 a 链接实现。<br>精妙之处在于使用伪元素遮挡一行文字，让 a 链接位于伪元素之上显示。</p>]]></content>
     
     <summary type="html">
     
@@ -1070,9 +1070,9 @@ package.json
     </summary>
     
     
-      <category term="Canvas" scheme="http://imys.net/tags/Canvas/"/>
-    
       <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
+    
+      <category term="Canvas" scheme="http://imys.net/tags/Canvas/"/>
     
       <category term="Chart" scheme="http://imys.net/tags/Chart/"/>
     
@@ -1094,9 +1094,9 @@ package.json
     </summary>
     
     
-      <category term="Canvas" scheme="http://imys.net/tags/Canvas/"/>
-    
       <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
+    
+      <category term="Canvas" scheme="http://imys.net/tags/Canvas/"/>
     
       <category term="Process" scheme="http://imys.net/tags/Process/"/>
     
@@ -1118,9 +1118,9 @@ package.json
     </summary>
     
     
-      <category term="WEB" scheme="http://imys.net/tags/WEB/"/>
-    
       <category term="用户体验" scheme="http://imys.net/tags/%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C/"/>
+    
+      <category term="WEB" scheme="http://imys.net/tags/WEB/"/>
     
       <category term="快捷键" scheme="http://imys.net/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
     
@@ -1184,7 +1184,7 @@ package.json
     <published>2015-06-29T00:57:17.000Z</published>
     <updated>2016-11-12T19:12:26.500Z</updated>
     
-    <content type="html"><![CDATA[<p><strong>target</strong>译为“目标”，加冒号即为伪类选择器。<br>此选择器便是用于给目标元素添加额外样式，类似于<code>hover</code>。</p><a id="more"></a><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>该选择对应的目标元素为锚点触发。<br>以下代码定义了两个<code>a</code>元素，其中一个为链接元素，另一个使用样式定义为块元素。<br>块元素设置了透明度为<code>0</code>，并设置其被链接时透明度为<code>1</code>和过度效果。<br>最终的效果为点击链接元素时，<code>div1</code>从透明到不透明过度。</p><figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>target选择器<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"renderer"</span> <span class="attr">content</span>=<span class="string">"webkit"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">    .link &#123;</div><div class="line">        display: block;</div><div class="line">        text-decoration: none;</div><div class="line">        text-align: center;</div><div class="line">        color: #fff;</div><div class="line">        background: #ff0000;</div><div class="line">        line-height: 30px;  </div><div class="line">    &#125;</div><div class="line">    .a-block &#123;</div><div class="line">        display: block;</div><div class="line">        opacity: 0;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    .a-block:target &#123;</div><div class="line">        opacity: 1;</div><div class="line">        transition: all .3s;</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#div1"</span> <span class="attr">class</span>=<span class="string">"link"</span>&gt;</span>显示<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">id</span>=<span class="string">"div1"</span> <span class="attr">class</span>=<span class="string">"a-block"</span>&gt;</span></div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>起初我写下这段Demo时目标元素是用的<code>div</code>，后来发现该选择器不能像<code>:hover</code>一样作用于<code>a</code>以外的元素。<br>另外该选择器的兼容性为IE8以上（不包括IE8）。</p><h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h2><p>结合这个Demo可以发现该选择器又一次实现之前需要JS才能实现的功能，比如点击链接显示元素。<br>另外在全屏滚动动画页面时也可以用在导航之上，比如点击导航给对应的块添加动画效果。<br>更多使用方法也待慢慢摸索了！</p>]]></content>
+    <content type="html"><![CDATA[<p><strong>target</strong>译为“目标”，加冒号即为伪类选择器。<br>此选择器便是用于给目标元素添加额外样式，类似于<code>hover</code>。</p><a id="more"></a><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>该选择对应的目标元素为锚点触发。<br>以下代码定义了两个<code>a</code>元素，其中一个为链接元素，另一个使用样式定义为块元素。<br>块元素设置了透明度为<code>0</code>，并设置其被链接时透明度为<code>1</code>和过度效果。<br>最终的效果为点击链接元素时，<code>div1</code>从透明到不透明过度。</p><figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>target选择器<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"renderer"</span> <span class="attr">content</span>=<span class="string">"webkit"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></div><div class="line">    <span class="selector-class">.link</span> &#123;</div><div class="line">        <span class="attribute">display</span>: block;</div><div class="line">        <span class="attribute">text-decoration</span>: none;</div><div class="line">        <span class="attribute">text-align</span>: center;</div><div class="line">        <span class="attribute">color</span>: <span class="number">#fff</span>;</div><div class="line">        <span class="attribute">background</span>: <span class="number">#ff0000</span>;</div><div class="line">        <span class="attribute">line-height</span>: <span class="number">30px</span>;  </div><div class="line">    &#125;</div><div class="line">    <span class="selector-class">.a-block</span> &#123;</div><div class="line">        <span class="attribute">display</span>: block;</div><div class="line">        <span class="attribute">opacity</span>: <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="selector-class">.a-block</span><span class="selector-pseudo">:target</span> &#123;</div><div class="line">        <span class="attribute">opacity</span>: <span class="number">1</span>;</div><div class="line">        <span class="attribute">transition</span>: all .<span class="number">3s</span>;</div><div class="line">    &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#div1"</span> <span class="attr">class</span>=<span class="string">"link"</span>&gt;</span>显示<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">id</span>=<span class="string">"div1"</span> <span class="attr">class</span>=<span class="string">"a-block"</span>&gt;</span></div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">        :target选择器可用于当前活动的target元素的样式。</div><div class="line">    <span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>起初我写下这段Demo时目标元素是用的<code>div</code>，后来发现该选择器不能像<code>:hover</code>一样作用于<code>a</code>以外的元素。<br>另外该选择器的兼容性为IE8以上（不包括IE8）。</p><h2 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h2><p>结合这个Demo可以发现该选择器又一次实现之前需要JS才能实现的功能，比如点击链接显示元素。<br>另外在全屏滚动动画页面时也可以用在导航之上，比如点击导航给对应的块添加动画效果。<br>更多使用方法也待慢慢摸索了！</p>]]></content>
     
     <summary type="html">
     

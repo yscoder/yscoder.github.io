@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://imys.net/20150906/text-truncation.html</loc>
+    
+    <lastmod>2016-12-27T12:42:37.061Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://imys.net/20161217/webpack-use-lodash.html</loc>
     
     <lastmod>2016-12-16T19:21:34.670Z</lastmod>
@@ -96,13 +103,6 @@
     <loc>http://imys.net/20150716/ue-shortcut-key.html</loc>
     
     <lastmod>2016-11-12T19:29:03.905Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://imys.net/20150906/text-truncation.html</loc>
-    
-    <lastmod>2016-11-12T19:28:52.082Z</lastmod>
     
   </url>
   
@@ -429,7 +429,14 @@
   </url>
   
   <url>
-    <loc>http://imys.net/demo/border-1px/index.html</loc>
+    <loc>http://imys.net/demo/h5.html</loc>
+    
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://imys.net/tags/index.html</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     
@@ -457,13 +464,6 @@
   </url>
   
   <url>
-    <loc>http://imys.net/tags/index.html</loc>
-    
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://imys.net/demo/border-1px/1px.css</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
@@ -471,7 +471,7 @@
   </url>
   
   <url>
-    <loc>http://imys.net/demo/h5.html</loc>
+    <loc>http://imys.net/demo/border-1px/index.html</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     
