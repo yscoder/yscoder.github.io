@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://imys.net/demo/cmdEditor.html</loc>
+    
+    <lastmod>2017-01-12T18:21:54.026Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://imys.net/20170113/create-rich-text-editor-by-execCommand.html</loc>
+    
+    <lastmod>2017-01-12T17:51:57.275Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://imys.net/20161217/webpack-use-lodash.html</loc>
+    
+    <lastmod>2017-01-12T12:20:28.439Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://imys.net/20161216/vue-custom-directive-hook.html</loc>
     
     <lastmod>2016-12-27T13:42:38.265Z</lastmod>
@@ -12,13 +33,6 @@
     <loc>http://imys.net/20150906/text-truncation.html</loc>
     
     <lastmod>2016-12-27T12:42:37.061Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://imys.net/20161217/webpack-use-lodash.html</loc>
-    
-    <lastmod>2016-12-16T19:21:34.670Z</lastmod>
     
   </url>
   
@@ -429,7 +443,7 @@
   </url>
   
   <url>
-    <loc>http://imys.net/demo/border-1px/1px.css</loc>
+    <loc>http://imys.net/demo/border-1px/index.html</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     
@@ -450,13 +464,6 @@
   </url>
   
   <url>
-    <loc>http://imys.net/tags/index.html</loc>
-    
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://imys.net/demo/screenRotation.html</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
@@ -464,7 +471,14 @@
   </url>
   
   <url>
-    <loc>http://imys.net/demo/border-1px/index.html</loc>
+    <loc>http://imys.net/tags/index.html</loc>
+    
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://imys.net/demo/border-1px/1px.css</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     

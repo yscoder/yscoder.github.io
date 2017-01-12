@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://imys.net/"/>
-  <updated>2016-12-16T19:21:34.670Z</updated>
+  <updated>2017-01-12T17:51:57.275Z</updated>
   <id>http://imys.net/</id>
   
   <author>
@@ -16,13 +16,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>基于 document.execCommand 实现富文本编辑器</title>
+    <link href="http://imys.net/20170113/create-rich-text-editor-by-execCommand.html"/>
+    <id>http://imys.net/20170113/create-rich-text-editor-by-execCommand.html</id>
+    <published>2017-01-12T16:30:09.000Z</published>
+    <updated>2017-01-12T17:51:57.275Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在项目中准备集成一个富文本编辑器，原来使用的是 <a href="https://github.com/quilljs/quill" target="_blank" rel="external">Quill</a>，之后发现项目打包体积瞬增了 200kb。虽然 Quill 完全能够满足项目需求，但其提供的诸多功能是用不上的，可以使用更轻量的实现代替。</p><p>在寻找新的替代品时，也顺便瞄了下各种编辑器的内部实现。一些体积庞大的编辑器一般都兼容低版本浏览器，不得不写很多兼容性的代码。而一些 MINI、轻量的编辑器是不对低端浏览器作兼容的，使用<code>Selection</code>、<code>Range</code>或者<code>document.execCommand</code>实现。</p><p>之前在 <a href="https://imys.net/20161125/cursor-offset-at-input.html">JavaScript 获取输入时的光标位置及场景问题</a> 中提到过<code>Selection</code>和<code>Range</code>，这次就说说<code>document.execCommand</code>。</p><a id="more"></a><h2 id="document-execCommand"><a href="#document-execCommand" class="headerlink" title="document.execCommand"></a>document.execCommand</h2><p>该方法可以对可编辑器区域进行操作，比如加粗文字、改变字号、插入链接等。可编辑区域也就是设置了<code>contentEditable</code>属性的元素。</p><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="comment">// 语法</span></div><div class="line">bool = <span class="built_in">document</span>.execCommand(commandName, showDefaultUI[, arg])</div></pre></td></tr></table></figure><ul><li><code>commandName</code>：String，命令的名称</li><li><code>showDefaultUI</code>：Boolean，是否展示用户界面（暂时没有发现“用户界面”指的是什么），一般为<code>false</code></li><li><code>arg</code>：String，要传递的参数，比如插入链接需要传入一个 URL，可选</li><li>返回值：Boolean，表示操作是否支持或是否启用</li></ul><p>假如要把选中的文字加粗，只需要这样：</p><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="built_in">document</span>.execCommand(<span class="string">'bold'</span>, <span class="literal">false</span>)</div></pre></td></tr></table></figure><h2 id="兼容性"><a href="#兼容性" class="headerlink" title="兼容性"></a>兼容性</h2><figure class="image-bubble"><div class="img-lightbox"><div class="overlay"></div><img src="http://7ximpj.com1.z0.glb.clouddn.com/execCommand-support-2017113.jpg" alt="execCommand-support"></div><div class="image-caption">execCommand-support</div></figure><p>对于现代浏览器的兼容度较好，不过 Android 53 取消兼容的什么鬼？</p><p>除了了解该方法的兼容性外，还需要了解每一种可执行命令的兼容性。比如<code>decreaseFontSize</code>，给选中文字添加<code>small</code>标签，也就是小号字体，谷歌是不支持的。</p><p>可以使用以下方法检测命令是否在浏览器中支持：</p><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="built_in">document</span>.queryCommandSupported(commandName)</div></pre></td></tr></table></figure><h2 id="简陋的实现"><a href="#简陋的实现" class="headerlink" title="简陋的实现"></a>简陋的实现</h2><p>不到 50 行代码，<a href="/demo/cmdEditor.html">基于document.execCommand实现富文本编辑器</a>。</p><p>有兴趣的同学可以以此为出发点，去开发一个具备完整功能的编辑器。懒得折腾的可以像我一样多搜索几下，找一个合适的轮子。😅</p><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document/execCommand" target="_blank" rel="external">MDN: document.execCommand</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      基于 document.execCommand 实现富文本编辑器
+    
+    </summary>
+    
+    
+      <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
+    
+      <category term="Editor" scheme="http://imys.net/tags/Editor/"/>
+    
+      <category term="ExecCommand" scheme="http://imys.net/tags/ExecCommand/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Webpack按需打包Lodash的几种方式</title>
     <link href="http://imys.net/20161217/webpack-use-lodash.html"/>
     <id>http://imys.net/20161217/webpack-use-lodash.html</id>
     <published>2016-12-16T17:41:21.000Z</published>
-    <updated>2016-12-16T19:21:34.670Z</updated>
+    <updated>2017-01-12T12:20:28.439Z</updated>
     
-    <content type="html"><![CDATA[<p>在数据操作时，Lodash 就是我的弹药库，不管遇到多复杂的数据结构都能用一些函数轻松拆解。</p><p>ES6 中也新增了诸多新的对象函数，一些简单的项目中 ES6 就足够使用了，但还是会有例外的情况引用了少数的 Lodash 函数。一个完整的 Lodash 库，即使是压缩后，现最新版本也有 <code>71k</code> 的体积。不能为了吃一口饭而买下一个饭店啊。</p><p>针对这个问题，其实已经有很多可选方案了。<br><a id="more"></a></p><h2 id="函数模块"><a href="#函数模块" class="headerlink" title="函数模块"></a>函数模块</h2><p>Lodash 中的每个函数在 NPM 都有一个单独的发布模块。<a href="https://www.npmjs.com/search?q=lodash" target="_blank" rel="external">NPM: results for ‘lodash’</a><br>假如你只需要使用<code>_.isEqual</code>，那么你只需要安装<code>lodash.isequal</code>模块，然后按以下方式引用。</p><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> isEqual = <span class="built_in">require</span>(<span class="string">'lodash.isequal'</span>)</div><div class="line"><span class="comment">// or ES6</span></div><div class="line"><span class="keyword">import</span> isEqual <span class="keyword">from</span> <span class="string">'lodash.isequal'</span></div><div class="line"></div><div class="line"></div><div class="line">isEqual([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]) <span class="comment">// true</span></div></pre></td></tr></table></figure><h2 id="全路径引用"><a href="#全路径引用" class="headerlink" title="全路径引用"></a>全路径引用</h2><p>在你完整安装 Lodash 后，可以按<code>lodash/函数名</code>的格式单独引入需要的函数模块。</p><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> difference = <span class="built_in">require</span>(<span class="string">'lodash/difference'</span>)</div><div class="line"><span class="comment">// or ES6</span></div><div class="line"><span class="keyword">import</span> difference <span class="keyword">from</span> <span class="string">'lodash/difference'</span></div><div class="line"></div><div class="line">difference([<span class="number">1</span>, <span class="number">2</span>], [<span class="number">1</span>, <span class="number">3</span>])  <span class="comment">// [2]</span></div></pre></td></tr></table></figure><h2 id="使用插件优化"><a href="#使用插件优化" class="headerlink" title="使用插件优化"></a>使用插件优化</h2><p>在简单场景下，以上两种方式足以解决问题。<br>而遇到复杂的数据对象时，我们不得不在一个文件中引入多个 Lodash 函数，这样就需要在文件中写多个<code>require</code>或<code>import</code>相关函数。</p><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> remove <span class="keyword">from</span> <span class="string">'lodash/remove'</span></div><div class="line"><span class="keyword">import</span> uniq <span class="keyword">from</span> <span class="string">'lodash/uniq'</span></div><div class="line"><span class="keyword">import</span> invokeMap <span class="keyword">from</span> <span class="string">'lodash/invokeMap'</span></div><div class="line"><span class="keyword">import</span> sortBy <span class="keyword">from</span> <span class="string">'lodash/sortBy'</span></div><div class="line"><span class="comment">// more...</span></div></pre></td></tr></table></figure><p>正写到关键处却因为引入一个函数要拉到文件头部去定义引用而打乱了思路，很不爽！</p><p>于是我机智的到 Github 去搜索了<code>webpack</code>和<code>lodash</code>两个关键词的组合，排在首位的 <a href="https://github.com/lodash/lodash-webpack-plugin" target="_blank" rel="external">lodash-webpack-plugin</a> 正是解决这个问题的插件。</p><p>使用时需要以下模块，其实除了前两个剩下的一般都已安装了：</p><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ npm i -S lodash-webpack-plugin babel-plugin-lodash babel-core babel-loader babel-preset-es2015 webpack</div></pre></td></tr></table></figure><p><strong>配置：</strong></p><figure class="highlight js"><figcaption><span>webpack.config.js</span></figcaption><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> LodashModuleReplacementPlugin = <span class="built_in">require</span>(<span class="string">'lodash-webpack-plugin'</span>);</div><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">module</span>: &#123;</div><div class="line">    <span class="attr">loaders</span>: [&#123;</div><div class="line">      <span class="attr">loader</span>: <span class="string">'babel'</span>,</div><div class="line">      <span class="attr">test</span>: <span class="regexp">/\.js$/</span>,</div><div class="line">      <span class="attr">exclude</span>: <span class="regexp">/node_modules/</span>,</div><div class="line">      <span class="attr">query</span>: &#123;</div><div class="line">        <span class="attr">plugins</span>: [<span class="string">'transform-runtime'</span>, <span class="string">'lodash'</span>],</div><div class="line">        <span class="attr">presets</span>: [<span class="string">'es2015'</span>]</div><div class="line">      &#125;</div><div class="line">    &#125;]</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> LodashModuleReplacementPlugin,</div><div class="line">    <span class="keyword">new</span> webpack.optimize.OccurrenceOrderPlugin,</div><div class="line">    <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>其中<code>babel-plugin-lodash</code>的配置，也就是<code>plugins: [&#39;lodash&#39;]</code>，并不是一定要在<code>loaders</code>中，也可以单独定义<code>babel</code>。</p><figure class="highlight js"><figcaption><span>webpack.config.js</span></figcaption><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> LodashModuleReplacementPlugin = <span class="built_in">require</span>(<span class="string">'lodash-webpack-plugin'</span>);</div><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">module</span>: &#123;</div><div class="line">    <span class="attr">loaders</span>: [&#123;</div><div class="line">      <span class="attr">loader</span>: <span class="string">'babel'</span>,</div><div class="line">      <span class="attr">test</span>: <span class="regexp">/\.js$/</span>,</div><div class="line">      <span class="attr">exclude</span>: <span class="regexp">/node_modules/</span></div><div class="line">    &#125;]</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">babel</span>: &#123;</div><div class="line">    <span class="attr">presets</span>: [<span class="string">'es2015'</span>],</div><div class="line">    <span class="attr">plugins</span>: [<span class="string">'transform-runtime'</span>, <span class="string">'lodash'</span>]</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> LodashModuleReplacementPlugin,</div><div class="line">    <span class="keyword">new</span> webpack.optimize.OccurrenceOrderPlugin,</div><div class="line">    <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>又或者是<code>.babelrc</code>文件中。</p><p>以上工作完成了，在每个你需要使用 lodash 函数的文件中只需要引用一次 lodash，即可调用任意函数而不会造成完全打包。</p><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> _ <span class="keyword">from</span> <span class="string">'lodash'</span></div><div class="line"></div><div class="line">_.add(<span class="number">1</span>, <span class="number">2</span>)  <span class="comment">// 打包时只会引入这一个函数模块</span></div></pre></td></tr></table></figure><h2 id="End"><a href="#End" class="headerlink" title="End"></a>End</h2><p>以上即是我目前所知道的几种方式，如果哪位朋友有更好的方式（比如只需要全局引入一次），请一定分享与我！😋</p>]]></content>
+    <content type="html"><![CDATA[<p>在数据操作时，Lodash 就是我的弹药库，不管遇到多复杂的数据结构都能用一些函数轻松拆解。</p><p>ES6 中也新增了诸多新的对象函数，一些简单的项目中 ES6 就足够使用了，但还是会有例外的情况引用了少数的 Lodash 函数。一个完整的 Lodash 库，即使是压缩后，现最新版本也有 <code>71k</code> 的体积。不能为了吃一口饭而买下一个饭店啊。</p><p>针对这个问题，其实已经有很多可选方案了。<br><a id="more"></a></p><h2 id="函数模块"><a href="#函数模块" class="headerlink" title="函数模块"></a>函数模块</h2><p>Lodash 中的每个函数在 NPM 都有一个单独的发布模块。<a href="https://www.npmjs.com/search?q=lodash" target="_blank" rel="external">NPM: results for ‘lodash’</a><br>假如你只需要使用<code>_.isEqual</code>，那么你只需要安装<code>lodash.isequal</code>模块，然后按以下方式引用。</p><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> isEqual = <span class="built_in">require</span>(<span class="string">'lodash.isequal'</span>)</div><div class="line"><span class="comment">// or ES6</span></div><div class="line"><span class="keyword">import</span> isEqual <span class="keyword">from</span> <span class="string">'lodash.isequal'</span></div><div class="line"></div><div class="line"></div><div class="line">isEqual([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]) <span class="comment">// true</span></div></pre></td></tr></table></figure><h2 id="全路径引用"><a href="#全路径引用" class="headerlink" title="全路径引用"></a>全路径引用</h2><p>在你完整安装 Lodash 后，可以按<code>lodash/函数名</code>的格式单独引入需要的函数模块。</p><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> difference = <span class="built_in">require</span>(<span class="string">'lodash/difference'</span>)</div><div class="line"><span class="comment">// or ES6</span></div><div class="line"><span class="keyword">import</span> difference <span class="keyword">from</span> <span class="string">'lodash/difference'</span></div><div class="line"></div><div class="line">difference([<span class="number">1</span>, <span class="number">2</span>], [<span class="number">1</span>, <span class="number">3</span>])  <span class="comment">// [2]</span></div></pre></td></tr></table></figure><h2 id="使用插件优化"><a href="#使用插件优化" class="headerlink" title="使用插件优化"></a>使用插件优化</h2><p>在简单场景下，以上两种方式足以解决问题。<br>而遇到复杂的数据对象时，我们不得不在一个文件中引入多个 Lodash 函数，这样就需要在文件中写多个<code>require</code>或<code>import</code>相关函数。</p><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> remove <span class="keyword">from</span> <span class="string">'lodash/remove'</span></div><div class="line"><span class="keyword">import</span> uniq <span class="keyword">from</span> <span class="string">'lodash/uniq'</span></div><div class="line"><span class="keyword">import</span> invokeMap <span class="keyword">from</span> <span class="string">'lodash/invokeMap'</span></div><div class="line"><span class="keyword">import</span> sortBy <span class="keyword">from</span> <span class="string">'lodash/sortBy'</span></div><div class="line"><span class="comment">// more...</span></div></pre></td></tr></table></figure><p>正写到关键处却因为引入一个函数要拉到文件头部去定义引用而打乱了思路，很不爽！</p><p>于是我机智的到 Github 去搜索了<code>webpack</code>和<code>lodash</code>两个关键词的组合，排在首位的 <a href="https://github.com/lodash/lodash-webpack-plugin" target="_blank" rel="external">lodash-webpack-plugin</a> 就是为了解决这个问题而生。</p><p>使用时需要以下模块，其实除了前两个剩下的一般都已安装了：</p><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">$ npm i -S lodash-webpack-plugin babel-plugin-lodash babel-core babel-loader babel-preset-es2015 webpack</div></pre></td></tr></table></figure><p><strong>配置：</strong></p><figure class="highlight js"><figcaption><span>webpack.config.js</span></figcaption><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> LodashModuleReplacementPlugin = <span class="built_in">require</span>(<span class="string">'lodash-webpack-plugin'</span>);</div><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">module</span>: &#123;</div><div class="line">    <span class="attr">loaders</span>: [&#123;</div><div class="line">      <span class="attr">loader</span>: <span class="string">'babel'</span>,</div><div class="line">      <span class="attr">test</span>: <span class="regexp">/\.js$/</span>,</div><div class="line">      <span class="attr">exclude</span>: <span class="regexp">/node_modules/</span>,</div><div class="line">      <span class="attr">query</span>: &#123;</div><div class="line">        <span class="attr">plugins</span>: [<span class="string">'transform-runtime'</span>, <span class="string">'lodash'</span>],</div><div class="line">        <span class="attr">presets</span>: [<span class="string">'es2015'</span>]</div><div class="line">      &#125;</div><div class="line">    &#125;]</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> LodashModuleReplacementPlugin,</div><div class="line">    <span class="keyword">new</span> webpack.optimize.OccurrenceOrderPlugin,</div><div class="line">    <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>其中<code>babel-plugin-lodash</code>的配置，也就是<code>plugins: [&#39;lodash&#39;]</code>，并不是一定要在<code>loaders</code>中，也可以单独定义<code>babel</code>。</p><figure class="highlight js"><figcaption><span>webpack.config.js</span></figcaption><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> LodashModuleReplacementPlugin = <span class="built_in">require</span>(<span class="string">'lodash-webpack-plugin'</span>);</div><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">module</span>: &#123;</div><div class="line">    <span class="attr">loaders</span>: [&#123;</div><div class="line">      <span class="attr">loader</span>: <span class="string">'babel'</span>,</div><div class="line">      <span class="attr">test</span>: <span class="regexp">/\.js$/</span>,</div><div class="line">      <span class="attr">exclude</span>: <span class="regexp">/node_modules/</span></div><div class="line">    &#125;]</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">babel</span>: &#123;</div><div class="line">    <span class="attr">presets</span>: [<span class="string">'es2015'</span>],</div><div class="line">    <span class="attr">plugins</span>: [<span class="string">'transform-runtime'</span>, <span class="string">'lodash'</span>]</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> LodashModuleReplacementPlugin,</div><div class="line">    <span class="keyword">new</span> webpack.optimize.OccurrenceOrderPlugin,</div><div class="line">    <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>又或者是<code>.babelrc</code>文件中。</p><p>以上工作完成了，在每个你需要使用 lodash 函数的文件中只需要引用一次 lodash，即可调用任意函数而不会造成完全打包。</p><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">import</span> _ <span class="keyword">from</span> <span class="string">'lodash'</span></div><div class="line"></div><div class="line">_.add(<span class="number">1</span>, <span class="number">2</span>)  <span class="comment">// 打包时只会引入这一个函数模块</span></div></pre></td></tr></table></figure><h2 id="End"><a href="#End" class="headerlink" title="End"></a>End</h2><p>以上即是我目前所知道的几种方式，如果哪位朋友有更好的方式（比如只需要全局引入一次），请一定分享与我！😋</p>]]></content>
     
     <summary type="html">
     
@@ -155,9 +179,9 @@
     </summary>
     
     
-      <category term="CSS3" scheme="http://imys.net/tags/CSS3/"/>
-    
       <category term="CSS" scheme="http://imys.net/tags/CSS/"/>
+    
+      <category term="CSS3" scheme="http://imys.net/tags/CSS3/"/>
     
       <category term="text-transform" scheme="http://imys.net/tags/text-transform/"/>
     
@@ -235,9 +259,9 @@
     </summary>
     
     
-      <category term="Canvas" scheme="http://imys.net/tags/Canvas/"/>
-    
       <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
+    
+      <category term="Canvas" scheme="http://imys.net/tags/Canvas/"/>
     
       <category term="Event" scheme="http://imys.net/tags/Event/"/>
     
@@ -403,9 +427,9 @@
     
       <category term="Html" scheme="http://imys.net/tags/Html/"/>
     
-      <category term="CSS3" scheme="http://imys.net/tags/CSS3/"/>
-    
       <category term="CSS" scheme="http://imys.net/tags/CSS/"/>
+    
+      <category term="CSS3" scheme="http://imys.net/tags/CSS3/"/>
     
   </entry>
   
@@ -425,9 +449,9 @@
     </summary>
     
     
-      <category term="CSS3" scheme="http://imys.net/tags/CSS3/"/>
-    
       <category term="CSS" scheme="http://imys.net/tags/CSS/"/>
+    
+      <category term="CSS3" scheme="http://imys.net/tags/CSS3/"/>
     
   </entry>
   
@@ -1070,9 +1094,9 @@ package.json
     </summary>
     
     
-      <category term="Canvas" scheme="http://imys.net/tags/Canvas/"/>
-    
       <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
+    
+      <category term="Canvas" scheme="http://imys.net/tags/Canvas/"/>
     
       <category term="Chart" scheme="http://imys.net/tags/Chart/"/>
     
@@ -1094,9 +1118,9 @@ package.json
     </summary>
     
     
-      <category term="Canvas" scheme="http://imys.net/tags/Canvas/"/>
-    
       <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
+    
+      <category term="Canvas" scheme="http://imys.net/tags/Canvas/"/>
     
       <category term="Process" scheme="http://imys.net/tags/Process/"/>
     
@@ -1239,9 +1263,9 @@ package.json
     </summary>
     
     
-      <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
-    
       <category term="Event" scheme="http://imys.net/tags/Event/"/>
+    
+      <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
     
   </entry>
   

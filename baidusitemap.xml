@@ -3,6 +3,47 @@
 
 
     
+    
+  <url>
+    <loc>http://imys.net/20170113/create-rich-text-editor-by-execCommand.html</loc>
+    <lastmod>2017-01-12T17:51:57.275Z</lastmod>
+    <data>
+        <display>
+        <title>基于 document.execCommand 实现富文本编辑器</title>
+        <pubTime>2017-01-12T16:30:09.000Z</pubTime>
+        
+        <tag>JavaScript</tag>
+         
+        <tag>Editor</tag>
+         
+        <tag>ExecCommand</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://imys.net/20161217/webpack-use-lodash.html</loc>
+    <lastmod>2017-01-12T12:20:28.439Z</lastmod>
+    <data>
+        <display>
+        <title>Webpack按需打包Lodash的几种方式</title>
+        <pubTime>2016-12-16T17:41:21.000Z</pubTime>
+        
+        <tag>Webpack</tag>
+         
+        <tag>Lodash</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
   <url>
     <loc>http://imys.net/20161216/vue-custom-directive-hook.html</loc>
     <lastmod>2016-12-27T13:42:38.265Z</lastmod>
@@ -35,25 +76,6 @@
         <tag>CSS</tag>
          
         <tag>Ellipsis</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://imys.net/20161217/webpack-use-lodash.html</loc>
-    <lastmod>2016-12-16T19:21:34.670Z</lastmod>
-    <data>
-        <display>
-        <title>Webpack按需打包Lodash的几种方式</title>
-        <pubTime>2016-12-16T17:41:21.000Z</pubTime>
-        
-        <tag>Webpack</tag>
-         
-        <tag>Lodash</tag>
          
          
            
@@ -141,9 +163,9 @@
         <title>关于 text-transform: capitalize 失效的场景与解决方案</title>
         <pubTime>2016-10-31T05:39:02.000Z</pubTime>
         
-        <tag>CSS3</tag>
-         
         <tag>CSS</tag>
+         
+        <tag>CSS3</tag>
          
         <tag>text-transform</tag>
          
@@ -460,9 +482,9 @@
         
         <tag>Html</tag>
          
-        <tag>CSS3</tag>
-         
         <tag>CSS</tag>
+         
+        <tag>CSS3</tag>
          
          
            
@@ -801,9 +823,9 @@
         <title>js阻止子元素响应父元素事件</title>
         <pubTime>2015-05-27T12:44:34.000Z</pubTime>
         
-        <tag>JavaScript</tag>
-         
         <tag>Event</tag>
+         
+        <tag>JavaScript</tag>
          
          
            
@@ -995,9 +1017,9 @@
         <title>CSS实用Tips</title>
         <pubTime>2016-04-06T09:42:48.000Z</pubTime>
         
-        <tag>CSS3</tag>
-         
         <tag>CSS</tag>
+         
+        <tag>CSS3</tag>
          
          
            
@@ -1056,9 +1078,9 @@
         <title>如何为Canvas中特定图形绑定事件？</title>
         <pubTime>2016-08-08T06:43:38.000Z</pubTime>
         
-        <tag>Canvas</tag>
-         
         <tag>Html5</tag>
+         
+        <tag>Canvas</tag>
          
         <tag>Event</tag>
          
@@ -1077,9 +1099,9 @@
         <title>canvas实践--图表组件仪表盘、雷达图</title>
         <pubTime>2015-07-31T01:14:34.000Z</pubTime>
         
-        <tag>Canvas</tag>
-         
         <tag>Html5</tag>
+         
+        <tag>Canvas</tag>
          
         <tag>Chart</tag>
          
@@ -1098,9 +1120,9 @@
         <title>Canvas初试--环形进度条的实现</title>
         <pubTime>2015-07-22T00:21:53.000Z</pubTime>
         
-        <tag>Canvas</tag>
-         
         <tag>Html5</tag>
+         
+        <tag>Canvas</tag>
          
         <tag>Process</tag>
          
