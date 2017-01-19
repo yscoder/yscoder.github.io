@@ -3,6 +3,23 @@
 
 
     
+  <url>
+    <loc>http://imys.net/20170119/vue2-two-way-binding.html</loc>
+    <lastmod>2017-01-19T12:58:44.290Z</lastmod>
+    <data>
+        <display>
+        <title>如何在Vue2中使用双向绑定？</title>
+        <pubTime>2017-01-19T11:30:01.000Z</pubTime>
+        
+        <tag>Vue</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>http://imys.net/20170113/create-rich-text-editor-by-execCommand.html</loc>
@@ -354,9 +371,9 @@
         <title>阿里云Linux-Ubuntu折腾记</title>
         <pubTime>2016-02-20T08:25:34.000Z</pubTime>
         
-        <tag>Nodejs</tag>
-         
         <tag>Linux</tag>
+         
+        <tag>Nodejs</tag>
          
         <tag>Ubuntu</tag>
          
@@ -520,11 +537,11 @@
         <title>移动端页面开发关键—尺寸和布局</title>
         <pubTime>2015-11-07T15:02:29.000Z</pubTime>
         
+        <tag>移动端</tag>
+         
         <tag>devicePixelRatio</tag>
          
         <tag>em</tag>
-         
-        <tag>移动端</tag>
          
         <tag>rem</tag>
          
@@ -553,11 +570,11 @@
          
         <tag>devicePixelRatio</tag>
          
+        <tag>em</tag>
+         
         <tag>Webview</tag>
          
         <tag>Viewport</tag>
-         
-        <tag>em</tag>
          
          
            
@@ -614,9 +631,9 @@
         <title>HTML5页面可见性改变事件</title>
         <pubTime>2015-06-15T03:01:53.000Z</pubTime>
         
-        <tag>Html5</tag>
-         
         <tag>JavaScript</tag>
+         
+        <tag>Html5</tag>
          
          
            
@@ -787,9 +804,9 @@
         <title>图片上传本地预览jquery插件</title>
         <pubTime>2015-05-07T10:11:00.000Z</pubTime>
         
-        <tag>jQuery插件</tag>
-         
         <tag>jQuery</tag>
+         
+        <tag>jQuery插件</tag>
          
          
            
@@ -823,9 +840,9 @@
         <title>js阻止子元素响应父元素事件</title>
         <pubTime>2015-05-27T12:44:34.000Z</pubTime>
         
-        <tag>Event</tag>
-         
         <tag>JavaScript</tag>
+         
+        <tag>Event</tag>
          
          
            
@@ -861,9 +878,9 @@
         <title>jQuery扩展 - 延迟执行hover事件</title>
         <pubTime>2015-04-28T09:15:57.000Z</pubTime>
         
-        <tag>jQuery插件</tag>
-         
         <tag>jQuery</tag>
+         
+        <tag>jQuery插件</tag>
          
          
            

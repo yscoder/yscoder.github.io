@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://imys.net/20170119/vue2-two-way-binding.html</loc>
+    
+    <lastmod>2017-01-19T12:58:44.290Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://imys.net/demo/cmdEditor.html</loc>
     
     <lastmod>2017-01-12T18:21:54.026Z</lastmod>
@@ -450,14 +457,7 @@
   </url>
   
   <url>
-    <loc>http://imys.net/demo/border-1px/1px.css</loc>
-    
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://imys.net/demo/flex.html</loc>
+    <loc>http://imys.net/tags/index.html</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     
@@ -471,7 +471,14 @@
   </url>
   
   <url>
-    <loc>http://imys.net/tags/index.html</loc>
+    <loc>http://imys.net/demo/flex.html</loc>
+    
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://imys.net/demo/border-1px/1px.css</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     
