@@ -40,8 +40,8 @@
             , c = "windows mobile" == e.match(/windows mobile/i);
         return t || n || a || i || r || o || d || c
     }
-    var d = /\.js$/
-        , c = /\.css$/
+    var d = /\.js(\?.*)?$/
+        , c = /\.css(\?.*)?$/
         , h = document.createDocumentFragment()
         , u = !1
         , l = document.head || document.getElementsByTagName("head")[0];
