@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://imys.net/"/>
-  <updated>2017-04-16T07:03:00.368Z</updated>
+  <updated>2017-05-07T20:07:39.953Z</updated>
   <id>http://imys.net/</id>
   
   <author>
@@ -14,6 +14,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vue单页应用中的数据同步探索</title>
+    <link href="http://imys.net/20170507/data-sync-in-vue-single-page-application.html"/>
+    <id>http://imys.net/20170507/data-sync-in-vue-single-page-application.html</id>
+    <published>2017-05-07T07:55:40.000Z</published>
+    <updated>2017-05-07T20:07:39.953Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>一个多月没写博，最近一个月的 Github 提交数少了很多，总之就是各种状态不好。微博上看到上个月是水逆，看来我也是受灾群众了。😝</p></blockquote><p>单页应用的一个特点就是即时响应，对发生变化数据实现 UI 的快速变更。实现的基础技术不外乎 AJAX 和 WebSocket，前者负责数据的获取和更新，后者负责变更数据的客户端同步。其中要解决的最主要的问题还是数据同步。</p><p>可以把这个问题拆分为两个具体问题：</p><ol><li><strong>数据共享</strong>：多个视图引用的数据能在发生变化后，即时响应变化。</li><li><strong>数据同步</strong>：多终端访问的数据能在一个客户端发生变化后，即时响应变化。<a id="more"></a></li></ol><h2 id="发布订阅模式"><a href="#发布订阅模式" class="headerlink" title="发布订阅模式"></a>发布订阅模式</h2><p>在旧的项目中是使用了发布订阅模式解决这些问题。不管是 AJAX 请求的返回数据还是 WebSocket 的推送数据，统一向全局发布消息，每个需要这些数据的视图去订阅对应的消息使视图变化。</p><p>缺点是：一个视图为了响应变化需要写很多订阅并更新视图数据的硬编码，涉及数据越多，逻辑也越复杂。</p><h2 id="数据流"><a href="#数据流" class="headerlink" title="数据流"></a>数据流</h2><p>对于 Vue，首先它是一个 MVVM 框架。</p><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Model &lt;----&gt; ViewModel &lt;----&gt; View</div></pre></td></tr></table></figure><p>一目了然的关系，Model 的变化影响到 ViewModel 的变化再触发 View 更新。那么反过来呢，View 更改 ViewModel 再更改 Model？</p><p>对于更新数据而言，更改 ViewModel 真是多此一举了。因为我们只需要改变 Model 数据自然就会按照<code>Model &gt; ViewModel &gt; View</code>的路径同步过来了。这也就是为什么 Vue 后来抛弃了双向绑定，而仅仅支持表单组件的双向绑定。对于双向绑定而言，表单算得上是最佳实践场景了。</p><p>在开发实践中，最常见的还是单向数据流。</p><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Model --&gt; ViewModel --&gt; View --&gt; Model</div></pre></td></tr></table></figure><p>单向数据流告诉我们这样两样事：</p><ol><li>不直接绑定 Model，而是使用由 1~N 个 Model 聚合的 ViewModel。</li><li>View 的变化永远去修改变更值对应的 Model。</li></ol><figure class="image-bubble"><div class="img-lightbox"><div class="overlay"></div><img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-practice-in-complex-single-page-application-201757194432.jpg" alt="Data Flow"></div><div class="image-caption">Data Flow</div></figure><p>解决数据问题的答案已经呼之欲出了。</p><p><strong>多个视图引用的数据在发生变化后，如何响应变化？</strong></p><p>保证多个 View 绑定的 ViewModel 中共同数据来自同一个 <code>Model</code>。</p><figure class="image-bubble"><div class="img-lightbox"><div class="overlay"></div><img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-practice-in-complex-single-page-application-20175720345.jpg" alt=""></div><div class="image-caption"></div></figure><p><strong>多终端访问的数据在一个客户端发生变化后，如何响应变化？</strong></p><p>首先多终端数据同步来源于 WebSocket 数据推送，要保证收到数据推送时去更改直接对应的 Model，而不是 ViewModel。</p><figure class="image-bubble"><div class="img-lightbox"><div class="overlay"></div><img src="http://7ximpj.com1.z0.glb.clouddn.com/vue-practice-in-complex-single-page-application-201757202023.jpg" alt=""></div><div class="image-caption"></div></figure><h2 id="Vue中的解决方案"><a href="#Vue中的解决方案" class="headerlink" title="Vue中的解决方案"></a>Vue中的解决方案</h2><p>不只是要思想上解决问题，而且要代入到编程语言、框架等开发技术中实现。</p><h3 id="Model的存放"><a href="#Model的存放" class="headerlink" title="Model的存放"></a>Model的存放</h3><p>Model 作为原始数据，即使用 AJAX GET 得到的数据，应该位于整个 Vue 项目结构的最上层。对于 Model 的存放位置，也有不同的选择。</p><h4 id="非共享Model"><a href="#非共享Model" class="headerlink" title="非共享Model"></a>非共享Model</h4><p>不需要共享的 Model 可以放到视图组件的<code>data</code>中。但仍然避免 View 直接绑定 Model，即使该 View 的 ViewModel 不再需要额外的 Model 聚合。因为最终影响 View 呈现的不只是来自服务器的 Model 数据，还有视图状态<code>ViewState</code>。</p><p>来个🌰：一个简单的列表组件，负责渲染展示数据和关键字过滤功能。输入的过滤关键字和列表数据都作为 data 存放。</p><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">    data() &#123;</div><div class="line">        <span class="keyword">return</span> &#123;</div><div class="line">            <span class="attr">filterVal</span>: <span class="string">''</span>,</div><div class="line">            <span class="attr">list</span>: []</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    created() &#123;</div><div class="line">        Ajax.getData().then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</div><div class="line">            <span class="keyword">this</span>.list = data</div><div class="line">        &#125;)</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">methods</span>: &#123;</div><div class="line">        filter() &#123;</div><div class="line">            <span class="keyword">this</span>.list = <span class="keyword">this</span>.list.filter(<span class="function"><span class="params">item</span> =&gt;</span> item.name === <span class="keyword">this</span>.filterVal)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>试想一下，如果 View 直接绑定了以上代码中的<code>list</code>，那么在<code>filter</code>函数执行一次后，虽然 View 更新了，但同时<code>list</code>也被改变，不再是一个原始数据了，下一次执行<code>filter</code>函数将是从上一次的结果集中过滤。<br>很尴尬，总不能重新请求数据吧，那样还搞什么 SPA。</p><p>现在我们有了新的发现：<strong>ViewModel</strong> 受<code>Model</code>和<code>ViewState</code>的双重影响。</p><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">ViewModel = 一个或多个 Model 组合 + 影响 View 展示的 ViewState</div></pre></td></tr></table></figure><p>Vue 中有没有好的方法可以很好的描述这个表达式呢？那就是计算属性<code>computed</code>。</p><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">    data() &#123;</div><div class="line">        <span class="keyword">return</span> &#123;</div><div class="line">            <span class="attr">filterVal</span>: <span class="string">''</span>,</div><div class="line">            <span class="attr">list</span>: []</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">computed</span>: &#123;</div><div class="line">        viewList() &#123;</div><div class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.filterVal</div><div class="line">                ? <span class="keyword">this</span>.list.filter(<span class="function"><span class="params">item</span> =&gt;</span> item.name === <span class="keyword">this</span>.filterVal)</div><div class="line">                : <span class="keyword">this</span>.list</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    created() &#123;</div><div class="line">        Ajax.getData().then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</div><div class="line">            <span class="keyword">this</span>.list = data</div><div class="line">        &#125;)</div><div class="line">    &#125;,</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>改写代码后，View 绑定计算属性<code>viewList</code>，有过滤关键字就返回过滤结果，否则返回原始数据。这才称得上是 <strong>数据驱动</strong>。</p><h4 id="共享Model"><a href="#共享Model" class="headerlink" title="共享Model"></a>共享Model</h4><p>如果一个 View 中存在多处共享的 Model，那么毫不犹豫的使用 Vuex 吧。</p><p>对于复杂单页应用，可以考虑分模块管理，避免全局状态过于庞大。即使是共享的 Model 也是分属不同的业务模块和共享级别。<br>比如文档数据，可能只有<code>/document</code>起始路径下的视图需要共享。那么从节省内存的角度考虑，只有进入该路由时才去装载对应的 Vuex 模块。幸运的是 Vuex 提供的模块动态装载的 API。</p><p>对于共享级别高的数据，比如用户相关的数据，可以直接绑定到 Vuex 模块中。</p><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">store</div><div class="line">|   actions.js</div><div class="line">|   index.js</div><div class="line">|   mutations.js</div><div class="line">+---global</div><div class="line">|       user.js</div><div class="line">+---partial</div><div class="line">|       foo.js</div><div class="line">|       bar.js</div></pre></td></tr></table></figure><p>分模块管理后，马上就会遇到跨模块调用数据的问题。一个 View 中需要的数据往往是全局状态和模块状态数据的聚合，可以使用<code>getter</code>解决这个问题。</p><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">    getters: &#123;</div><div class="line">        viewData (state, getters, rootState) &#123;</div><div class="line">            <span class="keyword">return</span> state.data + rootState.data</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>如果一个 View 是需要多个模块状态的数据呢？</p><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">    <span class="comment">// ...</span></div><div class="line">    getters: &#123;</div><div class="line">        viewData (state, getters) &#123;</div><div class="line">            <span class="keyword">return</span> state.data + getters.partialData</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>虽然不能直接访问到其他模块的 state，但是<code>getter</code>和<code>action</code>、<code>mutation</code>都注册在<strong>全局命名空间</strong>，访问不受限制。</p><h4 id="计算属性-vs-Getter"><a href="#计算属性-vs-Getter" class="headerlink" title="计算属性 vs Getter"></a>计算属性 vs Getter</h4><p>Getter 与组件的计算属性拥有相同的作用，其中引用的任何 state 或者 getter 变化都会触发这个 getter 重新计算。</p><p>那么问题来了：<strong>什么时候我应当使用计算属性？什么时候使用 Getter？</strong></p><p>这里其实是有一个 <strong>数据前置</strong> 原则。</p><ul><li>需要聚合多个 state 或 getter 时，使用 getter。如果有多个视图需要同样的数据组合就可以实现 getter 的复用。</li><li>需要聚合的数据中包含 ViewState 时，使用 computed。因为在 store 中无法访问 ViewState。</li></ul><p>至此我们已经保证了应用内的任何一个共享数据最终都来源于某个全局状态或某个模块的状态。</p><h3 id="Model的更新"><a href="#Model的更新" class="headerlink" title="Model的更新"></a>Model的更新</h3><p>Model 的更新有两种，一种是本地触发的更新，另一种是其他客户端更新再由服务器推送的更新。</p><p>可以这样表示：</p><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Model = 本地原始数据 + 本地更新数据 + 推送数据</div></pre></td></tr></table></figure><p>我们似乎又回到了那个列表组件类似的问题上。要不把 3 种数据都设为 state，由 3 种数据组合的 getter 来表示 Model？<br>现在来比较一下。另外有一个前提是 Vuex 只允许提交 mutation 来更改 state。</p><h4 id="单State"><a href="#单State" class="headerlink" title="单State"></a>单State</h4><p>对于一个 state 的更新不外乎是增、删、改、查四种情况，所以至少对应有 4 个 action 和 4 个 mutation，直接对表示源数据的 state 进行更改。</p><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">    <span class="attr">state</span>: &#123;</div><div class="line">        <span class="attr">data</span>: []</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">mutations</span>: &#123;</div><div class="line">        init(state, payload) &#123;</div><div class="line">            state.data = payload</div><div class="line">        &#125;,</div><div class="line">        add(state, payload) &#123;</div><div class="line">            state.data.push(payload)</div><div class="line">        &#125;,</div><div class="line">        <span class="keyword">delete</span>(state, payload) &#123;</div><div class="line">            state.data.splice(state.data.findIndex(<span class="function"><span class="params">item</span> =&gt;</span> item.id === payload), <span class="number">1</span>)</div><div class="line">        &#125;,</div><div class="line">        update(state, payload) &#123;</div><div class="line">            <span class="built_in">Object</span>.assign(state.data.find(<span class="function"><span class="params">item</span> =&gt;</span> item.id === payload.id), payload)</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">actions</span>: &#123;</div><div class="line">        fetch(&#123; commit &#125;) &#123;</div><div class="line">            Api.getData().then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</div><div class="line">                commit(<span class="string">'init'</span>, data)</div><div class="line">            &#125;)</div><div class="line">        &#125;,</div><div class="line">        add(&#123; commit &#125;, item) &#123;</div><div class="line">            Api.add(item).then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</div><div class="line">                commit(<span class="string">'add'</span>, item)</div><div class="line">            &#125;)</div><div class="line">        &#125;,</div><div class="line">        <span class="keyword">delete</span>(&#123; commit &#125;, id) &#123;</div><div class="line">            Api.delete(id).then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</div><div class="line">                commit(<span class="string">'delete'</span>, id)</div><div class="line">            &#125;)</div><div class="line">        &#125;,</div><div class="line">        update(&#123; commit &#125;, item) &#123;</div><div class="line">            Api.update(item).then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</div><div class="line">                commit(<span class="string">'update'</span>, item)</div><div class="line">            &#125;)</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><h4 id="多State"><a href="#多State" class="headerlink" title="多State"></a>多State</h4><p>如果把一个 Model 拆成多个 state，本地更新数据和推送数据统一为变更数据，对应到增、删、改、查四种情况，那就需要 4 个 state，即：<code>originData</code>、<code>addData</code>、<code>deleteData</code>、<code>updateData</code>。<br>mutation 和 action 到不会有什么变化，增、删、改原本就是分开写的，只是各自对应到不同的 state 上，最终的 Model 由一个 getter 来表示。</p><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">    <span class="attr">state</span>: &#123;</div><div class="line">        <span class="attr">originData</span>: [],</div><div class="line">        <span class="attr">addData</span>: [],</div><div class="line">        <span class="attr">deleteData</span>: [],</div><div class="line">        <span class="attr">updateData</span>: []</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">getters</span>: &#123;</div><div class="line">        data(state) &#123;</div><div class="line">            <span class="keyword">return</span> state.originData.concat(state.addData)     <span class="comment">// add</span></div><div class="line">                .map(<span class="function"><span class="params">item</span> =&gt;</span> <span class="built_in">Object</span>.assign(item,</div><div class="line">                    state.updateData.find(<span class="function"><span class="params">uItem</span> =&gt;</span> uItem.id === item.id))) <span class="comment">// update</span></div><div class="line">                .filter(<span class="function"><span class="params">item</span> =&gt;</span> !state.deleteData.find(<span class="function"><span class="params">id</span> =&gt;</span> id === item.id)) <span class="comment">// delete</span></div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">mutations</span>: &#123;</div><div class="line">        init(state, payload) &#123;</div><div class="line">            state.originData = payload</div><div class="line">        &#125;,</div><div class="line">        add(state, payload) &#123;</div><div class="line">            state.addData.push(payload)</div><div class="line">        &#125;,</div><div class="line">        <span class="keyword">delete</span>(state, payload) &#123;</div><div class="line">            state.deleteData.push(payload)</div><div class="line">        &#125;,</div><div class="line">        update(state, payload) &#123;</div><div class="line">            state.updateData.push(payload)</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">actions</span>: &#123;</div><div class="line">        <span class="comment">// 略...</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>这么一大串方法链看起来很酷对不对，但是性能呢？任何一个 state 的变更都将引起这个复杂的 getter 重新执行 5 个循环操作。</p><p>知乎上有个相关问题的讨论：<a href="https://www.zhihu.com/question/54637225" target="_blank" rel="external">JavaScript 函数式编程存在性能问题么？</a><br>其中提到的解决办法是<strong>惰性计算</strong>。相关的函数库有：<a href="http://danieltao.com/lazy.js/" target="_blank" rel="external">lazy.js</a>，或者使用 lodash 中的 <a href="https://lodash.com/docs/4.17.4#chain" target="_blank" rel="external">_.chain</a> 函数。</p><p>还有一种办法是统一为<code>K, V</code>数据结构，这样一个混合函数就搞定了<code>Object.assign(originData, addData, updateData, deleteData)</code>。</p><p>对比而言，我认为多 state 的方式更符合数据驱动及响应式编程思维，但需要有好的办法去解决复杂的循环操作这个问题，单 state 的方式就是面向大众了，两者都可以解决问题。甚至于全面使用响应式编程，使用 <a href="http://reactivex.io/rxjs/" target="_blank" rel="external">RxJS</a> 替代 Vuex。</p><h3 id="数据同步"><a href="#数据同步" class="headerlink" title="数据同步"></a>数据同步</h3><p>前面提到过了，不管是本地更新数据还是服务端推送数据，可以统一为增、删、改三种接口。不管是本地更新还是推送数据，根据数据同步类型走同一个数据更改函数。</p><p>这在 Vuex 中很容易实现。利于 Vuex 的插件功能，可以在接受推送后提交到对应的 mutation。前提是要和后端约好数据格式，更方便的映射到对应的 mutationType，比如：<code>{ 数据名，同步类型，同步数据 }</code>。</p><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> store =&gt; &#123;</div><div class="line">    socket.on(<span class="string">'data'</span>, data =&gt; &#123;</div><div class="line">        <span class="keyword">const</span> &#123; name, type, data &#125; = data</div><div class="line">        store.commit(type + name, data)</div><div class="line">    &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure><p>这样就实现了本地增、删、改与推送数据增、删、改的无差异化。</p><h2 id="推荐"><a href="#推荐" class="headerlink" title="推荐"></a>推荐</h2><ul><li><a href="https://github.com/xufei/blog/issues/47" target="_blank" rel="external">徐飞：单页应用的数据流方案探索</a></li><li><a href="https://github.com/xufei/blog/issues/42" target="_blank" rel="external">徐飞：复杂单页应用的数据层设计</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      单页应用中的数据同步，Vue 单页应用中的数据同步，Vuex 数据同步
+    
+    </summary>
+    
+    
+      <category term="Vue" scheme="http://imys.net/tags/Vue/"/>
+    
+      <category term="SPA" scheme="http://imys.net/tags/SPA/"/>
+    
+      <category term="Vuex" scheme="http://imys.net/tags/Vuex/"/>
+    
+      <category term="数据流" scheme="http://imys.net/tags/%E6%95%B0%E6%8D%AE%E6%B5%81/"/>
+    
+      <category term="数据同步" scheme="http://imys.net/tags/%E6%95%B0%E6%8D%AE%E5%90%8C%E6%AD%A5/"/>
+    
+  </entry>
   
   <entry>
     <title>Vuex与前端缓存的整合策略</title>
@@ -125,11 +153,11 @@
     </summary>
     
     
-      <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
-    
       <category term="Editor" scheme="http://imys.net/tags/Editor/"/>
     
       <category term="ExecCommand" scheme="http://imys.net/tags/ExecCommand/"/>
+    
+      <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
     
   </entry>
   
@@ -353,9 +381,9 @@
     </summary>
     
     
-      <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
-    
       <category term="Canvas" scheme="http://imys.net/tags/Canvas/"/>
+    
+      <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
     
       <category term="Event" scheme="http://imys.net/tags/Event/"/>
     
@@ -401,9 +429,9 @@
     </summary>
     
     
-      <category term="Html" scheme="http://imys.net/tags/Html/"/>
-    
       <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
+    
+      <category term="Html" scheme="http://imys.net/tags/Html/"/>
     
       <category term="技巧" scheme="http://imys.net/tags/%E6%8A%80%E5%B7%A7/"/>
     
@@ -766,15 +794,15 @@ git push origin master
     
       <category term="CSS" scheme="http://imys.net/tags/CSS/"/>
     
-      <category term="Mobile" scheme="http://imys.net/tags/Mobile/"/>
-    
       <category term="devicePixelRatio" scheme="http://imys.net/tags/devicePixelRatio/"/>
+    
+      <category term="em" scheme="http://imys.net/tags/em/"/>
+    
+      <category term="Mobile" scheme="http://imys.net/tags/Mobile/"/>
     
       <category term="Webview" scheme="http://imys.net/tags/Webview/"/>
     
       <category term="Viewport" scheme="http://imys.net/tags/Viewport/"/>
-    
-      <category term="em" scheme="http://imys.net/tags/em/"/>
     
   </entry>
   
@@ -936,11 +964,11 @@ git push origin master
     </summary>
     
     
+      <category term="移动端" scheme="http://imys.net/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
+    
       <category term="devicePixelRatio" scheme="http://imys.net/tags/devicePixelRatio/"/>
     
       <category term="em" scheme="http://imys.net/tags/em/"/>
-    
-      <category term="移动端" scheme="http://imys.net/tags/%E7%A7%BB%E5%8A%A8%E7%AB%AF/"/>
     
       <category term="rem" scheme="http://imys.net/tags/rem/"/>
     
@@ -1188,9 +1216,9 @@ package.json
     </summary>
     
     
-      <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
-    
       <category term="Canvas" scheme="http://imys.net/tags/Canvas/"/>
+    
+      <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
     
       <category term="Chart" scheme="http://imys.net/tags/Chart/"/>
     
@@ -1212,9 +1240,9 @@ package.json
     </summary>
     
     
-      <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
-    
       <category term="Canvas" scheme="http://imys.net/tags/Canvas/"/>
+    
+      <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
     
       <category term="Process" scheme="http://imys.net/tags/Process/"/>
     
@@ -1335,9 +1363,9 @@ package.json
     </summary>
     
     
-      <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
-    
       <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
+    
+      <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
     
   </entry>
   
@@ -1357,9 +1385,9 @@ package.json
     </summary>
     
     
-      <category term="Event" scheme="http://imys.net/tags/Event/"/>
-    
       <category term="JavaScript" scheme="http://imys.net/tags/JavaScript/"/>
+    
+      <category term="Event" scheme="http://imys.net/tags/Event/"/>
     
   </entry>
   
@@ -1472,9 +1500,9 @@ package.json
     </summary>
     
     
-      <category term="jQuery插件" scheme="http://imys.net/tags/jQuery%E6%8F%92%E4%BB%B6/"/>
-    
       <category term="jQuery" scheme="http://imys.net/tags/jQuery/"/>
+    
+      <category term="jQuery插件" scheme="http://imys.net/tags/jQuery%E6%8F%92%E4%BB%B6/"/>
     
   </entry>
   
@@ -1516,9 +1544,9 @@ package.json
     </summary>
     
     
-      <category term="jQuery插件" scheme="http://imys.net/tags/jQuery%E6%8F%92%E4%BB%B6/"/>
-    
       <category term="jQuery" scheme="http://imys.net/tags/jQuery/"/>
+    
+      <category term="jQuery插件" scheme="http://imys.net/tags/jQuery%E6%8F%92%E4%BB%B6/"/>
     
   </entry>
   
