@@ -381,9 +381,9 @@
     </summary>
     
     
-      <category term="Canvas" scheme="http://imys.net/tags/Canvas/"/>
-    
       <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
+    
+      <category term="Canvas" scheme="http://imys.net/tags/Canvas/"/>
     
       <category term="Event" scheme="http://imys.net/tags/Event/"/>
     
@@ -1216,9 +1216,9 @@ package.json
     </summary>
     
     
-      <category term="Canvas" scheme="http://imys.net/tags/Canvas/"/>
-    
       <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
+    
+      <category term="Canvas" scheme="http://imys.net/tags/Canvas/"/>
     
       <category term="Chart" scheme="http://imys.net/tags/Chart/"/>
     
@@ -1240,9 +1240,9 @@ package.json
     </summary>
     
     
-      <category term="Canvas" scheme="http://imys.net/tags/Canvas/"/>
-    
       <category term="Html5" scheme="http://imys.net/tags/Html5/"/>
+    
+      <category term="Canvas" scheme="http://imys.net/tags/Canvas/"/>
     
       <category term="Process" scheme="http://imys.net/tags/Process/"/>
     
@@ -1500,9 +1500,9 @@ package.json
     </summary>
     
     
-      <category term="jQuery" scheme="http://imys.net/tags/jQuery/"/>
-    
       <category term="jQuery插件" scheme="http://imys.net/tags/jQuery%E6%8F%92%E4%BB%B6/"/>
+    
+      <category term="jQuery" scheme="http://imys.net/tags/jQuery/"/>
     
   </entry>
   
@@ -1544,9 +1544,9 @@ package.json
     </summary>
     
     
-      <category term="jQuery" scheme="http://imys.net/tags/jQuery/"/>
-    
       <category term="jQuery插件" scheme="http://imys.net/tags/jQuery%E6%8F%92%E4%BB%B6/"/>
+    
+      <category term="jQuery" scheme="http://imys.net/tags/jQuery/"/>
     
   </entry>
   
