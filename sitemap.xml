@@ -4,7 +4,14 @@
   <url>
     <loc>http://imys.net/20180320/vue-best-practices.html</loc>
     
-    <lastmod>2018-04-01T08:00:13.902Z</lastmod>
+    <lastmod>2018-04-17T14:59:59.901Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://imys.net/20180417/front-end-static-data-manage.html</loc>
+    
+    <lastmod>2018-04-17T14:54:37.330Z</lastmod>
     
   </url>
   
@@ -51,14 +58,14 @@
   </url>
   
   <url>
-    <loc>http://imys.net/20150514/hexo-toc.html</loc>
+    <loc>http://imys.net/20150715/jqplugin-jtip.html</loc>
     
     <lastmod>2017-08-20T13:57:23.811Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://imys.net/20150715/jqplugin-jtip.html</loc>
+    <loc>http://imys.net/20150514/hexo-toc.html</loc>
     
     <lastmod>2017-08-20T13:57:23.811Z</lastmod>
     
@@ -107,7 +114,7 @@
   </url>
   
   <url>
-    <loc>http://imys.net/20150722/canvas-annulus-process.html</loc>
+    <loc>http://imys.net/20150731/canvas-chart-demo.html</loc>
     
     <lastmod>2017-08-20T13:57:23.703Z</lastmod>
     
@@ -121,7 +128,7 @@
   </url>
   
   <url>
-    <loc>http://imys.net/20150731/canvas-chart-demo.html</loc>
+    <loc>http://imys.net/20150722/canvas-annulus-process.html</loc>
     
     <lastmod>2017-08-20T13:57:23.703Z</lastmod>
     
@@ -492,14 +499,14 @@
   </url>
   
   <url>
-    <loc>http://imys.net/demo/border-1px/index.html</loc>
+    <loc>http://imys.net/demo/screenRotation.html</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://imys.net/demo/border-1px/1px.css</loc>
+    <loc>http://imys.net/demo/flex.html</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     
@@ -507,13 +514,6 @@
   
   <url>
     <loc>http://imys.net/demo/h5.html</loc>
-    
-    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://imys.net/demo/screenRotation.html</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     
@@ -534,7 +534,14 @@
   </url>
   
   <url>
-    <loc>http://imys.net/demo/flex.html</loc>
+    <loc>http://imys.net/demo/border-1px/index.html</loc>
+    
+    <lastmod>2016-08-15T13:28:56.417Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://imys.net/demo/border-1px/1px.css</loc>
     
     <lastmod>2016-08-15T13:28:56.417Z</lastmod>
     

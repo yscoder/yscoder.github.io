@@ -5,7 +5,7 @@
     
   <url>
     <loc>http://imys.net/20180320/vue-best-practices.html</loc>
-    <lastmod>2018-04-01T08:00:13.902Z</lastmod>
+    <lastmod>2018-04-17T14:59:59.901Z</lastmod>
     <data>
         <display>
         <title>Vue最佳实践</title>
@@ -14,6 +14,25 @@
         <tag>技巧</tag>
          
         <tag>Vue</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://imys.net/20180417/front-end-static-data-manage.html</loc>
+    <lastmod>2018-04-17T14:54:37.330Z</lastmod>
+    <data>
+        <display>
+        <title>前端静态数据的管理</title>
+        <pubTime>2018-04-17T13:18:01.000Z</pubTime>
+        
+        <tag>前端</tag>
+         
+        <tag>数据管理</tag>
          
          
            
@@ -159,6 +178,23 @@
 
     
   <url>
+    <loc>http://imys.net/20150715/jqplugin-jtip.html</loc>
+    <lastmod>2017-08-20T13:57:23.811Z</lastmod>
+    <data>
+        <display>
+        <title>造个轮子-基于jquery的文字提示插件jtip</title>
+        <pubTime>2015-07-15T07:21:58.000Z</pubTime>
+        
+        <tag>jQuery插件</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://imys.net/20150514/hexo-toc.html</loc>
     <lastmod>2017-08-20T13:57:23.811Z</lastmod>
     <data>
@@ -169,23 +205,6 @@
         <tag>Hexo</tag>
          
         <tag>TOC</tag>
-         
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://imys.net/20150715/jqplugin-jtip.html</loc>
-    <lastmod>2017-08-20T13:57:23.811Z</lastmod>
-    <data>
-        <display>
-        <title>造个轮子-基于jquery的文字提示插件jtip</title>
-        <pubTime>2015-07-15T07:21:58.000Z</pubTime>
-        
-        <tag>jQuery插件</tag>
          
          
            
@@ -307,11 +326,11 @@
         <title>基于 document.execCommand 实现富文本编辑器</title>
         <pubTime>2017-01-12T16:30:09.000Z</pubTime>
         
+        <tag>JavaScript</tag>
+         
         <tag>Editor</tag>
          
         <tag>ExecCommand</tag>
-         
-        <tag>JavaScript</tag>
          
          
            
@@ -321,18 +340,18 @@
 
     
   <url>
-    <loc>http://imys.net/20150722/canvas-annulus-process.html</loc>
+    <loc>http://imys.net/20150731/canvas-chart-demo.html</loc>
     <lastmod>2017-08-20T13:57:23.703Z</lastmod>
     <data>
         <display>
-        <title>Canvas初试--环形进度条的实现</title>
-        <pubTime>2015-07-22T00:21:53.000Z</pubTime>
+        <title>canvas实践--图表组件仪表盘、雷达图</title>
+        <pubTime>2015-07-31T01:14:34.000Z</pubTime>
         
         <tag>Html5</tag>
          
         <tag>Canvas</tag>
          
-        <tag>Process</tag>
+        <tag>Chart</tag>
          
          
            
@@ -361,18 +380,18 @@
 
     
   <url>
-    <loc>http://imys.net/20150731/canvas-chart-demo.html</loc>
+    <loc>http://imys.net/20150722/canvas-annulus-process.html</loc>
     <lastmod>2017-08-20T13:57:23.703Z</lastmod>
     <data>
         <display>
-        <title>canvas实践--图表组件仪表盘、雷达图</title>
-        <pubTime>2015-07-31T01:14:34.000Z</pubTime>
+        <title>Canvas初试--环形进度条的实现</title>
+        <pubTime>2015-07-22T00:21:53.000Z</pubTime>
         
         <tag>Html5</tag>
          
         <tag>Canvas</tag>
          
-        <tag>Chart</tag>
+        <tag>Process</tag>
          
          
            
@@ -504,9 +523,9 @@
         <title>前端文字的截断处理</title>
         <pubTime>2015-09-06T09:37:32.000Z</pubTime>
         
-        <tag>CSS</tag>
-         
         <tag>Html</tag>
+         
+        <tag>CSS</tag>
          
         <tag>Ellipsis</tag>
          
@@ -682,9 +701,9 @@
         
         <tag>Html5</tag>
          
-        <tag>用户体验</tag>
-         
         <tag>History</tag>
+         
+        <tag>用户体验</tag>
          
          
            
@@ -720,9 +739,9 @@
         <title>用户体验--WEB站点快捷键实现方案</title>
         <pubTime>2015-07-16T07:06:58.000Z</pubTime>
         
-        <tag>WEB</tag>
-         
         <tag>用户体验</tag>
+         
+        <tag>WEB</tag>
          
         <tag>快捷键</tag>
          
@@ -821,11 +840,11 @@
         <title>一个HTML元素可以做什么？</title>
         <pubTime>2016-04-13T08:37:53.000Z</pubTime>
         
+        <tag>Html</tag>
+         
         <tag>CSS</tag>
          
         <tag>CSS3</tag>
-         
-        <tag>Html</tag>
          
          
            
@@ -861,11 +880,11 @@
         <title>移动端页面开发关键—尺寸和布局</title>
         <pubTime>2015-11-07T15:02:29.000Z</pubTime>
         
+        <tag>移动端</tag>
+         
         <tag>devicePixelRatio</tag>
          
         <tag>em</tag>
-         
-        <tag>移动端</tag>
          
         <tag>rem</tag>
          
@@ -890,15 +909,15 @@
         
         <tag>CSS</tag>
          
-        <tag>Mobile</tag>
-         
         <tag>devicePixelRatio</tag>
+         
+        <tag>em</tag>
+         
+        <tag>Mobile</tag>
          
         <tag>Webview</tag>
          
         <tag>Viewport</tag>
-         
-        <tag>em</tag>
          
          
            
@@ -1305,9 +1324,9 @@
         <title>对元素特性巧妙利用的一些例子</title>
         <pubTime>2016-07-15T01:10:40.000Z</pubTime>
         
-        <tag>JavaScript</tag>
-         
         <tag>Html</tag>
+         
+        <tag>JavaScript</tag>
          
         <tag>技巧</tag>
          
